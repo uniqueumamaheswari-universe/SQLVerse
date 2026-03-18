@@ -6,6 +6,37 @@
 
 ## FROM MASTERING SQL & AI TO DATA ARCHITECT
 ---
+> 🚧 **Course Status:** Level 1 content is being finalized. All links are being tested.  
+> 🎯 **Expected completion:** [Month Year]. Feel free to look around, but expect occasional updates.
+> ---
+
+## 🌌 Welcome to the SQLVerse
+
+The **SQLVerse** is more than a course—it's a universe of data waiting to be explored. **Every domain is a planet, every database is a world to be discovered.** From the **Education Planet** where you first learn the laws of SQL, to the **E‑Commerce Planet** where you test your skills in the wild, and finally to the **HR Planet** where data tells human stories—you'll travel through worlds designed to build genuine mastery.
+
+This isn't just about learning syntax. It's about becoming a citizen of the SQLVerse, someone who can navigate any data landscape with confidence and curiosity.
+
+---
+
+## 👨‍🏫 A Note from the Creator
+
+Hi, I'm **Uma Maheswari**. For nearly two decades, I've had the privilege of teaching thousands of students across a broad technology stack—from **C, C++, Java, Hibernate, J2EE, and the .NET framework** to **SQL Server, HTML, DHTML, JavaScript, C#, Python**, and countless academic projects. Every classroom, every student, every "aha!" moment reinforced my belief that quality education should have no barriers.
+
+This course—**SQL & GenAI**—is the first step in a much larger journey. Over time, I'll be publishing courses covering my areas of expertise, one by one. My goal is simple: to share what I've learned with anyone, anywhere, at **zero cost**. Whether you're a student in a remote village, a parent learning after bedtime, or a professional upskilling during lunch, you deserve the same opportunity to grow.
+
+**SQLVerse is just the beginning.** Future courses will explore other technologies, always with the same philosophy: **foundation first, AI next, and genuine competence above all**.
+
+If this course helps you—even a little—please consider **starring this repository** ⭐. It's a small gesture that helps others discover it and keeps me motivated to build the next one.
+
+Thank you for being part of this adventure. The SQLVerse awaits.
+
+— Uma Maheswari
+
+[![Star this repo](https://img.shields.io/github/stars/yourusername/your-repo?style=social)](https://github.com/yourusername/your-repo)
+
+---
+
+
 ## 🌍 **VISION: EDUCATION WITHOUT BORDERS**
 
 **This course is completely free** as part of my commitment to making quality tech education accessible to everyone, regardless of financial situation or geographic location.

@@ -7,7 +7,7 @@
 ## FROM MASTERING SQL & AI TO DATA ARCHITECT
 ---
 > 🚧 **Course Status:** Level 1 content is being finalized. All links are being tested.  
-> 🎯 **Expected completion:** [Month Year]. Feel free to look around, but expect occasional updates.
+> 🎯 **Expected completion:** [May 2026]. Feel free to look around, but expect occasional updates.
 > ---
 
 ## 🌌 Welcome to the SQLVerse
@@ -32,7 +32,6 @@ Thank you for being part of this adventure. The SQLVerse awaits.
 
 — Uma Maheswari
 
-[![Star this repo](https://img.shields.io/github/stars/yourusername/your-repo?style=social)](https://github.com/yourusername/your-repo)
 
 ---
 

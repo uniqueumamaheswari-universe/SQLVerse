@@ -402,7 +402,7 @@ This report is about **how you work**. It should demonstrate that you don't just
 > **File name:** `MODULE3-CTO-REPORT.md`
 
 ---
-### 🌸 The Artisan's Garden
+### 🌸 The  SQLVerse Artisan's Garden
 
 In the **SQLVerse**, data is a garden with all types of flowers.
 

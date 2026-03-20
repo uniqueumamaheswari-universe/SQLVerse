@@ -538,7 +538,7 @@ DELETE FROM students WHERE phone IS NULL AND enrollment_date < '2024-01-01';
 
 **The Insight:** Every filtering skill you've learned in Module 2 – `AND`, `OR`, `IN`, `BETWEEN`, `LIKE`, `IS NULL` – transfers directly to modifying and deleting data. You're not just learning to read; you're learning to **control** data.
 
-In **Module 3**, you'll become a true data steward, mastering the full cycle: `INSERT`, `UPDATE`, `DELETE`, and the transactions that keep data safe.
+In **Module 4**, you'll become a true data steward, mastering the full cycle: `INSERT`, `UPDATE`, `DELETE`, and the transactions that keep data safe.
 
 ---
 
@@ -801,13 +801,18 @@ From your first `SELECT` on Education Planet to handling NULLs on HR Planet, fro
 
 ### ✨ Your Journey at a Glance
 
-| Stage | What You Mastered |
-|-------|-------------------|
-| **Files 1-6** | Core SQL concepts across Education, HR, and E-Commerce planets |
-| **File 7** | Presentation polish with `DISTINCT` and Aliases |
-| **✨ Bonus 1** | The Artisan's Query Rhythm – your methodology for life |
-| **✨ Bonus 2** | INSERT preview – your first step into data modification |
-| **📂 CEO Report** | Your first professional portfolio piece |
+| File | What You Mastered |
+|------|-------------------|
+| **File 1** | **SELECT** – The Lens: Retrieving data, choosing columns, and understanding the `SELECT` clause. |
+| **File 2** | **WHERE** – The Sieve: Filtering rows with comparison operators (`=`, `<>`, `>`, `<`, `>=`, `<=`). |
+| **File 3** | **Logical Operators** – Layering Logic: Combining conditions with `AND`, `OR`, `NOT`, and using parentheses for clarity. |
+| **File 4** | **IN & BETWEEN** – Elegant Shortcuts: Simplifying multiple conditions with `IN` and range filters with `BETWEEN`. |
+| **File 5** | **LIKE & Wildcards** – Fuzzy Thinking: Searching patterns with `%` and `_`, and handling partial matches. |
+| **File 6** | **NULL Handling** – The Unknown: Testing for missing values with `IS NULL` and `IS NOT NULL`, and understanding how `NULL` behaves in expressions. |
+| **File 7** | **DISTINCT & Aliases** – Polishing the Results: Removing duplicates with `DISTINCT` and giving columns readable names with `AS`. |
+| **✨ Bonus Skill 1** | **Artisan's Query Rhythm** – A disciplined 5‑step process for writing, predicting, and debugging queries. |
+| **✨ Bonus Skill 2** | **INSERT Preview** – Adding data: the foundation for controlling your database. |
+| **📊 Capstone Report** | **CEO Report** – E‑Store Analytics: Translating business questions into SQL insights for leadership. |
 
 From your first `SELECT` to handling NULLs, from pattern matching to polishing results – and now, with two bonus skills in your toolkit, you're ready for the PRACTICE stage and beyond.
 
@@ -826,8 +831,10 @@ The laws of the SQLVerse are now yours. **Go forth and explore every planet you 
 | `LIKE` and wildcards | **Fuzzy thinking** – Finding patterns when you don't have exact matches |
 | `NULL` handling | **Knowing what you don't know** – Treating missing data honestly |
 | `DISTINCT` and aliases | **Presentation** – Turning raw output into professional reports |
-| **The Artisan's Query Rhythm** | **Methodology** – A disciplined approach to learning and problem-solving |
-| **INSERT preview** | **Future readiness** – Your WHERE skills transfer everywhere |
+| The Artisan's Query Rhythm | **Methodology** – A disciplined approach to learning and problem‑solving |
+| `INSERT` as an afterthought (in other courses) | **Future readiness** – Your `WHERE` skills transfer everywhere, and you get a preview of data modification |
+| Theory and syntax in isolation | **Portfolio‑Ready Mastery** – A complete CEO Report that proves your skills to leadership |
+
 
 **The Difference:** You're not just memorizing commands – you're discovering how to apply them to your life, your work, and your world. That's the journey from SQL user to **Data Artisan**.
 
@@ -850,21 +857,26 @@ When you hand a report to a manager, they shouldn't have to ask, *"What does thi
 
 ---
 
-## 🎉 PREPARE COMPLETE
 
-Congratulations! You've completed all seven concept files for Module 2. You now know how to:
+## ✅ Module 2: PREPARE - COMPLETE!
 
-- Retrieve data with `SELECT`
-- Filter with `WHERE`, comparison operators, and logical operators
-- Use `IN` and `BETWEEN` for cleaner conditions
-- Search patterns with `LIKE` and wildcards
-- Handle `NULL` correctly
-- Polish results with `DISTINCT` and aliases
-- Apply the **Artisan's Query Rhythm** as a disciplined practice
-- Preview data modification with `INSERT`
-- Tackle a comprehensive **CEO Report** using all concepts
+**Congratulations!** You have finished the "Knowledge Acquisition" phase of Module 2.
 
-**You are now ready for the PRACTICE stage!**
+- [x] You can **Retrieve** data with `SELECT` and choose columns.
+- [x] You can **Filter** with `WHERE` and comparison operators.
+- [x] You can **Layer logic** with `AND`, `OR`, and `NOT`.
+- [x] You can use **Shortcuts** like `IN` and `BETWEEN`.
+- [x] You can **Find patterns** with `LIKE` and wildcards.
+- [x] You can **Handle the unknown** with `IS NULL` and `IS NOT NULL`.
+- [x] You can **Polish** results with `DISTINCT` and column aliases.
+- [x] You've mastered the **Artisan's Query Rhythm** – a disciplined approach to writing and debugging queries.
+- [x] You've previewed **Data Modification** with `INSERT`, preparing for full control.
+
+### 🔄 What's Next?
+
+You've completed your **CEO Report** and polished your skills with `DISTINCT` and aliases. Now it's time to leave the "Map" behind and enter **The Factory**. Return to your **Module 2 Guide** and navigate to the **PRACTICE** section to put all your skills to work with hands‑on exercises and the module quiz.
+
+Your portfolio is growing – keep the momentum! 🚀
 
 ---
 

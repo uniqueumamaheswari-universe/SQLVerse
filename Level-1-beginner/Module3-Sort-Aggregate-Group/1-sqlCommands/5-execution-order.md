@@ -581,7 +581,9 @@ It is time to leave the "Map" behind and enter **The Factory**. Return to your *
 
 Build, break, and master these skills through real-world business cases. Your portfolio awaits! 🚀
 
-What a journey we had in **Module 3**: Choreography, Artisan's Rhythm, Symphony, and **The Artisan's Garden**. It feels like we celebrated with music in a beautiful garden. In **Module 4**, we'll look at designing the **Landscape for our Data Garden**.
+What a journey we had in **Module 3**: Choreography, Artisan's Rhythm, Symphony, Bouquets, Professional Kitchen, Final plated dish and **The Artisan's Garden**. It felt like a celebration with music in a beautiful garden – a **Module 3 theme party**.
+
+In **Module 4**, we'll look at designing the **Landscape for our Data Garden**.
 
 ---
 ## 🧭 File Navigation

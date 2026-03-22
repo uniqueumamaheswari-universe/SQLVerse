@@ -26,7 +26,7 @@ This course—**SQL & GenAI**—is the first step in a much larger journey. Over
 
 **SQLVerse is just the beginning.** Future courses will explore other technologies, always with the same philosophy: **foundation first, AI next, and genuine competence above all**.
 
-If this course helps you—even a little—please consider **starring this repository** ⭐. It's a small gesture that helps others discover it and keeps me motivated to build the next one.
+If this course helps you—even a little—please consider **starring this repository** ⭐. It's a small gesture that helps other students discover these resources  and keeps my "No-Cost" mission growing!*.
 
 Thank you for being part of this adventure. The SQLVerse awaits.
 

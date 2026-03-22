@@ -1,0 +1,174 @@
+-- =============================================
+-- Training Institution Sample Database
+-- Optimized for Level 1 & Level 2 Mastery
+-- =============================================
+
+-- =============================================
+--CREATING TABLES
+-- =============================================
+
+
+-- 1. Create Instructors Table (The Source of Truth for Faculty)
+CREATE TABLE instructors (
+    instructor_id INTEGER PRIMARY KEY,
+    first_name TEXT NOT NULL,
+    last_name TEXT NOT NULL,
+    email TEXT UNIQUE NOT NULL,
+    specialization TEXT
+);
+
+-- 2. Create Students Table
+CREATE TABLE students (
+    student_id INTEGER PRIMARY KEY,
+    first_name TEXT NOT NULL,
+    last_name TEXT NOT NULL,
+    email TEXT UNIQUE NOT NULL,
+    phone TEXT,
+    enrollment_date DATE NOT NULL,
+    total_fees DECIMAL(10,2) DEFAULT 0,
+    fees_paid DECIMAL(10,2) DEFAULT 0
+);
+
+-- 3. Create Courses Table (Linked to Instructors)
+CREATE TABLE courses (
+    course_id INTEGER PRIMARY KEY,
+    course_code TEXT NOT NULL UNIQUE,
+    course_name TEXT NOT NULL,
+    course_track TEXT NOT NULL,
+    duration_weeks INTEGER NOT NULL,
+    instructor_id INTEGER NOT NULL, -- The Foreign Key
+    course_fee DECIMAL(8,2) NOT NULL,
+    max_seats INTEGER NOT NULL,
+    is_active BOOLEAN DEFAULT TRUE,
+    FOREIGN KEY (instructor_id) REFERENCES instructors(instructor_id)
+);
+
+-- 4. Create Enrollments Table
+CREATE TABLE enrollments (
+    enrollment_id INTEGER PRIMARY KEY,
+    student_id INTEGER NOT NULL,
+    course_id INTEGER NOT NULL,
+    enrollment_date DATE NOT NULL,
+    completion_status TEXT DEFAULT 'Ongoing',
+    test1_score DECIMAL(5,2),
+    test2_score DECIMAL(5,2),
+    final_exam_score DECIMAL(5,2),
+    certificate_issued BOOLEAN DEFAULT FALSE,
+    FOREIGN KEY (student_id) REFERENCES students(student_id),
+    FOREIGN KEY (course_id) REFERENCES courses(course_id)
+);
+
+-- 5. Create Payments Table
+CREATE TABLE payments (
+    payment_id INTEGER PRIMARY KEY,
+    student_id INTEGER NOT NULL,
+    amount DECIMAL(8,2) NOT NULL,
+    payment_date DATE NOT NULL,
+    payment_method TEXT NOT NULL,
+    description TEXT,
+    FOREIGN KEY (student_id) REFERENCES students(student_id)
+);
+
+-- =============================================
+-- INSERTING SAMPLE DATA (NORMALIZED)
+-- =============================================
+
+-- Insert Instructors
+INSERT INTO instructors (instructor_id, first_name, last_name, email, specialization) VALUES
+(501, 'Emily', 'Watson', 'emily.w@institution.com', 'Web Development'),
+(502, 'James', 'Wilson', 'james.w@institution.com', 'Backend & SQL'),
+(503, 'Maria', 'Garcia', 'maria.g@institution.com', 'Data Science'),
+(504, 'Robert', 'Chen', 'robert.c@institution.com', 'Cybersecurity'),
+(505, 'Ahmed', 'Khan', 'ahmed.k@institution.com', 'Machine Learning');
+
+-- Insert Courses 
+INSERT INTO courses (course_id, course_code, course_name, course_track, duration_weeks, instructor_id, course_fee, max_seats) VALUES
+(201, 'WD101', 'Frontend Development', 'Web Development', 8, 501, 1500.00, 15),
+(202, 'WD102', 'Backend with Node.js', 'Web Development', 10, 502, 1800.00, 12),
+(203, 'DS101', 'Python for Data Analysis', 'Data Science', 12, 503, 2000.00, 10),
+(204, 'CS101', 'Network Security Fundamentals', 'Cybersecurity', 10, 504, 1600.00, 12),
+(205, 'WD201', 'Full Stack Project', 'Web Development', 6, 501, 1200.00, 8),
+(206, 'DS201', 'Machine Learning Basics', 'Data Science', 14, 505, 2200.00, 8),
+(207, 'DS102', 'Data Analysis for Beginners', 'Data Science', 4, 503, 800.00, 20),
+(208, 'WD103', 'SQL Basics', 'Web Development', 4, 502, 600.00, 25);
+
+
+-- Insert Students
+INSERT INTO students (student_id, first_name, last_name, email, phone, enrollment_date, total_fees, fees_paid) VALUES
+(101, 'Sarah', 'Chen', 'sarah.chen@email.com', '555-0101', '2024-01-15', 4500.00, 3000.00),
+(102, 'Mike', 'Rodriguez', 'mike.rod@email.com', '555-0102', '2024-01-20', 5200.00, 5200.00),
+(103, 'Jessica', 'Park', 'jessica.park@email.com', '555-0103', '2024-02-01', 4500.00, 2000.00),
+(104, 'David', 'Thompson', 'david.t@email.com', '555-0104', '2024-02-10', 4800.00, 4800.00),
+(105, 'Lisa', 'Johnson', 'lisa.j@email.com', '555-0105', '2024-02-15', 5200.00, 3000.00),
+(106, 'Alex', 'Kumar', 'alex.kumar@email.com', '555-0106', '2024-03-01', 4500.00, 4500.00),
+(107, 'Maria', 'Garcia', 'maria.g@email.com', '555-0107', '2024-03-10', 3800.00, 2000.00),
+(108, 'James', 'Wilson', 'james.w@email.com', '555-0108', '2024-03-15', 5200.00, 0.00),
+(109, 'Priya', 'Patel', 'priya.p@email.com', '555-0109', '2024-04-01', 4500.00, 1500.00),
+(110, 'Carlos', 'Mendez', 'carlos.m@email.com', '555-0110', '2024-04-05', 3800.00, 3800.00);
+
+
+-- Insert Enrollments
+INSERT INTO enrollments (enrollment_id, student_id, course_id, enrollment_date, completion_status, test1_score, test2_score, final_exam_score, certificate_issued) VALUES
+-- Sarah Chen's enrollments
+(1, 101, 201, '2024-01-15', 'Completed', 78.50, 82.00, 85.00, 1),
+(2, 101, 202, '2024-03-01', 'Ongoing', 75.00, NULL, NULL, 0),
+
+-- Mike Rodriguez's enrollments
+(3, 102, 203, '2024-01-20', 'Completed', 92.00, 88.50, 94.00, 1),
+(4, 102, 205, '2024-04-01', 'Ongoing', 85.00, NULL, NULL, 0),
+
+-- Jessica Park's enrollments
+(5, 103, 201, '2024-02-01', 'Completed', 65.00, 72.50, 68.00, 1),
+(6, 103, 202, '2024-04-01', 'Ongoing', 70.00, NULL, NULL, 0),
+
+-- David Thompson's enrollments
+(7, 104, 204, '2024-02-10', 'Completed', 88.00, 85.50, 90.00, 1),
+
+-- Lisa Johnson's enrollments
+(8, 105, 203, '2024-02-15', 'Completed', 82.50, 79.00, 85.00, 1),
+(9, 105, 205, '2024-04-01', 'Ongoing', 78.00, NULL, NULL, 0),
+
+-- Alex Kumar's enrollments
+(10, 106, 201, '2024-03-01', 'Completed', 95.00, 92.50, 97.00, 1),
+(11, 106, 202, '2024-04-01', 'Ongoing', 90.00, NULL, NULL, 0),
+(12, 106, 205, '2024-04-01', 'Ongoing', 88.00, NULL, NULL, 0),
+
+-- Maria Garcia's enrollments
+(13, 107, 201, '2024-03-10', 'Ongoing', 72.00, NULL, NULL, 0),
+(14, 107, 204, '2024-03-10', 'Ongoing', 80.00, NULL, NULL, 0),
+
+-- James Wilson's enrollments
+(15, 108, 206, '2024-03-15', 'Ongoing', NULL, NULL, NULL, 0);
+
+-- Priya Patel's enrollments (new)
+(16, 109, 207, '2024-04-01', 'Ongoing', NULL, NULL, NULL, 0),
+(17, 109, 208, '2024-04-01', 'Ongoing', NULL, NULL, NULL, 0),
+
+-- Carlos Mendez's enrollments (new)
+(18, 110, 207, '2024-04-05', 'Ongoing', NULL, NULL, NULL, 0);
+
+
+-- Insert Payments
+INSERT INTO payments (payment_id, student_id, amount, payment_date, payment_method, description) VALUES
+(301, 101, 1500.00, '2024-01-10', 'Credit Card', 'Frontend Development Course'),
+(302, 101, 1500.00, '2024-02-28', 'Bank Transfer', 'Backend Course - First Payment'),
+(303, 102, 2000.00, '2024-01-15', 'Debit Card', 'Data Analysis Course - Full'),
+(304, 102, 2000.00, '2024-03-20', 'Credit Card', 'Full Stack Project - Full'),
+(305, 103, 1500.00, '2024-01-25', 'Cash', 'Frontend Course - First Payment'),
+(306, 103, 500.00, '2024-03-15', 'Bank Transfer', 'Frontend Course - Balance'),
+(307, 104, 1600.00, '2024-02-05', 'Credit Card', 'Security Course - Full'),
+(308, 105, 2000.00, '2024-02-10', 'Debit Card', 'Data Analysis - First Payment'),
+(309, 105, 1000.00, '2024-03-25', 'Credit Card', 'Data Analysis - Balance'),
+(310, 106, 1500.00, '2024-02-25', 'Bank Transfer', 'Frontend Course - Full'),
+(311, 106, 1800.00, '2024-03-28', 'Credit Card', 'Backend Course - Full'),
+(312, 106, 1200.00, '2024-03-30', 'Debit Card', 'Full Stack Project - Full'),
+(313, 107, 1000.00, '2024-03-05', 'Cash', 'Frontend Course - First Payment'),
+(314, 107, 1000.00, '2024-03-25', 'Bank Transfer', 'Security Course - First Payment'),
+(315, 108, 0.00, '2024-03-15', 'Pending', 'Payment not yet received'),
+(316, 109, 800.00, '2024-04-01', 'Credit Card', 'Data Analysis for Beginners - Full'),
+(317, 109, 600.00, '2024-04-01', 'Credit Card', 'SQL Basics - Full'),
+(318, 110, 800.00, '2024-04-05', 'Debit Card', 'Data Analysis for Beginners - Full');
+
+-- =============================================
+-- DATABASE READY FOR USE
+-- =============================================

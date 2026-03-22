@@ -5,7 +5,7 @@
 **🎯 Quality Education for Anyone, Anywhere, Anytime — 💫 with Comfort, Convenience at no Cost**
 
 ## 📚 **3 KNOWLEDGE BASE: ACQUIRE Phase Calibration**
----
+
 
 ## 📍 **YOUR PILLAR PROGRESSION**
 **Current Status:** Pillar 1-2 ✅ Complete • Pillar 3 begins now
@@ -275,27 +275,34 @@ flowchart TD
     Proj --> Level2["<b>📁 Level-2-intermediate</b><br/>[Coming in Level 2]"]
     Proj --> Level3["<b>📁 Level-3-advanced</b><br/>[Coming in Level 3]"]
     
-    Level1 --> P1["<b>📁 HR_Analytics_Deep_Dive</b><br/>Module 6: Professional System Analysis"]
-    Level1 --> P2["<b>📁 University_Course_Manager</b><br/>Bonus: Complex System Design"]
-    Level1 --> P3["<b>📁 CEO SUITE</b><br/>✨ YOUR FIRST PORTFOLIO PIECE<br/>Module 2: Executive-Level Analysis"]
+    Level1 --> P1["<b>📁 HR Analytics</b><br/>Module 6:<br/>Professional Analysis"]
+    Level1 --> P2["<b>📁 University Manager</b><br/>Bonus:<br/>Complex System Design"]
+    Level1 --> ModuleReports["<b>📁 Module Reports</b><br/>Your Capstone Deliverables"]
     
     Level2 --> P4["<b>📁 [Your Future Projects]</b><br/>Intermediate challenges"]
     Level3 --> P5["<b>📁 [Your Future Projects]</b><br/>Advanced architectural work"]
     
-    subgraph P3_Detail["<b>CEO SUITE Structure</b><br/>Your Growing Collection of Executive Work"]
-        Suite1["<b>ceo-report-rhythm.md</b><br/>Module 2: First Executive Report"]
-        Suite2["<b>📁 queries/</b><br/>Individual SQL files"]
-        Suite3["<b>├── 1-unique-cities.sql</b><br/>"]
-        Suite4["<b>├── 2-price-range.sql</b><br/>"]
-        Suite5["<b>├── 3-non-email-domains.sql</b><br/>"]
-        Suite6["<b>├── 4-books.sql</b><br/>"]
-        Suite7["<b>├── 5-small-orders.sql</b><br/>"]
-        Suite8["<b>├── 6-category-count.sql</b><br/>"]
-        Suite9["<b>└── 7-name-patterns.sql</b><br/>"]
-        Suite10["<b>✨ More coming...</b><br/>Module 3, Module 4, and beyond"]
+    subgraph ModuleReports_Detail["<b>Module Reports – Your Growing Portfolio Centerpieces</b>"]
+        CEO["<b>📁 CEO SUITE</b><br/>Executive‑Level Insights<br/>(Reports from Modules 2, 3, 4…)"]
+        CTO["<b>📁 CTO SUITE</b><br/>Methodology & Discipline<br/>(Reports from Modules 3, 4…)"]
     end
     
-    P3 --> P3_Detail
+    ModuleReports --> ModuleReports_Detail
+    
+    subgraph CEO_Detail["<b>CEO SUITE Structure – A Living Collection</b>"]
+        Suite1["<b>📄 report_module2.md</b><br/>Your first executive analysis"]
+        Suite2["<b>📄 report_module3.md</b><br/>E‑Commerce analytics dashboard"]
+        Suite3["<b>📄 report_module4.md</b><br/>[Coming soon]"]
+        Suite4["<b>📁 queries/</b><br/>Individual SQL files for each report"]
+        Suite5["<b>📁 data/</b><br/>Optional: sample outputs or datasets"]
+    end
+    
+    subgraph CTO_Detail["<b>CTO SUITE Structure – A Growing Discipline Archive</b>"]
+        CTO1["<b>📄 report_module3.md</b><br/>Methodology & bonus skills"]
+        CTO2["<b>📄 report_module4.md</b><br/>[Coming soon]"]
+        CTO3["<b>📁 evidence/</b><br/>Supporting examples (bulk insert, update, etc.)"]
+        CTO4["<b>📁 reflections/</b><br/>Personal learning journals"]
+    end
     
     subgraph HR_Detail["<b>HR Analytics Structure</b><br/>Professional Analysis Project"]
         HR1["<b>README.md</b><br/>Project Overview"]
@@ -305,6 +312,8 @@ flowchart TD
     end
     
     P1 --> HR_Detail
+    CEO --> CEO_Detail
+    CTO --> CTO_Detail
     
     style Proj fill:#e1f5fe,stroke:#2196f3,stroke-width:2px
     style Level1 fill:#e3f2fd,stroke:#2196f3
@@ -312,28 +321,32 @@ flowchart TD
     style Level3 fill:#e8f5e8,stroke:#4caf50
     style P1 fill:#fff8e1,stroke:#ff9800
     style P2 fill:#fff8e1,stroke:#ff9800
-    style P3 fill:#f3e5f5,stroke:#9c27b0,stroke-width:3px
+    style ModuleReports fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px
     style P4 fill:#f5f5f5,stroke:#999,stroke-dasharray: 3 3
     style P5 fill:#f5f5f5,stroke:#999,stroke-dasharray: 3 3
-    style P3_Detail fill:#f5f5f5,stroke:#9c27b0,stroke-dasharray: 3 3
+    style ModuleReports_Detail fill:#f5f5f5,stroke:#9c27b0,stroke-dasharray: 3 3
+    style CEO_Detail fill:#f5f5f5,stroke:#4caf50,stroke-dasharray: 3 3
+    style CTO_Detail fill:#f5f5f5,stroke:#9c27b0,stroke-dasharray: 3 3
     style HR_Detail fill:#f5f5f5,stroke:#ff9800,stroke-dasharray: 3 3
+    style CEO fill:#e8f5e8,stroke:#4caf50
+    style CTO fill:#f3e5f5,stroke:#9c27b0
     style Suite1 fill:#fff8e1
-    style Suite2 fill:#e1f5fe
-    style Suite3 fill:#e1f5fe
+    style Suite2 fill:#fff8e1
+    style Suite3 fill:#f5f5f5,stroke-dasharray: 3 3
     style Suite4 fill:#e1f5fe
     style Suite5 fill:#e1f5fe
-    style Suite6 fill:#e1f5fe
-    style Suite7 fill:#e1f5fe
-    style Suite8 fill:#e1f5fe
-    style Suite9 fill:#e1f5fe
-    style Suite10 fill:#e8f5e8
+    style CTO1 fill:#fff8e1
+    style CTO2 fill:#f5f5f5,stroke-dasharray: 3 3
+    style CTO3 fill:#e1f5fe
+    style CTO4 fill:#fff8e1
     style HR1 fill:#fff8e1
     style HR2 fill:#fff8e1
     style HR3 fill:#e1f5fe
     style HR4 fill:#fff8e1
 ```
 
-**Project Workspace Pattern:** Unlike the rigid learning structure, each project has a custom structure tailored to its needs. The **CEO SUITE** shows individual query files (perfect for discrete business questions), while **HR Analytics** shows a more narrative structure with README and conclusions.
+
+**Project Workspace Pattern:** Unlike the rigid learning structure, each project has a custom structure tailored to its needs. The **HR Analytics** project shows a narrative structure with README and conclusions. The **CEO SUITE** and **CTO SUITE** are your evolving collections of capstone deliverables – each will grow as you complete reports in Modules 2, 3, 4, and beyond, forming a comprehensive portfolio of executive‑level analysis and disciplined methodology.
 
 ---
 

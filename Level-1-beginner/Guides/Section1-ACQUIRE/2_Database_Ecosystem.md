@@ -1,7 +1,6 @@
 
 
 
-
 # 🗄️🤖 SQL & GenAI Course
 **🎯 Quality Education for Anyone, Anywhere, Anytime — 💫 with Comfort, Convenience at no Cost**
 
@@ -58,10 +57,10 @@ flowchart TD
     subgraph ECOSYSTEM[ACQUIRE Data Ecosystem]
         direction TB
 
-        MAP["<b>Tab 1: The Map</b><br/>🗺️ Contains:<br/>• SQL Commands (The 'What')<br/>• Schema Anchors (The 'Blueprint')"]
-        FACTORY["<b>Tab 2: The Factory</b><br/>🏭 Contains:<br/>• Core Datasets (The 'Evidence')"]
-        CONSULTANT["<b>Tab 3: The Consultant</b><br/>🤖 Configured as:<br/>• Socratic Tutor (The 'Guide')<br/>• Rule: Conceptual Guidance ONLY"]
-        VAULT["<b>Tab 4: The Vault</b><br/>🗃️ Purpose:<br/>• Documented Insights (The 'Record')"]
+        MAP["<b>Tab 1: The Map</b><br/>🗺️ Contains:<br/>• SQL Commands<br/>  (The 'What')<br/>• Schema Anchors<br/>  (The 'Blueprint')"]
+        FACTORY["<b>Tab 2: The Factory</b><br/>🏭 Contains:<br/>• Core Datasets<br/>  (The 'Evidence')"]
+        CONSULTANT["<b>Tab 3: The Consultant</b><br/>🤖 Configured as:<br/>• Socratic Tutor<br/>  (The 'Guide')<br/>• Rule: Conceptual<br/>  Guidance ONLY"]
+        VAULT["<b>Tab 4: The Vault</b><br/>🗃️ Purpose:<br/>• Documented Insights<br/>  (The 'Record')"]
 
         MAP -- "Provides Action & Structure" --> PROCESS[Your Investigative Process]
         FACTORY -- "Provides Raw Material" --> PROCESS
@@ -104,8 +103,10 @@ In your Factory (Tab 2), you will work with two primary databases. Each has a di
 
 Before writing queries, an investigator reviews the case file. In our system, the **Schema Anchor** (in Tab 1) serves this purpose. Below is a preview of the landscape you'll be investigating, highlighting how key tables connect—a fundamental concept for writing useful queries.
 
-### **1. The Training Institution Dataset (For "Watch Me")**
-This dataset, used for module demonstrations, models an institution that provides vocational training . The `Enrollments` table is the crucial link between `Students` and `Courses`.
+
+### 1. The Training Institution Dataset (For "Watch Me")
+This dataset, used for module demonstrations, models a vocational training institution with a **normalized relational structure**. The `Enrollments` table links `Students` and `Courses`, while `Instructors` are stored separately and linked to `Courses` via `instructor_id`.
+
 ```mermaid
 flowchart TD
     S[Students<br/>student_id PK, first_name, ...]
@@ -125,7 +126,11 @@ flowchart TD
     style I fill:#fffaf0
     style P fill:#f9f0ff
 ```
-**Key Insight**: A Student can enroll in many Courses, and a Course can have many Students. This **many-to-many** relationship is resolved via the `Enrollments` linking table.
+**Key Insights:**
+- A student can enroll in many courses, and a course can have many students – a **many‑to‑many** relationship resolved by the `Enrollments` linking table.
+- An instructor can teach many courses – a **one‑to‑many** relationship via `instructor_id`.
+- All payments are tied to students, not directly to enrollments, allowing flexible tracking of payments across multiple courses.
+
 
 ### **2. The E-Store Practice Dataset (For "Now You Do It")**
 This is your independent practice sandbox. It follows a standard retail logic where `Order_Items` connects products to specific customer orders.
@@ -165,17 +170,24 @@ Before writing queries, it helps to see what actual data looks like. Here are pr
 
 ### **Training Institution Dataset**
 
+
 #### `students` Table (First 2 Rows)
 | student_id | first_name | last_name | email | phone | enrollment_date | total_fees | fees_paid |
 |------------|------------|-----------|-------|-------|-----------------|------------|-----------|
 | 101 | Sarah | Chen | sarah.chen@email.com | 555-0101 | 2024-01-15 | 4500.00 | 3000.00 |
 | 102 | Mike | Rodriguez | mike.rod@email.com | 555-0102 | 2024-01-20 | 5200.00 | 5200.00 |
 
+#### `instructors` Table (First 2 Rows)
+| instructor_id | first_name | last_name | email | specialization |
+|---------------|------------|-----------|-------|----------------|
+| 501 | Emily | Watson | emily.w@institution.com | Web Development |
+| 502 | James | Wilson | james.w@institution.com | Backend & SQL |
+
 #### `courses` Table (First 2 Rows)
-| course_id | course_code | course_name | course_track | duration_weeks | instructor | course_fee | max_seats | is_active |
-|-----------|-------------|-------------|--------------|----------------|------------|------------|-----------|-----------|
-| 201 | WD101 | Frontend Development | Web Development | 8 | Emily Watson | 1500.00 | 15 | 1 |
-| 202 | WD102 | Backend with Node.js | Web Development | 10 | James Wilson | 1800.00 | 12 | 1 |
+| course_id | course_code | course_name | course_track | duration_weeks | instructor_id | course_fee | max_seats | is_active |
+|-----------|-------------|-------------|--------------|----------------|---------------|------------|-----------|-----------|
+| 201 | WD101 | Frontend Development | Web Development | 8 | 501 | 1500.00 | 15 | 1 |
+| 202 | WD102 | Backend with Node.js | Web Development | 10 | 502 | 1800.00 | 12 | 1 |
 
 #### `enrollments` Table (First 2 Rows)
 | enrollment_id | student_id | course_id | enrollment_date | completion_status | test1_score | test2_score | final_exam_score | certificate_issued |
@@ -188,7 +200,6 @@ Before writing queries, it helps to see what actual data looks like. Here are pr
 |------------|------------|--------|--------------|----------------|-------------|
 | 301 | 101 | 1500.00 | 2024-01-10 | Credit Card | Frontend Development Course |
 | 302 | 101 | 1500.00 | 2024-02-28 | Bank Transfer | Backend Course - First Payment |
-
 ---
 
 ### **E-Store Practice Dataset**

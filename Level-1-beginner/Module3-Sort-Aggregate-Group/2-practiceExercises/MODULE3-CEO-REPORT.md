@@ -4,8 +4,8 @@
 # 🗄️🤖 SQL & GenAI Course
 **🎯 Quality Education for Anyone, Anywhere, Anytime — 💫 with Comfort, Convenience at no Cost**
 
-## 📊 Module 3: CEO Report – E‑Commerce Analytics Dashboard (Simplified)
-
+---
+## 📊 Module 3: CEO Report – E‑Commerce Analytics Dashboard 
 
 
 ### 🎯 Your Mission
@@ -13,6 +13,9 @@
 You have mastered the art of **sorting, aggregating, grouping, and filtering groups**. Now it's time to prove your skills to a **CEO** – the leader of the **E‑Store** (our practice database). Your task is to build an analytics dashboard that answers the most pressing business questions using only the tools you've learned in Module 3.
 
 This report is your **second professional portfolio piece**. It demonstrates that you can turn raw data into actionable insights using `ORDER BY`, `LIMIT`, `COUNT`, `SUM`, `AVG`, `GROUP BY`, and `HAVING` – all without needing to join tables (that's Module 4). You'll work within the capabilities of a single table at a time, using manual correlation where necessary.
+
+> 📊 **Behind Every Dashboard, There's SQL**  
+> The charts, tables, and insights in a CEO dashboard don't magically appear – they are powered by the queries you write. Every `SUM`, `GROUP BY`, and `ORDER BY` is the engine that drives real‑world business decisions. This report shows you how to build that engine.
 
 ---
 
@@ -117,6 +120,55 @@ Use the **Artisan's Query Rhythm** throughout:
 - **The Result** – paste the output.
 - **The Interpretation** – what does this tell the CEO?
 
+---
+```mermaid
+flowchart TD
+    subgraph QUESTIONS["1. Business Questions"]
+        Q1["📊 Top product categories?"]
+        Q2["📈 Monthly sales trend?"]
+        Q3["👑 High‑value customers?"]
+        Q4["🏃‍♂️ Fast vs. slow products?"]
+        Q5["💰 Category contribution?"]
+    end
+
+    subgraph RHYTHM["2. Artisan’s Query Rhythm"]
+        A["Question → Query →<br/>Expected Result → Try It →<br/>Reflect & Interpret"]
+    end
+
+    subgraph TOOLS["3. SQL Toolkit (Module 3)"]
+        direction LR
+        T1["ORDER BY & LIMIT"]
+        T2["COUNT, SUM, AVG"]
+        T3["GROUP BY"]
+        T4["HAVING"]
+        T1 --- T2 --- T3 --- T4
+    end
+
+    subgraph ANALYSIS["4. Data Analysis (E‑Store Database)"]
+        direction TB
+        S1["Group by category,<br/>sum revenue"]
+        S2["Group by month,<br/>count orders"]
+        S3["Group by customer,<br/>sum spending"]
+        S4["Group by product,<br/>classify movement"]
+        S5["Group by category,<br/>calculate percentage"]
+    end
+
+    subgraph OUTPUT["5. Insights & Recommendations"]
+        I1["📊 Executive Dashboard"]
+        I2["💡 Actionable insights<br/>for the CEO"]
+    end
+
+    QUESTIONS --> RHYTHM
+    RHYTHM --> TOOLS
+    TOOLS --> ANALYSIS
+    ANALYSIS --> OUTPUT
+
+    style QUESTIONS fill:#e1f5fe,stroke:#2196f3
+    style RHYTHM fill:#f3e5f5,stroke:#9c27b0
+    style TOOLS fill:#fff8e1,stroke:#ff9800
+    style ANALYSIS fill:#e8f5e8,stroke:#4caf50
+    style OUTPUT fill:#ffebee,stroke:#f44336
+```
 ---
 
 ### 1. 📈 Order Trend by Month
@@ -229,11 +281,17 @@ Use clear language. Remember, the CEO may not be technical – explain what the 
 
 ```
 ---
-## 🔮 A Look Ahead: Module 4 – From Manual to Production
+## 💎 DESIGNER'S PERIGON
 
-In this report, you performed manual correlation: you looked up product names from the `products` table after getting product IDs, and you mentally matched categories. This is how analysts often start—but it's not scalable. Since we have just a handful of products, this approach is fine. But in real‑time, there will be hundreds of products and categories, and handling them manually is impossible. This is just to make you understand how exactly analytics functions.
+<div style="border: 3px solid #9c27b0; border-radius: 10px; padding: 20px; margin: 25px 0; background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);">
 
-In **Module 4**, you'll learn **JOINs** and **Normalization**. You'll redesign the database with a proper `categories` table and write queries that automatically connect `orders`, `order_items`, `products`, and `categories` in a single step. No more manual lookups. That's the power of a properly normalized relational database.
+### 🔮 A Look Ahead: Module 4 – From Manual to Production
+
+In this report, you performed manual correlation: you looked up product names from the `products` table after getting product IDs, and you **mentally matched** categories. This is how analysts often start—but it's not **scalable**. 
+
+Since we have just a handful of products, this approach is fine. But in the real world, you'll encounter **thousands** of products and categories, and **handling them manually becomes impossible**. This exercise is designed to give you a taste of **Analytics** and help you understand how analytics works under the hood—so you'll truly appreciate the **power of joins** when we automate it in Module 4.
+
+In **Module 4**, you'll learn **JOINs** and **Normalization**. You'll redesign the database with a proper `categories` table and write queries that automatically connect `orders`, `order_items`, `products`, and `categories` in a single step. **No more manual lookups.** That's the power of a properly normalized relational database.
 
 You'll revisit this same E‑Store case study with **production‑level SQL**—and see how much easier and more powerful your queries become.
 
@@ -245,6 +303,7 @@ You'll revisit this same E‑Store case study with **production‑level SQL**—
 
 > *"Every query you wrote here is a conversation with the business. Now go and make the CEO proud."*
 
+</div>
 ---
 
 ## 🧭 Practice Navigation

@@ -264,91 +264,230 @@ flowchart TD
 
 ---
 
-### **The ANALYZE & ARCHITECT Project Workspace**
+### **The ANALYZE & ARCHITECT Project Workspace (High‑Level Overview)**
 This view shows how project phases have a different, more professional structure under `Projects/`. This is where your portfolio grows.
 
 ```mermaid
-flowchart TD
-    Proj["<b>📁 Projects/</b><br/>Your Professional Portfolio"]
+graph TD
+    Proj["📁 Projects/<br/>Your Professional Portfolio"]
     
-    Proj --> Level1["<b>📁 Level-1-beginner</b><br/>Foundational Projects"]
-    Proj --> Level2["<b>📁 Level-2-intermediate</b><br/>[Coming in Level 2]"]
-    Proj --> Level3["<b>📁 Level-3-advanced</b><br/>[Coming in Level 3]"]
+    Proj --> Level1["📁 Level-1-beginner<br/>Foundational Projects"]
+    Proj --> Level2["📁 Level-2-intermediate<br/>[Coming in Level 2]"]
+    Proj --> Level3["📁 Level-3-advanced<br/>[Coming in Level 3]"]
     
-    Level1 --> P1["<b>📁 HR Analytics</b><br/>Module 6:<br/>Professional Analysis"]
-    Level1 --> P2["<b>📁 University Manager</b><br/>Bonus:<br/>Complex System Design"]
-    Level1 --> ModuleReports["<b>📁 Module Reports</b><br/>Your Capstone Deliverables"]
+    Level1 --> Analyze["📁 ANALYZE Phase<br/>(Study Projects)"]
+    Level1 --> Architect["📁 ARCHITECT Phase<br/>(Independent Projects)"]
+    Level1 --> ModuleReports_Detail["📁 Module Reports<br/>Capstone Suites"]
     
-    Level2 --> P4["<b>📁 [Your Future Projects]</b><br/>Intermediate challenges"]
-    Level3 --> P5["<b>📁 [Your Future Projects]</b><br/>Advanced architectural work"]
+    Level2 --> P4["📁 [Your Future Projects]<br/>Intermediate challenges"]
+    Level3 --> P5["📁 [Your Future Projects]<br/>Advanced architectural work"]
     
-    subgraph ModuleReports_Detail["<b>Module Reports – Your Growing Portfolio Centerpieces</b>"]
-        CEO["<b>📁 CEO SUITE</b><br/>Executive‑Level Insights<br/>(Reports from Modules 2, 3, 4…)"]
-        CTO["<b>📁 CTO SUITE</b><br/>Methodology & Discipline<br/>(Reports from Modules 3, 4…)"]
+    subgraph Analyze_Detail["Analyze Phase – Study Professional Code"]
+        P1["📁 HR Analytics<br/>Module 6"]
+        P2["📁 University Manager<br/>Bonus"]
     end
     
-    ModuleReports --> ModuleReports_Detail
-    
-    subgraph CEO_Detail["<b>CEO SUITE Structure – A Living Collection</b>"]
-        Suite1["<b>📄 report_module2.md</b><br/>Your first executive analysis"]
-        Suite2["<b>📄 report_module3.md</b><br/>E‑Commerce analytics dashboard"]
-        Suite3["<b>📄 report_module4.md</b><br/>[Coming soon]"]
-        Suite4["<b>📁 queries/</b><br/>Individual SQL files for each report"]
-        Suite5["<b>📁 data/</b><br/>Optional: sample outputs or datasets"]
+    subgraph Architect_Detail["Architect Phase – Build Your Own"]
+        Budget["📁 Personal Budget Tracker"]
+        Recipe["📁 Recipe Nutrition Calculator"]
     end
     
-    subgraph CTO_Detail["<b>CTO SUITE Structure – A Growing Discipline Archive</b>"]
-        CTO1["<b>📄 report_module3.md</b><br/>Methodology & bonus skills"]
-        CTO2["<b>📄 report_module4.md</b><br/>[Coming soon]"]
-        CTO3["<b>📁 evidence/</b><br/>Supporting examples (bulk insert, update, etc.)"]
-        CTO4["<b>📁 reflections/</b><br/>Personal learning journals"]
+    subgraph ModuleReports_Detail_Sub["Module Reports – Capstone Suites"]
+        CEO["📁 CEO SUITE<br/>Executive‑Level Insights<br/>(Reports from Modules 2, 3, 4)"]
+        CTO["📁 CTO SUITE<br/>Methodology & Discipline<br/>(Reports from Modules 3, 4)"]
+        CFO["📁 CFO SUITE<br/>Cost & Efficiency<br/>(Reports from Module 4)"]
     end
     
-    subgraph HR_Detail["<b>HR Analytics Structure</b><br/>Professional Analysis Project"]
-        HR1["<b>README.md</b><br/>Project Overview"]
-        HR2["<b>analysis.md</b><br/>Detailed Findings"]
-        HR3["<b>queries.sql</b><br/>Key Analysis Queries"]
-        HR4["<b>conclusions.md</b><br/>Business Implications"]
+    subgraph HR_Detail["HR Analytics Structure"]
+        HR1["README.md<br/>Project Overview"]
+        HR2["analysis.md<br/>Detailed Findings"]
+        HR3["queries.sql<br/>Key Analysis Queries"]
+        HR4["conclusions.md<br/>Business Implications"]
     end
     
+    subgraph Univ_Detail["University Manager Structure"]
+        U1["README.md<br/>System Overview"]
+        U2["design.sql<br/>Schema & Queries"]
+        U3["analysis.md<br/>Design Choices"]
+    end
+    
+    Analyze --> Analyze_Detail
+    Architect --> Architect_Detail
+    ModuleReports_Detail --> ModuleReports_Detail_Sub
     P1 --> HR_Detail
-    CEO --> CEO_Detail
-    CTO --> CTO_Detail
+    P2 --> Univ_Detail
     
     style Proj fill:#e1f5fe,stroke:#2196f3,stroke-width:2px
     style Level1 fill:#e3f2fd,stroke:#2196f3
     style Level2 fill:#f3e5f5,stroke:#9c27b0
     style Level3 fill:#e8f5e8,stroke:#4caf50
-    style P1 fill:#fff8e1,stroke:#ff9800
-    style P2 fill:#fff8e1,stroke:#ff9800
-    style ModuleReports fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px
+    style Analyze fill:#fff8e1,stroke:#ff9800
+    style Architect fill:#e8f5e8,stroke:#4caf50
+    style ModuleReports_Detail fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px
     style P4 fill:#f5f5f5,stroke:#999,stroke-dasharray: 3 3
     style P5 fill:#f5f5f5,stroke:#999,stroke-dasharray: 3 3
+    style Analyze_Detail fill:#f5f5f5,stroke:#ff9800,stroke-dasharray: 3 3
+    style Architect_Detail fill:#f5f5f5,stroke:#4caf50,stroke-dasharray: 3 3
+    style ModuleReports_Detail_Sub fill:#f5f5f5,stroke:#9c27b0,stroke-dasharray: 3 3
+    style HR_Detail fill:#f5f5f5,stroke:#ff9800,stroke-dasharray: 3 3
+    style Univ_Detail fill:#f5f5f5,stroke:#ff9800,stroke-dasharray: 3 3
+    style Budget fill:#e8f5e8
+    style Recipe fill:#e8f5e8
+    style CEO fill:#e8f5e8,stroke:#4caf50
+    style CTO fill:#f3e5f5,stroke:#9c27b0
+    style CFO fill:#ffebee,stroke:#f44336
+```
+
+**Project Workspace Pattern:** Unlike the rigid learning structure, each project has a custom structure tailored to its needs. The **HR Analytics** project shows a narrative structure with README and conclusions. The **University Manager** bonus project demonstrates complex system design.
+
+The **CEO SUITE**, **CTO SUITE**, and **CFO SUITE** are your evolving collections of capstone deliverables – each will grow as you complete reports across modules:
+
+- **CEO SUITE** – Executive‑level business insights (Modules 2, 3, 4)
+- **CTO SUITE** – Methodology, discipline, and technical hygiene (Modules 3, 4)
+- **CFO SUITE** – Cost analysis, efficiency, and risk prevention (Module 4 and beyond)
+
+Together, they form a comprehensive portfolio that proves you can satisfy every stakeholder: the CEO (results), the CTO (reliability), and the CFO (efficiency).
+
+---
+
+### 🔍 **Detailed Views of Each Workspace**
+
+For a closer look at the internal structure of each part, explore the diagrams below.
+
+#### 1. ANALYZE Phase – Study Projects
+
+```mermaid
+graph TD
+    subgraph HR["📁 HR Analytics (Module 6)"]
+        direction TB
+        HR1["📁 project-brief/"]
+        HR2["📁 design-documentation/"]
+        HR3["📁 datasets/"]
+        HR4["📁 solution-framework/"]
+        HR5["📁 deliverables/"]
+    end
+    
+    subgraph UM["📁 University Manager (Bonus)"]
+        direction TB
+        UM1["📁 project-brief/"]
+        UM2["📁 design-documentation/"]
+        UM3["📁 datasets/"]
+        UM4["📁 solution-framework/"]
+        UM5["📁 deliverables/"]
+    end
+    
+    subgraph Note1["Note"]
+        N1["✅ Complete content given<br/>(Study and analyze)"]
+    end
+    
+    HR --- Note1
+    UM --- Note1
+    
+    style HR fill:#fff8e1,stroke:#ff9800
+    style UM fill:#fff8e1,stroke:#ff9800
+    style Note1 fill:#f5f5f5,stroke:#999,stroke-dasharray: 3 3
+```
+
+#### 2. ARCHITECT Phase – Independent Projects
+
+
+```mermaid
+graph TD
+    subgraph Budget["📁 Personal Budget Tracker"]
+        direction TB
+        B1["📁 project-brief/"]
+        B2["📁 design-documentation/"]
+        B3["📁 datasets/<br/>(to be built)"]
+        B4["📁 solution-framework/<br/>(to be built)"]
+        B5["📁 deliverables/<br/>(to be built)"]
+    end
+    
+    subgraph Recipe["📁 Recipe Nutrition Calculator"]
+        direction TB
+        R1["📁 project-brief/"]
+        R2["📁 design-documentation/"]
+        R3["📁 datasets/<br/>(to be built)"]
+        R4["📁 solution-framework/<br/>(to be built)"]
+        R5["📁 deliverables/<br/>(to be built)"]
+    end
+    
+    subgraph Note2["Note"]
+        N2["📌 Provided: brief & design<br/>✨ You build: The rest"]
+    end
+    
+    Budget --- Note2
+    Recipe --- Note2
+    
+    style Budget fill:#e8f5e8,stroke:#4caf50
+    style Recipe fill:#e8f5e8,stroke:#4caf50
+    style Note2 fill:#f5f5f5,stroke:#999,stroke-dasharray: 3 3
+```
+
+#### 3. Module Reports – Capstone Suites
+
+```mermaid
+graph TD
+    Proj["📁 Projects/<br/>Your Professional Portfolio"]
+    
+    Proj --> Level1["📁 Level-1-beginner<br/>Foundational Projects"]
+    
+    Level1 --> ModuleReports["📁 Module Reports<br/>Capstone Suites"]
+    
+    subgraph ModuleReports_Detail["Module Reports – Capstone Suites"]
+        CEO["📁 CEO SUITE<br/>Executive‑Level Insights<br/>(Reports from Modules 2, 3, 4)"]
+        CTO["📁 CTO SUITE<br/>Methodology & Discipline<br/>(Reports from Modules 3, 4)"]
+        CFO["📁 CFO SUITE<br/>Cost & Efficiency<br/>(Reports from Module 4)"]
+    end
+    
+    subgraph CEO_Detail["CEO SUITE Structure – A Living Collection"]
+        M2["📁 MODULE2"]
+        M3["📁 MODULE3"]
+        M4["📁 MODULE4"]
+        M2 --> M2R["📄 report_module2.md<br/>Your first executive analysis"]
+        M2 --> M2Q["📁 queries/"]
+        M3 --> M3R["📄 report_module3.md<br/>E‑Commerce analytics dashboard"]
+        M3 --> M3Q["📁 queries/"]
+        M4 --> M4R["📄 report_module4.md<br/>[Coming soon]"]
+    end
+    
+    subgraph CTO_Detail["CTO SUITE Structure – A Growing Discipline Archive"]
+        CT3["📁 MODULE3"]
+        CT4["📁 MODULE4"]
+        CT3 --> C3R["📄 report_module3.md<br/>Methodology & bonus skills"]
+        CT3 --> C3E["📁 evidence/"]
+        CT3 --> C3F["📁 reflections/"]
+        CT4 --> C4R["📄 report_module4.md<br/>[Coming soon]"]
+    end
+    
+    subgraph CFO_Detail["CFO SUITE Structure – A Cost & Efficiency Archive"]
+        CF4["📁 MODULE4"]
+        CF5["📁 MODULE5"]
+        CF4 --> CF4R["📄 report_module4.md<br/>Query cost analysis & optimization"]
+        CF4 --> CF4Q["📁 queries/"]
+        CF4 --> CF4X["📁 explain_plans/"]
+        CF4 --> CF4M["📁 metrics/"]
+        CF5 --> CF5R["📄 report_module5.md<br/>[Coming soon]"]
+    end
+    
+    ModuleReports --> ModuleReports_Detail
+    CEO --> CEO_Detail
+    CTO --> CTO_Detail
+    CFO --> CFO_Detail
+    
+    style Proj fill:#e1f5fe,stroke:#2196f3,stroke-width:2px
+    style Level1 fill:#e3f2fd,stroke:#2196f3
+    style ModuleReports fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px
     style ModuleReports_Detail fill:#f5f5f5,stroke:#9c27b0,stroke-dasharray: 3 3
     style CEO_Detail fill:#f5f5f5,stroke:#4caf50,stroke-dasharray: 3 3
     style CTO_Detail fill:#f5f5f5,stroke:#9c27b0,stroke-dasharray: 3 3
-    style HR_Detail fill:#f5f5f5,stroke:#ff9800,stroke-dasharray: 3 3
+    style CFO_Detail fill:#f5f5f5,stroke:#f44336,stroke-dasharray: 3 3
     style CEO fill:#e8f5e8,stroke:#4caf50
     style CTO fill:#f3e5f5,stroke:#9c27b0
-    style Suite1 fill:#fff8e1
-    style Suite2 fill:#fff8e1
-    style Suite3 fill:#f5f5f5,stroke-dasharray: 3 3
-    style Suite4 fill:#e1f5fe
-    style Suite5 fill:#e1f5fe
-    style CTO1 fill:#fff8e1
-    style CTO2 fill:#f5f5f5,stroke-dasharray: 3 3
-    style CTO3 fill:#e1f5fe
-    style CTO4 fill:#fff8e1
-    style HR1 fill:#fff8e1
-    style HR2 fill:#fff8e1
-    style HR3 fill:#e1f5fe
-    style HR4 fill:#fff8e1
+    style CFO fill:#ffebee,stroke:#f44336
 ```
 
-
-**Project Workspace Pattern:** Unlike the rigid learning structure, each project has a custom structure tailored to its needs. The **HR Analytics** project shows a narrative structure with README and conclusions. The **CEO SUITE** and **CTO SUITE** are your evolving collections of capstone deliverables – each will grow as you complete reports in Modules 2, 3, 4, and beyond, forming a comprehensive portfolio of executive‑level analysis and disciplined methodology.
-
 ---
+
 
 ### **The Meta Workspace: Tracking Your Growth**
 Alongside your learning and project workspaces, you maintain a dedicated **META_VAULT** for tracking your journey. This folder lives at the same level as your phase folders within `Learning/`.
@@ -379,7 +518,18 @@ flowchart TD
 ---
 
 ### **The Complete Structural Contrast**
-This master diagram shows how all three workspaces interact, now including the **CEO SUITE** as a premium project folder and showing the growth path across levels.
+
+
+This master diagram shows how the learning workspace and project workspaces interact, now reflecting the full Level‑1 journey:
+
+- **ACQUIRE Phase** (Modules 1–4) – The learning workspace with isomorphic module structure; you build raw SQL skills manually.
+- **ACCELERATE Phase** (Module 5) – AI refinement. While not shown as a separate folder in this diagram, it will have its own customized folder structure that encompasses all the concepts from the ACQUIRE phase (detailed when you reach this phase). Here you learn to use AI as a thinking partner, **consolidating your foundational skills and serving as the bridge** between learning(**ACQUIRE** phase) and independent creation (**ARCHITECT** phase).
+- **ANALYZE Phase** – Study projects (HR Analytics, University Manager) where you learn from professional code.
+- **ARCHITECT Phase** – Independent projects (Personal Budget Tracker, Recipe Nutrition Calculator) that you build from scratch, **applying the skills you've consolidated**.
+- **Module Reports** – Your capstone suites (CEO, CTO, CFO), growing collections of executive‑level analysis, technical discipline, and cost efficiency reports.
+
+The diagram illustrates the separation between learning, studying, creating, and documenting—a complete cognitive map of your growth from Apprentice to Artisan.
+
 
 ```mermaid
 flowchart TD
@@ -402,52 +552,44 @@ flowchart TD
         direction LR
         B0["<b>📁 Projects/</b>"] --> B1["<b>📁 Level-1-beginner</b>"]
         
-        B1 --> B1a["<b>📁 HR_Analytics_Deep_Dive</b>"]
-        B1a --> B1a1["<b>README.md</b>"]
-        B1a --> B1a2["<b>analysis.md</b>"]
-        B1a --> B1a3["<b>queries.sql</b>"]
-        B1a --> B1a4["<b>conclusions.md</b>"]
+        B1 --> Analyze["<b>📁 ANALYZE Phase</b><br/>(Study Projects)"]
+        Analyze --> A1["📁 HR Analytics<br/>Module 6"]
+        Analyze --> A2["📁 University Manager<br/>Bonus"]
         
-        B1 --> B1b["<b>📁 CEO SUITE</b><br/>✨ EXECUTIVE PORTFOLIO"]
-        B1b --> B1b1["<b>ceo-report-rhythm.md</b>"]
-        B1b --> B1b2["<b>📁 queries/</b>"]
-        B1b2 --> B1b2a["1-unique-cities.sql"]
-        B1b2 --> B1b2b["2-price-range.sql"]
-        B1b2 --> B1b2c["3-non-email-domains.sql"]
-        B1b2 --> B1b2d["4-books.sql"]
-        B1b2 --> B1b2e["...more"]
-        B1b --> B1b3["<b>✨ More coming...</b><br/>Module 3, 4, and beyond"]
+        B1 --> Architect["<b>📁 ARCHITECT Phase</b><br/>(Independent Projects)"]
+        Architect --> Indep1["📁 Personal Budget Tracker"]
+        Architect --> Indep2["📁 Recipe Nutrition Calculator"]
         
-        B1 --> B1c["<b>📁 University_Course_Manager</b>"]
-        B1 --> B1d["<b>📁 [Future Projects]</b><br/>Level 2 & 3"]
+        B1 --> ModuleReports["<b>📁 Module Reports</b><br/>(Capstone Suites)"]
+        ModuleReports --> MR1["📁 CEO SUITE<br/>(Modules 2,3,4)"]
+        ModuleReports --> MR2["📁 CTO SUITE<br/>(Modules 3,4)"]
+        ModuleReports --> MR3["📁 CFO SUITE<br/>(Module 4)"]
+        
+        B1 --> Future["<b>📁 [Future Projects]</b><br/>Level 2 & 3"]
     end
 
     style LearningWorkspace fill:#f8fdff,stroke:#ff9800,stroke-width:2px
     style ProjectWorkspace fill:#f8fdff,stroke:#2196f3,stroke-width:2px
-    style B1b fill:#f3e5f5,stroke:#9c27b0,stroke-width:3px
-    style B1b1 fill:#fff8e1
-    style B1b2 fill:#e1f5fe
-    style B1b3 fill:#e8f5e8
-    style LM fill:#e8f5e8,stroke:#4caf50
-    style LM1 fill:#fff8e1
-    style LM2 fill:#ffebee
-    style LM3 fill:#e1f5fe
-    style LM4 fill:#f3e5f5
+    style Analyze fill:#fff8e1,stroke:#ff9800
+    style Architect fill:#e8f5e8,stroke:#4caf50
+    style ModuleReports fill:#f3e5f5,stroke:#9c27b0
+    style Future fill:#f5f5f5,stroke:#999,stroke-dasharray: 3 3
 ```
 
 ---
 
 ### 🌱 **A Growing Portfolio**
 
-The **CEO SUITE** is your first portfolio piece – but not your last.
+
+The **CEO SUITE** was your first portfolio piece – but now you have **three** collections growing with you.
 
 | Level | What You'll Add |
 |-------|-----------------|
-| **Level 1 (Now)** | CEO SUITE, HR Analytics Deep Dive, University Course Manager |
+| **Level 1 (Now)** | **CEO SUITE** (Modules 2, 3, 4), **CTO SUITE** (Modules 3, 4), **CFO SUITE** (Module 4), plus HR Analytics Deep Dive and University Course Manager |
 | **Level 2 (Next)** | Intermediate projects with complex joins, optimization, and system design |
 | **Level 3 (Future)** | Advanced architectural projects, full-scale systems, and original applications |
 
-Your `Projects/` folder will grow with you. Each level adds new achievements, building toward a comprehensive portfolio that proves your evolution from Apprentice to Artisan.
+Your `Projects/`folder will grow with you. Each level adds new achievements, building toward a comprehensive portfolio that proves your evolution from Apprentice to Artisan – and your ability to satisfy every stakeholder: CEO (**results**), CTO (**reliability**), and CFO (**resourcefulness**).
 
 ---
 
@@ -470,7 +612,7 @@ Your `Projects/` folder will grow with you. Each level adds new achievements, bu
 | **Learning is structured** | Consistency builds automaticity |
 | **Projects are unique** | Real work doesn't fit templates |
 | **Growth is visible** | Your portfolio tells your story |
-| **CEO SUITE is special** | First portfolio piece – but not last |
+| **Capstone collections are special** | CEO, CTO, and CFO SUITES prove you can satisfy every stakeholder – results, reliability, and efficiency |
 | **Future is anticipated** | Placeholders for Level 2 & 3 create excitement |
 
 ---

@@ -310,6 +310,29 @@ Display product name, price, and quantity (where applicable). Use comments to ex
 - [ ] I'm excited to tackle the **CEO Report** in File 7!
 
 ---
+## 🌟 Words of Encouragement
+
+<div style="border: 3px solid #9c27b0; border-radius: 10px; padding: 20px; margin: 25px 0; background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);">
+
+### *You've Come So Far*
+
+Remember when `SELECT * FROM students` felt like magic? Now you're writing queries with multiple conditions, handling NULLs, and preparing reports for a CEO.
+
+**You've transformed from a beginner into someone who can:**
+- Ask precise questions of a database
+- Handle messy real-world data
+- Present results professionally
+- Think through complex business logic
+
+The CEO Report in **File 7** isn't just another exercise – it's your first professional portfolio piece, now safely stored in your Vault. What you've accomplished in this exercise is **comparable to that**. The queries you wrote here are built from the same cloth, the same logic, the same Artisan mindset.
+
+You can ace any CEO Report from now on.
+
+**The SQLVerse is yours. Go forth and explore every planet you come across.**
+
+</div>
+
+---
 
 
 ## 🧭 Practice Navigation – The Final Step
@@ -336,30 +359,6 @@ flowchart LR
 | Previous Step | Next Step |
 |:---:|:---:|
 | [← Exercise 4: LIKE & NULL](./4-like-and-null.md) | [Return to Module 2 Guide →](../MODULE2_GUIDE.md) to begin EVALUATE |
-
----
-
-## 🌟 Words of Encouragement
-
-<div style="border: 3px solid #9c27b0; border-radius: 10px; padding: 20px; margin: 25px 0; background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);">
-
-### *You've Come So Far*
-
-Remember when `SELECT * FROM students` felt like magic? Now you're writing queries with multiple conditions, handling NULLs, and preparing reports for a CEO.
-
-**You've transformed from a beginner into someone who can:**
-- Ask precise questions of a database
-- Handle messy real-world data
-- Present results professionally
-- Think through complex business logic
-
-The CEO Report in **File 7** isn't just another exercise – it's your first professional portfolio piece, now safely stored in your Vault. What you've accomplished in this exercise is **comparable to that**. The queries you wrote here are built from the same cloth, the same logic, the same Artisan mindset.
-
-You can ace any CEO Report from now on.
-
-**The SQLVerse is yours. Go forth and explore every planet you come across.**
-
-</div>
 
 ---
 

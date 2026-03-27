@@ -664,15 +664,16 @@ This isn't just another exercise – it's your first **executive-level deliverab
 
 ```
 Projects/Level-1-beginner/CEO SUITE/
-├── ceo-report-rhythm.md    # Full documentation with insights
-└── queries/                 # Individual SQL files
-    ├── 1-unique-cities.sql
-    ├── 2-price-range.sql
-    ├── 3-non-email-domains.sql
-    ├── 4-books.sql
-    ├── 5-small-orders.sql
-    ├── 6-category-count.sql
-    └── 7-name-patterns.sql
+└── MODULE2/
+    ├── ceo-report-rhythm.md    # Full documentation with insights
+    └── queries/                 # Individual SQL files
+        ├── 1-unique-cities.sql
+        ├── 2-price-range.sql
+        ├── 3-non-email-domains.sql
+        ├── 4-books.sql
+        ├── 5-small-orders.sql
+        ├── 6-category-count.sql
+        └── 7-name-patterns.sql
 ```
 **Why "CEO SUITE"?** Because this work answers questions that matter to leadership. When future employers see a dedicated folder for executive-level analysis, they'll know you think beyond syntax – you think about business impact.
 

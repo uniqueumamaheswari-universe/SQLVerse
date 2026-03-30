@@ -31,13 +31,13 @@ flowchart LR
 
 | Stage | Status | What's Included |
 |-------|--------|-----------------|
-| **Start** | ✅ Complete | PREPARE (Files 1-5) + PRACTICE (Exercises 1-5) |
+| **Start** | ✅ Complete | PREPARE (Files 1-5) + PRACTICE (Exercises 1-5) + CEO & CTO Reports |
 | **A** | 🔄 Current | Module 3 Quiz – EVALUATION begins |
 | **B** | ⏳ Next | Review all 5 exercise solutions |
 | **C** | 🎉 Goal | Module 3 Complete – Ready for Module 4 |
 | **D** | 🔙 Final | Return to Guide for reflection |
 
-You've completed all preparation and practice. Now you begin the **EVALUATE** stage. After the quiz, you'll check your answers, review exercise solutions, and celebrate your Module 3 completion.
+You've completed all preparation and practice, and you've built two portfolio‑worthy reports. Now you begin the **EVALUATE** stage. After the quiz, you'll check your answers, review exercise solutions, and celebrate your Module 3 completion.
 
 ---
 
@@ -46,6 +46,8 @@ You've completed all preparation and practice. Now you begin the **EVALUATE** st
 <div style="border-left: 4px solid #9c27b0; background-color: #f3e5f5; padding: 15px; margin: 20px 0; border-radius: 0 8px 8px 0;">
 
 **You've journeyed across E‑Commerce Planet, mastered sorting, measuring, bucketing, and filtering groups, and built your second portfolio piece.** This quiz isn't a test – it's a celebration of how far you've come.
+
+The quiz focuses on the **Choreography of SQL**—knowing which tool to use and in what order – **The Data Analyst Checkpoint**.
 
 The SQLVerse is waiting. Your portfolio is calling.
 
@@ -84,100 +86,71 @@ flowchart LR
 
 ---
 
-## 📋 Part 1: Multiple Choice (10 Questions)
+## 📋 Quiz
 
-*Choose the best answer for each question.*
+### Section 1: The Logical Flow (Conceptual)
 
----
-
-**1. Which clause is used to sort the result set?**  
-a) `GROUP BY`  
-b) `ORDER BY`  
-c) `SORT BY`  
-d) `HAVING`
+**Q1. The Sequence of Power**  
+In what order does a database actually process these clauses?  
+- A) `SELECT` → `FROM` → `WHERE` → `GROUP BY`  
+- B) `FROM` → `WHERE` → `GROUP BY` → `HAVING` → `SELECT`  
+- C) `SELECT` → `GROUP BY` → `HAVING` → `WHERE`
 
 ---
 
-**2. What does `LIMIT 5 OFFSET 10` do?**  
-a) Returns rows 1–5  
-b) Returns rows 6–10  
-c) Returns rows 11–15  
-d) Returns rows 1–10
+**Q2. The "Where vs. Having" Trap**  
+You want to see only the cities that have more than 5 customers. Which clause is responsible for this filter?  
+- A) `WHERE`  
+- B) `FILTER BY`  
+- C) `HAVING`
 
 ---
 
-**3. Which of the following aggregate functions ignores NULL values?**  
-a) `COUNT(*)`  
-b) `COUNT(column)`  
-c) `SUM(column)`  
-d) Both b and c
+### Section 2: Syntax & Troubleshooting (Technical)
+
+**Q3. Spot the Error**  
+Why will the following query fail?
+
+```sql
+SELECT city, COUNT(*) 
+FROM customers 
+WHERE COUNT(*) > 2 
+GROUP BY city;
+```
+- A) You cannot use `COUNT(*)` in the `SELECT` clause.  
+- B) You cannot use an aggregate function like `COUNT(*)` in the `WHERE` clause.  
+- C) The `GROUP BY` must come before the `WHERE`.
 
 ---
 
-**4. You want to filter groups based on an aggregate condition. Which clause should you use?**  
-a) `WHERE`  
-b) `GROUP BY`  
-c) `HAVING`  
-d) `ORDER BY`
+**Q4. The Non‑Aggregated Column Rule**  
+If your query is `SELECT category, AVG(price), status FROM products GROUP BY category`, what is wrong with it?  
+- A) `AVG(price)` cannot be used with `category`.  
+- B) `status` is not inside an aggregate function and is missing from the `GROUP BY` clause.  
+- C) You cannot group by `category`.
 
 ---
 
-**5. What is the correct logical execution order of the following clauses?**  
-a) `FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY → LIMIT`  
-b) `SELECT → FROM → WHERE → GROUP BY → HAVING → ORDER BY → LIMIT`  
-c) `FROM → WHERE → GROUP BY → HAVING → ORDER BY → SELECT → LIMIT`  
-d) `FROM → GROUP BY → WHERE → HAVING → SELECT → ORDER BY → LIMIT`
+### Section 3: The Artisan’s Challenge (Applied)
+
+**Q5. Translate the Business Request**  
+"Find the top 3 product categories by average price, but only for categories that have at least 5 products."  
+Which query correctly answers this?  
+
+- A) `SELECT category, AVG(price) FROM products HAVING COUNT(*) >= 5 ORDER BY AVG(price) DESC LIMIT 3;`  
+- B) `SELECT category, AVG(price) FROM products GROUP BY category HAVING COUNT(*) >= 5 ORDER BY AVG(price) DESC LIMIT 3;`  
+- C) `SELECT category, AVG(price) FROM products WHERE COUNT(*) >= 5 GROUP BY category LIMIT 3;`
 
 ---
 
-**6. Which of the following is a valid use of a column alias?**  
-a) `WHERE balance > 100` after `SELECT ... AS balance`  
-b) `ORDER BY balance` after `SELECT ... AS balance`  
-c) `GROUP BY balance` after `SELECT ... AS balance`  
-d) `HAVING balance > 100` after `SELECT ... AS balance`
-
----
-
-**7. What will `SELECT category, COUNT(*) FROM products GROUP BY category;` return?**  
-a) One row per category with the number of products in that category  
-b) One row with the total number of products  
-c) An error because category is not aggregated  
-d) The list of categories with no counts
-
----
-
-**8. If you want to find the average price of products only in the 'Electronics' category, which clause should you use to filter?**  
-a) `HAVING`  
-b) `WHERE`  
-c) `GROUP BY`  
-d) `ORDER BY`
-
----
-
-**9. In SQLite, which function would you use to extract the year from a date?**  
-a) `EXTRACT(YEAR FROM order_date)`  
-b) `YEAR(order_date)`  
-c) `strftime('%Y', order_date)`  
-d) `DATE_PART('year', order_date)`
-
----
-
-**10. What does the following query return?**  
-`SELECT category, AVG(price) FROM products GROUP BY category HAVING AVG(price) > 100;`  
-a) All categories with an average price greater than 100  
-b) All categories with a price greater than 100  
-c) All products with price greater than 100, grouped by category  
-d) An error because `HAVING` cannot use aggregates
-
----
-
-## 📝 Part 2: Write the Query (5 Questions)
+### Section 4: Write the Query (5 Questions)
 
 *Write a SQL query to answer each business question using the E‑Store database.*
 
 ---
 
-**11. Question:** Find the **total number of products** in the `products` table. Alias the result as `total_products`.
+**Q6. Total Products**  
+Find the **total number of products** in the `products` table. Alias the result as `total_products`.
 
 ```sql
 -- Your query here
@@ -185,7 +158,8 @@ d) An error because `HAVING` cannot use aggregates
 
 ---
 
-**12. Question:** List the **top 3 most expensive products**. Show `product_name` and `price`, sorted from highest to lowest.
+**Q7. Top 3 Most Expensive Products**  
+List the **top 3 most expensive products**. Show `product_name` and `price`, sorted from highest to lowest.
 
 ```sql
 -- Your query here
@@ -193,7 +167,8 @@ d) An error because `HAVING` cannot use aggregates
 
 ---
 
-**13. Question:** For each product category, show the **average price**. Alias the average as `avg_price`.
+**Q8. Average Price per Category**  
+For each product category, show the **average price**. Alias the average as `avg_price`.
 
 ```sql
 -- Your query here
@@ -201,7 +176,8 @@ d) An error because `HAVING` cannot use aggregates
 
 ---
 
-**14. Question:** Which product categories have **more than 2 products**? Show `category` and the number of products.
+**Q9. Categories with More Than 2 Products**  
+Which product categories have **more than 2 products**? Show `category` and the number of products.
 
 ```sql
 -- Your query here
@@ -209,7 +185,8 @@ d) An error because `HAVING` cannot use aggregates
 
 ---
 
-**15. Question:** Find the **most expensive product** in each category. Show `category`, `product_name`, and `price`.  
+**Q10. Most Expensive Product per Category (Preview)**  
+Find the **most expensive product** in each category. Show `category`, `product_name`, and `price`.  
 *Hint: You'll need to use a subquery or a join. This is a preview of Module 4. Do your best!*
 
 ```sql
@@ -218,29 +195,29 @@ d) An error because `HAVING` cannot use aggregates
 
 ---
 
-## 🧠 Part 3: Conceptual Questions (5 Questions)
+### Section 5: Conceptual Questions (5 Questions)
 
 *Answer in 2–3 sentences.*
 
 ---
 
-**16. Explain the difference between `WHERE` and `HAVING`. Give an example of when you would use each.**
+**Q11.** Explain the difference between `WHERE` and `HAVING`. Give an example of when you would use each.
 
 ---
 
-**17. Why can't you use a column alias (e.g., `AS balance`) in the `WHERE` clause, but you can use it in `ORDER BY`? Refer to execution order.**
+**Q12.** Why can't you use a column alias (e.g., `AS balance`) in the `WHERE` clause, but you can use it in `ORDER BY`? Refer to execution order.
 
 ---
 
-**18. What is the purpose of `GROUP BY`? Provide a real‑world business question that would require `GROUP BY`.**
+**Q13.** What is the purpose of `GROUP BY`? Provide a real‑world business question that would require `GROUP BY`.
 
 ---
 
-**19. Describe the logical execution order of a SQL query. Why does understanding this order matter?**
+**Q14.** Describe the logical execution order of a SQL query. Why does understanding this order matter?
 
 ---
 
-**20. What does it mean to be a Data Artisan rather than just a coder? How has this mindset shaped your learning in Module 3?**
+**Q15.** What does it mean to be a Data Artisan rather than just a coder? How has this mindset shaped your learning in Module 3?
 
 ---
 
@@ -282,3 +259,5 @@ flowchart LR
 *Part of our mission for 🎯 Quality Education for Anyone, Anywhere, Anytime — 💫 with Comfort, Convenience at no Cost.*
 
 **Level 1 | Module 3 | SQL Quiz | Next: [Exercise 1 Solutions](../../4-exerciseAndQuizSolutions/1-sorting-basics-solutions.md)**
+
+

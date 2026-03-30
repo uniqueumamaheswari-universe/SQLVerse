@@ -1,0 +1,530 @@
+
+
+
+# 🗄️🤖 SQL & GenAI Course
+**🎯 Quality Education for Anyone, Anywhere, Anytime — 💫 with Comfort, Convenience at no Cost**
+
+## 🗺️ Module 4 Guide: Joining Tables – The Connector
+
+Welcome to Module 4! You've mastered sorting, aggregating, and grouping data within a single table. Now it's time to connect multiple tables – to combine the stories of customers, orders, products, and more into a single, unified view. In this guide, you'll follow the **PREPARE → PRACTICE → EVALUATE** rhythm to master joins. By the end, you'll be able to answer questions like *“Which customers bought the most expensive product?”* and *“What are the top‑selling product categories?”* with elegant, multi‑table queries.
+
+---
+
+<div align="center" style="border: 2px solid #9c27b0; border-radius: 8px; padding: 15px; margin: 20px 0; background: #f3e5f5;">
+
+### 📍 Your Position in the 4 A's Journey
+
+| Phase | Current Module | AI Role |
+|-------|----------------|---------|
+| **🔴 ACQUIRE** (Weeks 1-4) | **Module 4: Joining Tables** | **Conceptual Guide Only** |
+
+```mermaid
+flowchart LR
+    A["🔴 ACQUIRE<br/>(Weeks 1-4)"] --> B["🟣 ACCELERATE<br/>(Week 5)"]
+    B --> C["🔵 ANALYZE<br/>(Week 6)"]
+    C --> D["🟢 ARCHITECT<br/>(Post-Course)"]
+    
+    style A stroke:#9c27b0,stroke-width:4px
+    style B stroke:#9c27b0,stroke-width:2px
+    style C stroke:#2196f3,stroke-width:2px
+    style D stroke:#4caf50,stroke-width:2px
+```
+
+**📍 You are here:** Module 4 of ACQUIRE – connecting tables and normalizing data.
+
+</div>
+
+---
+
+## 🏢 **The Browser Office: Your Universal Launchpad**
+
+**🚀 Kickstart: Any Computer, Any Browser, Anytime.**  
+**🌍 Destination: Any country, Any city, Any Platform.**
+
+### **📋 The Standard Four-Tab Setup (Levels 1 & 2)**
+The Browser Office transforms any computer with a browser into a complete learning environment.
+
+| Tab | Purpose | Tools & Examples | Description |
+| :--- | :--- | :--- | :--- |
+| **1: The Map** | Learning content & navigation | Course Repository (GitHub) | Your central hub for all course materials, module guides, and resources. |
+| **2: The Factory** | Hands-on practice | SQLite Online | An online SQL environment where you'll run queries and experiment with databases. |
+| **3: The Consultant** | AI assistance & explanations | ChatGPT, Claude, Gemini | Your AI learning partner, configured to provide conceptual guidance without writing code for you. |
+| **4: The Vault** | Progress tracking & portfolio | GitHub Web, notes | Your personal GitHub repository where you'll store all your work, reflections, and completed exercises. |
+
+> **Keyboard Shortcuts:** `Ctrl+1` / `Cmd+1` for Tab 1, `Ctrl+2` / `Cmd+2` for Tab 2, `Ctrl+3` / `Cmd+3` for Tab 3, `Ctrl+4` / `Cmd+4` for Tab 4.
+
+---
+
+### 🔧 **Need Help?**
+
+| 🔧 Troubleshooting | 🔄 Workflow | ⌨️ Tab Operations |
+| :---: | :---: | :---: |
+| [Troubleshooting Common Issues](../../../Setup/STEP1_COMMISSION_BROWSER_OFFICE.md) | [Browser Office Workflow](../../../Setup/STEP2_ESTABLISH_LEARNING_RITUAL.md) | [Tab Operations & Shortcuts](../../../Setup/STEP3_MASTER_TAB_OPERATIONS.md) |
+
+---
+
+## 🏢 **Your Browser Office for Module 4 (Connection Mode)**
+
+🚀 Foundation First, AI Next, Projects Last.  
+💎 Gemstone by Gemstone, Skill by Skill.
+
+For this module, here's exactly how to use each tab:
+
+| Tab | Purpose | What to Do |
+| :--- | :--- | :--- |
+| **1: The Map** | Read concept files | Work through `1-sqlCommands/` in order. |
+| **2: The Factory** | Run queries | **Demonstration:** Keep the **Normalized E‑Store** (`level1_estore_normalized_MODULE4.db`) loaded while studying join concepts. **Practice:** Switch to **Training Institution** (`training_institution_sample.db`) for exercises. |
+| **3: The Consultant** | Conceptual Q&A only | Ask about join types, foreign keys, normalization, or why a query returns unexpected results. ❌ Never ask for full code. |
+| **4: The Vault** | Save your queries | Save every successful query in the appropriate folder: `.../Module4/2-practiceExercises/` (or keep notes in `1-sqlCommands/`). |
+
+---
+
+<div style="border: 2px solid #f44336; border-radius: 10px; padding: 15px; margin: 20px 0; background: #ffebee;">
+
+### 🔴 **Your ACQUIRE Foundation**
+
+| 🗄️ Database Ecosystem | 📚 Knowledge Base | 🧠 Mindset Tuning |
+| :---: | :---: | :---: |
+| [Database Ecosystem](../../Guides/Section1-ACQUIRE/2_Database_Ecosystem.md) | [Knowledge Base (Vault)](../../Guides/Section1-ACQUIRE/3_Knowledge_Base.md) | [Mindset Tuning](../../Guides/Section1-ACQUIRE/4_Mindset.md) |
+
+</div>
+
+---
+
+## 📚 **Deep Philosophy: From Analyst to Architect**
+
+In Module 3, you learned to see patterns within a single table. Now you’ll learn to see how tables relate. This is the shift from **analyst** to **architect** – designing systems where data lives in the right place and is effortlessly reconnected when needed.
+
+- **Normalization** is like organizing a library: each book is in one place, but you can find it through the catalog.
+- **Foreign keys** are the catalog numbers that link books to shelves, authors, and subjects.
+- **Joins** are the queries that let you pull together all the information about a book, its author, and its location in a single report.
+
+Your AI Consultant is your patient tutor, but **you** are the one doing the work.
+
+---
+
+## 📈 The PREPARE → PRACTICE → EVALUATE Rhythm
+
+```mermaid
+flowchart LR
+    A["📘 Stage 1<br/>LEARN & TRY<br/>• Read concept files<br/>• Run examples with Normalized E‑Store"] --> B
+    B["👁️ Stage 2<br/>PRACTICE<br/>• Switch to Training DB<br/>• Write join queries"] --> C
+    C["✅ Stage 3<br/>EVALUATE<br/>• Take quiz<br/>• Check solutions"] --> D
+    D["🎉 MODULE 4 COMPLETE<br/>Ready for Level 2"]
+    
+    style A fill:#e1f5fe,stroke:#2196f3,stroke-width:2px
+    style B fill:#fff8e1,stroke:#ff9800,stroke-width:2px
+    style C fill:#e8f5e8,stroke:#4caf50,stroke-width:2px
+    style D fill:#a5d6a7,stroke:#2e7d32,stroke-width:3px
+```
+
+| Stage | Folder | Purpose |
+|-------|--------|---------|
+| **📘 LEARN & TRY** | `1-sqlCommands/` | Read concept files and run examples with the Normalized E‑Store. |
+| **👁️ PRACTICE** | `2-practiceExercises/` | Write your own queries using the Training Institution database. |
+| **✅ EVALUATE** | `3-quizCheckpoint/` + `4-exerciseAndQuizSolutions/` | Test your skills and review solutions. |
+
+---
+
+## 🏛️ **The SQLVerse Architect’s Blueprint – Your Conceptual Foundation**
+
+**Before** writing a single join, you’ll step into the **“SQLVerse Architect’s Blueprint”** – a dedicated space for the **fundamental concepts** that make joins meaningful.
+
+<div style="border-left: 4px solid #9c27b0; background-color: #f3e5f5; padding: 15px; margin: 20px 0; border-radius: 0 8px 8px 0;">
+
+### 🏗️ **The Architect’s Foundation**
+
+Located in `1-sqlCommands/SQLVerse-Architects-Blueprint/`, this folder contains four essential reference files:
+
+| File | What You'll Discover |
+|------|----------------------|
+| **`1-Why-Normalize.md`** | The problem with flat tables: redundancy, update anomalies, and inconsistency. Real‑world examples. |
+| **`2-Foreign-Keys-Referential-Integrity.md`** | How we link tables; the concept of foreign keys; what happens when a key points to nothing. |
+| **`3-Relationships.md`** | One‑to‑one, one‑to‑many, many‑to‑many; how they map to tables. |
+| **`4-Normalization.md`** | 1NF, 2NF, 3NF with the E‑Store as a running example; trade‑offs. |
+
+These aren't just theory – they're the **strategic insights** that explain ***why*** we split tables and how to join them back together. Think of this folder as your **reference library**. Return to it whenever you need to strengthen your understanding of the fundamentals.
+
+> 💡 **Artisan's Tip:** Don't rush through these. A few minutes with the Blueprint will save you hours of confusion later.
+
+</div>
+
+### 🔄 **The Blueprint Roundtrip**
+
+```mermaid
+flowchart LR
+    subgraph GUIDE["🗺️ MODULE 4 GUIDE"]
+        direction TB
+        G1["📍 You Are Here"]
+        G2["📘 STAGE 1: PREPARE"]
+    end
+    
+    subgraph BLUEPRINT["🏛️ SQLVerse Architect’s Blueprint"]
+        direction LR
+        L1["📘 File 1<br/>Why Normalize?"]
+        L2["📘 File 2<br/>Foreign Keys & RI"]
+        L3["📘 File 3<br/>Relationships"]
+        L4["📘 File 4<br/>Normalization"]
+    end
+    
+    subgraph FEEDBACK["💡 FEEDBACK LOOP"]
+        F1["✍️ Document Insights<br/>in Your Vault"]
+    end
+    
+    G1 -->|"1. Explore"| BLUEPRINT
+    BLUEPRINT -->|"2. Learn"| F1
+    F1 -->|"3. Return with Insights"| G2
+    
+    style GUIDE fill:#e1f5fe,stroke:#2196f3,stroke-width:2px
+    style BLUEPRINT fill:#f3e5f5,stroke:#9c27b0,stroke-width:3px
+    style FEEDBACK fill:#fff8e1,stroke:#ff9800,stroke-width:2px
+    style G1 fill:#fff8e1,stroke:#ff9800
+    style G2 fill:#e1f5fe,stroke:#2196f3
+    style L1 fill:#e1f5fe
+    style L2 fill:#e1f5fe
+    style L3 fill:#e1f5fe
+    style L4 fill:#e1f5fe
+    style F1 fill:#fff8e1
+```
+
+**Your Journey Through the Blueprint:**
+
+| Step | Action | Purpose |
+|------|--------|---------|
+| **1️⃣ Explore** | Click into the SQLVerse Architect’s Blueprint files | Build your conceptual foundation |
+| **2️⃣ Learn** | Study each file at your own pace | Understand the "why" behind joins and normalization |
+| **3️⃣ Return** | Come back to this Guide with insights | Document your learnings in the reflection box below |
+| **4️⃣ Begin PREPARE** | Start Stage 1 with a solid foundation | Write join queries with true understanding |
+
+➡️ **[Explore the Blueprint Now](./1-sqlCommands/SQLVerse-Architects-Blueprint/1-Why-Normalize.md)** – *Your foundation awaits.*
+
+---
+
+### 🧠 **BLUEPRINT REFLECTION**
+
+<div align="center" style="border: 1px solid #9c27b0; padding: 20px; margin: 30px 0; background: #f3e5f5; border-radius: 8px;">
+
+### 📝 **Before You Begin Stage 1**
+
+After exploring the SQLVerse Architect’s Blueprint, come back here and document your key takeaways:
+
+**What was the most powerful insight you gained from the Blueprint?**
+
+_______________________________________________________
+_______________________________________________________
+
+**Which concept do you think will be most valuable when writing joins?**
+
+_______________________________________________________
+
+*These insights are your foundation. Keep them in your Vault.*
+
+</div>
+
+---
+
+# 📘 STAGE 1: PREPARE (The Knowledge)
+
+```mermaid
+flowchart LR
+    A["✅ COMPLETED<br/>🏛️ SQLVerse Architect’s Blueprint<br/>Conceptual Foundation"] --> B["🧪 Refactoring Lab<br/>(Guided Normalization)"]
+    B --> C[File 1<br/>Intro to Joins]
+    C --> D[File 2<br/>Inner Join]
+    D --> E[File 3<br/>Left Join]
+    E --> F[File 4<br/>Joining Multiple Tables]
+    F --> G[File 5<br/>Self Join]
+    G --> H[File 6<br/>Join Conditions & Advanced]
+    
+    style A fill:#f3e5f5,stroke:#4caf50,stroke-width:4px
+    style B fill:#fff8e1,stroke:#ff9800,stroke-width:2px
+    style C fill:#e1f5fe,stroke:#2196f3,stroke-width:2px
+    style D fill:#e1f5fe,stroke:#2196f3,stroke-width:2px
+    style E fill:#e1f5fe,stroke:#2196f3,stroke-width:2px
+    style F fill:#e1f5fe,stroke:#2196f3,stroke-width:2px
+    style G fill:#e1f5fe,stroke:#2196f3,stroke-width:2px
+    style H fill:#e1f5fe,stroke:#2196f3,stroke-width:2px
+```
+
+Start with the **SQLVerse Architect’s Blueprint** to build your conceptual foundation. Then, watch the **Refactoring Lab** – a guided demonstration where the Architect transforms the flat E‑Store into a normalized schema. After that, work through the join concept files in order. Keep the **Normalized E‑Store database** (`level1_estore_normalized_MODULE4.db`) open in Tab 2 and run every example query you see. 
+
+Watch the Architect **transform** the E‑Store in the **Refactoring** Lab, then use those same patterns to solve the Training Institution puzzle on your own in Stage 2 **PRACTICE**.
+
+
+| File | What You'll Learn | Outcome |
+|------|-------------------|---------|
+| **🏛️ SQLVerse Architect’s Blueprint** | Why normalize? Foreign keys, relationships, normalization forms. | You understand the blueprint behind the connections. |
+| **🧪 Refactoring Lab** | Guided demonstration: transform the flat E‑Store into a normalized schema. | You watch the Architect refactor a table, creating the database used for all join demonstrations. |
+| **File 1** | What joins are and why we need them. | You see the problem that joins solve. |
+| **File 2** | `INNER JOIN` – matching rows from both tables. | You can combine related data with precision. |
+| **File 3** | `LEFT JOIN` – including unmatched rows from the left table. | You can handle missing data in reports. |
+| **File 4** | Chaining multiple joins in one query. | You can answer complex business questions. |
+| **File 5** | `SELF JOIN` – joining a table to itself. | You can handle hierarchies (e.g., employees and managers). |
+| **File 6** | Non‑equi joins, complex `ON` conditions, and a preview of `RIGHT JOIN` / `FULL OUTER JOIN`. | You can craft advanced join conditions. |
+
+---
+
+### 🚀 Kickstart Your Journey
+
+➡️ **[Begin Stage 1 with File 1](./1-sqlCommands/1-IntroToJoins.md)**  
+*Build your foundation before you build your queries.*
+
+---
+
+### ✅ STAGE 1 COMPLETE – READY FOR NEXT STAGE
+
+**🎉 Great!** You've learned the concepts. Now it's time to apply them with hands-on exercises.
+
+**Proceed to Next Stage:**
+➡️ **📖 Next Step:** Read the **STAGE 2** section below  
+   **🎯 Action:** Switch to the Training Institution database and start the exercises.
+
+<div align="center" style="border: 1px solid #2196f3; padding: 15px; margin: 20px 0; background: #e3f2fd; border-radius: 8px;">
+
+### ✅ **BEFORE YOU BEGIN STAGE 2**
+
+**What are the 3 most important insights you gained from the SQLVerse Architect’s Blueprint?**
+
+1. _________________________________________
+2. _________________________________________
+3. _________________________________________
+
+**Document these insights in your Vault.**
+
+*This step marks your official completion of STAGE 1.*
+
+**Ready for the next stage? Proceed to STAGE 2 below.**  
+
+</div>
+
+---
+
+# 👁️ STAGE 2: PRACTICE – The Hands-on: Write Your Own Join Queries
+
+Switch to the **Training Institution database** (`training_institution_sample.db`) in your Factory (Tab 2). Work through the exercises in `2-practiceExercises/`. They are designed to build confidence step by step.
+
+| Exercise | What You'll Practice | Outcome |
+|----------|----------------------|---------|
+| **Exercise 0** | **Independent Normalization Practice** – Apply normalization to a new unnormalized dataset (no guidance). | You reinforce the refactoring skills you observed, building confidence to normalize any flat table. |
+| **Exercise 1** | `INNER JOIN` on Training Institution tables. | You can combine students, courses, and enrollments. |
+| **Exercise 2** | `LEFT JOIN` to find missing relationships (e.g., instructors with no courses). | You can identify gaps in your data. |
+| **Exercise 3** | Chaining multiple joins (e.g., students → enrollments → courses → instructors). | You can answer complex questions like “Which instructors teach which students?” |
+| **Exercise 4** | `SELF JOIN` to model hierarchies (e.g., employee‑manager in the Training Institution). | You can query recursive relationships. |
+| **Exercise 5** | Mixed practice – combining all join types. | You're ready for the quiz. |
+
+For each exercise, use **Tab 3 (The Consultant)** if you need a hint – but only after your own attempts. Save every working query in your Vault.
+
+---
+
+### 🚀 Continue Your Journey
+
+➡️ **[Begin Stage 2: Normalization Practice](./2-practiceExercises/0-normalization-practice.md)**
+*Practice transforms concepts into skill.*
+
+---
+
+### ✅ STAGE 2 COMPLETE – READY FOR FINAL STAGE
+
+**🎉 Excellent!** You've written join queries that connect multiple tables. Now let's check your understanding.
+
+**Proceed to Next Stage:**
+➡️ **📖 Next Step:** Read the **STAGE 3** section below  
+   **🎯 Action:** Take the quiz and review solutions.
+
+<div align="center" style="border: 1px solid #ff9800; padding: 15px; margin: 20px 0; background: #fff8e1; border-radius: 8px;">
+
+### ✅ **BEFORE YOU BEGIN STAGE 3**
+
+**What was the most powerful insight you gained from writing joins?**
+
+_______________________________________________________
+
+**Document this insight in your Vault.**
+
+*This step marks your official completion of STAGE 2.*
+
+**Ready for the final stage? Proceed to STAGE 3 below.**  
+
+</div>
+
+---
+
+# ✅ STAGE 3: EVALUATE – The Assessment
+
+```mermaid
+flowchart LR
+    A[Take the module quiz] --> B[Check your answers]
+    B --> C[Review solutions]
+    C --> D[🎉 Module 4 Complete]
+    
+    style A fill:#e8f5e8,stroke:#4caf50,stroke-width:2px
+    style B fill:#e8f5e8,stroke:#4caf50,stroke-width:2px
+    style C fill:#e8f5e8,stroke:#4caf50,stroke-width:2px
+    style D fill:#a5d6a7,stroke:#2e7d32,stroke-width:3px
+```
+
+### ✅ Your Evaluation Tasks
+
+1. **Take the quiz:** Go to `3-quizCheckpoint/module4-sql-quiz.md`.
+   - Answer the questions – some may ask you to write join queries.
+   - Write your answers in a new file `quiz_answers.sql` (or `.md`) inside your Vault at:
+     ```
+     Learning/Level-1-beginner/Level1-1-ACQUIRE/Module4-JoiningTables/3-quizCheckpoint/
+     ```
+
+2. **Check your answers:** Open the solutions in `4-exerciseAndQuizSolutions/module4-quiz-answers.md`.
+   - Compare your queries and reasoning.
+
+3. **Review exercise solutions** if you want to see alternative approaches.
+
+---
+
+### 🚀 Complete Your Journey
+
+➡️ **[Begin Stage 3: Take the Quiz](./3-quizCheckpoint/module4-sql-quiz.md)**  
+*Evaluation turns practice into mastery.*
+
+---
+
+### ✅ STAGE 3 COMPLETE – MODULE 4 FINISHED
+
+**🎉 Outstanding!** You've mastered joins and normalization. You can now connect tables and design scalable databases.
+
+<div align="center" style="border: 1px solid #4caf50; padding: 15px; margin: 20px 0; background: #e8f5e8; border-radius: 8px;">
+
+### ✅ **REFLECT BEFORE MOVING ON**
+
+**What was the most satisfying join you wrote in this module? What business insight did it reveal?**
+
+_______________________________________________________
+
+**Document this reflection in your Vault.**
+
+*This step marks your official completion of Module 4.*
+
+</div>
+
+---
+
+## 💎 DESIGNER'S PERIGON
+
+<div style="border: 3px solid #9c27b0; border-radius: 10px; padding: 20px; margin: 25px 0; background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);">
+
+### *Beyond Syntax – The Art of Connection*
+
+You’ve just learned to connect tables – to weave separate strands of data into a single tapestry. This is the skill that turns a collection of lists into a coherent information system.
+
+In Module 3, you learned to summarize; now you learn to relate. The real world is not one big table – it’s a network of entities connected by relationships. Customers place orders. Orders contain products. Products belong to categories. Joins are how you navigate that network.
+
+- **Normalization** taught you to design for integrity: one fact, one place.
+- **Foreign keys** gave you the threads that bind tables together.
+- **Joins** let you follow those threads to answer any question.
+
+You’ve moved from looking at data to **connecting** it. This is the difference between a report and a relational database.
+
+### 🧠 **The Big Reveal in Practice**
+
+Remember the flat `products` table? The one where a typo could corrupt your reports? You now know how to transform it into a professional schema – and how to use joins to put it back together. That’s the evolution from prototype to production.
+
+In the **SQLVerse**, every planet has its own relationships. On E‑Commerce Planet, you join customers to orders. On HR Planet, you join employees to departments. On Education Planet, you join students to courses. The tools are the same; the connections are what give meaning.
+
+> *“A single table is a sketch. Joins turn it into a masterpiece – combining colors, textures, and dimensions to reveal the full picture.”*
+
+---
+### 🌍 The Art of Analysis Across Planets
+
+**Data analysis** is the practice of looking at **raw data** in various ways to gain information to make **informed decisions**. A standalone piece of data is a riddle or a brainteaser; **connecting** that standalone piece to its related sets or subsets and analyzing it extracts **insightful information** for decision making. Data analysis forms the backbone of **strategic planning** in businesses, governments, and other industries.
+
+- On **E‑Commerce Planet**, this analysis leads to personalized product recommendations and UX improvement.
+- On **Healthcare Planet**, it leads to improved treatment and proactive care.
+- On **Fintech Planet**, it leads to detecting fraud and managing risks.
+
+You’ve just learned to connect pieces – to join tables and uncover insights that were invisible when data sat alone. This is the heart of analysis: **connection breeds understanding.**
+
+---
+
+### 🏛️ **The SQLVerse Architect’s Blueprint – Your Strategic Advantage**
+
+The concepts you explored in the Blueprint – normalization, foreign keys, relationships – are not abstract. They are the foundation of every robust database you’ll ever encounter. When you understand why tables are split, you understand how to join them effectively.
+
+> *“This is the hidden curriculum – the knowledge that separates the craftsman from the crowd. Bootcamps teach you how to join tables; Artisans learn **why** the tables were built that way in the first place. Master the blueprint, and you master the art.”*
+
+---
+
+### 🌌 **The Artisan’s Truth**
+
+> *“Data without relationships is noise. Joins give it structure.”*
+
+> *“You’ve evolved from query writer to data architect. The connections you make today will power the insights of tomorrow.”*
+
+> *“The SQLVerse expands. Go forth and join.”*
+
+</div>
+
+---
+
+## 🎉 MODULE 4 COMPLETE
+
+<div align="center" style="border: 3px solid #4caf50; border-radius: 10px; padding: 25px; margin: 30px 0; background: linear-gradient(135deg, #e8f5e8, #c8e6c9);">
+
+### ✅ Congratulations, You've Mastered Joining Tables!
+
+**You have successfully:**
+- Understood why flat tables are problematic and how normalization solves it.
+- Defined foreign keys and referential integrity.
+- Normalized a flat table into a professional schema.
+- Written `INNER JOIN`, `LEFT JOIN`, and chained multiple joins.
+- Used `SELF JOIN` to model hierarchies.
+- Learned about advanced join conditions and previewed `RIGHT JOIN` and `FULL OUTER JOIN`.
+- Built three capstone reports (CEO, CTO, CFO) using joins.
+
+### 🎓 **Your Achievement Awaits**
+
+You've successfully completed Module 4! You are now ready to move into **ACCELERATE** and **ANALYZE** phases, where you'll apply these skills to larger projects.
+
+**View your official certificate here:**  
+[📜 **MODULE 4 CERTIFICATE →**](./MODULE4_GRADUATION.md)
+
+*Print it, share it, celebrate it. Then return here to continue your journey.*
+
+---
+<div align="center" style="border: 1px solid #9c27b0; padding: 20px; margin: 30px 0; background: #f3e5f5; border-radius: 8px;">
+
+### 💎 **REFLECT BEFORE YOU PROCEED**
+
+**What was the most powerful insight you gained from normalization and joins?**
+
+_______________________________________________________
+_______________________________________________________
+
+**How will you use joins in your future projects?**
+
+_______________________________________________________
+
+*Document these reflections in your Vault. They're the evidence of your evolution from Analyst to Architect.*
+
+</div>
+
+---
+
+### 🚀 Ready for the Next Adventure?
+
+
+**You have now completed all four ACQUIRE modules!** You’ve mastered the fundamentals of SQL – from single‑table queries to joins and normalization. Your foundation is solid.
+
+Your next step is to visit the **ACQUIRE Completion** file, where you'll complete a final set of tasks. After that, you'll return to the **Master Guide** to reflect on your journey and officially conclude the ACQUIRE phase. Then, you'll be ready to begin the **ACCELERATE** phase.
+
+<div align="center" style="border: 3px solid #4caf50; border-radius: 10px; padding: 25px; margin: 30px 0; background: linear-gradient(135deg, #e8f5e8, #c8e6c9);">
+
+### ✅ Complete Your ACQUIRE Phase
+
+# [▶️ **GO TO ACQUIRE COMPLETION**](../../../Guides/SECTION1_COMPLETION.md)
+
+*Reflect on what you’ve built, document your milestones, and prepare for the next phase.*
+
+</div>
+
+---
+
+*Part of our mission for 🎯 Quality Education for Anyone, Anywhere, Anytime — 💫 with Comfort, Convenience at no Cost.*
+
+**Level 1 | Module 4 Guide | Next: ACQUIRE Completion**

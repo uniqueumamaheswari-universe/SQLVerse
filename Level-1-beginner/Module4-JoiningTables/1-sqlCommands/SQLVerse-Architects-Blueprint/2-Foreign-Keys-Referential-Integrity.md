@@ -397,17 +397,36 @@ After reading this and trying the interactive examples, can you:
 
 <div style="border: 3px solid #9c27b0; border-radius: 10px; padding: 20px; margin: 25px 0; background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);">
 
+### ⚖️ The Artisan's Balance: When to Use SQL Constraints
+
+<div style="border-left: 4px solid #ff9800; background-color: #fff8e1; padding: 15px; margin: 20px 0 0 0; border-radius: 0 8px 8px 0;">
+
+#### 🔍 The Principle: Not Everything Belongs in the Database
+
+SQL gives you powerful tools: `CHECK` constraints, complex validations, and even triggers. But just because you *can* enforce something at the database level doesn’t always mean you *should*.
+
+> *“Email format validation is often handled by the application. While databases like PostgreSQL, Oracle, and SQL Server can enforce patterns with `CHECK` constraints, such checks consume CPU cycles and slow down database performance. For high‑volume systems, pushing that logic to the application layer preserves database resources for what it does best: storing and relating data. The Artisan knows where to draw the line.”*
+
+> *“Just because you can do something in SQL doesn’t always mean you should.”*
+
+---
+
+#### 🚗 The Artisan’s Car Analogy
+
+You can buy a high‑tech luxury car – **a Mercedes‑Benz S‑Class** – with a premium price tag, high insurance costs, and a car loan stretching over 7–8 years. The question to consider: *Is it worth buying?* You might have to **cut** your **annual vacation** for eight years just to afford it. The sensible option could be a **reliable hatchback or sedan** that leaves room for the experiences you value.
+
+The same principle applies to **SQL constraints**. Just because a feature exists doesn’t mean it’s the right tool for every situation. The Artisan weighs **cost** (performance, complexity) against **benefit** (data integrity, simplicity) and chooses wisely.
+
+</div>
+
 ### *The Art of Connection*
 
 A foreign key is more than a column; it’s a **contract**. It says: “This data belongs with that data, and the database will enforce that truth.”
 
-You’ve moved from seeing tables as isolated islands to seeing them as a network. Each foreign key is a bridge. Each referential integrity rule is a guardrail that prevents you from driving off the edge.
+You’ve moved from seeing **tables** as isolated islands to seeing them as a **network**. Each **foreign key** is a **bridge**. Each referential integrity rule is a guardrail that prevents you from driving off the edge.
 
 > *“A database without referential integrity is a house of cards. A database with it is a fortress.”*
 
-> *“Not every constraint belongs at the database level. Email format validation, for example, is often handled by the application. While databases like PostgreSQL, Oracle, and SQL Server can enforce patterns with `CHECK` constraints, such checks consume CPU cycles and slows down the database performance. For high‑volume systems, pushing that logic to the application layer preserves database resources for what it does best: storing and relating data. The Artisan knows where to draw the line.”*
-
-> *“Just because you can do something in SQL doesn't always mean you should.”*
 </div>
 
 ---

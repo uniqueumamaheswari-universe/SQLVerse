@@ -61,6 +61,8 @@ Let’s revisit the `products` table from Module 3. It looked something like thi
 | 4          | Headphones        | Electronics | 150   |
 | 5          | Blender           | Appliances  | 60    |
 
+> 🏢 **Real‑World Story:** A well‑known online retailer once faced a billing disaster because their flat `products` table allowed a typo in a category name. The result: duplicate product listings, double‑billed customers, and weeks of manual cleanup. This is the cost of trusting a spreadsheet mindset in a production database.
+
 At first glance, it seems fine. But imagine the E‑Store now has **500 products**. Suddenly, the word “Electronics” appears in hundreds of rows. **The "Spreadsheet" mindset works... until it doesn't:**
 
 ### 🔥 The Four Horsemen of Flat Table Apocalypse
@@ -79,7 +81,9 @@ graph TD
     style E fill:#fff8e1
 ```
 
-1. **Redundancy** – The same category name (“Electronics”) is stored over and over. Wasted space, and worse, it invites mistakes. Storing "Electronics" 500 times is like writing the same sentence on 500 different pages. It’s a waste of ink (storage) and an invitation for a typo to sneak in.
+
+1. **Redundancy** – The same category name (“Electronics”) is stored over and over. Wasted space, and worse, it invites mistakes. Storing "Electronics" 500 times is like writing the same sentence on 500 different pages. It’s a waste of ink (storage) and an invitation for a typo to sneak in.  
+   ***Quick math:*** 500 products × 12 characters = 6,000 bytes of duplicate text. With 1 million products, that’s **12 MB of pure repetition** – plus the even bigger risk of a typo breaking your reports.
 
 2. **Update Anomaly** – What happens if the CEO decides to rename “Electronics” to “Tech & Gadgets”? In a flat table, you’d have to update **every single row** that contains that category. Miss one, and your data is inconsistent. If your query misses just **one** row out of 10,000, your database now has two "truths." Which one is right?
 
@@ -117,7 +121,7 @@ Normalization is the process of **decomposing** a table into smaller, themed tab
 **We move from one “Master List” to an “Ecosystem”:**
 - **Products Table:** Only stores product‑specific info (name, price).
 - **Categories Table:** Only stores category names.
-- **Suppliers Table:** Only stores contact info and locations.
+- **Customers Table:** Only stores contact info and locations.
 
 ### 💎 The Artisan's Benefit
 By normalizing, you ensure **Data Integrity**. The data becomes “Atomic”—each piece of information lives in exactly **one place**.
@@ -196,9 +200,16 @@ You might be thinking: *“Wait, in Module 3 I used `GROUP BY category` and it w
 
 Exactly! That’s the **plot twist**. In Module 3, the flat table was perfect for learning aggregates. But now, as the business grows, the CTO is demanding **data integrity**. The simple solution that worked for a handful of products becomes a liability at scale.
 
+**The Pizza Shop Analogy:** You can prepare pizzas at home with an oven. How many pizzas can you make? Just 5‑10 or 15 for your family and friends. Can you handle all the orders they fulfill in Domino's for one day in your kitchen? **NO.** The flat table is **Your kitchen**. The normalized table is **Domino's ecosystem**.
+
+> *Flat tables aren’t wrong – they’re stage-appropriate. Normalization isn’t complexity for fun – it’s required for scale.*
+
 **Normalization is the Artisan’s answer to scaling data.** It’s the difference between a prototype and a production system.
 
 In the next file, we’ll learn the tools that make normalization possible: **Foreign Keys** and **Referential Integrity**. Then, in the **Refactoring Lab**, we will perform this transformation – splitting the flat `products` table into a normalized structure, right in your Factory.
+
+**What if we don’t normalize?**  
+You could try to manage data integrity with application code – but that’s like building a bridge with duct tape. Databases were designed to enforce integrity for you. Normalization hands that responsibility to the engine, where it belongs.
 
 </div>
 

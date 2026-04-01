@@ -287,11 +287,10 @@ erDiagram
         string auto_debit_account
     }
     LoanApplications {
-        int customer_id FK
-        int loan_id FK
+        int customer_id PK
+        int loan_id PK
         date application_date
         string loan_role
-        primary key (customer_id, loan_id)
     }
     LoanTransactions {
         int transaction_id PK

@@ -151,3 +151,7 @@ This is a set of rules the database enforces to prevent “Orphaned Data.”
 
 **This ensures the bridges (Joins) you build in Module 4 will never lead to a “404 Not Found” destination.**
 
+
+
+<!-- REMINDER (Refactoring Lab): Add a visual example of an orphaned row – e.g., order_items with product_id = 999 but no matching product in products table. Show how foreign key constraint prevents insertion. -->
+

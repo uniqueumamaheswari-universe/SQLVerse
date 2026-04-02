@@ -313,6 +313,45 @@ Now the many‑to‑many relationship between customers and loans is explicitly 
 
 ### 📋 Relationship Summary
 
+```mermaid
+graph TD
+    subgraph LEGEND["Legend"]
+        L1["1:1 – One‑to‑one"]
+        L2["1:N – One‑to‑many"]
+        L3["M:N – Many‑to‑many (junction table)"]
+    end
+
+    Customers["Customers"]
+    CreditCards["CreditCards"]
+    Accounts["Accounts"]
+    LoanApplications["LoanApplications"]
+    Loans["Loans"]
+    LoanTypes["LoanTypes"]
+    LoanTransactions["LoanTransactions"]
+    CreditCardTransactions["CreditCardTransactions"]
+
+    Customers -->|"1:1"| CreditCards
+    Customers -->|"1:N"| Accounts
+    Customers -->|"1:N"| LoanApplications
+    Loans -->|"1:N"| LoanApplications
+    Loans -->|"1:N"| LoanTransactions
+    CreditCards -->|"1:N"| CreditCardTransactions
+    LoanTypes -->|"1:N"| Loans
+
+    Customers -.->|"M:N"| Loans
+    LoanApplications -.->|"junction table"| Customers
+    LoanApplications -.->|"junction table"| Loans
+
+    style Customers fill:#e1f5fe
+    style CreditCards fill:#fff8e1
+    style Accounts fill:#e8f5e8
+    style LoanApplications fill:#f3e5f5
+    style Loans fill:#ffebee
+    style LoanTypes fill:#e0f7fa
+    style LoanTransactions fill:#fce4ec
+    style CreditCardTransactions fill:#f1f8e9
+```
+
 - **One‑to‑One:**  
   - One `Customer` → one `CreditCard` (enforced by `UNIQUE` on `customer_id` in `CreditCards`)
 
@@ -327,7 +366,43 @@ Now the many‑to‑many relationship between customers and loans is explicitly 
 - **Many‑to‑Many:**  
   - `Customers` ↔ `Loans` (via `LoanApplications`)
 
+---
+
 Let’s look at the evolution of our Bank database. By applying these three gates, we have moved from a fragile "Flat" table to a robust, professional ecosystem.
+
+```mermaid
+flowchart TD
+    subgraph STEP0["🔥 STEP 0: The Chaos (Flat Table)"]
+        S0["📋 ONE TABLE<br/>28 columns: customer, account,<br/>loan, credit card, transaction data<br/>❌ Massive repetition<br/>❌ All possible anomalies"]
+    end
+
+    subgraph STEP1["🚪 1NF – Atomic Gate"]
+        S1["✨ Atomic values,<br/> composite key<br/>(still one table)"]
+    end
+
+    subgraph STEP2["🔑 2NF – Identity Gate"]
+        S2a["🧩 SPLIT into 7 tables:"]
+        S2b["• Customers<br/>• Accounts<br/>• Loans<br/>• CreditCards<br/>• LoanApplications<br/>• LoanTransactions<br/>• CreditCardTransactions"]
+        S2c["✅ Partial dependencies<br/> removed"]
+        S2a --> S2b --> S2c
+    end
+
+    subgraph STEP3["⚡ 3NF – Direct Gate"]
+        S3a["🔧 Loans→Loans+LoanTypes<br/>"]
+        S3b["✅ Transitive dependencies removed"]
+        S3c["🏆 FINAL 8 TABLES:<br/>Customers, Accounts, <br/>CreditCards,LoanTypes,<br/> Loans, LoanApplications,<br/>LoanTransactions, <br/>CreditCardTransactions<br/>✅ No redundancy, <br/>Full integrity<br/>🎉 PRODUCTION READY"]
+        S3a --> S3b --> S3c
+    end
+
+    STEP0 -->|"1NF: atomic"| STEP1
+    STEP1 -->|"2NF: remove partial"| STEP2
+    STEP2 -->|"3NF: remove transitive"| STEP3
+
+    style STEP0 fill:#ffebee,stroke:#f44336
+    style STEP1 fill:#e1f5fe,stroke:#2196f3
+    style STEP2 fill:#fff8e1,stroke:#ff9800
+    style STEP3 fill:#e8f5e8,stroke:#4caf50
+```
 
 | Level | State of the Bank Database |
 | :--- | :--- |

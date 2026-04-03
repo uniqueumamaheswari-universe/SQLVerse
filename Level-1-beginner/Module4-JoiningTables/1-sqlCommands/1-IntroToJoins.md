@@ -58,7 +58,10 @@ You've completed the SQLVerse Architect’s Blueprint and the Refactoring Lab. N
 
 In Module 4, the roles of the two databases have reversed:
 
-- **Normalized E‑Store** (`level1_estore_normalized_MODULE4.db`) → becomes the **demonstration database** (used for all concept file examples).
+In Module 4, the roles of the two databases have reversed:
+
+- **Normalized E‑Store** (`level1_estore_normalized_MODULE4.db`) → becomes the **demonstration database** (used for all concept file examples).  
+  *(This database is located in the `1-sqlCommands/SQLVerse-Architects-Blueprint/` folder.)*
 - **Training Institution** (`training_institution_sample.db`) → becomes the **practice database** (used for exercises in `2-practiceExercises/`).
 
 This reversal reinforces the plot twist: you normalized the E‑Store in the Refactoring Lab, and now you'll use it to learn joins.
@@ -71,7 +74,7 @@ This reversal reinforces the plot twist: you normalized the E‑Store in the Ref
 | Tab | Purpose | What to Do |
 | :--- | :--- | :--- |
 | **1: The Map** | Read concept files | You're here – reading this file. Next up: `2-InnerJoin.md`. |
-| **2: The Factory** | Run queries | Keep the **Normalized E‑Store database** (`level1_estore_normalized_MODULE4.db`) loaded. Run every example query. |
+| **2: The Factory** | Run queries | Keep the **Normalized E‑Store database** ([`level1_estore_normalized_MODULE4.db`](./SQLVerse-Architects-Blueprint/level1_estore_normalized_MODULE4.db)) loaded. Run every example query. |
 | **3: The Consultant** | Conceptual Q&A | Ask about join syntax, why we join, or how to think about relationships. Configure AI with Student Mode Prompt. |
 | **4: The Vault** | Save your work | Save successful queries in: `Learning/Level-1-beginner/Level1-1-ACQUIRE/Module4-JoiningTables/1-sqlCommands/` |
 

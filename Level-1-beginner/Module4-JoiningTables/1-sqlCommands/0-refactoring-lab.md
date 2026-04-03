@@ -258,7 +258,7 @@ SELECT DISTINCT skill_type FROM Module4Skills;
 
 ### Step 5: Add Foreign Key Column to Source Table
 
-Just like adding `category_id` to `products`, we now add a column to link `Module4Skills` to `SkillCategories`.
+We now add a column to link `Module4Skills` to `SkillCategories`.
 
 ```sql
 ALTER TABLE Module4Skills ADD COLUMN category_id INTEGER;
@@ -313,7 +313,7 @@ DROP TABLE SkillCategories;
 
 **Try it now.**  
 **What you're seeing:** Both tables disappear.  
-**Reflect:** This pattern – create, populate, alter, update, join, drop – is exactly what you’ll do in the main refactoring (except you won’t drop the final tables; you’ll keep them for the rest of the module).
+**Reflect:** This pattern – create, populate, alter, update, join – is exactly what you’ll do in the main refactoring (except you won’t drop the final tables; you’ll keep them for the rest of the module).
 
 > 💡 **Artisan’s Insight:** You just performed a complete refactoring rehearsal using Module 4’s own curriculum. The steps you practiced – `CREATE TABLE`, `INSERT FROM SELECT`, `ALTER TABLE`, `UPDATE` with a subquery, and `JOIN` – are the exact steps you will now apply to the E‑Store.
 
@@ -339,9 +339,13 @@ This is a set of rules the database enforces to prevent “Orphaned Data.”
 
 ---
 
-## 🏗️ REFACTORING AND TRANSFORMING THE E‑STORE
+## 🏗️ TRANSFORMING THE E‑STORE IN REFACTORING LAB
+
+### The Evolution of the E‑Store
 
 Now you will apply the same pattern you practiced in the Miniature Lab to transform the E‑Store’s flat `products` table into a professional relational schema.
+
+> *"This lab is the **Big Reveal** – you will take the flat table you’ve used since Module 3 and refactor it into a professional relational structure."*
 
 ## 📊 Practice Table: The Flat `products` Table
 
@@ -632,11 +636,30 @@ After reading this and trying the commands, can you:
 
 You just performed a real‑world database refactoring – the kind of task that separates a data entry clerk from a data engineer. You didn’t just write queries; you redesigned a schema to be clean, scalable, and trustworthy.
 
-Every time you see a spreadsheet with repeated values, you’ll now think: “I can normalize that.” That’s the Artisan’s eye. You have just transitioned from a **spreadsheet user** to a **Database Architect**. You are no longer just storing text; you are managing **relationships**.
+Every time you see a spreadsheet with repeated values, you’ll now think: “I can normalize that.” That’s the Artisan’s eye. You have just transitioned from a **spreadsheet user** to a **Database Architect**. You are no longer just storing text; you are managing **relationships**. Refactoring is often performed on legacy systems. A true **SQLVerse Architect** designs a database with **ACID compliance** from the start, minimizing the need for such overhauls.
 
 > *“A well‑normalized database is invisible. When it’s built correctly, users never see the corruption, the errors, or the maintenance headaches—they only see a system that works, every single time.”*
 
+---
+
+### 🌸 The SQLVerse Artisan's Garden
+
+Do you remember the **SQLVerse Artisan's Garden** in Module 3?
+
+In the **SQLVerse**, data is a garden with all types of flowers.
+
+- A **Domain** is a **Planet**.
+- A **Database** is a **World**.
+- A **Table** is a **Continent**.
+- **Rows and Columns** are **Countries**.
+- **Normalization** is **Landscape Design**.
+- **Data** is a garden with all types of flowers.
+- An **SQL Query** is the art of creating **Bouquets**.
+- An **SQLVerse Artisan** crafts the **Landscape** and designs the **Bouquets**.
+- **Dashboards** are the **Showcase** for displaying Bouquets.
+
 Now go forth and join those tables. The SQLVerse awaits.
+
 
 </div>
 

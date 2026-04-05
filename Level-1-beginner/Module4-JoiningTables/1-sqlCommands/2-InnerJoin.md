@@ -433,7 +433,7 @@ In the **SQLVerse**, `INNER JOIN` is the loyal friend – it never shows you a p
 - On **Banking Planet**, the inner join gives you the list of: *“Customers who have spent more than $5000 with their credit cards.”*
 - On **Tourism Planet**, the inner join gives you the list of: *"Customers who have booked Deluxe room with Spa service. "*
 
-In the Artisan's Garden, `INNER JOIN` is picking flowers with varying shades of the same hue to complement each other.
+In the Artisan's Garden, `INNER JOIN` is a **monochromatic bouquet** – beautiful in its simplicity and subtle complexity. By focusing on a single color palette (the join condition), it creates a striking impact, an absolute piece of art.
 
 > *“`INNER JOIN` tells the truth, but only the whole truth. It leaves out the stories that never began.”*
 

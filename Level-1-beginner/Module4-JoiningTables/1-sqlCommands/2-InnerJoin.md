@@ -122,6 +122,53 @@ We'll continue using the normalized E‑Store tables.
 | 5          | Blender           | 60.00   | 2           |
 
 ---
+## 🌱 Dynamic Data for Join Demonstrations
+
+Throughout Module 4, we'll use additional data to demonstrate join concepts. Run this script once to add the data to your database.
+
+```sql
+-- Add two new categories
+INSERT INTO categories (category_id, category_name)
+VALUES 
+    (4, 'Garden'),
+    (5, 'Toys');
+
+-- Add products for the Garden category
+INSERT INTO products (product_id, product_name, price, category_id)
+VALUES 
+    (6, 'Roses', 15.00, 4),
+    (7, 'Marigolds', 10.00, 4),
+    (8, 'Sunflowers', 12.00, 4);
+```
+
+> 💡 **Note:** These additions are used in join examples throughout the module. 
+
+After adding the dynamic data, here are the complete contents of all tables:
+
+### Complete `categories` Table
+
+| category_id | category_name |
+|-------------|---------------|
+| 1           | Electronics   |
+| 2           | Appliances    |
+| 3           | Books         |
+| **4**       | **Garden**    |
+| **5**       | **Toys**      |
+
+### Complete `products` Table
+
+| product_id | product_name      | price   | category_id |
+|------------|-------------------|---------|-------------|
+| 1          | Laptop            | 1200.00 | 1           |
+| 2          | Coffee Maker      | 80.00   | 2           |
+| 3          | SQL Essentials Book | 45.00 | 3           |
+| 4          | Headphones        | 150.00  | 1           |
+| 5          | Blender           | 60.00   | 2           |
+| **6**      | **Roses**         | **15.00**   | **4**       |
+| **7**      | **Marigolds**     | **10.00**   | **4**       |
+| **8**      | **Sunflowers**    | **12.00**   | **4**       |
+
+---
 
 ## 🔍 Introducing INNER JOIN
 
@@ -180,17 +227,22 @@ INNER JOIN categories c ON p.category_id = c.category_id;
 
 **Try it now in Tab 2.**
 
-**What you're seeing:** Every product appears with its category name. Notice that all five products have valid `category_id` values, so all are included.
+**What you're seeing:** Every product appears with its category name. All products have valid `category_id` values, so all are included.
 
 | product_name      | category_name |
 |-------------------|---------------|
 | Laptop            | Electronics   |
-| Coffee Maker      | Appliances    |
-| SQL Essentials Book | Books       |
 | Headphones        | Electronics   |
+| Coffee Maker      | Appliances    |
 | Blender           | Appliances    |
+| SQL Essentials Book | Books       |
+| Roses             | Garden        |
+| Marigolds         | Garden        |
+| Sunflowers        | Garden        |
 
 > 💡 **Note:** `INNER JOIN` is often written simply as `JOIN`. The `INNER` keyword is optional. So `FROM products JOIN categories ...` means the same thing.
+
+**Reflect:** The `Toys` category does **not** appear in the results. Because it has no matching products, `INNER JOIN` excludes it entirely. This is the exclusion rule – only categories with at least one product survive.
 
 ---
 
@@ -258,64 +310,114 @@ WHERE c.category_name = 'Electronics';
 **Reflect:** The `WHERE` clause filters the result of the join, not the original tables. This is a powerful pattern: join first, then filter.
 
 ---
-## 🧪 Interactive Factory: The "Hidden" Data
+## 🔍 The Exclusion Rule in Action
 
-Let's see the "Exclusion" rule in action. First, add a new category called **'Garden'** to the `categories` table.
+The `Toys` category (added in the dynamic data) has no products. Let's see how `INNER JOIN` handles it in two different ways.
 
-```sql
-INSERT INTO categories (category_id, category_name)
-VALUES (4, 'Garden');
-```
+### Use Case 1: Products with Category Names
 
-**Try it now in Tab 2.** Now run an `INNER JOIN` that shows all products with their category names.
+Run an `INNER JOIN` to see each product with its category name:
 
 ```sql
 SELECT p.product_name, c.category_name
 FROM products p
-JOIN categories c ON p.category_id = c.category_id;
+JOIN categories c ON p.category_id = c.category_id
+ORDER BY c.category_id;
 ```
 
-**What you're seeing:** The 'Garden' category does **not** appear in the results. Why? Because there is no product with `category_id = 4`. The bridge cannot be built if one side is missing.
+**What you're seeing:**
+
+| product_name      | category_name |
+|-------------------|---------------|
+| Laptop            | Electronics   |
+| Headphones        | Electronics   |
+| Coffee Maker      | Appliances    |
+| Blender           | Appliances    |
+| SQL Essentials Book | Books       |
+| Roses             | Garden        |
+| Marigolds         | Garden        |
+| Sunflowers        | Garden        |
+
+**Observation:** Every product appears with its category. The `Toys` category does **not** appear – because it has no products, there are no rows to show. In our updated database, the **Toys** category acts as our "lonely row." Because it has no products assigned to it, an `INNER JOIN` will treat it as if it doesn't exist.
+
+> 💡 **Architect's Insight:** Use `INNER JOIN` when you need **certainty**. It is the filter that ensures your report only contains complete, connected data.
 
 ```mermaid
 graph LR
-    subgraph PRODUCTS["products (no category_id = 4)"]
-        P1["Laptop (cat 1)"]
-        P2["Coffee Maker (cat 2)"]
-        P3["SQL Book (cat 3)"]
-    end
-
     subgraph CATEGORIES["categories"]
-        C1["Electronics (1)"]
-        C2["Appliances (2)"]
-        C3["Books (3)"]
-        C4["<b>Garden (4)</b><br/>(no matching product)"]
+        C1["Electronics (has products)"]
+        C2["Appliances (has products)"]
+        C3["Books (has products)"]
+        C4["Garden (has products)"]
+        C5["<b>Toys (no products)</b>"]
     end
 
-    subgraph RESULT["INNER JOIN result"]
+    subgraph RESULT["INNER JOIN Result"]
         R1["Laptop → Electronics"]
-        R2["Coffee Maker → Appliances"]
-        R3["SQL Book → Books"]
+        R2["Headphones → Electronics"]
+        R3["Coffee Maker → Appliances"]
+        R4["Blender → Appliances"]
+        R5["SQL Book → Books"]
+        R6["Roses → Garden"]
+        R7["Marigolds → Garden"]
+        R8["Sunflowers → Garden"]
     end
 
-    P1 -.->|"match"| C1
-    P2 -.->|"match"| C2
-    P3 -.->|"match"| C3
-    C4 -.->|"❌ no match"| RESULT
+    C5 -.->|"❌ excluded"| RESULT
 
-    style C4 fill:#ffccbc,stroke:#f44336
+    style C5 fill:#ffccbc,stroke:#f44336
     style RESULT fill:#c8e6c9
 ```
 
-**Clean up:** Now remove the 'Garden' category so it doesn't affect later examples.
+---
+
+### Use Case 2: Category Product Counts
+
+Now run an `INNER JOIN` that counts products per category:
 
 ```sql
-DELETE FROM categories WHERE category_id = 4;
+SELECT c.category_name, COUNT(p.product_id) AS product_count
+FROM categories c
+JOIN products p ON c.category_id = p.category_id
+GROUP BY c.category_name
+ORDER BY c.category_id;
 ```
 
-**Try it now.** Now the `categories` table is back to its original state.
+**What you're seeing:**
 
-> 💎 **Artisan’s Insight:** `INNER JOIN` is strict – it only returns rows that have a complete connection. This is great for reports where missing data would be misleading, but be careful: you might lose information about categories that exist but have no products.
+| category_name | product_count |
+|---------------|---------------|
+| Electronics   | 2             |
+| Appliances    | 2             |
+| Books         | 1             |
+| Garden        | 3             |
+
+**Observation:** The `Toys` category is completely missing from the summary. Even though it exists in the `categories` table, it has no products, so `INNER JOIN` excludes it entirely.
+
+```mermaid
+graph LR
+    subgraph CATEGORIES["categories"]
+        C1["Electronics (2 products)"]
+        C2["Appliances (2 products)"]
+        C3["Books (1 product)"]
+        C4["Garden (3 products)"]
+        C5["<b>Toys (0 products)</b>"]
+    end
+
+    subgraph RESULT["INNER JOIN Result"]
+        R1["Electronics → 2"]
+        R2["Appliances → 2"]
+        R3["Books → 1"]
+        R4["Garden → 3"]
+    end
+
+    C5 -.->|"❌ excluded"| RESULT
+
+    style C5 fill:#ffccbc,stroke:#f44336
+    style RESULT fill:#c8e6c9
+```
+
+> 💎 **Artisan’s Insight:** `INNER JOIN` is strict – it only returns rows that have a complete connection. Categories without products, customers without orders – they simply don't appear. This is great for reports where missing data would be misleading, but remember: you might lose information about what *doesn't* exist.
 
 ---
 
@@ -374,7 +476,7 @@ Create a report that shows `product_name`, `price`, and `category_name`. Sort by
 *Save as:* `4-2-5-inventory-report.sql`
 
 **Challenge 6: The Missing Match**  
-Add a new category 'Luxury' (ID: 4) to the `categories` table. Then run an `INNER JOIN` that shows all products with their category names. Does 'Luxury' appear? Why not? Then delete the 'Luxury' category.  
+Add a new category 'Luxury' (ID: 6) to the `categories` table. Then run an `INNER JOIN` that shows all products with their category names. Does 'Luxury' appear? Why not? Then delete the 'Luxury' category.  
 *Save as:* `4-2-6-missing-match.sql`
 
 ---

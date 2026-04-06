@@ -94,6 +94,71 @@ This reversal reinforces the plot twist: you normalized the E‑Store in the Ref
 | **ACQUIRE Section** | 🗄️ [Database Ecosystem](../../Guides/Section1-ACQUIRE/2_Database_Ecosystem.md) | 📚 [Knowledge Base (Vault)](../../Guides/Section1-ACQUIRE/3_Knowledge_Base.md) | 🧠 [Mindset Tuning](../../Guides/Section1-ACQUIRE/4_Mindset.md) |
 
 ---
+## ✨ Bonus Skill: INSERT OR IGNORE
+
+Sometimes you need to add data to a table, but you don't want to cause an error if the data already exists. That's where `INSERT OR IGNORE` comes in.
+
+**The Problem:** If you run an `INSERT` statement with a primary key that already exists, the database throws an error.
+
+**The Solution:** `INSERT OR IGNORE` tells the database: *"Try to insert this row. If it would cause a duplicate key error, just skip it silently."*
+
+```sql
+INSERT OR IGNORE INTO categories (category_id, category_name)
+VALUES (6, 'Groceries');
+```
+
+**Try it now.** Run it once – it inserts the row. Run it again – nothing happens, no error.
+
+> 💡 **Artisan’s Insight:** `INSERT OR IGNORE` is perfect for setup scripts where you want to ensure data exists without worrying about whether it was already added. You'll see it used in the Dynamic Data Check below.
+
+---
+
+## 🔄 Dynamic Data Check
+
+The join examples in this file assume the `Garden` and `Toys` categories (with their products) exist. If you have reloaded your database or the data is missing, run this script:
+
+```sql
+-- Ensure dynamic data exists
+INSERT OR IGNORE INTO categories (category_id, category_name)
+VALUES (4, 'Garden'), (5, 'Toys');
+
+INSERT OR IGNORE INTO products (product_id, product_name, price, category_id)
+VALUES 
+    (6, 'Roses', 15.00, 4),
+    (7, 'Marigolds', 10.00, 4),
+    (8, 'Sunflowers', 12.00, 4);
+```
+
+> 💡 `INSERT OR IGNORE` prevents duplicate key errors if the data already exists. This is a bonus skill – a safe way to ensure data is present without throwing errors.
+
+After running the check, here are the relevant tables (dynamic rows in **bold**):
+
+### `categories` Table
+
+| category_id | category_name |
+|-------------|---------------|
+| 1           | Electronics   |
+| 2           | Appliances    |
+| 3           | Books         |
+| **4**       | **Garden**    |
+| **5**       | **Toys**      |
+
+### `products` Table
+
+| product_id | product_name      | price   | category_id |
+|------------|-------------------|---------|-------------|
+| 1          | Laptop            | 1200.00 | 1           |
+| 2          | Coffee Maker      | 80.00   | 2           |
+| 3          | SQL Essentials Book | 45.00 | 3           |
+| 4          | Headphones        | 150.00  | 1           |
+| 5          | Blender           | 60.00   | 2           |
+| **6**      | **Roses**         | **15.00**   | **4**       |
+| **7**      | **Marigolds**     | **10.00**   | **4**       |
+| **8**      | **Sunflowers**    | **12.00**   | **4**       |
+
+> 💡 **Note:** Only `categories` and `products` are shown here. Other tables (`customers`, `orders`, `order_items`) remain unchanged from their original state.
+
+---
 
 ## 🎯 What You'll Learn
 
@@ -129,28 +194,9 @@ LEFT JOIN products p
 
 ## 🧪 Interactive Factory: The "Missing" Data
 
-Let's see `LEFT JOIN` in action. We'll add two new categories: `Garden` (with products) and `Toys` (without products).
+Now let's see `LEFT JOIN` in action using the dynamic data we already have.
 
-**Step 1: Add the New Categories**
-
-```sql
-INSERT INTO categories (category_id, category_name)
-VALUES 
-    (4, 'Garden'),
-    (5, 'Toys');
-```
-
-**Step 2: Add Products for the Garden Category**
-
-```sql
-INSERT INTO products (product_id, product_name, price, category_id)
-VALUES 
-    (6, 'Roses', 15.00, 4),
-    (7, 'Marigolds', 10.00, 4),
-    (8, 'Sunflowers', 12.00, 4);
-```
-
-**Step 3: Run the Inclusive Bridge**
+**Run the Inclusive Bridge**
 
 ```sql
 SELECT c.category_name, p.product_name
@@ -161,8 +207,7 @@ ORDER BY c.category_id;
 
 **Try it now in Tab 2.**
 
-**What you're seeing:**
-
+**📝 The Result of the Factory Experiment:**
 | category_name | product_name |
 | :--- | :--- |
 | Electronics | Laptop |
@@ -170,15 +215,17 @@ ORDER BY c.category_id;
 | Appliances | Coffee Maker |
 | Appliances | Blender |
 | Books | SQL Essentials Book |
-| **Garden** | **Roses** |
-| **Garden** | **Marigolds** |
-| **Garden** | **Sunflowers** |
+| Garden | Roses |
+| Garden | Marigolds |
+| Garden | Sunflowers |
 | **Toys** | **NULL** |
 
 **Observation:** 
 - The `Garden` category appears with its three products.
 - The `Toys` category appears with a `NULL` – it exists in the `categories` table but has no matching products.
 - In an `INNER JOIN`, `Toys` would have been completely excluded. Here, the `NULL` tells us: *"The category exists, but the 'products' bridge led to a dead end."*
+
+**Conclusion:** While the `INNER JOIN` ignored our `Toys` category, the `LEFT JOIN` welcomes it to the results. It keeps the "Left" table (the one after `FROM`) completely intact. The `NULL` isn't an error; it's a **signal**. It tells the Architect that the category exists on the map, but no products have been built there yet.
 
 ```mermaid
 graph LR
@@ -222,6 +269,55 @@ graph LR
     style C5 fill:#ffccbc,stroke:#f44336
     style R9 fill:#ffccbc,stroke:#f44336
 ```
+### 🎨 Visual Contrast: INNER JOIN vs LEFT JOIN
+
+```mermaid
+graph LR
+    subgraph DATA["Source Data"]
+        direction TB
+        C1["Electronics (has products)"]
+        C2["Appliances (has products)"]
+        C3["Books (has products)"]
+        C4["Garden (has products)"]
+        C5["<b>Toys (no products)</b>"]
+    end
+
+    subgraph INNER["INNER JOIN Result"]
+        direction TB
+        I1["Electronics → Laptop, Headphones"]
+        I2["Appliances → Coffee Maker, Blender"]
+        I3["Books → SQL Book"]
+        I4["Garden → Roses, Marigolds, Sunflowers"]
+        I5["<b>Toys → (excluded entirely)</b>"]
+    end
+
+    subgraph LEFT["LEFT JOIN Result"]
+        direction TB
+        L1["Electronics → Laptop, Headphones"]
+        L2["Appliances → Coffee Maker, Blender"]
+        L3["Books → SQL Book"]
+        L4["Garden → Roses, Marigolds, Sunflowers"]
+        L5["<b>Toys → NULL</b>"]
+    end
+
+    DATA --> INNER
+    DATA --> LEFT
+
+    style I5 fill:#ffccbc,stroke:#f44336
+    style L5 fill:#ffccbc,stroke:#f44336
+    style INNER fill:#e1f5fe
+    style LEFT fill:#fff8e1
+```
+
+This diagram clearly shows:
+- **INNER JOIN** – `Toys` is completely excluded (no row).
+- **LEFT JOIN** – `Toys` appears with `NULL`, indicating the category exists but has no products.
+
+### *The Art of the Bridge*
+
+- **Inner Join** is your **Spotlight**: It focuses strictly on the action where actors (data) are present.
+- **Left Join** is your **Floodlight**: It illuminates the entire stage, showing you both the actors and the empty chairs.
+
 
 > 💎 **Artisan’s Insight:** Use `LEFT JOIN` when you want to keep every row from the main table, even if the related data is missing. Use `INNER JOIN` when you only want rows that have a complete connection.
 
@@ -268,8 +364,8 @@ Because `NULL` is not greater than 50, the 'Toys' category will disappear again.
 
 ## 🧪 Practice Challenges
 
-**Challenge 1: The Empty Shelves**  
-Show all categories, including those with no products. Display `category_name` and the count of products in each category (categories with no products should show 0).  
+**Challenge 1: The Inventory Audit**  
+Write a query to show all categories and their product counts. Ensure `Toys` shows up with a count of 0.  
 *Save as:* `4-3-1-empty-shelves.sql`
 
 **Challenge 2: The Customer Contact List**  
@@ -334,19 +430,6 @@ LEFT JOIN right_table ON left_table.foreign_key = right_table.primary_key;
 
 ---
 
-## 🧹 Optional Cleanup
-
-If you want to restore the database to its original state (without the `Garden` and `Toys` categories and their products), run these commands:
-
-```sql
-DELETE FROM categories WHERE category_id IN (4, 5);
-DELETE FROM products WHERE product_id IN (6, 7, 8);
-```
-
-> 💡 **Note:** You can skip this step if you want to keep the new data for further practice. The rest of the module's examples will still work fine.
-
----
-
 ## ✅ Progress Check
 
 After reading this and trying the examples, can you:
@@ -381,6 +464,8 @@ In the Artisan's Garden:
 - `LEFT JOIN` is a bouquet with **varying shades of the chosen color** to add dimension and interest. This includes incorporating both lighter and darker hues. Even if a flower bed has not bloomed, the **stems** are included in the bouquet, providing **contrast** and helping the **primary color pop.**
 
 > *“`LEFT JOIN` tells the whole truth, including the silence. It reveals not just what exists, but what is missing.”*
+
+In the SQLVerse, `LEFT JOIN` is the bridge that connects Continents and countries.
 
 **The SQLVerse expands. Go build inclusive bridges.**
 

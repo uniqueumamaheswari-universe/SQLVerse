@@ -534,6 +534,13 @@ Find all instructors who were taught (directly or indirectly) by Emily Watson.
 *Save as:* `4-5-5-knowledge-lineage.sql`  
 *(Use `training_institution_self_join.db`)*
 
+> 🔮 **Level 2 Preview – Recursive CTEs**  
+> This challenge asks you to find all instructors taught (directly or indirectly) by Emily Watson. Without a special tool, you'd need multiple self‑joins – one for each level of depth.  
+>  
+> In **Level 2**, you'll learn about **Recursive CTEs (Common Table Expressions)** – a powerful feature that lets a query call itself, walking through hierarchies of any depth with a single, elegant statement.  
+>  
+> For now, try solving it with a simple self join (limited to one level). Consider it a teaser of the magic awaiting you in Level 2! ✨
+
 ---
 
 ## 📋 Self Join Quick Reference Card

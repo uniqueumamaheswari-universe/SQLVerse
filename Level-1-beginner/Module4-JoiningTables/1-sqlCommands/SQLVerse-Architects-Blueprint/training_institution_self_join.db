@@ -1,0 +1,32 @@
+-- =============================================
+-- Self Join Demonstration Database – Training Institution
+-- Contains: instructors with taught_by hierarchy
+-- =============================================
+
+-- Drop existing tables if present
+DROP TABLE IF EXISTS instructors;
+
+-- =============================================
+-- Instructors Table with Mentor Relationship
+-- =============================================
+CREATE TABLE instructors (
+    instructor_id INTEGER PRIMARY KEY,
+    first_name TEXT NOT NULL,
+    last_name TEXT NOT NULL,
+    specialization TEXT,
+    taught_by INTEGER,
+    FOREIGN KEY (taught_by) REFERENCES instructors(instructor_id)
+);
+
+INSERT INTO instructors (instructor_id, first_name, last_name, specialization, taught_by) VALUES
+(501, 'Emily', 'Watson', 'Web Development', NULL),
+(502, 'James', 'Wilson', 'Backend & SQL', 501),
+(503, 'Maria', 'Garcia', 'Data Science', 501),
+(504, 'Robert', 'Chen', 'Cybersecurity', NULL),
+(505, 'Ahmed', 'Khan', 'Machine Learning', 503),
+(506, 'Sarah', 'Chen', 'Frontend Development', 502),
+(507, 'Mike', 'Rodriguez', 'Data Analysis', 503),
+(508, 'Jessica', 'Park', 'Full Stack', 502);
+
+
+---

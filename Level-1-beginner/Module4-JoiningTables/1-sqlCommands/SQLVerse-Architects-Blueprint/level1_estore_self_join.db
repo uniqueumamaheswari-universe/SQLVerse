@@ -1,0 +1,63 @@
+-- =============================================
+-- Self Join Demonstration Database – E‑Store
+-- Contains: employees (hierarchy) and products (series)
+-- =============================================
+
+-- Drop existing tables if present
+DROP TABLE IF EXISTS employees;
+DROP TABLE IF EXISTS products;
+DROP TABLE IF EXISTS product_series;
+
+-- =============================================
+-- Employee Hierarchy Table
+-- =============================================
+CREATE TABLE employees (
+    employee_id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    manager_id INTEGER,
+    FOREIGN KEY (manager_id) REFERENCES employees(employee_id)
+);
+
+INSERT INTO employees (employee_id, name, manager_id) VALUES
+(1, 'Alice Smith', NULL),
+(2, 'Bob Johnson', 1),
+(3, 'Charlie Lee', 1),
+(4, 'David Kim', 2),
+(5, 'Eva Gomez', 2),
+(6, 'Frank Miller', 3),
+(7, 'Grace Chen', 3);
+
+-- =============================================
+-- Product Series Tables
+-- =============================================
+CREATE TABLE product_series (
+    series_id INTEGER PRIMARY KEY,
+    series_name TEXT NOT NULL
+);
+
+INSERT INTO product_series (series_id, series_name) VALUES
+(1, 'SQL Mastery Series'),
+(2, 'Garden Blooms Series'),
+(3, 'Smartphone Series');
+
+CREATE TABLE products (
+    product_id INTEGER PRIMARY KEY,
+    product_name TEXT NOT NULL,
+    price REAL,
+    series_id INTEGER,
+    FOREIGN KEY (series_id) REFERENCES product_series(series_id)
+);
+
+INSERT INTO products (product_id, product_name, price, series_id) VALUES
+(1, 'SQL Essentials', 45.00, 1),
+(2, 'Advanced SQL', 55.00, 1),
+(3, 'SQL Mastery', 65.00, 1),
+(4, 'Spring Blooms (Roses)', 15.00, 2),
+(5, 'Autumn Hues (Marigolds)', 10.00, 2),
+(6, 'Winter Blooms (Sunflowers)', 12.00, 2),
+(7, 'Galaxy S1', 500.00, 3),
+(8, 'Galaxy S2', 600.00, 3),
+(9, 'Galaxy S3', 700.00, 3);
+
+
+---

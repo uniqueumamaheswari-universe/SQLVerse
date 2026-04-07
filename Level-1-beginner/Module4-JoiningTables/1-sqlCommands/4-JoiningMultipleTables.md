@@ -589,7 +589,7 @@ In the Artisan's Garden, chaining joins is like building a **trellis**. Each pie
 
 > *“A single join is a conversation; a chain of joins is a story.”*
 
-In the SQLVerse, we connect Continents and countries in the **information superhighway** with a chain of joins.
+In the SQLVerse, we connect Continents and countries in the **information superhighway** with a chain of joins where data travels with **lightning speed**.
 
 **The SQLVerse expands. Go build longer bridges.**
 

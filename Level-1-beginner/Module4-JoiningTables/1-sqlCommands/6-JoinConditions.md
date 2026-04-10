@@ -684,10 +684,11 @@ From your first `INNER JOIN` to mastering complex join conditions, every concept
 | **File 4** | Joining multiple tables – chaining bridges to answer complex questions |
 | **File 5** | `SELF JOIN` – the mirror bridge, joining a table to itself |
 | **File 6** | **Join Conditions** – equi joins, non‑equi joins, multiple conditions, and the Cartesian product |
-| **✨ Bonus Skill 1** | **🏗️ CREATE TABLE** – defining new tables and schemas (Refactoring Lab) |
-| **✨ Bonus Skill 2** | **🔧 ALTER TABLE** – modifying existing table structures (Refactoring Lab) |
-| **✨ Bonus Skill 3** | **🗑️ DROP TABLE** – removing tables safely (Refactoring Lab) |
-| **✨ Bonus Skill 4** | **🔁 INSERT OR IGNORE** – idempotent data insertion (Dynamic Data Check) |
+| **✨ Bonus Skill 1** | **❌ DELETE** – removing rows safely with WHERE clause  |
+| **✨ Bonus Skill 2** | **🏗️ CREATE TABLE** – defining new tables and schemas (Refactoring Lab) |
+| **✨ Bonus Skill 3** | **🔧 ALTER TABLE** – modifying existing table structures (Refactoring Lab) |
+| **✨ Bonus Skill 4** | **🗑️ DROP TABLE** – removing tables safely (Refactoring Lab) |
+| **✨ Bonus Skill 5** | **🔁 INSERT OR IGNORE** – idempotent data insertion (Dynamic Data Check) |
 
 ---
 ## 🎯 What Sets This Course Apart

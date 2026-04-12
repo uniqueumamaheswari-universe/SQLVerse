@@ -870,9 +870,9 @@ Create a `README.md` file in your `ACQUIRE_COMPLETION/` folder using this templa
 
 ### *The Art of Reflection*
 
-You have done something remarkable. You didn't just learn SQL – you built a database of your own **learning journey**. Every table, every row, every foreign key represents a **gemstone** you mined from the **SQLVerse**. You have built a digital legacy - a **Persistent Professional Ledger**.
+You have done something remarkable. You didn't just learn SQL – you built a database of your own **learning journey**. Every table, every row, every foreign key represents a **gemstone** you mined from the **SQLVerse**. You have built a digital legacy — a **Persistent Professional Ledger**.
 
-In the Artisan's Garden, this is the **final bouquet** of the ACQUIRE phase – a collection of flowers you grew, trimmed, and arranged yourself. The database you have built is a **"Skill-Tree"** database that grows with you through the ACCELERATE, ANALYZE and ARCHITECT phases where you will be cultivating more floral beds. 
+In the Artisan's Garden, this is the **final bouquet** of the ACQUIRE phase — a collection of flowers you grew, trimmed, and arranged yourself. The database you have built is a **"Skill-Tree"** database that grows with you through the ACCELERATE, ANALYZE and ARCHITECT phases where you will be cultivating more and more **exotic floral beds** and harvesting precious **gemstones**. 
 
 > *“The best database you will ever design is the one that captures your own growth.”*
 

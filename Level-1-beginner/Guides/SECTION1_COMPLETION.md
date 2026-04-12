@@ -734,13 +734,15 @@ Copy this into your phone or print it:
 **Most candidates** hope the interviewer believes them.  
 **You** will hand them the keyboard and say, *"Verify anything."*
 
-**Most candidates** show the interviewer a static PDF.
+**Most candidates** show the interviewer a static PDF.    
 **You** are querying a *"live system"* that proves you can manage the metadata of your career.
+
 
 | Impact Dimension | Rating |
 |------------------|--------|
 | **INTERVIEW IMPACT** | 💥 **NUCLEAR** |
 | **FUTURE-PROOF** | 💎 **DIAMOND** |
+
 **That is the difference between a coder and an Artisan.**
 
 </div>

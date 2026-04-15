@@ -83,7 +83,7 @@ You've completed the normalization practice. Now it's time to build bridges betw
 
 ## 🏛️ Your Data Playground – Training Institution Database
 
-You'll work with the `students`, `courses`, `instructors`, `enrollments`, and `payments` tables. Here are reminders of their key columns and relationships.
+You'll work with the `students`, `courses`, `instructors`, `enrollments`, and `payments` tables.
 
 ### Relationship Map
 
@@ -128,13 +128,15 @@ graph LR
 | 202 | WD102 | Backend with Node.js | Web Development | 502 | 1800.00 |
 | 203 | DS101 | Python for Data Analysis | Data Science | 503 | 2000.00 |
 
-### `instructors` Table (first 3 rows for context)
+### `instructors` Table (all rows for context – only 5 instructors)
 
 | instructor_id | first_name | last_name | email | specialization |
 |---------------|------------|-----------|-------|-----------------|
 | 501 | Emily | Watson | emily.w@institution.com | Web Development |
 | 502 | James | Wilson | james.w@institution.com | Backend & SQL |
 | 503 | Maria | Garcia | maria.g@institution.com | Data Science |
+| 504 | Robert | Chen | robert.c@institution.com | Cybersecurity |
+| 505 | Ahmed | Khan | ahmed.k@institution.com | Machine Learning |
 
 ### `enrollments` Table (first 3 rows for context)
 
@@ -153,6 +155,21 @@ graph LR
 | 303 | 102 | 2000.00 | 2024-01-15 | Debit Card |
 
 > 💡 **View the full datasets:** Run `SELECT * FROM students;`, `SELECT * FROM courses;`, `SELECT * FROM instructors;`, `SELECT * FROM enrollments;`, and `SELECT * FROM payments;` in your Factory to see all rows.
+
+---
+
+### 📊 Quick Data Reminder
+
+| Table | Key Columns | Row Count | Notes |
+|-------|-------------|-----------|-------|
+| `students` | student_id, first_name, last_name | 10 | Students 101-110 |
+| `courses` | course_id, course_name, instructor_id | 8 | Courses 201-208 |
+| `instructors` | instructor_id, first_name, last_name | 5 | Instructors 501-505 |
+| `enrollments` | enrollment_id, student_id, course_id | 18 | Some students have multiple enrollments |
+| `payments` | payment_id, student_id, amount | 18 | Student 108 has no payments |
+
+> 💡 **Key Insight:** `students` has 10 rows, but `enrollments` has 18 rows (some students have multiple enrollments). `payments` has 18 rows (student_id 108 has no payments).
+
 
 ---
 

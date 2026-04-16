@@ -1,0 +1,159 @@
+
+
+-- =============================================
+-- Tourism Planet Self-Join Database
+-- Designed for Module 4: Self Join Practice
+-- Three Use Cases: Package Tours, Guide Mentorship, Family Dependencies
+-- =============================================
+
+-- =============================================
+-- USE CASE 1: Package Tours (Tour → Sub-tours)
+-- =============================================
+
+CREATE TABLE tours (
+    tour_id INTEGER PRIMARY KEY,
+    tour_name TEXT NOT NULL,
+    parent_tour_id INTEGER,
+    duration_days INTEGER NOT NULL,
+    base_price REAL NOT NULL,
+    description TEXT,
+    FOREIGN KEY (parent_tour_id) REFERENCES tours(tour_id)
+);
+
+INSERT INTO tours (tour_id, tour_name, parent_tour_id, duration_days, base_price, description) VALUES
+(101, 'Grand Europe Tour', NULL, 14, 3500.00, 'Complete European experience covering 6 countries'),
+(102, 'Paris Explorer', 101, 4, 1200.00, 'Eiffel Tower, Louvre, Seine cruise'),
+(103, 'London Highlights', 101, 3, 1000.00, 'Buckingham Palace, Tower of London, British Museum'),
+(104, 'Swiss Alps Adventure', 101, 5, 1800.00, 'Jungfraujoch, Interlaken, Lucerne'),
+(105, 'Rome Ancient Wonders', NULL, 3, 850.00, 'Colosseum, Roman Forum, Vatican City'),
+(106, 'Vatican City Tour', 105, 1, 250.00, 'St. Peter''s Basilica, Sistine Chapel'),
+(107, 'Colosseum Underground', 105, 1, 180.00, 'Underground chambers, arena floor'),
+(108, 'Bali Tropical Escape', NULL, 7, 2200.00, 'Ubud, temples, rice terraces, beaches'),
+(109, 'Ubud Cultural Tour', 108, 2, 450.00, 'Monkey Forest, traditional dance, art markets'),
+(110, 'Bali Beaches Adventure', 108, 2, 500.00, 'Kuta, Seminyak, Uluwatu Temple'),
+(111, 'Mount Batur Sunrise Trek', 108, 1, 180.00, 'Volcano sunrise trekking experience'),
+(112, 'Tokyo Explorer', NULL, 5, 2100.00, 'Shibuya, Shinjuku, Asakusa, Akihabara');
+
+-- =============================================
+-- USE CASE 2: Guide Mentorship (Senior → Junior)
+-- =============================================
+
+CREATE TABLE guides (
+    guide_id INTEGER PRIMARY KEY,
+    first_name TEXT NOT NULL,
+    last_name TEXT NOT NULL,
+    mentor_id INTEGER,
+    years_experience INTEGER NOT NULL,
+    specialization TEXT NOT NULL,
+    rating REAL DEFAULT 4.0,
+    FOREIGN KEY (mentor_id) REFERENCES guides(guide_id)
+);
+
+INSERT INTO guides (guide_id, first_name, last_name, mentor_id, years_experience, specialization, rating) VALUES
+(501, 'Elena', 'Vasquez', NULL, 15, 'Cultural Heritage', 4.9),
+(502, 'Marco', 'Rossi', 501, 8, 'European History', 4.8),
+(503, 'Priya', 'Patel', 501, 6, 'Art & Architecture', 4.7),
+(504, 'Chen', 'Wei', 502, 3, 'City Tours', 4.6),
+(505, 'Fatima', 'Al-Zahra', 503, 2, 'Museum Specialist', 4.5),
+(506, 'Liam', 'O'Brien', 502, 4, 'Nature & Hiking', 4.7),
+(507, 'Yuki', 'Tanaka', NULL, 12, 'Asian Heritage', 4.9),
+(508, 'Sofia', 'Silva', 507, 5, 'Japanese Culture', 4.8),
+(509, 'Kenji', 'Watanabe', 507, 3, 'Temple & Shrine Tours', 4.6),
+(510, 'Isabella', 'Rossi', 502, 1, 'Food & Wine Tours', 4.4);
+
+-- =============================================
+-- USE CASE 3: Family Dependencies (Primary → Dependents)
+-- =============================================
+
+CREATE TABLE customers (
+    customer_id INTEGER PRIMARY KEY,
+    first_name TEXT NOT NULL,
+    last_name TEXT NOT NULL,
+    booked_under INTEGER,
+    relationship TEXT,
+    age INTEGER,
+    loyalty_points INTEGER DEFAULT 0,
+    phone TEXT,
+    email TEXT,
+    FOREIGN KEY (booked_under) REFERENCES customers(customer_id)
+);
+
+INSERT INTO customers (customer_id, first_name, last_name, booked_under, relationship, age, loyalty_points, phone, email) VALUES
+(1001, 'John', 'Smith', NULL, 'Primary', 45, 1200, '555-0101', 'john.smith@email.com'),
+(1002, 'Mary', 'Smith', 1001, 'Spouse', 42, 800, '555-0102', 'mary.smith@email.com'),
+(1003, 'Tom', 'Smith', 1001, 'Child', 16, 300, '555-0103', 'tom.smith@email.com'),
+(1004, 'Emma', 'Smith', 1001, 'Child', 12, 300, '555-0104', 'emma.smith@email.com'),
+(1005, 'Robert', 'Johnson', NULL, 'Primary', 38, 2500, '555-0105', 'robert.johnson@email.com'),
+(1006, 'Susan', 'Johnson', 1005, 'Spouse', 36, 1800, '555-0106', 'susan.johnson@email.com'),
+(1007, 'Michael', 'Johnson', 1005, 'Child', 10, 500, '555-0107', 'michael.johnson@email.com'),
+(1008, 'Linda', 'Garcia', NULL, 'Primary', 52, 3200, '555-0108', 'linda.garcia@email.com'),
+(1009, 'Carlos', 'Garcia', 1008, 'Spouse', 54, 2800, '555-0109', 'carlos.garcia@email.com'),
+(1010, 'Sofia', 'Garcia', 1008, 'Child', 22, 400, '555-0110', 'sofia.garcia@email.com'),
+(1011, 'David', 'Kim', NULL, 'Primary', 29, 1500, '555-0111', 'david.kim@email.com'),
+(1012, 'Emily', 'Kim', 1011, 'Spouse', 28, 1200, '555-0112', 'emily.kim@email.com'),
+(1013, 'James', 'Wilson', NULL, 'Primary', 47, 900, '555-0113', 'james.wilson@email.com'),
+(1014, 'Sarah', 'Wilson', 1013, 'Spouse', 45, 700, '555-0114', 'sarah.wilson@email.com'),
+(1015, 'Benjamin', 'Wilson', 1013, 'Child', 14, 200, '555-0115', 'ben.wilson@email.com');
+
+-- =============================================
+-- Bookings Table (Links Primary Customer to Bookings)
+-- =============================================
+
+CREATE TABLE bookings (
+    booking_id INTEGER PRIMARY KEY,
+    primary_customer_id INTEGER NOT NULL,
+    suite_type TEXT NOT NULL,
+    check_in_date DATE NOT NULL,
+    check_out_date DATE NOT NULL,
+    total_guests INTEGER NOT NULL,
+    total_amount REAL NOT NULL,
+    FOREIGN KEY (primary_customer_id) REFERENCES customers(customer_id)
+);
+
+INSERT INTO bookings (booking_id, primary_customer_id, suite_type, check_in_date, check_out_date, total_guests, total_amount) VALUES
+(5001, 1001, '2 Bedroom Suite', '2025-06-01', '2025-06-08', 4, 2800.00),
+(5002, 1005, '3 Bedroom Suite', '2025-07-15', '2025-07-22', 3, 3500.00),
+(5003, 1008, '2 Bedroom Suite', '2025-08-10', '2025-08-17', 3, 3000.00),
+(5004, 1011, '1 Bedroom Suite', '2025-09-05', '2025-09-12', 2, 1800.00),
+(5005, 1013, '2 Bedroom Suite', '2025-10-01', '2025-10-08', 3, 2600.00);
+
+-- =============================================
+-- Join Table: Booking to Tours (Many-to-Many)
+-- =============================================
+
+CREATE TABLE booking_tours (
+    booking_tour_id INTEGER PRIMARY KEY,
+    booking_id INTEGER NOT NULL,
+    tour_id INTEGER NOT NULL,
+    number_of_people INTEGER DEFAULT 1,
+    FOREIGN KEY (booking_id) REFERENCES bookings(booking_id),
+    FOREIGN KEY (tour_id) REFERENCES tours(tour_id)
+);
+
+INSERT INTO booking_tours (booking_tour_id, booking_id, tour_id, number_of_people) VALUES
+(1, 5001, 102, 4),
+(2, 5001, 103, 4),
+(3, 5001, 104, 2),
+(4, 5002, 101, 3),
+(5, 5003, 108, 3),
+(6, 5003, 109, 3),
+(7, 5003, 110, 2),
+(8, 5004, 112, 2),
+(9, 5005, 105, 3),
+(10, 5005, 106, 3);
+
+-- =============================================
+-- DATABASE READY FOR SELF-JOIN EXERCISES
+-- =============================================
+
+-- =============================================
+-- VERIFICATION QUERIES (Run to confirm data)
+-- =============================================
+
+-- SELECT 'Tours Count: ' || COUNT(*) FROM tours;
+-- SELECT 'Guides Count: ' || COUNT(*) FROM guides;
+-- SELECT 'Customers Count: ' || COUNT(*) FROM customers;
+-- SELECT 'Bookings Count: ' || COUNT(*) FROM bookings;
+-- SELECT 'Booking Tours Count: ' || COUNT(*) FROM booking_tours;
+
+

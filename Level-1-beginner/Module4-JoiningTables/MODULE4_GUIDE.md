@@ -300,16 +300,17 @@ Watch the Architect **transform** the E‑Store in the **Refactoring** Lab, then
 
 # 👁️ STAGE 2: PRACTICE – The Hands-on: Write Your Own Join Queries
 
-Switch to the **Training Institution database** (`training_institution_sample.db`) in your Factory (Tab 2). Work through the exercises in `2-practiceExercises/`. They are designed to build confidence step by step.
+Switch to the **Training Institution database** (`training_institution_sample.db`) in your Factory (Tab 2). Work through the exercises in `2-practiceExercises/`. They are designed to build confidence step by step. Training Institution will be used predominantly, but specialized databases are used for certain exercises – the exact database used will be clearly explained with datasets in each exercise.
 
 | Exercise | What You'll Practice | Outcome |
 |----------|----------------------|---------|
-| **Exercise 0** | **Independent Normalization Practice** – Apply normalization to a new unnormalized dataset (no guidance). | You reinforce the refactoring skills you observed, building confidence to normalize any flat table. |
+| **Exercise 0** | **Independent Normalization Practice** – Apply normalization to a new unnormalized dataset (Library spreadsheet – no database). | You reinforce the refactoring skills you observed, building confidence to normalize any flat table. |
 | **Exercise 1** | `INNER JOIN` on Training Institution tables. | You can combine students, courses, and enrollments. |
 | **Exercise 2** | `LEFT JOIN` to find missing relationships (e.g., instructors with no courses). | You can identify gaps in your data. |
 | **Exercise 3** | Chaining multiple joins (e.g., students → enrollments → courses → instructors). | You can answer complex questions like “Which instructors teach which students?” |
-| **Exercise 4** | `SELF JOIN` to model hierarchies (e.g., employee‑manager in the Training Institution). | You can query recursive relationships. |
-| **Exercise 5** | Mixed practice – combining all join types. | You're ready for the quiz. |
+| **Exercise 4** | `SELF JOIN` to model hierarchies using Tourism Planet database. | You can query recursive relationships. |
+| **Exercise 5** | Mixed practice – combining all join types across multiple databases. | You're ready for the Capstone Reports. |
+| **🏆 Capstone Reports** | **Executive-Level Analysis** – CEO, CTO, and CFO reports across Banking, Transportation, and Library domains. | **Portfolio-Worthy Artifacts** that prove executive readiness. |
 
 For each exercise, use **Tab 3 (The Consultant)** if you need a hint – but only after your own attempts. Save every working query in your Vault.
 
@@ -322,9 +323,29 @@ For each exercise, use **Tab 3 (The Consultant)** if you need a hint – but onl
 
 ---
 
+### 🏆 Capstone Reports – The Executive Suite
+
+These are not exercises. They are **career accelerators**. Each report places you in the shoes of a C-suite executive, solving real problems with real data.
+
+| Report | Role | Domain | Value to Your Career |
+|--------|------|--------|---------------------|
+| **CEO Report** | Business Leader | Banking | Prove you can translate data into strategic decisions |
+| **CTO Report** | Technical Leader | Transportation | Prove you can reverse-engineer and architect systems |
+| **CFO Report** | Financial Leader | Library | Prove you can model profitability and analyze trade-offs |
+
+**Complete these reports. Add them to your portfolio. Show them in interviews.**
+
+➡️ **[Begin CEO Report →](./2-practiceExercises/Capstone%20Reports/MODULE4-CEO-REPORT.md)**  
+➡️ **[Begin CTO Report →](./2-practiceExercises/Capstone%20Reports/MODULE4-CTO-REPORT.md)**  
+➡️ **[Begin CFO Report →](./2-practiceExercises/Capstone%20Reports/MODULE4-CFO-REPORT.md)**
+
+> *“These reports are the difference between 'I know SQL' and 'I can drive business value.'”*
+
+---
+
 ### ✅ STAGE 2 COMPLETE – READY FOR FINAL STAGE
 
-**🎉 Excellent!** You've written join queries that connect multiple tables. Now let's check your understanding.
+**🎉 Excellent!** You've written join queries, completed six practice exercises, and built three executive-level Capstone Reports. Now let's check your understanding.
 
 **Proceed to Next Stage:**
 ➡️ **📖 Next Step:** Read the **STAGE 3** section below  
@@ -334,11 +355,15 @@ For each exercise, use **Tab 3 (The Consultant)** if you need a hint – but onl
 
 ### ✅ **BEFORE YOU BEGIN STAGE 3**
 
-**What was the most powerful insight you gained from writing joins?**
+**What was the most powerful insight you gained from writing joins across multiple planets?**
 
 _______________________________________________________
 
-**Document this insight in your Vault.**
+**Which Capstone Report challenged you the most? What did it teach you?**
+
+_______________________________________________________
+
+**Document this reflection in your Vault.**
 
 *This step marks your official completion of STAGE 2.*
 
@@ -353,7 +378,7 @@ _______________________________________________________
 ```mermaid
 flowchart LR
     A[Take the module quiz] --> B[Check your answers]
-    B --> C[Review solutions]
+    B --> C[Review detailed solutions<br/>(2 possible approaches)]
     C --> D[🎉 Module 4 Complete]
     
     style A fill:#e8f5e8,stroke:#4caf50,stroke-width:2px
@@ -374,7 +399,7 @@ flowchart LR
 2. **Check your answers:** Open the solutions in `4-exerciseAndQuizSolutions/module4-quiz-answers.md`.
    - Compare your queries and reasoning.
 
-3. **Review exercise solutions** if you want to see alternative approaches.
+3. **Review detailed solutions:** Each exercise and Capstone Report includes two possible solution approaches – study them to deepen your understanding.
 
 ---
 
@@ -393,7 +418,7 @@ flowchart LR
 
 ### ✅ **REFLECT BEFORE MOVING ON**
 
-**What was the most satisfying join you wrote in this module? What business insight did it reveal?**
+**What was the most satisfying query you wrote in this module? What business insight did it reveal?**
 
 _______________________________________________________
 
@@ -409,54 +434,50 @@ _______________________________________________________
 
 <div style="border: 3px solid #9c27b0; border-radius: 10px; padding: 20px; margin: 25px 0; background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);">
 
-### *Beyond Syntax – The Art of Connection*
+### *The Executive Artisan*
 
-You’ve just learned to connect tables – to weave separate strands of data into a single tapestry. This is the skill that turns a collection of lists into a coherent information system.
+You have completed Module 4. You have normalized flat tables, written every type of join, and solved complex business questions across four planets. Now you stand at a new threshold – not of syntax, but of **perspective**.
 
-In Module 3, you learned to summarize; now you learn to relate. The real world is not one big table – it’s a network of entities connected by relationships. Customers place orders. Orders contain products. Products belong to categories. Joins are how you navigate that network.
+The **CEO** asks: *"What does this mean for our business?"*  
+The **CTO** asks: *"How was this built, and can it scale?"*  
+The **CFO** asks: *"Does this make financial sense?"*
 
-- **Normalization** taught you to design for integrity: one fact, one place.
-- **Foreign keys** gave you the threads that bind tables together.
-- **Joins** let you follow those threads to answer any question.
-
-You’ve moved from looking at data to **connecting** it. This is the difference between a report and a relational database.
-
-### 🧠 **The Big Reveal in Practice**
-
-Remember the flat `products` table? The one where a typo could corrupt your reports? You now know how to transform it into a professional schema – and how to use joins to put it back together. That’s the evolution from prototype to production.
-
-In the **SQLVerse**, every planet has its own relationships. On E‑Commerce Planet, you join customers to orders. On HR Planet, you join employees to departments. On Education Planet, you join students to courses. The tools are the same; the connections are what give meaning.
-
-> *“A single table is a sketch. Joins turn it into a masterpiece – combining colors, textures, and dimensions to reveal the full picture.”*
-
----
-### 🌍 The Art of Analysis Across Planets
-
-**Data analysis** is the practice of looking at **raw data** in various ways to gain information to make **informed decisions**. A standalone piece of data is a riddle or a brainteaser; **connecting** that standalone piece to its related sets or subsets and analyzing it extracts **insightful information** for decision making. Data analysis forms the backbone of **strategic planning** in businesses, governments, and other industries.
-
-- On **E‑Commerce Planet**, this analysis leads to personalized product recommendations and UX improvement.
-- On **Healthcare Planet**, it leads to improved treatment and proactive care.
-- On **Fintech Planet**, it leads to detecting fraud and managing risks.
-
-You’ve just learned to connect pieces – to join tables and uncover insights that were invisible when data sat alone. This is the heart of analysis: **connection breeds understanding.**
+You have learned to answer all three. That is not just SQL mastery. That is **executive readiness**.
 
 ---
 
-### 🏛️ **The SQLVerse Architect’s Blueprint – Your Strategic Advantage**
+### 🧭 The Three Lenses of the Artisan
 
-The concepts you explored in the Blueprint – normalization, foreign keys, relationships – are not abstract. They are the foundation of every robust database you’ll ever encounter. When you understand why tables are split, you understand how to join them effectively.
+| Lens | Question | Report |
+|------|----------|--------|
+| **Strategic** | What decisions should we make? | CEO Report |
+| **Technical** | How was this built? | CTO Report |
+| **Financial** | What is the value? | CFO Report |
 
-> *“This is the hidden curriculum – the knowledge that separates the craftsman from the crowd. Bootcamps teach you how to join tables; Artisans learn **why** the tables were built that way in the first place. Master the blueprint, and you master the art.”*
+> *“The Artisan doesn't just write queries. The Artisan translates data into decisions.”*
 
 ---
 
-### 🌌 **The Artisan’s Truth**
+### 🏛️ Beyond Syntax
 
-> *“Data without relationships is noise. Joins give it structure.”*
+You've learned that a well‑normalized database is invisible – when it's built correctly, users never see the corruption, the errors, or the maintenance headaches. They only see a system that works, every single time.
 
-> *“You’ve evolved from query writer to data architect. The connections you make today will power the insights of tomorrow.”*
+You've learned that the right join is the invisible join – the one that answers the question and disappears into the background. No one praises a query for being clever; they praise it for being correct.
 
-> *“The SQLVerse expands. Go forth and join.”*
+You've learned that reverse engineering is a superpower – every report hides a schema. The Artisan can see the blueprint behind the finished product.
+
+---
+
+### 🚀 The SQLVerse Awaits
+
+In the **ACCELERATE** phase, you'll learn to wield AI as your co‑pilot – but you'll never outsource your judgment.
+
+In **ANALYZE**, you'll study professional projects and learn from their architecture.
+
+In **ARCHITECT**, you'll build your own worlds from scratch.
+
+
+> *“The SQLVerse expands. Go build and conquer the world.”*
 
 </div>
 

@@ -265,7 +265,28 @@ An `INNER JOIN` is for precision. A `LEFT JOIN` is for inclusion. A self join is
 
 > *“The Artisan doesn't ask 'How do I write a join?' The Artisan asks 'Which join tells the truth?'”*
 
-In the Artisan's Garden, a mixed bouquet is not random. It is **curated**. The Artisan chooses camellias for structure, dahlias for drama, roses for elegance, and tulips for surprise. Each flower serves a purpose. Each join serves the question.
+In the Artisan's Garden, a mixed bouquet is not random. It is **curated**. The mixed bouquet is **precisely crafted** and **exclusively arranged** for a **purpose.**
+
+The Artisan handpicks the flowers, combines colors, shapes, and textures to create a stunning, **harmonious view**. Let us break down the process of selection:
+
+An Artisan practises **minimalism** – the **artistry** lies in picking the right floral arrangement for the **occasion** and conveying the meaning. An artisan can make a statement with:
+
+| Arrangement | SQL Equivalent |
+|-------------|----------------|
+| a single flower; just **one simple flower** | Single table query |
+| a **monochromatic bouquet** to create depth and modern elegance with a single hue | INNER JOIN |
+| a **bouquet with varying shades of the chosen color** to create a sophisticated, elegant, and modern look | OUTER JOIN (LEFT/RIGHT) |
+| a **multi-colored bouquet** combining vibrant and contrasting blooms to create a lively, cheerful effect | Multi-table JOIN |
+| a **Bicoloured Flower arrangement** to create depth and visual interest from a single source | SELF JOIN |
+
+
+With such a **broad spectrum** of artifacts at disposal – spoilt for choice – how does an Artisan **choose** the floral arrangement for an occasion?
+
+The Artisans of SQLVerse choose the **artifact** with **purpose and balance** the occasion demands – nothing more, nothing less.
+
+The SQLVerse Artisans always design **what is right** for the given occasion and **never to flaunt** their specialized skillset.
+
+The Artisan doesn't ask *"What can I build?"* The Artisan asks *"What does this moment need?"*
 
 > *“The right join at the right time – that is mastery.”*
 

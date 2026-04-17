@@ -33,27 +33,14 @@ You're about to complete your journey through the final concept file of Module 4
 
 ```mermaid
 flowchart LR
-    subgraph SQLVERSE["🌌 THE SQLVERSE"]
-        direction LR
-        F1["File 1<br/>Intro to Joins"] --> F2
-        F2["File 2<br/>Inner Join"] --> F3
-        F3["File 3<br/>Left Join"] --> F4
-        F4["File 4<br/>Joining Multiple Tables"] --> F5
-        F5["File 5<br/>Self Join"] --> F6
-        F6["📍 File 6<br/>Join Conditions<br/>YOU ARE HERE"]
-        
-        subgraph BONUS["✨ Bonus Skills (Module 4)"]
-            direction TB
-            B1["🏗️ CREATE TABLE"]
-            B2["🔧 ALTER TABLE"]
-            B3["🗑️ DROP TABLE"]
-            B4["🔁 INSERT OR IGNORE"]
-        end
-        
-        F6 --> BONUS
-        B1 & B2 & B3 & B4 --> Practice["🔄 PRACTICE STAGE"]
-        Practice --> Reports["📊 Capstone Reports<br/>(CEO, CTO & CFO)"]
-    end
+    F1["File 1<br/>Intro to Joins"] --> F2
+    F2["File 2<br/>Inner Join"] --> F3
+    F3["File 3<br/>Left Join"] --> F4
+    F4["File 4<br/>Joining Multiple Tables"] --> F5
+    F5["File 5<br/>Self Join"] --> F6
+    F6["File 6<br/>Join Conditions"] --> Bonus
+    Bonus["✨ Bonus Skills<br/>CREATE TABLE | ALTER TABLE | DROP TABLE | INSERT OR IGNORE | GROUP_CONCAT"] --> Practice
+    Practice["🔄 PRACTICE STAGE"] --> Reports["📊 Capstone Reports<br/>(CEO, CTO & CFO)"]
     
     style F1 fill:#e1f5fe,stroke:#2196f3
     style F2 fill:#e1f5fe,stroke:#2196f3
@@ -61,10 +48,7 @@ flowchart LR
     style F4 fill:#e1f5fe,stroke:#2196f3
     style F5 fill:#e1f5fe,stroke:#2196f3
     style F6 fill:#fff8e1,stroke:#ff9800,stroke-width:4px
-    style B1 fill:#e1f5fe,stroke:#9c27b0
-    style B2 fill:#e1f5fe,stroke:#9c27b0
-    style B3 fill:#e1f5fe,stroke:#9c27b0
-    style B4 fill:#e1f5fe,stroke:#9c27b0
+    style Bonus fill:#e1f5fe,stroke:#9c27b0
     style Practice fill:#e8f5e8,stroke:#4caf50
     style Reports fill:#fff3e0,stroke:#ff9800
 ```
@@ -166,6 +150,40 @@ We'll return to the familiar normalized E‑Store database. Here are the key tab
 | 3           | Books         |
 | 4           | Garden        |
 | 5           | Toys          |
+
+---
+## ✨ Bonus Skill: GROUP_CONCAT
+
+Sometimes you need to combine multiple rows into a single comma-separated list. That's what `GROUP_CONCAT` does.
+
+**The Problem:** A category may have multiple products. A standard query returns one row per product.
+
+**The Solution:** `GROUP_CONCAT(product_name)` rolls all product names into one field, separated by commas.
+
+### Syntax
+
+```sql
+SELECT 
+    c.category_name,
+    GROUP_CONCAT(p.product_name) AS products_in_category
+FROM categories c
+LEFT JOIN products p ON c.category_id = p.category_id
+GROUP BY c.category_id;
+```
+
+### Example Result
+
+| category_name | products_in_category |
+|---------------|----------------------|
+| Electronics   | Laptop, Headphones   |
+| Appliances    | Coffee Maker, Blender|
+| Books         | SQL Essentials Book  |
+| Garden        | Roses, Marigolds, Sunflowers |
+| Toys          | NULL                 |
+
+> 💡 **Artisan's Insight:** Use `GROUP_CONCAT` when you want to collapse a one-to-many relationship into a single row. The default separator is a comma – you can change it: `GROUP_CONCAT(product_name, ' | ')`
+
+**Save this in your Vault as:** `bonus-group-concat.sql`
 
 ---
 
@@ -689,8 +707,10 @@ From your first `INNER JOIN` to mastering complex join conditions, every concept
 | **✨ Bonus Skill 3** | **🔧 ALTER TABLE** – modifying existing table structures (Refactoring Lab) |
 | **✨ Bonus Skill 4** | **🗑️ DROP TABLE** – removing tables safely (Refactoring Lab) |
 | **✨ Bonus Skill 5** | **🔁 INSERT OR IGNORE** – idempotent data insertion (Dynamic Data Check) |
+| **✨ Bonus Skill 6** | **📎 GROUP_CONCAT** – combining multiple rows into a comma-separated list |
 
 ---
+
 ## 🎯 What Sets This Course Apart
 
 | Other Courses Teach You... | This Course Taught You... |

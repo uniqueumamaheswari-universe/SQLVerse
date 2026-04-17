@@ -261,13 +261,13 @@ For each challenge, use the **Artisan's Query Rhythm**:
 
 You have learned every join type. You have practiced each one in isolation. Now you stand at the crossroads – not of syntax, but of **judgment**.
 
-An `INNER JOIN` is for precision. A `LEFT JOIN` is for inclusion. A self join is for reflection. Chaining is for storytelling.
+An `INNER JOIN` is for precision. A `LEFT JOIN` is for inclusion. A self join is for reflection. **Chaining** is for storytelling (Complex business reports that require data from across the entire database).
 
 > *“The Artisan doesn't ask 'How do I write a join?' The Artisan asks 'Which join tells the truth?'”*
 
 In the Artisan's Garden, a mixed bouquet is not random. It is **curated**. The mixed bouquet is **precisely crafted** and **exclusively arranged** for a **purpose.**
 
-The Artisan handpicks the flowers, combines colors, shapes, and textures to create a stunning, **harmonious view**. Let us break down the process of selection:
+The Artisan handpicks the flowers, combines colors, shapes,  and textures to create a stunning, **harmonious view**. Let us break down the process of selection:
 
 An Artisan practises **minimalism** – the **artistry** lies in picking the right floral arrangement for the **occasion** and conveying the meaning. An artisan can make a statement with:
 
@@ -278,6 +278,7 @@ An Artisan practises **minimalism** – the **artistry** lies in picking the rig
 | a **bouquet with varying shades of the chosen color** to create a sophisticated, elegant, and modern look | OUTER JOIN (LEFT/RIGHT) |
 | a **multi-colored bouquet** combining vibrant and contrasting blooms to create a lively, cheerful effect | Multi-table JOIN |
 | a **Bicoloured Flower arrangement** to create depth and visual interest from a single source | SELF JOIN |
+| a **Rainbow Array** – a curated and vibrant collection of specialized, **themed floral arrangements** to create visual interest for **memorable events** | Chaining joins |
 
 
 With such a **broad spectrum** of artifacts at disposal – spoilt for choice – how does an Artisan **choose** the floral arrangement for an occasion?

@@ -298,48 +298,62 @@ Watch the Architect **transform** the E‑Store in the **Refactoring** Lab, then
 
 ---
 
-# 👁️ STAGE 2: PRACTICE – The Hands-on: Write Your Own Join Queries
+# 👁️ STAGE 2: PRACTICE – The Hands-on
 
-Switch to the **Training Institution database** (`training_institution_sample.db`) in your Factory (Tab 2). Work through the exercises in `2-practiceExercises/`. They are designed to build confidence step by step. Training Institution will be used predominantly, but specialized databases are used for certain exercises – the exact database used will be clearly explained with datasets in each exercise.
+**STAGE 2: PRACTICE – Exercises 0-5 (Complete in order)**
 
-| Exercise | What You'll Practice | Outcome |
-|----------|----------------------|---------|
-| **Exercise 0** | **Independent Normalization Practice** – Apply normalization to a new unnormalized dataset (Library spreadsheet – no database). | You reinforce the refactoring skills you observed, building confidence to normalize any flat table. |
-| **Exercise 1** | `INNER JOIN` on Training Institution tables. | You can combine students, courses, and enrollments. |
-| **Exercise 2** | `LEFT JOIN` to find missing relationships (e.g., instructors with no courses). | You can identify gaps in your data. |
-| **Exercise 3** | Chaining multiple joins (e.g., students → enrollments → courses → instructors). | You can answer complex questions like “Which instructors teach which students?” |
-| **Exercise 4** | `SELF JOIN` to model hierarchies using Tourism Planet database. | You can query recursive relationships. |
-| **Exercise 5** | Mixed practice – combining all join types across multiple databases. | You're ready for the Capstone Reports. |
-| **🏆 Capstone Reports** | **Executive-Level Analysis** – CEO, CTO, and CFO reports across Banking, Transportation, and Library domains. | **Portfolio-Worthy Artifacts** that prove executive readiness. |
+```mermaid
+flowchart LR
+    A["Exercise 0<br/>Normalization"] --> B["Exercise 1<br/>INNER JOIN"]
+    B --> C["Exercise 2<br/>LEFT JOIN"]
+    C --> D["Exercise 3<br/>Multiple Tables"]
+    D --> E["Exercise 4<br/>Self Join"]
+    E --> F["Exercise 5<br/>Mixed JOINs"]
+    F --> G["✅ Complete<br/>Unlock Capstone"]
+    
+    style A fill:#e1f5fe,stroke:#2196f3
+    style B fill:#e1f5fe,stroke:#2196f3
+    style C fill:#e1f5fe,stroke:#2196f3
+    style D fill:#e1f5fe,stroke:#2196f3
+    style E fill:#e1f5fe,stroke:#2196f3
+    style F fill:#e1f5fe,stroke:#2196f3
+    style G fill:#c8e6c9,stroke:#2e7d32,stroke-width:3px
+```
 
-For each exercise, use **Tab 3 (The Consultant)** if you need a hint – but only after your own attempts. Save every working query in your Vault.
+| Exercise | Focus | Database |
+|----------|-------|----------|
+| **Exercise 0** | Independent Normalization Practice | Library spreadsheet (no database) |
+| **Exercise 1** | `INNER JOIN` Practice | Training Institution |
+| **Exercise 2** | `LEFT JOIN` Practice | Training Institution |
+| **Exercise 3** | Multiple Tables Practice | Training Institution |
+| **Exercise 4** | Self Join Practice | Tourism Planet |
+| **Exercise 5** | Mixed JOIN Practice | Multiple Databases |
 
----
+**Complete exercises 0-5 in order. Each builds on the last.**
 
-### 🚀 Continue Your Journey
+➡️ **[Begin Stage 2 with Exercise 0 →](./2-practiceExercises/0-normalization-practice.md)**
 
-➡️ **[Begin Stage 2: Normalization Practice](./2-practiceExercises/0-normalization-practice.md)**
-*Practice transforms concepts into skill.*
+**✅ Complete Exercises 0-5 → Unlock Capstone Reports**
 
 ---
 
 ### 🏆 Capstone Reports – The Executive Suite
 
-These are not exercises. They are **career accelerators**. Each report places you in the shoes of a C-suite executive, solving real problems with real data.
+*Available after completing all six practice exercises.*
 
-| Report | Role | Domain | Value to Your Career |
-|--------|------|--------|---------------------|
-| **CEO Report** | Business Leader | Banking | Prove you can translate data into strategic decisions |
-| **CTO Report** | Technical Leader | Transportation | Prove you can reverse-engineer and architect systems |
-| **CFO Report** | Financial Leader | Library | Prove you can model profitability and analyze trade-offs |
+These are not exercises. They are **career accelerators**.
+
+| Report | Role | Domain | Market Value – What This Proves to Employers |
+|--------|------|--------|-----------------------------------------------|
+| **CTO Report** | Technical Leader | Transportation | You can reverse-engineer a system from its outputs – a skill senior engineers use to audit and rebuild legacy systems. |
+| **CEO Report** | Business Leader | Banking | You can translate complex data into strategic recommendations – the difference between a data analyst and a data leader. |
+| **CFO Report** | Financial Leader | Library | You can model financial scenarios and justify investment decisions – the skill that gets you a seat at the executive table. |
 
 **Complete these reports. Add them to your portfolio. Show them in interviews.**
 
-➡️ **[Begin CEO Report →](./2-practiceExercises/Capstone%20Reports/MODULE4-CEO-REPORT.md)**  
-➡️ **[Begin CTO Report →](./2-practiceExercises/Capstone%20Reports/MODULE4-CTO-REPORT.md)**  
-➡️ **[Begin CFO Report →](./2-practiceExercises/Capstone%20Reports/MODULE4-CFO-REPORT.md)**
+➡️ **[Begin Your Capstone Journey with the CTO Report →](./2-practiceExercises/Capstone%20Reports/1-MODULE4-CTO-REPORT.md)**
 
-> *“These reports are the difference between 'I know SQL' and 'I can drive business value.'”*
+> *“These reports are the difference between 'I know SQL' and 'I own SQL & can drive business value.'”*
 
 ---
 
@@ -375,11 +389,13 @@ _______________________________________________________
 
 # ✅ STAGE 3: EVALUATE – The Assessment
 
+
+
 ```mermaid
 flowchart LR
-    A[Take the module quiz] --> B[Check your answers]
-    B --> C[Review detailed solutions<br/>(2 possible approaches)]
-    C --> D[🎉 Module 4 Complete]
+    A["Take the Module Quiz"] --> B["Check your answers for Exercises & Quiz"]
+    B --> C["Review detailed Capstone solutions (2 possible approaches)"]
+    C --> D["Module 4 Complete"]
     
     style A fill:#e8f5e8,stroke:#4caf50,stroke-width:2px
     style B fill:#e8f5e8,stroke:#4caf50,stroke-width:2px
@@ -389,17 +405,17 @@ flowchart LR
 
 ### ✅ Your Evaluation Tasks
 
-1. **Take the quiz:** Go to `3-quizCheckpoint/module4-sql-quiz.md`.
+1. **Take the Module Quiz:** Go to `3-quizCheckpoint/module4-sql-quiz.md`.
    - Answer the questions – some may ask you to write join queries.
-   - Write your answers in a new file `quiz_answers.sql` (or `.md`) inside your Vault at:
-     ```
-     Learning/Level-1-beginner/Level1-1-ACQUIRE/Module4-JoiningTables/3-quizCheckpoint/
-     ```
+   - Write your answers in a new file `quiz_answers.sql` (or `.md`) inside your Vault.
 
-2. **Check your answers:** Open the solutions in `4-exerciseAndQuizSolutions/module4-quiz-answers.md`.
-   - Compare your queries and reasoning.
+2. **Check your answers for Exercises & Quiz:** Open the solutions in `4-exerciseAndQuizSolutions/`.
+   - Compare your queries and reasoning for Exercises 0-5 and the Module Quiz.
 
-3. **Review detailed solutions:** Each exercise and Capstone Report includes two possible solution approaches – study them to deepen your understanding.
+3. **Review detailed Capstone solutions (2 possible approaches):** Each Capstone Report (CTO, CEO, CFO) includes two possible solution approaches – study them to deepen your understanding.
+
+4. **Module 4 Complete:** Celebrate your mastery of joins and normalization!
+
 
 ---
 
@@ -475,7 +491,6 @@ In the **ACCELERATE** phase, you'll learn to wield AI as your co‑pilot – but
 In **ANALYZE**, you'll study professional projects and learn from their architecture.
 
 In **ARCHITECT**, you'll build your own worlds from scratch.
-
 
 > *“The SQLVerse expands. Go build and conquer the world.”*
 

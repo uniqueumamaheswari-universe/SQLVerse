@@ -351,7 +351,8 @@ These are not exercises. They are **career accelerators**.
 
 **Complete these reports. Add them to your portfolio. Show them in interviews.**
 
-➡️ **[Begin Your Capstone Journey with the CTO Report →](./2-practiceExercises/Capstone%20Reports/1-MODULE4-CTO-REPORT.md)**
+➡️ **[Begin Your Capstone Journey →](./2-practiceExercises/Capstone%20Reports/0-CAPSTONE-STORY.md)**
+
 
 > *“These reports are the difference between 'I know SQL' and 'I own SQL & can drive business value.'”*
 

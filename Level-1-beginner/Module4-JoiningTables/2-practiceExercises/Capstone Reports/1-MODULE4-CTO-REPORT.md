@@ -386,6 +386,9 @@ The **open-closed principle** states that software entities should be **open for
 
 What does this mean? Your primary keys, foreign keys, and their relationships are the **eternal truth** – closed for modification. Adding new tables to support new features to close the data gap is **open for extension**.
 
+In the future, if a pharmacy store is added to the revenue stream, you just have to create a table for medicine sales and link it to `License_Plate`. Your design must be open to any **unforeseen** add-ons in the future. Your design must be **solid and future-proof**.
+
+---
 
 **You took a bunch of scattered and mixed flowers and crafted a balanced, harmonious bouquet capturing the vision of 3 C-suite executives.**
 

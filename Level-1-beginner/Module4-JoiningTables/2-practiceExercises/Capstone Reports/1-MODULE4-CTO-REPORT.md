@@ -356,11 +356,36 @@ Projects/Level-1-beginner/Module4/Capstone-Reports/CTO-REPORT/
 
 ### *The Art of Reverse Engineering*
 
-You didn't start with a clean schema. You started with **messy reports** – receipts, logs, meter readings, service tickets. You looked at the outputs and methodically arrived at the inputs.
+You didn't start with a clean schema. You started with **messy reports** – receipts, logs, meter readings, service tickets. You looked at the outputs and methodically arrived at the inputs. You took the fragmented pools of data sources and integrated everything into a single data stream.
 
 That is reverse engineering. That is what senior architects do when they inherit legacy systems.
 
 > *“Every report hides a schema. The Artisan sees the blueprint behind the finished product.”*
+
+More than schema design, you have learned about how to approach and solve a problem – which is the biggest takeaway of this mission – summed up as follows:
+
+1. **Define the root cause.**
+2. **Focus on the reasons for solving the problem.**
+3. **Base decisions on fact and data rather than assumptions and arrive at a working solution.**
+4. **Brainstorm with different stakeholders and generate a wide range of potential solutions without immediately evaluating them.**
+5. **Implement solutions on a small scale first to observe, adjust, and avoid creating new issues.**
+6. **Add enhancements.**
+
+---
+
+### 🏛️ Architect's Clairvoyance
+
+*We noticed that the Convenience store report doesn't have a License_Plate. That's a 'Data Gap.'* As an architect, you can solve it by adding a Loyalty Card linked to a plate in the future. It is not of immediate concern.
+
+The question you must ask:
+
+- *In the future, if I have to add this feature, will the current design support it?*
+- *Is my design based on the **Open-Closed Principle**?*
+
+The **open-closed principle** states that software entities should be **open for extension, but closed for modification**.
+
+What does this mean? Your primary keys, foreign keys, and their relationships are the **eternal truth** – closed for modification. Adding new tables to support new features to close the data gap is **open for extension**.
+
 
 **You took a bunch of scattered and mixed flowers and crafted a balanced, harmonious bouquet capturing the vision of 3 C-suite executives.**
 

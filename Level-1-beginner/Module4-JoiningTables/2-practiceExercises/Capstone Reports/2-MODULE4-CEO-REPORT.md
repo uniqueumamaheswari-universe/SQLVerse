@@ -403,8 +403,6 @@ That is strategic vision. That is what separates a data analyst from a data lead
 
 ---
 
----
-
 ### *The Power of Cross-Pollination*
 
 In the CTO Report, you learned **Reverse Engineering**. Here, you learned **Data Enrichment**. By taking one dataset (Tolls) and adding a second layer (Banking), the data becomes 10x more valuable.

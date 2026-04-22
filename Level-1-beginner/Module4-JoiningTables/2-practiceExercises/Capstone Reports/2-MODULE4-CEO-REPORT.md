@@ -405,7 +405,30 @@ That is strategic vision. That is what separates a data analyst from a data lead
 
 ### *The Power of Cross-Pollination*
 
+
 In the CTO Report, you learned **Reverse Engineering**. Here, you learned **Data Enrichment**. By taking one dataset (Tolls) and adding a second layer (Banking), the data becomes 10x more valuable.
+
+Data is the foundation of businesses today. The better your data is, the more informed decisions you can make. **Data enrichment** is the strategic process of **enhancing** existing **internal datasets** by integrating relevant information from **external third-party sources** or other internal systems. Data enrichment is most commonly used to fill in the gaps in customer data, providing more context for customer-facing teams in B2B businesses. Enriched customer data is used by marketing, sales, and customer success teams to improve audience segmentation, streamline the sales process, and better understand their customers.
+
+Let us see how Data enrichment plays out in our use case - Joining the **Banking Planet** customer data with the **ITS Planet** license plate data:
+
+- **Data analytics** – Geetha links Bank Customers to toll data using license plates
+- **Marketing** – The results help Geetha sell Credit Cards to improve Bank profitability
+- **Operational decision making** – Geetha approaches the board with this proof-of-concept
+
+### The Three-Stage Value Chain
+
+```mermaid
+flowchart LR
+    A["Data Analytics<br/>Link Bank + Toll data"] --> B["Marketing<br/>Sell Credit Cards"]
+    B --> C["Operational Decision Making<br/>Board Approval"]
+    
+    style A fill:#e1f5fe,stroke:#2196f3
+    style B fill:#fff8e1,stroke:#ff9800
+    style C fill:#c8e6c9,stroke:#2e7d32
+```
+
+Data enrichment has helped Geetha find new opportunities to improve bank profitability.
 
 > *“A single table is a fact. Two joined tables are a story. Three joined tables are a strategy.”*
 

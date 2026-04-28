@@ -423,7 +423,7 @@ If you were Arjun, which schema would you deploy and why?
 ---
 # 🎯 What You Should Do NEXT (Very Practical)
 
-Don't rush to CEO yet. Do this first:
+Don't rush to CTO Simulation yet. Do this first:
 
 ### Step 1: Rebuild ONE schema from memory
 
@@ -601,15 +601,25 @@ ORDER BY total_spend DESC;
 
 ## 🤖 AI Walkthrough (ACCELERATE Phase Preview)
 
-You reverse-engineered this schema manually. In the **ACCELERATE** phase, you'll learn to use **GenAI** as your co-pilot.
+You reverse-engineered this schema manually. 
 
-**Prompt Example:**
-> *"I have 5 reports: toll logs, cafe receipts, repair tickets, fuel meter data, and store sales. License plate is the common key. Generate a normalized schema."*
+In the ACCELERATE phase, you'll learn to use AI as a **Socratic partner** – not a code generator.
 
-**AI Response Preview:**
-> *"Based on your reports, I recommend 5 tables: vehicles (master), toll_transactions, cafe_orders, repair_tickets, fuel_transactions, and store_sales (no plate link). Foreign key: vehicle_id references vehicles. License plate is the natural key but vehicle_id is the surrogate key."*
+**Good Prompt (Socratic – Conceptual Guidance):**
 
-> *Learned in ACCELERATE – AI can draft schemas, but you must validate them. You are the Artisan; AI is the Consultant.*
+> *"I have 5 reports: toll logs, cafe receipts, repair tickets, fuel meter data, and store sales. License plate is the common key. What entities should I consider for a normalized schema? Don't write code – explain the relationships."*
+
+**What AI Should Do (Not Generate Code):**
+
+- Ask: "Does every transaction have a license plate?"
+- Ask: "How do you handle the store report with no plate?"
+- Suggest: "Consider a vehicles table as master."
+
+**What You Should NOT Ask AI:**
+
+❌ *"Generate a normalized schema for me."*
+
+> *Learned in ACCELERATE – AI is your Consultant, not your Ghostwriter.*
 
 ---
 
@@ -812,10 +822,10 @@ flowchart LR
 
 | Previous Step | Next Step |
 |:---:|:---:|
-| [← Back to Exercise 5 Solutions](../5-mixed-joins-practice-solutions.md) | [Continue to CTO Interview Simulation →](./simulations/CTO-INTERVIEW-SIMULATION.md) |
+| [← Back to Exercise 5 Solutions](../5-mixed-joins-practice-solutions.md) | [Continue to CTO Interview Simulation →](./simulations/1-CTO-INTERVIEW-SIMULATION.md) |
 
 ---
 
 *Part of our mission for 🎯 Quality Education for Anyone, Anywhere, Anytime — 💫 with Comfort, Convenience at no Cost.*
 
-**Level 1 | Module 4 | CTO Report Solutions | Next: [CTO Interview Simulation](./simulations/CTO-INTERVIEW-SIMULATION.md)**
+**Level 1 | Module 4 | CTO Report Solutions | Next: [CTO Interview Simulation](./simulations/1-CTO-INTERVIEW-SIMULATION.md)**

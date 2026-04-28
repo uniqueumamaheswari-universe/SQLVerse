@@ -369,7 +369,7 @@ flowchart LR
 
 | Previous Step | Next Step |
 |:---:|:---:|
-| [← Back to Exercise 4 Solutions](./4-self-join-practice-solutions.md) | [Continue to Capstone Solutions →](../../Capstone%20Reports/) |
+| [← Back to Exercise 4 Solutions](./4-self-join-practice-solutions.md) | [Continue to Capstone Solutions Hub →](./6-capstone-solutions/README.md) |
 
 ---
 

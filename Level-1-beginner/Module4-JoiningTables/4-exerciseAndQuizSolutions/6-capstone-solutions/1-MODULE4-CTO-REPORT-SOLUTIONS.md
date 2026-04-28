@@ -26,28 +26,24 @@ This document contains **two different approaches** to the CTO Report. Use them 
 
 ```mermaid
 flowchart LR
-    Ex0["✅ Ex0 Solutions"] --> Ex1["✅ Ex1 Solutions"]
-    Ex1 --> Ex2["✅ Ex2 Solutions"]
-    Ex2 --> Ex3["✅ Ex3 Solutions"]
-    Ex3 --> Ex4["✅ Ex4 Solutions"]
-    Ex4 --> Ex5["✅ Ex5 Solutions"]
-    Ex5 --> CTO["📍 CTO SOLUTIONS<br/>1-MODULE4-CTO-REPORT-SOLUTIONS<br/>YOU ARE HERE"]
-    CTO --> CEO["⏳ CEO SOLUTIONS<br/>2-MODULE4-CEO-REPORT-SOLUTIONS"]
-    CEO --> CFO["⏳ CFO SOLUTIONS<br/>3-MODULE4-CFO-REPORT-SOLUTIONS"]
-    CFO --> Quiz["⏳ Quiz Answers<br/>module4-quiz-answers.md"]
-    Quiz --> Complete["🎉 MODULE 4 COMPLETE"]
+    A["✅ Exercise<br/>Solutions Complete"] --> B["📍 CTO<br/>Solutions"]
+    B --> C["⏳ CTO<br/>Simulation"]
+    C --> D["⏳ CEO<br/>Solutions"]
+    D --> E["⏳ CEO<br/>Simulation"]
+    E --> F["⏳ CFO<br/>Solutions"]
+    F --> G["⏳ CFO<br/>Simulation"]
+    G --> H["⏳ Quiz<br/>Answers"]
+    H --> I["⏳ Return to<br/>Module 4 Guide"]
     
-    style Ex0 fill:#e1f5fe,stroke:#4caf50,stroke-width:2px
-    style Ex1 fill:#e1f5fe,stroke:#4caf50,stroke-width:2px
-    style Ex2 fill:#e1f5fe,stroke:#4caf50,stroke-width:2px
-    style Ex3 fill:#e1f5fe,stroke:#4caf50,stroke-width:2px
-    style Ex4 fill:#e1f5fe,stroke:#4caf50,stroke-width:2px
-    style Ex5 fill:#e1f5fe,stroke:#4caf50,stroke-width:2px
-    style CTO fill:#fff8e1,stroke:#ff9800,stroke-width:4px
-    style CEO fill:#fff8e1,stroke:#ff9800,stroke-width:2px
-    style CFO fill:#fff8e1,stroke:#ff9800,stroke-width:2px
-    style Quiz fill:#e8f5e8,stroke:#4caf50,stroke-width:2px
-    style Complete fill:#a5d6a7,stroke:#2e7d32,stroke-width:2px
+    style A fill:#e1f5fe,stroke:#4caf50,stroke-width:2px
+    style B fill:#fff8e1,stroke:#ff9800,stroke-width:4px
+    style C fill:#fff8e1,stroke:#ff9800,stroke-width:2px
+    style D fill:#fff8e1,stroke:#ff9800,stroke-width:2px
+    style E fill:#fff8e1,stroke:#ff9800,stroke-width:2px
+    style F fill:#fff8e1,stroke:#ff9800,stroke-width:2px
+    style G fill:#fff8e1,stroke:#ff9800,stroke-width:2px
+    style H fill:#e8f5e8,stroke:#4caf50,stroke-width:2px
+    style I fill:#a5d6a7,stroke:#2e7d32,stroke-width:2px
 ```
 
 ---
@@ -340,23 +336,16 @@ WHERE tt.toll_id IS NULL;
 ```sql
 SELECT 
     v.license_plate,
-    COALESCE(tt.total_toll, 0) + COALESCE(rt.total_repair, 0) AS total_spend
+    COALESCE(SUM(tt.fee_collected), 0) + COALESCE(SUM(rt.labor_cost + rt.parts_cost), 0) AS total_spend
 FROM vehicles v
-LEFT JOIN (
-    SELECT vehicle_id, SUM(fee_collected) AS total_toll
-    FROM toll_transactions
-    GROUP BY vehicle_id
-) tt ON v.vehicle_id = tt.vehicle_id
-LEFT JOIN (
-    SELECT vehicle_id, SUM(labor_cost + parts_cost) AS total_repair
-    FROM repair_tickets
-    GROUP BY vehicle_id
-) rt ON v.vehicle_id = rt.vehicle_id
-WHERE COALESCE(tt.total_toll, 0) + COALESCE(rt.total_repair, 0) > 0
+LEFT JOIN toll_transactions tt ON v.vehicle_id = tt.vehicle_id
+LEFT JOIN repair_tickets rt ON v.vehicle_id = rt.vehicle_id
+GROUP BY v.vehicle_id
+HAVING COALESCE(SUM(tt.fee_collected), 0) + COALESCE(SUM(rt.labor_cost + rt.parts_cost), 0) > 0
 ORDER BY total_spend DESC;
 ```
 
-**Why this works:** Subqueries pre-aggregate toll and repair spend, then combine.
+**Why this works:** LEFT JOIN combines toll and repair transactions. GROUP BY aggregates per vehicle. HAVING filters to vehicles with spend > 0.
 
 **What can go wrong:** Vehicles with no toll or repair are excluded by the WHERE clause – intentional.
 
@@ -367,7 +356,7 @@ ORDER BY total_spend DESC;
 | Clear domain separation – each table has a single purpose | More tables – steeper learning curve |
 | Strong referential integrity | Cross-domain queries require multiple JOINs |
 | No generic columns – type safety | More complex aggregation queries |
-| Easier to add new revenue streams (new table) | Subqueries or CTEs needed for wallet share |
+| Easier to add new revenue streams (new table) | Multiple LEFT JOINs + GROUP BY + HAVING needed for wallet share |
 
 ### Best For
 - Enterprise systems with strict data governance
@@ -583,7 +572,7 @@ GROUP BY v.license_plate, month;
 
 ## 🔵 CTEs (Common Table Expressions) – Level 2 Preview
 
-The Enterprise Wallet Share query uses subqueries. CTEs make it cleaner:
+The Enterprise Wallet Share query uses multiple LEFT JOINs + GROUP BY + HAVING. CTEs make it cleaner:
 
 ```sql
 WITH toll_spend AS (
@@ -801,36 +790,32 @@ This skill sits at the intersection of:
 
 ```mermaid
 flowchart LR
-    Ex0["✅ Ex0 Solutions"] --> Ex1["✅ Ex1 Solutions"]
-    Ex1 --> Ex2["✅ Ex2 Solutions"]
-    Ex2 --> Ex3["✅ Ex3 Solutions"]
-    Ex3 --> Ex4["✅ Ex4 Solutions"]
-    Ex4 --> Ex5["✅ Ex5 Solutions"]
-    Ex5 --> CTO["✅ CTO SOLUTIONS<br/>1-MODULE4-CTO-REPORT-SOLUTIONS<br/>COMPLETE"]
-    CTO --> CEO["📍 CEO SOLUTIONS<br/>2-MODULE4-CEO-REPORT-SOLUTIONS<br/>NEXT"]
-    CEO --> CFO["⏳ CFO SOLUTIONS<br/>3-MODULE4-CFO-REPORT-SOLUTIONS"]
-    CFO --> Quiz["⏳ Quiz Answers<br/>module4-quiz-answers.md"]
-    Quiz --> Complete["🎉 MODULE 4 COMPLETE"]
+    A["✅ Exercise<br/>Solutions Complete"] --> B["✅ CTO<br/>Solutions"]
+    B --> C["📍 CTO<br/>Simulation"]
+    C --> D["⏳ CEO<br/>Solutions"]
+    D --> E["⏳ CEO<br/>Simulation"]
+    E --> F["⏳ CFO<br/>Solutions"]
+    F --> G["⏳ CFO<br/>Simulation"]
+    G --> H["⏳ Quiz<br/>Answers"]
+    H --> I["⏳ Return to<br/>Module 4 Guide"]
     
-    style Ex0 fill:#e1f5fe,stroke:#4caf50,stroke-width:2px
-    style Ex1 fill:#e1f5fe,stroke:#4caf50,stroke-width:2px
-    style Ex2 fill:#e1f5fe,stroke:#4caf50,stroke-width:2px
-    style Ex3 fill:#e1f5fe,stroke:#4caf50,stroke-width:2px
-    style Ex4 fill:#e1f5fe,stroke:#4caf50,stroke-width:2px
-    style Ex5 fill:#e1f5fe,stroke:#4caf50,stroke-width:2px
-    style CTO fill:#c8e6c9,stroke:#2e7d32,stroke-width:4px
-    style CEO fill:#fff8e1,stroke:#ff9800,stroke-width:4px
-    style CFO fill:#fff8e1,stroke:#ff9800,stroke-width:2px
-    style Quiz fill:#e8f5e8,stroke:#4caf50,stroke-width:2px
-    style Complete fill:#a5d6a7,stroke:#2e7d32,stroke-width:2px
+    style A fill:#e1f5fe,stroke:#4caf50,stroke-width:2px
+    style B fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style C fill:#fff8e1,stroke:#ff9800,stroke-width:4px
+    style D fill:#fff8e1,stroke:#ff9800,stroke-width:2px
+    style E fill:#fff8e1,stroke:#ff9800,stroke-width:2px
+    style F fill:#fff8e1,stroke:#ff9800,stroke-width:2px
+    style G fill:#fff8e1,stroke:#ff9800,stroke-width:2px
+    style H fill:#e8f5e8,stroke:#4caf50,stroke-width:2px
+    style I fill:#a5d6a7,stroke:#2e7d32,stroke-width:2px
 ```
 
 | Previous Step | Next Step |
 |:---:|:---:|
-| [← Back to Exercise 5 Solutions](../5-mixed-joins-practice-solutions.md) | [Continue to CEO Report Solutions →](./2-MODULE4-CEO-REPORT-SOLUTIONS.md) |
+| [← Back to Exercise 5 Solutions](../5-mixed-joins-practice-solutions.md) | [Continue to CTO Interview Simulation →](./simulations/CTO-INTERVIEW-SIMULATION.md) |
 
 ---
 
 *Part of our mission for 🎯 Quality Education for Anyone, Anywhere, Anytime — 💫 with Comfort, Convenience at no Cost.*
 
-**Level 1 | Module 4 | CTO Report Solutions | Next: [CEO Report Solutions](./2-MODULE4-CEO-REPORT-SOLUTIONS.md)**
+**Level 1 | Module 4 | CTO Report Solutions | Next: [CTO Interview Simulation](./simulations/CTO-INTERVIEW-SIMULATION.md)**

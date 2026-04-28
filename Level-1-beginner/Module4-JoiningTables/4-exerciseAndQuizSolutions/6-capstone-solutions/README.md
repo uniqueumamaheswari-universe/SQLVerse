@@ -21,17 +21,17 @@ CTO Solutions → CTO Simulation → CEO Solutions → CEO Simulation → CFO So
 
 ```mermaid
 flowchart LR
-    A["✅ Exercise<br/>Solutions Complete"] --> B["CTO<br/>Solutions"]
-    B --> C["CTO<br/>Simulation"]
-    C --> D["CEO<br/>Solutions"]
-    D --> E["CEO<br/>Simulation"]
-    E --> F["CFO<br/>Solutions"]
-    F --> G["CFO<br/>Simulation"]
-    G --> H["✅ Quiz<br/>Answers"]
-    H --> I["🔄 Return to<br/>Module 4 Guide"]
+    A["✅ Exercise<br/>Solutions Complete"] --> B["📍 CTO<br/>Solutions<br/>NEXT"]
+    B --> C["⏳ CTO<br/>Simulation"]
+    C --> D["⏳ CEO<br/>Solutions"]
+    D --> E["⏳ CEO<br/>Simulation"]
+    E --> F["⏳ CFO<br/>Solutions"]
+    F --> G["⏳ CFO<br/>Simulation"]
+    G --> H["⏳ Quiz<br/>Answers"]
+    H --> I["⏳ Return to<br/>Module 4 Guide"]
     
     style A fill:#e1f5fe,stroke:#4caf50,stroke-width:2px
-    style B fill:#e1f5fe,stroke:#4caf50,stroke-width:2px
+    style B fill:#fff8e1,stroke:#ff9800,stroke-width:4px
     style C fill:#fff8e1,stroke:#ff9800,stroke-width:2px
     style D fill:#fff8e1,stroke:#ff9800,stroke-width:2px
     style E fill:#fff8e1,stroke:#ff9800,stroke-width:2px
@@ -82,8 +82,8 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-    A["✅ Exercise<br/>Solutions Complete"] --> B["✅ CTO<br/>Solutions"]
-    B --> C["📍 CTO<br/>Simulation"]
+    A["✅ Exercise<br/>Solutions Complete"] --> B["📍 CTO<br/>Solutions<br/>NEXT"]
+    B --> C["⏳ CTO<br/>Simulation"]
     C --> D["⏳ CEO<br/>Solutions"]
     D --> E["⏳ CEO<br/>Simulation"]
     E --> F["⏳ CFO<br/>Solutions"]
@@ -92,8 +92,8 @@ flowchart LR
     H --> I["⏳ Return to<br/>Module 4 Guide"]
     
     style A fill:#e1f5fe,stroke:#4caf50,stroke-width:2px
-    style B fill:#e1f5fe,stroke:#4caf50,stroke-width:2px
-    style C fill:#fff8e1,stroke:#ff9800,stroke-width:4px
+    style B fill:#fff8e1,stroke:#ff9800,stroke-width:4px
+    style C fill:#fff8e1,stroke:#ff9800,stroke-width:2px
     style D fill:#fff8e1,stroke:#ff9800,stroke-width:2px
     style E fill:#fff8e1,stroke:#ff9800,stroke-width:2px
     style F fill:#fff8e1,stroke:#ff9800,stroke-width:2px
@@ -102,13 +102,14 @@ flowchart LR
     style I fill:#a5d6a7,stroke:#2e7d32,stroke-width:2px
 ```
 
-
 | Previous Step | Next Step |
 |:---:|:---:|
 | [← Back to Exercise 5 Solutions](../5-mixed-joins-practice-solutions.md) | [Continue to CTO Report Solutions →](./1-MODULE4-CTO-REPORT-SOLUTIONS.md) |
+
 
 ---
 
 *Part of our mission for 🎯 Quality Education for Anyone, Anywhere, Anytime — 💫 with Comfort, Convenience at no Cost.*
 
 **Level 1 | Module 4 | Capstone Solutions Hub**
+ 

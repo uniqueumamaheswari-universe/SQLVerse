@@ -715,7 +715,7 @@ flowchart LR
 
 | Previous Step | Next Step |
 |:---:|:---:|
-| [← Back to CTO Report Solutions](./1-MODULE4-CTO-REPORT-SOLUTIONS.md) | [Continue to CEO Report Solutions →](./2-MODULE4-CEO-REPORT-SOLUTIONS.md) |
+| [← Back to CTO Report Solutions](../6-capstone-solutions/1-MODULE4-CTO-REPORT-SOLUTIONS.md) | [Continue to CEO Report Solutions →](../6-capstone-solutions/2-MODULE4-CEO-REPORT-SOLUTIONS.md) |
 
 ---
 

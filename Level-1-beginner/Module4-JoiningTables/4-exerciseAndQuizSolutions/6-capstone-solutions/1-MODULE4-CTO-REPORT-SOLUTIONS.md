@@ -18,6 +18,8 @@ This document contains **two different approaches** to the CTO Report. Use them 
 
 **The difference between a coder and an Artisan is discipline.**
 
+> *"This document will guide you. The simulations will test you. Do not expect help there."*
+
 </div>
 
 ---

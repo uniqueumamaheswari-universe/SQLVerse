@@ -42,94 +42,8 @@ Create the following folder in your **Vault (Tab 4)** :
 ```
 Projects/Level-1-beginner/Module4/CTO-INTERVIEW-SIMULATION/
 ```
-Save a file named `cto_simulation_answers.md` using the template given below.
+Save a file named `cto_simulation_answers.md`  in the folder. You will write all your answers in the file.
 
----
-
-### 📝 Answer Template
-
-Copy this template to your markdown file you created just now:
-
-```markdown
-# CTO Interview Simulation – My Answers
-
-## Section 1: Takeover
-
-### Visit Logic Definition
-(Your definition)
-
-### Schema Design
-(Your schema)
-
-### Key Queries
-(Your SQL)
-
-### Trade-off Justification
-(Your answer)
-
-### Explain Your Thinking Process for Section1
-(Your explanation)
-
----
-
-## Section 2: Coupons & Retention
-
-### Schema Design
-(Your schema)
-
-### Key Queries
-(Your SQL)
-
-### Trade-off Justification
-(Your answer)
-
-### Edge Cases
-(Your answers to partial use, expired, multiple coupons)
-
-### Explain Your Thinking Process for Section2
-(Your explanation)
-
----
-
-## Section 3: Cross-Store Discounts
-
-### Schema Design
-(Your schema)
-
-### Key Queries
-(Your SQL)
-
-### Visit Logic Edge Case
-(Your visit logic and justification)
-
-### Trade-off Justification
-(Your answer)
-
-### Eligibility Rule Definition
-(Your rule)
-
-### Explain Your Thinking Process for Section3
-(Your explanation)
-
----
-
-## Prelude to Level 2 – Scale Awareness
-
-### Indexing Strategy
-(Your answer)
-
-### Partitioning Strategy
-(Your answer)
-
-### Handling Scale
-(Your answer)
-
-### Trade-off Awareness
-(Your answer)
-
-
-```
-👉 Now start reading and proceed to Section 1. Fill in your answers directly in your Vault as you proceed with each section.
 
 ---
 
@@ -682,13 +596,26 @@ Say this clearly:
 | Trade-off articulation | /5 |
 
 
+---
+
+## 🎉 You’ve Completed the CTO Simulation
+
+You stepped into Ravi’s chaotic mall – three businesses, siloed POS systems, cash customers with no phone number. You reverse-engineered the mess, linked sales across coffee, pizza, and grocery.
+
+**Ravi now knows:**  
+☕ Who buys coffee *and* pizza in the same visit  
+🍕 Which customers are worth a 2% coupon  
+🛒 How to cross‑sell between his stores
+
+The Mall Empire is no longer a data nightmare.
+
+**Read how Ravi, Annie, and Simon joined the SQLVerse:**  
+👉 [0-CAPSTONE-STORY-EXPANSION.md](./0-CAPSTONE-STORY-EXPANSION.md)
 
 ---
 
+
 ## 🧭 EVALUATE Navigation
-
-
-> ✅ **Before moving to CEO Report Solutions, save this file in your Vault using the Template for Simulation Vault Instructions given.**
 
 
 ```mermaid

@@ -337,6 +337,30 @@ Ravi agrees. Now you must integrate this partnership into your design.
 
 ---
 
+## 🎉 You’ve Completed the CEO Simulation
+
+You helped Annie turn shrinking profit margins into a clear turnaround plan. You joined hotel costs, vendor invoices, and bakery customer data. You identified financial leaks, designed a gift‑and‑discount campaign, and projected market share growth and even handled the “students as future customers” twist.
+.
+
+**Annie now knows:**  
+📉 Which event types are bleeding margin  
+🎯 Which bakery customers are most likely to book  
+🏨 How hotel and flight costs affect overall profitability
+
+The event management company is no longer flying blind.
+
+Three simulations. Three new friends. One SQLVerse.
+
+- **Ravi** unified his mall empire.
+- **Annie** found her margin leaks.
+
+
+**Read how Ravi, Annie, and Simon joined the SQLVerse:**  
+👉 [0-CAPSTONE-STORY-EXPANSION.md](./0-CAPSTONE-STORY-EXPANSION.md)
+
+---
+
+
 ## 🧭 EVALUATE Navigation
 
 ```mermaid

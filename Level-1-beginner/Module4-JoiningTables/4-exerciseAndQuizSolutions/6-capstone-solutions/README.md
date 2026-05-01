@@ -1,6 +1,5 @@
 
 
-
 # 🗄️🤖 SQL & GenAI Course
 **🎯 Quality Education for Anyone, Anywhere, Anytime — 💫 with Comfort, Convenience at no Cost**
 
@@ -14,6 +13,11 @@ Welcome to the **Capstone Solutions Hub**.
 **You are in the Capstone Solutions Hub.** Your path:
 
 CTO Solutions → CTO Simulation → CEO Solutions → CEO Simulation → CFO Solutions → CFO Simulation → Quiz Answers
+
+## 📖 Background Story
+
+Before you start the simulations, read how **Ravi, Annie, and Simon** joined the SQLVerse:  
+➡️ [0-CAPSTONE-STORY-EXPANSION.md](./simulations/0-CAPSTONE-STORY-EXPANSION.md)
 
 ---
 

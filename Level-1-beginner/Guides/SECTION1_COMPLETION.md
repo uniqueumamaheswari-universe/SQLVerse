@@ -5,7 +5,6 @@
 **🎯 Quality Education for Anyone, Anywhere, Anytime — 💫 with Comfort, Convenience at no Cost**
 
 ---
-
 ## 🏆 ACQUIRE COMPLETION: The Gemstone Vault & Schema Blueprint
 
 ## 💌 A Brief from the Designer
@@ -16,11 +15,9 @@ If you are reading this, you have done something extraordinary. You have stayed 
 
 This task is not a test. It is a **celebration**.
 
-You are going to build a **database** of your own **learning journey** – a permanent, **queryable record** of every **skill** you mastered, every **insight** you gathered, and every **challenge** you overcame. When you finish, you will have a portfolio piece that proves, in SQL itself, that you have transformed from a learner into a Data Artisan.
+You are going to build a database of your own learning journey – a permanent, queryable record of every skill you mastered, every insight you gathered, and every challenge you overcame. When you finish, you will have a portfolio piece that proves, in SQL itself, that you have transformed from a learner into a Data Artisan.
 
 Take a deep breath. Open your Vault. Let's begin.
-
-In this mission, you will walk through the **SQLVerse** Artisan's **garden**, select the **blooms** of every colour and shade, assemble and style them into **exquisite bouquets** for a very special event – to **decorate your portfolio**, not for someone's dashboard. This venture will be delightful and enticing. These bouquets are going to become **valuable gems** in your vault over time.
 
 **The SQLVerse is proud of you.**
 
@@ -124,11 +121,11 @@ ACQUIRE_COMPLETION/
 
 ---
 
-## 📐 Phase 1: DESIGN – Crafting the Schema
+## 📐 PHASE 1: DESIGN – Crafting the Schema
 
 ### Step 0: The Flat Spreadsheet
 
-Below is a flat, unnormalized table that contains information about your learning journey across Modules 1–4. It has **redundancy, update anomalies, and insertion/deletion anomalies**. Your job is to normalize it.
+Below is a flat, unnormalized table that contains information about your learning journey across Modules 1–4. It has **redundancy, update anomalies, insertion anomalies, and deletion anomalies**. Your job is to normalize it.
 
 Only 4 rows are shown as examples. You will need to add all rows for your own learning journey (one row per skill, per learning objective, per bonus skill, etc.).
 
@@ -201,22 +198,72 @@ Identify transitive dependencies. Show the final normalized schema.
 
 **Your 3NF result:** [Describe or show tables]
 
-**Expected tables after normalization (6 tables – phase-enabled for Level 1 full journey):**
+---
 
-| Table | Description |
-|-------|-------------|
-| `phases_level1` | The 4 phases of Level 1: ACQUIRE, ACCELERATE, ANALYZE, ARCHITECT |
-| `modules_level1` | Modules 1–5+ linked to phases |
-| `skills_level1` | Skills + learning objectives (combined) |
-| `bonus_skills_level1` | Bonus skills learned |
-| `insights_level1` | Perigon insights (philosophical takeaways) |
-| `achievements_level1` | Quizzes, exercises, reports, projects, labs |
+## 🧭 Choose Your Schema Path
+
+You have two valid ways to build your learning database. Read the trade‑offs, then pick **one** approach.
+
+| Aspect | 🟢 Approach 1 (3NF – Basic) | 🔵 Approach 2 (Granular) |
+|--------|-------------------------------|---------------------------|
+| **Tables** | 6 tables: `phases_level1`, `modules_level1`, `skills_level1`, `bonus_skills_level1`, `insights_level1`, `achievements_level1` | 9 tables: Core tables (phases, modules, skills, bonuses, insights) + `quiz_scores_level1`, `exercise_completion_level1`, `report_deliverables_level1`, `simulation_results_level1` |
+| **Achievements storage** | Single table with `achievement_type` column | Separate table per achievement type |
+| **Query simplicity** | Easy to query across all achievement types | More tables, but each is single‑purpose |
+| **Extensibility** | Adding a new achievement type requires no schema change (just new rows) | Adding a new type requires a new table – but allows type‑specific columns |
+| **Best for** | Minimal complexity, quick setup | Long‑term tracking, production‑grade portfolio |
+
+**Pick one.** Then follow the instructions for your chosen approach below.
 
 ---
 
-### Step 5: Write CREATE TABLE Statements
+## 🧱 Schema Choice — You Must Decide Early
 
-Write SQL `CREATE TABLE` statements for your final normalized schema. Below is the **phase-enabled schema** designed to support your entire Level 1 journey from ACQUIRE to ARCHITECT.
+Be careful here:
+
+- 🟢 **Approach 1 (3NF Basic)** = clean, fast, interview‑friendly  
+- 🔵 **Approach 2 (Granular)** = powerful, but time‑consuming
+
+### Designer strongly recommends: **Pick 🟢 Approach 1 (3NF Basic)** for Level 1 completion.
+
+#### Why (strategic reasoning):
+
+- **Faster to implement** – you can finish the ACQUIRE Completion task without getting bogged down.
+- **Easier to debug** – fewer tables mean simpler queries and fewer places for errors to hide.
+- **Enough to demonstrate SQL mastery in interviews** – the “Toolbox Query” and “Integrity Check” work perfectly with Approach 1.
+
+---
+
+### 🔵 Choose Approach 2 (Granular) for Level 2 and Level 3
+
+- **Level 2** → you will keep accumulating more simulations and projects. A granular schema will make it easier to add new types of achievements (e.g., advanced reports, real‑time dashboards).
+- **Level 3** → you will work with a full‑fledged enterprise database (PostgreSQL or MS SQL Server). The granular design mirrors production schemas where each business entity has its own table.
+
+> **In Level 2 you will learn advanced `INSERT` commands** that will help you transfer your data from Approach 1 tables to Approach 2 tables if you decide to upgrade later. You are not locked into your choice forever.
+
+---
+
+### 🎯 Designer’s Intent
+
+- **Approach 1** builds **confidence**.  
+- **Approach 2** builds **systems thinking**.
+
+> *Sequence matters. Master the basics before scaling complexity.*
+
+---
+
+### 📝 Justify Your Schema Choice (Required)
+
+After you implement your chosen schema, write a short justification (3–5 sentences) in your `README.md` or a separate `justification.md` file. Answer:
+
+- Which approach did you choose and why?
+- What trade‑offs did you consider (e.g., query simplicity vs future extensibility)?
+- How does your choice align with your long‑term learning goals (e.g., extending this database through ACCELERATE, ANALYZE, ARCHITECT)?
+
+**Save this justification in your Vault. It will be part of your portfolio.**
+
+---
+
+## 🟢 Approach 1: 3NF Schema (Basic)
 
 ```sql
 -- ========================================
@@ -237,7 +284,7 @@ CREATE TABLE modules_level1 (
     module_id INTEGER PRIMARY KEY,
     module_name TEXT NOT NULL,
     phase_id INTEGER,
-    folder_pattern TEXT, -- e.g., '1-sqlCommands' vs 'Projects/'
+    folder_pattern TEXT,
     FOREIGN KEY (phase_id) REFERENCES phases_level1(phase_id)
 );
 
@@ -271,10 +318,10 @@ CREATE TABLE insights_level1 (
     FOREIGN KEY (module_id) REFERENCES modules_level1(module_id)
 );
 
--- 6. The Performance Record (quizzes + exercises + reports + projects + labs)
+-- 6. The Performance Record (quizzes + exercises + reports + simulations)
 CREATE TABLE achievements_level1 (
     achievement_id INTEGER PRIMARY KEY,
-    achievement_type TEXT, -- 'Quiz', 'Exercise', 'CEO/CFO/CTO Report', 'Project', 'Refactoring Lab'
+    achievement_type TEXT, -- 'Quiz', 'Exercise', 'Report', 'Simulation'
     module_id INTEGER,
     source_filename TEXT,
     score_or_status TEXT,
@@ -283,191 +330,112 @@ CREATE TABLE achievements_level1 (
 );
 ```
 
-**Save as:** `design/schema.sql`
-
----
-
-### Step 6: Seed Data (Phases & ACQUIRE Modules)
-
-After creating the tables, insert the phase and module seed data:
+**Seed Data (Phases & Modules):**
 
 ```sql
--- ========================================
--- SEED DATA: Phases + ACQUIRE Modules
--- ========================================
-
--- Insert the 4 phases of Level 1
 INSERT INTO phases_level1 (phase_id, phase_name, phase_description, start_module) VALUES
-(1, 'ACQUIRE', 'Knowledge acquisition: Modules 1-4 (Joins, SELECT, Normalization)', 1),
-(2, 'ACCELERATE', 'AI partnership: Module 5 (GenAI SQL Co-pilot)', 5),
-(3, 'ANALYZE', 'Project mastery: Module 6 + Bonus Projects (Analysis)', 6),
+(1, 'ACQUIRE', 'Knowledge acquisition: Modules 1-4', 1),
+(2, 'ACCELERATE', 'AI partnership: Module 5', 5),
+(3, 'ANALYZE', 'Project mastery: Module 6 + Bonus Projects', 6),
 (4, 'ARCHITECT', 'Independent mastery: Student-led projects', 7);
 
--- Link ACQUIRE modules (Modules 1-4)
 INSERT INTO modules_level1 (module_id, module_name, phase_id, folder_pattern) VALUES
 (1, 'Module 1: Introduction to Databases & AI Co-pilot', 1, '1-sqlCommands/'),
 (2, 'Module 2: Basic Retrieval – SELECT & WHERE', 1, '1-sqlCommands/'),
 (3, 'Module 3: Aggregate Functions & Sorting', 1, '1-sqlCommands/'),
 (4, 'Module 4: Joining Tables Mastery', 1, '1-sqlCommands/');
-
--- Future: Add Modules 5+ with phase_id 2, 3, 4
--- Example for ACCELERATE (phase_id=2):
--- INSERT INTO modules_level1 (module_id, module_name, phase_id, folder_pattern) VALUES
--- (5, 'Module 5: GenAI SQL Co-pilot', 2, '1-sqlCommands/');
 ```
 
----
-
-### 🧪 Test Queries (Verify Immediately)
-
-Run these in **Tab 2 (The Factory)** after creating the schema and inserting seed data:
+**Example INSERT for achievements (simulations, reports):**
 
 ```sql
--- 1. PHASES EXIST?
-SELECT * FROM phases_level1;
-
--- Expected output: 4 rows (ACQUIRE, ACCELERATE, ANALYZE, ARCHITECT)
-
--- 2. MODULES LINKED TO PHASES?
-SELECT m.module_name, p.phase_name 
-FROM modules_level1 m 
-JOIN phases_level1 p ON m.phase_id = p.phase_id;
-
--- Expected output: Module 1-4 all linked to ACQUIRE
-
--- 3. INTERVIEW TOOLBOX READY (once you add skills)
-SELECT 
-    p.phase_name,
-    m.module_name,
-    COUNT(s.skill_id) AS skills_mastered
-FROM phases_level1 p
-JOIN modules_level1 m ON p.phase_id = m.phase_id
-LEFT JOIN skills_level1 s ON m.module_id = s.module_id
-GROUP BY p.phase_id, m.module_name
-ORDER BY p.phase_id;
+INSERT INTO achievements_level1 (achievement_id, achievement_type, module_id, source_filename, score_or_status, student_viewpoint) VALUES
+(100, 'Simulation', 4, 'cto_simulation_answers.md', 'Completed', 'Ravi’s mall taught me to handle missing phone numbers.'),
+(101, 'Simulation', 4, 'ceo_simulation_answers.md', 'Completed', 'Annie’s event data showed how cross‑domain joins reveal margin leaks.'),
+(102, 'Simulation', 4, 'cfo_simulation_answers.md', 'Completed', 'Simon’s expo forced me to think about profitability and SLA tracking.');
 ```
 
 ---
 
-```mermaid
-flowchart TD
-    A["Flat Spreadsheet<br/>(Step 0)"] --> B["1NF<br/>Atomic values"]
-    B --> C["2NF<br/>Remove partial dependencies"]
-    C --> D["3NF<br/>Remove transitive dependencies"]
-    D --> E["Final Normalized Schema<br/>6 tables with _level1 suffix"]
-    
-    style A fill:#ffebee
-    style B fill:#e1f5fe
-    style C fill:#fff8e1
-    style D fill:#e8f5e8
-    style E fill:#c8e6c9
+## 🔵 Approach 2: Granular Schema (Separate Achievement Tables)
+
+**Core tables** (same as Approach 1 for phases, modules, skills, bonuses, insights):
+
+```sql
+-- Core tables (identical to Approach 1)
+CREATE TABLE phases_level1 (...);
+CREATE TABLE modules_level1 (...);
+CREATE TABLE skills_level1 (...);
+CREATE TABLE bonus_skills_level1 (...);
+CREATE TABLE insights_level1 (...);
+
+-- Granular achievement tables
+CREATE TABLE quiz_scores_level1 (
+    quiz_id INTEGER PRIMARY KEY,
+    module_id INTEGER,
+    score INTEGER,
+    max_score INTEGER,
+    attempt_date DATE,
+    student_viewpoint TEXT,
+    FOREIGN KEY (module_id) REFERENCES modules_level1(module_id)
+);
+
+CREATE TABLE exercise_completion_level1 (
+    exercise_id INTEGER PRIMARY KEY,
+    module_id INTEGER,
+    exercise_name TEXT,
+    completed_date DATE,
+    time_taken_minutes INTEGER,
+    student_viewpoint TEXT,
+    FOREIGN KEY (module_id) REFERENCES modules_level1(module_id)
+);
+
+CREATE TABLE report_deliverables_level1 (
+    report_id INTEGER PRIMARY KEY,
+    module_id INTEGER,
+    report_type TEXT,  -- 'CTO', 'CEO', 'CFO'
+    submission_date DATE,
+    portfolio_link TEXT,
+    student_viewpoint TEXT,
+    FOREIGN KEY (module_id) REFERENCES modules_level1(module_id)
+);
+
+CREATE TABLE simulation_results_level1 (
+    simulation_id INTEGER PRIMARY KEY,
+    module_id INTEGER,
+    simulation_type TEXT,  -- 'CTO', 'CEO', 'CFO'
+    completion_date DATE,
+    self_score INTEGER,
+    student_viewpoint TEXT,
+    FOREIGN KEY (module_id) REFERENCES modules_level1(module_id)
+);
+```
+
+**Example INSERT for simulations (granular):**
+
+```sql
+INSERT INTO simulation_results_level1 (simulation_id, module_id, simulation_type, completion_date, self_score, student_viewpoint) VALUES
+(1, 4, 'CTO', '2025-05-02', 4, 'Ravi’s mall taught me to handle missing phone numbers.'),
+(2, 4, 'CEO', '2025-05-02', 5, 'Annie’s event data showed how cross‑domain joins reveal margin leaks.'),
+(3, 4, 'CFO', '2025-05-02', 4, 'Simon’s expo forced me to think about profitability and SLA tracking.');
 ```
 
 ---
 
-## 💎 Phase 2: COLLECT – Mining the Gemstones
+## 💎 PHASE 2: COLLECT – Mining the Gemstones
 
 Now, populate your tables with **your actual data** – not sample data.
 
-### Where to Find Information (Extraction Templates)
+### Where to Find Information
 
-**Module 4 Skills (copy-paste template):**
+- **Skills & learning objectives:** Module concept files (`1-sqlCommands/`)
+- **Bonus skills:** Refactoring labs, dynamic data checks, bonus skill boxes in concept files
+- **Perigon insights:** Search for `💎 DESIGNER'S PERIGON` across all Level 1 files
+- **Quiz scores:** `moduleX-sql-quiz.md` and solutions files
+- **Exercise completions:** Practice exercises and solutions
+- **Reports & simulations:** Your own completed CTO, CEO, CFO reports and simulations (from `Capstone Reports/` and `simulations/`)
 
-| Skill Name | Filename |
-|------------|----------|
-| Intro to Joins | 1-IntroToJoins.md |
-| INNER JOIN | 2-InnerJoin.md |
-| LEFT JOIN | 3-LeftJoin.md |
-| Joining Multiple Tables | 4-JoiningMultipleTables.md |
-| Self Join | 5-SelfJoin.md |
-| Join Conditions | 6-JoinConditions.md |
-
-**Bonus Skills (look in these files):**
-- `0-refactoring-lab.md` → CREATE TABLE, ALTER TABLE, DROP TABLE
-- `5-SelfJoin.md` (Dynamic Data Check) → INSERT OR IGNORE
-- `SQLVerse-Architects-Blueprint/2-Foreign-Keys-Referential-Integrity.md` → DELETE
-
-**Perigon Insights:** Search for `💎 DESIGNER'S PERIGON` across every Level 1 file you have access to (Technical Guide, Level 1 README, Level 1 Master Guide, Module Guides, concept files, practice exercises, exercise solutions, capstone reports, and SQLVerse Architect's Blueprint).
-
----
-
-### Module-by-Module Reference
-
-| Module | Concept Files Location | Progress Check Locations | Notes |
-|--------|------------------------|--------------------------|-------|
-| **Module 1** | `1-sqlCommands/` (3 files) | Each concept file (Files 1, 2, 3) | Check the **last concept file** (`File 3`) for bonus skills. |
-| **Module 2** | `1-sqlCommands/` (7 files) | Each concept file (Files 1–7) | Check the **last concept file** (`File 7`) for bonus skills. |
-| **Module 3** | `1-sqlCommands/` (5 files) | Each concept file (Files 1–5) | Check the **last concept file** (`File 5`) for bonus skills. |
-| **Module 4** | `1-sqlCommands/` (6 files + Refactoring Lab + SQLVerse Architect's Blueprint folder) | Each concept file (Files 1–6) | Check the **last concept file** (`File 6`), the **Refactoring Lab** (`0-refactoring-lab.md`), and the **SQLVerse Architect's Blueprint** folder for bonus skills and Perigon insights. |
-
----
-
-### Student Viewpoint Examples
-
-Use these as inspiration for your own reflections:
-
-- "Toys NULL insight was huge!"
-- "ON vs WHERE finally clicked"
-- "Self-join aliases = mandatory"
-- "Cartesian scared me straight"
-
----
-
-### Write INSERT Statements
-
-Write `INSERT` statements to populate each table with your collected data.
-
-**ACQUIRE (phase_id=1) – existing data:**
-
-```sql
--- Example: INSERT into phases_level1 (already done in seed data)
--- Example: INSERT into modules_level1 (already done in seed data)
-
--- INSERT into skills_level1
-INSERT INTO skills_level1 (skill_id, module_id, filename, skill_name, objective_text, student_viewpoint) VALUES
-(1, 2, '1-the-sieve-select.md', 'SELECT clause', 'Write a SELECT query', 'I finally understood that SELECT runs after FROM!');
-
--- INSERT into bonus_skills_level1
-INSERT INTO bonus_skills_level1 (bonus_skill_id, module_id, bonus_skill_name, source_filename) VALUES
-(1, 4, 'DELETE', '2-Foreign-Keys-Referential-Integrity.md');
-
--- INSERT into insights_level1
-INSERT INTO insights_level1 (insight_id, insight_text, source_filename, module_id, student_viewpoint) VALUES
-(1, 'A spreadsheet is an aquarium; a database is an ocean.', '1-what-is-a-database.md', 1, 'This metaphor stayed with me throughout Level 1');
-
--- INSERT into achievements_level1
-INSERT INTO achievements_level1 (achievement_id, achievement_type, module_id, source_filename, score_or_status, student_viewpoint) VALUES
-(1, 'Quiz', 2, 'module2-sql-quiz.md', '90', 'This was my first real quiz – exciting!'),
-(2, 'Exercise', 2, '1-basic-select.md', 'Completed', 'My first working query!');
-```
-
-**FUTURE: ACCELERATE (phase_id=2) – Module 5:**
-
-```sql
--- First, add Module 5 to modules_level1
-INSERT INTO modules_level1 (module_id, module_name, phase_id, folder_pattern) VALUES 
-(5, 'Module 5: GenAI SQL Co-pilot', 2, '1-sqlCommands/');
-
--- Then add ACCELERATE skills
-INSERT INTO skills_level1 (skill_id, module_id, filename, skill_name, objective_text, student_viewpoint) VALUES
-(25, 5, '5-genai-prompts.md', 'GenAI SQL Generation', 'Generate SQL using AI prompts', 'The Socratic method changed how I think');
-```
-
-**FUTURE: ANALYZE (phase_id=3) – Module 6:**
-
-```sql
--- Add Module 6 to modules_level1
-INSERT INTO modules_level1 (module_id, module_name, phase_id, folder_pattern) VALUES 
-(6, 'Module 6: HR Analytics Dashboard', 3, 'Projects/');
-
--- Add ANALYZE achievements (reports)
-INSERT INTO achievements_level1 (achievement_id, achievement_type, module_id, source_filename, score_or_status, student_viewpoint) VALUES
-(50, 'CEO Report', 6, 'MODULE6-CEO-REPORT.md', 'Complete', 'Learned to think like a business leader');
-```
-
-**Save as:** `collect/insert-data.sql`
-
----
+> 💡 **Refer to the Module‑by‑Module Reference in the original ACQUIRE Completion document for exact file locations.**
 
 ### Optional: Data Collection Notes
 
@@ -479,69 +447,128 @@ Create a file `collect/data-collection.md` to note where you found each piece of
 **Skills:** Found in `1-sqlCommands/` folder – 1-order-by.md, 2-aggregate-functions.md, etc.
 **Learning Objectives:** Extracted from Progress Check in each file (Files 1–5).
 **Bonus Skills:** Bulk Insert from File 1; UPDATE from File 4; DELETE from SQLVerse Architect's Blueprint File 2.
-**Perigon Insights:** Found two in File 5 – one about the garden, one about counting. Also found one in the Level 1 README.
+**Perigon Insights:** Found two in File 5 – one about the garden, one about counting.
 **Student Viewpoint:** Based on my notes from when I struggled with HAVING.
 **Quiz Score:** 88 (saved in module3-quiz-answers.md)
 **Exercises Completed:** All 5 files in 2-practiceExercises/
 ```
 
+### Write INSERT Statements
+
+Write `INSERT` statements to populate each table with your collected data. Use the example patterns above for your chosen approach.
+
+**Save as:** `collect/insert-data.sql`
+
 ---
 
-## 🖼️ Phase 3: DISPLAY – The Artisan's Showcase
+## 🖼️ PHASE 3: DISPLAY – The Artisan's Showcase
 
 Now, query your own database to produce a "Completion Report."
 
 ### Required Queries (Write at least 5)
 
-1. **Which module did I score the highest on the quiz?**
-```sql
--- Your query here
-```
+1. **Which module did I score the highest on the quiz?**  
+   (Approach 1: `achievements_level1`; Approach 2: `quiz_scores_level1`)
 
 2. **List all skills I learned in Module 3, with cleaned‑up names.**
-```sql
--- Your query here
-```
 
 3. **Show me all bonus skills across all modules.**
-```sql
--- Your query here
-```
 
 4. **Count how many practice exercises I completed.**
-```sql
--- Your query here
-```
 
 5. **Display each Perigon insight from Module 4, along with my viewpoint.**
-```sql
--- Your query here
-```
 
 6. **List all learning objectives for Module 2, along with my personal viewpoint.**
-```sql
--- Your query here
-```
 
 7. **Show all exercises I completed in Module 4 with my reflections.**
-```sql
--- Your query here
-```
 
 8. **Total number of skills per module.**
-```sql
-SELECT m.module_name, COUNT(s.skill_id) AS total_skills
-FROM modules_level1 m
-LEFT JOIN skills_level1 s ON m.module_id = s.module_id
-GROUP BY m.module_id;
-```
 
 9. **Total number of bonus skills per module.**
+
+### Portfolio Showcase Query
+
 ```sql
-SELECT m.module_name, COUNT(b.bonus_skill_id) AS total_bonus_skills
+-- "My Transformation Report" (template – adjust for your schema)
+SELECT 
+    m.module_name,
+    COUNT(s.skill_id) as skills_mastered,
+    (SELECT AVG(score) FROM quiz_scores_level1 WHERE module_id = m.module_id) as avg_quiz_score,
+    COUNT(e.exercise_id) as exercises_completed
 FROM modules_level1 m
-LEFT JOIN bonus_skills_level1 b ON m.module_id = b.module_id
-GROUP BY m.module_id;
+LEFT JOIN skills_level1 s ON m.module_id = s.module_id
+LEFT JOIN exercise_completion_level1 e ON m.module_id = e.module_id
+GROUP BY m.module_id
+ORDER BY skills_mastered DESC;
+```
+
+### The Consistency Check (Proving Your Normalization Worked)
+
+```sql
+-- Find any modules that exist but have zero skills recorded
+SELECT m.module_name
+FROM modules_level1 m
+LEFT JOIN skills_level1 s ON m.module_id = s.module_id
+WHERE s.skill_id IS NULL;
+```
+
+### The "Toolbox" Query (The Interview Closer)
+
+```sql
+-- "The Artisan's Master Toolbox"
+SELECT 
+    p.phase_name,
+    m.module_name,
+    s.skill_name,
+    s.filename AS proof_file
+FROM phases_level1 p
+JOIN modules_level1 m ON p.phase_id = m.phase_id
+JOIN skills_level1 s ON m.module_id = s.module_id
+ORDER BY p.phase_id, m.module_id;
+```
+
+### Your Legacy Query
+
+```sql
+SELECT insight_text 
+FROM insights_level1 
+WHERE student_viewpoint LIKE '%click%'
+ORDER BY RANDOM() 
+LIMIT 1;
+```
+
+**Save as:** `display/queries.sql`
+
+---
+
+### README.md Template
+
+Create a `README.md` file in your `ACQUIRE_COMPLETION/` folder using this template:
+
+```markdown
+# 🏆 My Level 1 SQL Mastery Portfolio
+
+## 📊 Transformation Dashboard
+```
+[PASTE YOUR DASHBOARD QUERY RESULT HERE]
+```
+
+## 🛠️ Full Toolbox (Interview Ready)
+```
+[PASTE TOOLBOX QUERY RESULT HERE]
+```
+
+## 📸 Screenshots
+![Transformation Report](transformation.png)
+![Consistency Check](consistency.png)
+
+## 📝 Reflections
+[Write a short paragraph about your journey through Modules 1–4]
+
+## 🧭 Schema Justification
+[Write your 3–5 sentence justification for the schema approach you chose]
+
+**ACQUIRE → ARCHITECT: Complete Level 1 journey captured.**
 ```
 
 ---
@@ -558,31 +585,13 @@ The queries below are not for learning. They are for **proving**. You have built
 
 </div>
 
----
-
 ### 🎯 Why This Matters
 
 | Query | When to Use | Impact |
 |-------|-------------|--------|
 | **The Integrity Check** | "How did you design this?" | Shows schema mastery |
-| **The Growth Trajectory** | "Tell me about your learning journey" | Shows self-awareness & progress |
+| **The Growth Trajectory** | "Tell me about your learning journey" | Shows self‑awareness & progress |
 | **The Master Toolbox** | "What SQL skills do you have?" | **The knockout punch** |
-
-```mermaid
-flowchart LR
-    subgraph ARSENAL["Your Interview Arsenal"]
-        direction TB
-        Q1["🔵 Query 1<br/>Integrity Check<br/>*Prove the design*"]
-        Q2["🟡 Query 2<br/>Growth Trajectory<br/>*Show the journey*"]
-        Q3["🔴 Query 3<br/>Master Toolbox<br/>*Close the deal*"]
-    end
-    
-    Q1 --> Q2 --> Q3
-    
-    style Q1 fill:#e1f5fe,stroke:#2196f3
-    style Q2 fill:#fff8e1,stroke:#ff9800
-    style Q3 fill:#ffebee,stroke:#f44336,stroke-width:3px
-```
 
 ---
 
@@ -619,7 +628,7 @@ LEFT JOIN modules_level1 m ON s.module_id = m.module_id
 WHERE m.module_id IS NULL;
 ```
 
-**What this proves:** You understand foreign keys, referential integrity, and defensive query design. You didn't just memorize `CREATE TABLE` – you know how to **validate** your schema.
+**What this proves:** You understand foreign keys, referential integrity, and defensive query design.
 
 ---
 
@@ -647,16 +656,7 @@ GROUP BY p.phase_id
 ORDER BY p.phase_id;
 ```
 
-**Expected output (example):**
-
-| phase_name | modules_completed | skills_mastered | bonus_skills_earned | achievements_logged | avg_quiz_score |
-|------------|-------------------|-----------------|---------------------|---------------------|----------------|
-| ACQUIRE | 4 | 24 | 8 | 18 | 87.5 |
-| ACCELERATE | 1 | 5 | 2 | 4 | 92.0 |
-| ANALYZE | 1 | 0 | 0 | 8 | NULL |
-| ARCHITECT | 0 | 0 | 0 | 0 | NULL |
-
-**What this proves:** You didn't just "do the work" – you **tracked your growth**. You can speak to each phase with data, not just feelings. The upward quiz score trend? That's **evidence of mastery**.
+**What this proves:** You didn't just "do the work" – you **tracked your growth**.
 
 ---
 
@@ -721,8 +721,6 @@ Copy this into your phone or print it:
 
 ---
 
-<div style="border-left: 4px solid #f44336; background-color: #ffebee; padding: 15px; margin: 20px 0; border-radius: 0 8px 8px 0;">
-
 ### 💡 The Designer's Secret
 
 **Most candidates** talk about their skills.  
@@ -734,9 +732,8 @@ Copy this into your phone or print it:
 **Most candidates** hope the interviewer believes them.  
 **You** will hand them the keyboard and say, *"Verify anything."*
 
-**Most candidates** show the interviewer a static PDF.    
+**Most candidates** show the interviewer a static PDF.  
 **You** are querying a *"live system"* that proves you can manage the metadata of your career.
-
 
 | Impact Dimension | Rating |
 |------------------|--------|
@@ -745,124 +742,29 @@ Copy this into your phone or print it:
 
 **That is the difference between a coder and an Artisan.**
 
-</div>
-
----
-
-
-### Portfolio Showcase Query
-
-```sql
--- "My Transformation Report"
-SELECT 
-    m.module_name,
-    COUNT(s.skill_id) as skills_mastered,
-    AVG(a.score_or_status) as avg_quiz_score,  -- Note: Cast to numeric if needed
-    COUNT(a.source_filename) as achievements_completed
-FROM modules_level1 m
-LEFT JOIN skills_level1 s ON m.module_id = s.module_id
-LEFT JOIN achievements_level1 a ON m.module_id = a.module_id AND a.achievement_type = 'Exercise'
-GROUP BY m.module_id
-ORDER BY skills_mastered DESC;
-```
-
-### The Consistency Check (Proving Your Normalization Worked)
-
-```sql
--- Find any modules that exist but have zero skills recorded
-SELECT m.module_name
-FROM modules_level1 m
-LEFT JOIN skills_level1 s ON m.module_id = s.module_id
-WHERE s.skill_id IS NULL;
-```
-
-**Why This Proves Normalization Worked:**
-- **Pre‑normalization:** Deleting "INNER JOIN" would have lost the Module 4 quiz score.
-- **Post‑normalization:** The `modules_level1` row survives independently.
-- **Insertion Anomaly SOLVED:** You can add Module 5 anytime without needing a dummy skill.
-
-### The "Toolbox" Query (The Interview Closer)
-
-This is the query you run during an interview. It flattens the entire journey into a **"Master Skill Matrix"** that instantly impresses.
-
-```sql
--- "The Artisan's Master Toolbox"
-SELECT 
-    p.phase_name,
-    m.module_name,
-    s.skill_name,
-    s.filename AS proof_file
-FROM phases_level1 p
-JOIN modules_level1 m ON p.phase_id = m.phase_id
-JOIN skills_level1 s ON m.module_id = s.module_id
-ORDER BY p.phase_id, m.module_id;
-```
-
-### Your Legacy Query
-
-```sql
-SELECT insight_text 
-FROM insights_level1 
-WHERE student_viewpoint LIKE '%click%'
-ORDER BY RANDOM() 
-LIMIT 1;
-```
-
-**Save as:** `display/queries.sql`
-
----
-
-### README.md Template
-
-Create a `README.md` file in your `ACQUIRE_COMPLETION/` folder using this template:
-
-```markdown
-# 🏆 My Level 1 SQL Mastery Portfolio
-
-## 📊 Transformation Dashboard
-```
-[PASTE YOUR DASHBOARD QUERY RESULT HERE]
-```
-
-## 🛠️ Full Toolbox (Interview Ready)
-```
-[PASTE TOOLBOX QUERY RESULT HERE]
-```
-
-## 📸 Screenshots
-![Transformation Report](transformation.png)
-![Consistency Check](consistency.png)
-
-## 📝 Reflections
-[Write a short paragraph about your journey through Modules 1–4]
-
-**ACQUIRE → ARCHITECT: Complete Level 1 journey captured.**
-```
-
----
-
-## ✅ Final Checklist
-
-- [ ] Schema creates without errors (`phases_level1`, `modules_level1`, `skills_level1`, `bonus_skills_level1`, `insights_level1`, `achievements_level1`)
-- [ ] Seed data inserted (4 phases + Modules 1–4)
-- [ ] Test queries run successfully
-- [ ] All INSERTs for your data succeed
-- [ ] 5+ portfolio queries work
-- [ ] **Toolbox Query** runs and shows your mastery matrix
-- [ ] Files organized in 3 folders (design/, collect/, display/)
-- [ ] README.md created with screenshots
-- [ ] GitHub commit message: "ACQUIRE Completion: My Learning Portfolio"
-- [ ] I am proud of what I built
-
 ---
 
 ## 🌟 Why This Structure Works
 
 | Principle | How It Applies |
 |-----------|----------------|
-| **Uniformity** | Even though ANALYZE (Module 6) is project-based and ACQUIRE (Modules 1-4) is concept-based, the database treats them both as "Deliverables." |
+| **Uniformity** | Even though ANALYZE (Module 6) is project‑based and ACQUIRE (Modules 1‑4) is concept‑based, the database treats them both as "Deliverables." |
 | **Scalability** | When you start Level 2, you can simply create `_level2` tables or add a `level_id` column. |
-| **The Interviewer Effect** | An interviewer will be impressed by the SQL query, but they will be **floored** by the fact that you designed the schema to be future-proof. It proves **Architect-level thinking** before you even finish Level 1. |
+| **The Interviewer Effect** | An interviewer will be impressed by the SQL query, but they will be **floored** by the fact that you designed the schema to be future‑proof. It proves **Architect‑level thinking** before you even finish Level 1. |
+
+---
+
+## ✅ Final Checklist
+
+- [ ] I identified all four anomalies in the flat table.
+- [ ] I normalized the data to 3NF on my own.
+- [ ] I **chose a schema approach** (3NF or Granular) and **justified my choice** in the README.
+- [ ] I wrote `CREATE TABLE` statements that run without errors.
+- [ ] I wrote `INSERT` statements that populate all tables correctly.
+- [ ] I wrote verification queries that return expected results.
+- [ ] I saved all files in my Vault.
+- [ ] I practiced the **Interview Script** with my 3 MATRIX RELOADED queries.
+- [ ] I am proud of what I built.
 
 ---
 
@@ -872,9 +774,9 @@ Create a `README.md` file in your `ACQUIRE_COMPLETION/` folder using this templa
 
 ### *The Art of Reflection*
 
-You have done something remarkable. You didn't just learn SQL – you built a database of your own **learning journey**. Every table, every row, every foreign key represents a **gemstone** you mined from the **SQLVerse**. You have built a digital legacy — a **Persistent Professional Ledger**.
+You have done something remarkable. You didn't just learn SQL – you built a database of your own **learning journey**. Every table, every row, every foreign key represents a **gemstone** you mined from the **SQLVerse**. You have built a digital legacy – a **Persistent Professional Ledger**.
 
-In the Artisan's Garden, this is the **final bouquet** of the ACQUIRE phase — a collection of flowers you grew, trimmed, and arranged yourself. The database you have built is a **"Skill-Tree"** database that grows with you through the ACCELERATE, ANALYZE and ARCHITECT phases where you will be cultivating more and more **exotic floral beds** and harvesting precious **gemstones**. 
+In the Artisan's Garden, this is the **final bouquet of the ACQUIRE phase** – a collection of flowers you grew, trimmed, and arranged yourself. The database you have built is a **"Skill‑Tree"** database that grows with you through the ACCELERATE, ANALYZE and ARCHITECT phases where you will be cultivating more and more **exotic floral beds** and harvesting precious **gemstones**.
 
 > *“The best database you will ever design is the one that captures your own growth.”*
 
@@ -894,9 +796,9 @@ In the Artisan's Garden, this is the **final bouquet** of the ACQUIRE phase — 
 **What distinguishes SQLVerse from other courses?**  
 Other courses will give you Interview Tips after Course Completion.  
 
-In **SQLVerse - Uma Maheswari's Unique Universe**, the Artisans are interview-ready and employable when they complete the course. The learning and interview preparation goes **parallely**.
+In **SQLVerse – Uma Maheswari's Unique Universe**, the Artisans are interview‑ready and employable when they complete the course. The learning and interview preparation goes **parallely**.
 
-*Wondering who is Uma Maheswari? The DESIGNER of SQLVerse- Yours truly.*
+*Wondering who is Uma Maheswari? The DESIGNER of SQLVerse – Yours truly.*
 
 </div>
 
@@ -913,6 +815,3 @@ Return to the **Level 1 Master Guide** and proceed to the **ACCELERATE** phase.
 *Part of our mission for 🎯 Quality Education for Anyone, Anywhere, Anytime — 💫 with Comfort, Convenience at no Cost.*
 
 **Level 1 | ACQUIRE Completion | Next: ACCELERATE Phase**
-
-
-

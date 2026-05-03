@@ -5,6 +5,7 @@
 **🎯 Quality Education for Anyone, Anywhere, Anytime — 💫 with Comfort, Convenience at no Cost**
 
 ---
+
 ## 🏆 ACQUIRE COMPLETION: The Gemstone Vault & Schema Blueprint
 
 ## 💌 A Brief from the Designer
@@ -15,26 +16,13 @@ If you are reading this, you have done something extraordinary. You have stayed 
 
 This task is not a test. It is a **celebration**.
 
-You are going to build a database of your own learning journey – a permanent, queryable record of every skill you mastered, every insight you gathered, and every challenge you overcame. When you finish, you will have a portfolio piece that proves, in SQL itself, that you have transformed from a learner into a Data Artisan.
+You are going to build a database of your own learning journey – a permanent, queryable record of every skill you mastered, every insight you gathered, and every challenge you overcame. When you finish, you will have a portfolio piece that proves, in SQL itself, that you have **transformed** from a learner into a **Data Artisan.**
+
+The database you build will capture your entire journey from **Day 1** in the ACQUIRE phase to ACCELERATE, ANALYZE and ARCHITECT phases in **Level 1**.  This is **not a one‑time task** – it’s a **living record** that will grow with you throughout level 1. You are simply **kick‑starting** it now, not finishing it.
 
 Take a deep breath. Open your Vault. Let's begin.
 
 **The SQLVerse is proud of you.**
-
----
-
-## 🚀 Level 1 Full Journey Support
-
-This schema supports **ALL 4 phases** of Level 1:
-
-| Phase | Modules | Focus |
-|-------|---------|-------|
-| 🟢 **ACQUIRE** | Modules 1-4 | Knowledge acquisition (Joins, SELECT, Normalization) |
-| 🟡 **ACCELERATE** | Module 5 | AI partnership (GenAI SQL Co-pilot) |
-| 🟠 **ANALYZE** | Module 6 + Bonus Projects | Project mastery & analysis |
-| 🔴 **ARCHITECT** | Student-led projects | Independent mastery |
-
-**Interview Query:** `SELECT phase_name, skill_name FROM skills_level1 ORDER BY phase_id;`
 
 ---
 
@@ -71,6 +59,68 @@ flowchart LR
 
 ---
 
+## 🌌 SQLVerse Check-In
+
+<div style="border-left: 4px solid #9c27b0; background-color: #f3e5f5; padding: 15px; margin: 20px 0; border-radius: 0 8px 8px 0;">
+
+**You are no longer a student. You are a Data Artisan.** This task is your rite of passage – a chance to design, build, and query a database that tells the story of your own transformation.
+
+**The difference between a coder and an Artisan is discipline.**
+
+</div>
+
+---
+
+## 🔧 Tools You'll Need
+
+| Tab | Purpose |
+|-----|---------|
+| **Tab 1 (The Map)** | Course files – all concept files, reference guides, and module content from Modules 1–4 |
+| **Tab 2 (The Factory)** | SQLite Online – to create tables, insert data, and run queries |
+| **Tab 3 (The Consultant)** | AI Co-pilot – for conceptual guidance (configured with Student Mode Prompt) |
+| **Tab 4 (The Vault)** | Your GitHub repository – to save all files |
+
+> 💡 **Note:** You will need to refer to the course files extensively to extract your learning data. Keep Tab 1 open as you work through this task.
+
+---
+
+## 📍 Your Progress Tracker
+
+- [ ] 🎉 **PART 0 – Celebrate Your Journey** (you are here)
+- [ ] 🧱 **PART 1 – Build Your Core Schema**
+- [ ] 📥 **PART 2 – Collect & Add Your Data (CSV Import)**
+- [ ] 🧠 **PART 3 – Query & Display the Gems**
+- [ ] 🧨 **PART 4 – Your Interview Weapon (MATRIX RELOADED)**
+
+---
+
+## 🚀 Start Here – Your 2‑Minute Launchpad (No Thinking Required)
+
+If you’re feeling tired, overwhelmed, or unsure where to start – follow this exact path. You’ll have **two working tables** in under 5 minutes.
+
+1. **Pick 🟢 Approach 1 (3NF Basic)** – it’s the recommended path for Level 1.
+2. **Copy the `CREATE TABLE` statements** for `phases_level1` and `modules_level1` only (ignore the rest for now).
+3. **Run them in Tab 2 (The Factory)**.
+4. **Copy the `INSERT` statements for the seed data** (phases and modules) and run them in Tab 2.
+5. **Run `SELECT * FROM phases_level1;` and `SELECT * FROM modules_level1;`** – see your first portfolio data appear.
+
+**That’s it. You’ve started.**  
+Now you can come back and add more tables, more rows, and explore the advanced sections at your own pace.
+
+> *“The Artisan doesn’t build everything at once. The Artisan builds one gemstone at a time.”*
+
+---
+
+## 🎉 PART 0 – Celebrate Your Journey (5 mins)
+
+Reflect on how far you’ve come. You’ve mastered `SELECT`, `WHERE`, `JOIN`, aggregation, and even self‑joins. You’ve normalized flat tables and built executive reports. This database you’re about to create will **prove** your transformation.
+
+The rest of this document is your blueprint. **You don’t have to finish it in one sitting.** Work through it one part at a time and remember this will continue throughout Level 1.
+
+---
+
+## 🧱 PART 1 – Build Your Core Schema (30–60 mins)
+
 ## 📂 Where to Save Your Work
 
 Create the following folder in your **Vault (Tab 4)** :
@@ -89,39 +139,19 @@ ACQUIRE_COMPLETION/
 │   └── schema.sql                     # CREATE TABLE statements
 ├── collect/
 │   ├── data-collection.md             # Notes on where you found each piece of data
-│   └── insert-data.sql                # INSERT statements
+│   ├── data/                          # 📁 Store your CSV files here (if using CSV import)
+│   │   ├── phases_level1.csv
+│   │   ├── modules_level1.csv
+│   │   ├── skills_level1.csv
+│   │   └── ... (other tables)
+│   └── insert-data.sql                # ⚠️ Optional – only if you wrote INSERT statements manually
 └── display/
     └── queries.sql                    # SELECT queries (insights)
 ```
 
----
-
-## 🔧 Tools You'll Need
-
-| Tab | Purpose |
-|-----|---------|
-| **Tab 1 (The Map)** | Course files – all concept files, reference guides, and module content from Modules 1–4 |
-| **Tab 2 (The Factory)** | SQLite Online – to create tables, insert data, and run queries |
-| **Tab 3 (The Consultant)** | AI Co-pilot – for conceptual guidance (configured with Student Mode Prompt) |
-| **Tab 4 (The Vault)** | Your GitHub repository – to save all files |
-
-> 💡 **Note:** You will need to refer to the course files extensively to extract your learning data. Keep Tab 1 open as you work through this task.
+> **Note:** Depending on the method you chose (manual INSERT vs CSV import), you will have either `insert-data.sql` or a populated `data/` folder (or both). Both are perfectly acceptable – the goal is to have your data in the database, not the format of the source files.
 
 ---
-
-## 🌌 SQLVerse Check-In
-
-<div style="border-left: 4px solid #9c27b0; background-color: #f3e5f5; padding: 15px; margin: 20px 0; border-radius: 0 8px 8px 0;">
-
-**You are no longer a student. You are a Data Artisan.** This task is your rite of passage – a chance to design, build, and query a database that tells the story of your own transformation.
-
-**The difference between a coder and an Artisan is discipline.**
-
-</div>
-
----
-
-## 📐 PHASE 1: DESIGN – Crafting the Schema
 
 ### Step 0: The Flat Spreadsheet
 
@@ -199,6 +229,23 @@ Identify transitive dependencies. Show the final normalized schema.
 **Your 3NF result:** [Describe or show tables]
 
 ---
+
+## 🚀 Level 1 Full Journey Support
+
+This schema supports **ALL 4 phases** of Level 1:
+
+| Phase | Modules | Focus |
+|-------|---------|-------|
+| 🟢 **ACQUIRE** | Modules 1-4 | Knowledge acquisition (Joins, SELECT, Normalization) |
+| 🟡 **ACCELERATE** | Module 5 | AI partnership (GenAI SQL Co-pilot) |
+| 🟠 **ANALYZE** | Module 6 + Bonus Projects | Project mastery & analysis |
+| 🔴 **ARCHITECT** | Student-led projects | Independent mastery |
+
+**Interview Query:** `SELECT phase_name, skill_name FROM skills_level1 ORDER BY phase_id;`
+
+---
+
+
 
 ## 🧭 Choose Your Schema Path
 
@@ -346,7 +393,7 @@ INSERT INTO modules_level1 (module_id, module_name, phase_id, folder_pattern) VA
 (4, 'Module 4: Joining Tables Mastery', 1, '1-sqlCommands/');
 ```
 
-**Example INSERT for achievements (simulations, reports):**
+**Example Data for achievements (simulations, reports):**
 
 ```sql
 INSERT INTO achievements_level1 (achievement_id, achievement_type, module_id, source_filename, score_or_status, student_viewpoint) VALUES
@@ -411,7 +458,7 @@ CREATE TABLE simulation_results_level1 (
 );
 ```
 
-**Example INSERT for simulations (granular):**
+**Example Data for simulations (granular):**
 
 ```sql
 INSERT INTO simulation_results_level1 (simulation_id, module_id, simulation_type, completion_date, self_score, student_viewpoint) VALUES
@@ -422,50 +469,58 @@ INSERT INTO simulation_results_level1 (simulation_id, module_id, simulation_type
 
 ---
 
-## 💎 PHASE 2: COLLECT – Mining the Gemstones
+## **📥 PART 2 – Collect & Add Your Data (Mining the Gemstones) – 1–2 hours**
 
-Now, populate your tables with **your actual data** – not sample data.
 
-### Where to Find Information
 
-- **Skills & learning objectives:** Module concept files (`1-sqlCommands/`)
-- **Bonus skills:** Refactoring labs, dynamic data checks, bonus skill boxes in concept files
-- **Perigon insights:** Search for `💎 DESIGNER'S PERIGON` across all Level 1 files
-- **Quiz scores:** `moduleX-sql-quiz.md` and solutions files
-- **Exercise completions:** Practice exercises and solutions
-- **Reports & simulations:** Your own completed CTO, CEO, CFO reports and simulations (from `Capstone Reports/` and `simulations/`)
+### 🔧 Essential Project Skill: CSV Import – A Miniature Real‑World Project
 
-> 💡 **Refer to the Module‑by‑Module Reference in the original ACQUIRE Completion document for exact file locations.**
+You will now learn a **professional data‑loading technique** that every data analyst and engineer uses daily: importing data from a spreadsheet (CSV) directly into a database table.
 
-### Optional: Data Collection Notes
-
-Create a file `collect/data-collection.md` to note where you found each piece of information (for future reference).
-
-```markdown
-## Module 3
-
-**Skills:** Found in `1-sqlCommands/` folder – 1-order-by.md, 2-aggregate-functions.md, etc.
-**Learning Objectives:** Extracted from Progress Check in each file (Files 1–5).
-**Bonus Skills:** Bulk Insert from File 1; UPDATE from File 4; DELETE from SQLVerse Architect's Blueprint File 2.
-**Perigon Insights:** Found two in File 5 – one about the garden, one about counting.
-**Student Viewpoint:** Based on my notes from when I struggled with HAVING.
-**Quiz Score:** 88 (saved in module3-quiz-answers.md)
-**Exercises Completed:** All 5 files in 2-practiceExercises/
-```
-
-### Write INSERT Statements
-
-Write `INSERT` statements to populate each table with your collected data. Use the example patterns above for your chosen approach.
-
-**Save as:** `collect/insert-data.sql`
+> This is **not a shortcut** – it’s an essential skill. You will design a Google Form, populate it with your learning journey, export to CSV, and import into SQLite. You will do this **once** for one table; then you will replicate the process for all other tables.
 
 ---
 
-## 🖼️ PHASE 3: DISPLAY – The Artisan's Showcase
+#### 📋 Step‑by‑Step for One Table: `skills_level1`
 
-Now, query your own database to produce a "Completion Report."
+(You will later repeat these steps for   `bonus_skills_level1`, `insights_level1`, `achievements_level1`.)
 
-### Required Queries (Write at least 5)
+1. **Create the table** – you already have the `CREATE TABLE` statement for `skills_level1` from Part 1. Run it in Tab 2.
+2. **Create a Google Form** that collects exactly the columns of `skills_level1`:
+   - `skill_id` (number)
+   - `module_id` (number)
+   - `filename` (text)
+   - `skill_name` (text)
+   - `objective_text` (text)
+   - `student_viewpoint` (text)
+3. **Fill out the form** – one response per skill you mastered in ACQUIRE (start with 5–10 skills from Module 1 or 2).
+4. **Download the responses as a CSV** (Google Sheets → File → Download → .csv). Save as `skills_level1.csv`.
+5. **Import the CSV into SQLite** using the “Import” button in [SQLite Online](https://sqliteonline.com) (or any SQLite editor with CSV import). Map the columns correctly.
+6. **Verify** – run `SELECT * FROM skills_level1;` to see your data.
+
+> 💡 **Pro‑tip:** Save each Google Form as a **template** (Google Forms allows “Make a copy”). This way you don’t have to rebuild the form for every table – just adjust the column names.
+
+---
+
+#### 🔁 Replicate for All Other Tables
+
+Use the same workflow (Form → CSV → Import) for:
+
+- `bonus_skills_level1`
+- `insights_level1`
+- `achievements_level1` (or the granular tables if you chose Approach 2)
+
+> ✅ **Manual SQL option (for those who prefer it):** You can still write `INSERT` statements by hand.  
+> <details>
+> <summary>Click to see manual INSERT example</summary>
+> [Keep the existing INSERT examples here]
+> </details>
+
+---
+
+## 🧠 PART 3 – Query & Display the Gems: The Artisan's Showcase (20–30 mins)
+
+Now that your tables are populated, ask them questions. Write SQL queries to answer:
 
 1. **Which module did I score the highest on the quiz?**  
    (Approach 1: `achievements_level1`; Approach 2: `quiz_scores_level1`)
@@ -486,23 +541,37 @@ Now, query your own database to produce a "Completion Report."
 
 9. **Total number of bonus skills per module.**
 
-### Portfolio Showcase Query
+---
 
-```sql
--- "My Transformation Report" (template – adjust for your schema)
-SELECT 
-    m.module_name,
-    COUNT(s.skill_id) as skills_mastered,
-    (SELECT AVG(score) FROM quiz_scores_level1 WHERE module_id = m.module_id) as avg_quiz_score,
-    COUNT(e.exercise_id) as exercises_completed
-FROM modules_level1 m
-LEFT JOIN skills_level1 s ON m.module_id = s.module_id
-LEFT JOIN exercise_completion_level1 e ON m.module_id = e.module_id
-GROUP BY m.module_id
-ORDER BY skills_mastered DESC;
-```
+## **Portfolio Showcase Query** 
 
-### The Consistency Check (Proving Your Normalization Worked)
+### 📊 My Transformation Report
+
+Run the **Portfolio Showcase Query** you created in **Part 3 – Query & Display the Gems**. Copy the result table from Tab 2 (The Factory) and paste it below.
+
+- **If you chose 🟢 Approach 1 (3NF Basic):** Use the exact `SELECT` query provided in Part 3 (the one that joins `modules_level1`, `skills_level1`, and `achievements_level1`).
+- **If you chose 🔵 Approach 2 (Granular):** Write an equivalent query that shows:
+  - Module name
+  - Number of skills mastered
+  - Average quiz score (if available)
+  - Number of exercises completed
+
+**Example of what the output should look like** (your numbers will differ):
+
+| module_name | skills_mastered | avg_quiz_score | exercises_completed |
+|-------------|----------------|----------------|----------------------|
+| Module 1: Introduction to Databases | 8 | 85 | 3 |
+| Module 2: Basic Retrieval | 12 | 90 | 5 |
+| Module 3: Aggregate Functions | 10 | 88 | 5 |
+| Module 4: Joining Tables | 15 | 92 | 6 |
+
+> 💡 **Tip:** If you haven’t yet entered data for all modules, your table will show only the modules you have populated. That’s perfectly fine – you can update this report as you continue through Level 1 (ACCELERATE, ANALYZE, ARCHITECT).
+
+---
+
+## **The Consistency Check** 
+
+### Proving Your Normalization Worked
 
 ```sql
 -- Find any modules that exist but have zero skills recorded
@@ -511,23 +580,9 @@ FROM modules_level1 m
 LEFT JOIN skills_level1 s ON m.module_id = s.module_id
 WHERE s.skill_id IS NULL;
 ```
+---
 
-### The "Toolbox" Query (The Interview Closer)
-
-```sql
--- "The Artisan's Master Toolbox"
-SELECT 
-    p.phase_name,
-    m.module_name,
-    s.skill_name,
-    s.filename AS proof_file
-FROM phases_level1 p
-JOIN modules_level1 m ON p.phase_id = m.phase_id
-JOIN skills_level1 s ON m.module_id = s.module_id
-ORDER BY p.phase_id, m.module_id;
-```
-
-### Your Legacy Query
+## **Your Legacy Query** 
 
 ```sql
 SELECT insight_text 
@@ -537,41 +592,11 @@ ORDER BY RANDOM()
 LIMIT 1;
 ```
 
-**Save as:** `display/queries.sql`
+Save all queries in `display/queries.sql`.
 
 ---
 
-### README.md Template
-
-Create a `README.md` file in your `ACQUIRE_COMPLETION/` folder using this template:
-
-```markdown
-# 🏆 My Level 1 SQL Mastery Portfolio
-
-## 📊 Transformation Dashboard
-```
-[PASTE YOUR DASHBOARD QUERY RESULT HERE]
-```
-
-## 🛠️ Full Toolbox (Interview Ready)
-```
-[PASTE TOOLBOX QUERY RESULT HERE]
-```
-
-## 📸 Screenshots
-![Transformation Report](transformation.png)
-![Consistency Check](consistency.png)
-
-## 📝 Reflections
-[Write a short paragraph about your journey through Modules 1–4]
-
-## 🧭 Schema Justification
-[Write your 3–5 sentence justification for the schema approach you chose]
-
-**ACQUIRE → ARCHITECT: Complete Level 1 journey captured.**
-```
-
----
+## 🧨 PART 4 – Your Interview Weapon: MATRIX RELOADED (15 mins)
 
 ## 🟢 MATRIX RELOADED: Your Interview Arsenal
 
@@ -582,6 +607,8 @@ Create a `README.md` file in your `ACQUIRE_COMPLETION/` folder using this templa
 The queries below are not for learning. They are for **proving**. You have built a database of your own transformation. Now, you will learn to wield it as a weapon in the interview room.
 
 **Three queries. One mission.** Leave no doubt that you are a Data Artisan.
+
+> *“This is your secret weapon. Do it last, after your data is complete.”*
 
 </div>
 
@@ -756,14 +783,12 @@ Copy this into your phone or print it:
 
 ## ✅ Final Checklist
 
-- [ ] I identified all four anomalies in the flat table.
-- [ ] I normalized the data to 3NF on my own.
-- [ ] I **chose a schema approach** (3NF or Granular) and **justified my choice** in the README.
-- [ ] I wrote `CREATE TABLE` statements that run without errors.
-- [ ] I wrote `INSERT` statements that populate all tables correctly.
-- [ ] I wrote verification queries that return expected results.
+- [ ] I completed Part 0 – celebrated my journey.
+- [ ] I built the core schema (Part 1) – at least `phases_level1` and `modules_level1`.
+- [ ] I imported my data using the CSV workflow (Part 2) for **all tables**.
+- [ ] I wrote and ran at least 5 portfolio queries (Part 3).
+- [ ] I practiced the MATRIX RELOADED queries (Part 4).
 - [ ] I saved all files in my Vault.
-- [ ] I practiced the **Interview Script** with my 3 MATRIX RELOADED queries.
 - [ ] I am proud of what I built.
 
 ---
@@ -776,11 +801,11 @@ Copy this into your phone or print it:
 
 You have done something remarkable. You didn't just learn SQL – you built a database of your own **learning journey**. Every table, every row, every foreign key represents a **gemstone** you mined from the **SQLVerse**. You have built a digital legacy – a **Persistent Professional Ledger**.
 
-In the Artisan's Garden, this is the **final bouquet of the ACQUIRE phase** – a collection of flowers you grew, trimmed, and arranged yourself. The database you have built is a **"Skill‑Tree"** database that grows with you through the ACCELERATE, ANALYZE and ARCHITECT phases where you will be cultivating more and more **exotic floral beds** and harvesting precious **gemstones**.
-
 > *“The best database you will ever design is the one that captures your own growth.”*
 
 ### 🌸 The Final Bouquet
+
+In the Artisan's Garden, this is the **final bouquet of the ACQUIRE phase** – a collection of flowers you grew, trimmed, and arranged yourself. The database you have built is a **"Skill‑Tree"** database that grows with you through the ACCELERATE, ANALYZE and ARCHITECT phases where you will be cultivating more and more **exotic floral beds** and harvesting precious **gemstones**.
 
 **Transforms beginners → Architects with proof.**
 
@@ -792,6 +817,8 @@ In the Artisan's Garden, this is the **final bouquet of the ACQUIRE phase** – 
 | **Month 1** | "Interview: 'Show me your SQL portfolio'" |
 
 **The SQLVerse expands. Your portfolio is proof.**
+
+*The ACQUIRE Completion task has kick‑started your database building process – but you cannot collect and add all your ACQUIRE data in one day. Don’t rush. Take your own time. If you simply read one concept file per day and add just five records, that is perfectly fine. This is a marathon, not a sprint.*
 
 **What distinguishes SQLVerse from other courses?**  
 Other courses will give you Interview Tips after Course Completion.  
@@ -815,3 +842,4 @@ Return to the **Level 1 Master Guide** and proceed to the **ACCELERATE** phase.
 *Part of our mission for 🎯 Quality Education for Anyone, Anywhere, Anytime — 💫 with Comfort, Convenience at no Cost.*
 
 **Level 1 | ACQUIRE Completion | Next: ACCELERATE Phase**
+

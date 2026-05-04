@@ -1,6 +1,5 @@
 
 
-
 # 🗄️🤖 SQL & GenAI Course
 **🎯 Quality Education for Anyone, Anywhere, Anytime — 💫 with Comfort, Convenience at no Cost**
 
@@ -111,9 +110,23 @@ Now you can come back and add more tables, more rows, and explore the advanced s
 
 ---
 
+ ## 🎯 **Your First Milestone – Just 15 Rows**  
+ 
+ Your Skill‑Tree database already has **8 rows** from the seed data (phases and modules).  
+ 
+ To lay a solid foundation, you only need to add **15 more rows**:
+> - **10 rows** to `skills_level1` (one skill per concept you mastered)
+> - **5 rows** to `insights_level1` (your favorite Perigon takeaways)
+> 
+ That’s it. Once you’ve added these, **celebrate** – you’ve started your permanent learning record.  
+ 
+ You can always add more rows later as you continue through ACCELERATE, ANALYZE, and ARCHITECT.
+
+---
+
 ## 🎉 PART 0 – Celebrate Your Journey (5 mins)
 
-Reflect on how far you’ve come. You’ve mastered `SELECT`, `WHERE`, `JOIN`, aggregation, and even self‑joins. You’ve normalized flat tables and built executive reports. This database you’re about to create will **prove** your transformation.
+Reflect on how far you’ve come. You’ve mastered `SELECT`, `WHERE`, `JOIN`, aggregation, and even self‑joins. You’ve normalized flat tables and built executive reports.  You have created 2 tables for your **Skill‑Tree** database and planted the **seed data.** This database you’re about to create will **prove** your transformation.
 
 The rest of this document is your blueprint. **You don’t have to finish it in one sitting.** Work through it one part at a time and remember this will continue throughout Level 1.
 
@@ -803,6 +816,8 @@ You have done something remarkable. You didn't just learn SQL – you built a da
 
 > *“The best database you will ever design is the one that captures your own growth.”*
 
+---
+
 ### 🌸 The Final Bouquet
 
 In the Artisan's Garden, this is the **final bouquet of the ACQUIRE phase** – a collection of flowers you grew, trimmed, and arranged yourself. The database you have built is a **"Skill‑Tree"** database that grows with you through the ACCELERATE, ANALYZE and ARCHITECT phases where you will be cultivating more and more **exotic floral beds** and harvesting precious **gemstones**.
@@ -818,7 +833,24 @@ In the Artisan's Garden, this is the **final bouquet of the ACQUIRE phase** – 
 
 **The SQLVerse expands. Your portfolio is proof.**
 
+---
+
+ ### 📅 **Suggested Pacing Guide – Grow Your Skill‑Tree**  
+ 
+ | Week | Daily Target | Weekly Total | Milestone |
+ |------|--------------|--------------|-----------|
+ | **Week 1** | 10–15 rows/day | 60–90 rows | Foundation laid (phases, modules, basic skills) |
+ | **Week 2** | 10–15 rows/day | 60–90 rows | Core skills + first insights |
+ | **Week 3** | 10–15 rows/day | 60–90 rows | Advanced concepts + bonus skills |
+ | **Week 4** | 10–15 rows/day | 60–90 rows | All ACQUIRE data captured – sapling → mature tree 🌳 |
+
+> **Total after 4 weeks:** 240–360 rows – a fully documented learning journey.
+> 
+> *This is a suggested rhythm, not a deadline. Some weeks you’ll add more, some weeks less. The goal is steady growth, not perfection.*
+
 *The ACQUIRE Completion task has kick‑started your database building process – but you cannot collect and add all your ACQUIRE data in one day. Don’t rush. Take your own time. If you simply read one concept file per day and add just five records, that is perfectly fine. This is a marathon, not a sprint.*
+
+---
 
 **What distinguishes SQLVerse from other courses?**  
 Other courses will give you Interview Tips after Course Completion.  

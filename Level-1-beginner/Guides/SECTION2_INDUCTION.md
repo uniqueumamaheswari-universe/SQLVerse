@@ -53,6 +53,23 @@ While working through ACCELERATE, you can **parallel‑ly keep building the Skil
 
 ---
 
+## 🛩️ Pre‑flight Check: Is Your Skill‑Tree Database Ready?
+
+Before you accelerate, confirm your ACQUIRE Completion database is healthy. Run these quick checks in Tab 2 (The Factory).
+
+| Check | SQL to Run | ✅ Expected |
+|-------|------------|-------------|
+| **Phases exist** | `SELECT COUNT(*) FROM phases_level1;` | 4 rows (ACQUIRE, ACCELERATE, ANALYZE, ARCHITECT) |
+| **Modules exist** | `SELECT COUNT(*) FROM modules_level1;` |  4 rows (Modules 1–4) |
+| **Skills exist** | `SELECT COUNT(*) FROM skills_level1;` | At least **10 rows** (from your ACQUIRE journey) |
+| **Insights exist** | `SELECT COUNT(*) FROM insights_level1;` | At least **5 rows** (Perigon wisdom) |
+
+> ⚠️ **If any check fails**, return to `SECTION1_COMPLETION.md` and complete your database first. ACCELERATE builds directly on this foundation – don’t skip it.
+
+Once all checks pass, proceed to the calibration pillars below.
+
+---
+
 ## 🏢 **Your Induction Journey: The Three Pillars of AI Partnership**
 
 **🚀 Foundation First, AI Next, Projects Last.**  

@@ -706,8 +706,11 @@ From your first `INNER JOIN` to mastering complex join conditions, every concept
 | **✨ Bonus Skill 2** | **🏗️ CREATE TABLE** – defining new tables and schemas (Refactoring Lab) |
 | **✨ Bonus Skill 3** | **🔧 ALTER TABLE** – modifying existing table structures (Refactoring Lab) |
 | **✨ Bonus Skill 4** | **🗑️ DROP TABLE** – removing tables safely (Refactoring Lab) |
-| **✨ Bonus Skill 5** | **🔁 INSERT OR IGNORE** – idempotent data insertion (Dynamic Data Check) |
-| **✨ Bonus Skill 6** | **📎 GROUP_CONCAT** – combining multiple rows into a comma-separated list |
+| **✨ Bonus Skill 5** | **✅ CHECK Constraint** – enforcing business rules at the column level (e.g., `balance > 0`) |
+| **✨ Bonus Skill 6** | **⚙️ DEFAULT Constraint** – providing automatic default values when none are supplied |
+| **✨ Bonus Skill 7** | **🔁 INSERT OR IGNORE** – idempotent data insertion (Dynamic Data Check) |
+| **✨ Bonus Skill 8** | **📎 GROUP_CONCAT** – combining multiple rows into a comma-separated list |
+
 
 ---
 

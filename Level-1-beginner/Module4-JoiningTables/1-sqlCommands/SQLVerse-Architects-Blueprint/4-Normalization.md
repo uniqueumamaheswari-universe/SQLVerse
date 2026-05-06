@@ -4,6 +4,8 @@
 # 🗄️🤖 SQL & GenAI Course
 **🎯 Quality Education for Anyone, Anywhere, Anytime — 💫 with Comfort, Convenience at no Cost**
 
+---
+
 ## 🏛️ SQLVerse Architect’s Blueprint – File 4: Normalization in Practice
 
 Welcome to the final file of the **SQLVerse Architect’s Blueprint**. You’ve learned why flat tables are dangerous (File 1), how to connect tables with foreign keys (File 2), and the three relationship patterns (File 3). Now you’ll put it all together by applying **normalization** – the process of refining your tables to eliminate redundancy while preserving relationships. This is the bridge between theory and practice.
@@ -127,6 +129,63 @@ This is the mnemonic every data architect keeps in their pocket. It summarizes t
 - **Nothing But the Key:** Don't store data that relates to something else.
 
 With these three gates and this mantra, you’re ready to apply normalization to a real‑world domain.
+
+---
+
+## ✨ Bonus Skill 1: CHECK Constraint
+
+The `CHECK` constraint ensures that all values in a column satisfy a specific condition. It enforces business rules at the database level, preventing invalid data from being inserted or updated.
+
+**Syntax:** `CHECK (condition)`
+
+**Example – Positive value for Product price:**
+
+```sql
+CREATE TABLE products (
+ product_id INTEGER PRIMARY KEY,
+ product_name TEXT NOT NULL,
+ price REAL CHECK(price > 0),   -- price must be positive
+ category_id INTEGER
+);
+```
+
+Now any attempt to insert a negative or zero as price will fail.
+
+**Adding a CHECK to an existing table:**
+
+```sql
+ALTER TABLE accounts ADD CONSTRAINT positive_balance CHECK (balance > 0);
+```
+
+> *“A CHECK constraint is your database's way of saying ‘I won't accept that nonsense.’”*
+
+---
+
+## ✨ Bonus Skill 2: DEFAULT Constraint
+
+The `DEFAULT` constraint provides a default value for a column when no value is supplied in an `INSERT` statement. It simplifies data entry and ensures completeness.
+
+**Syntax:** `DEFAULT default_value`
+
+**Example – Order Status Default:**
+
+```sql
+CREATE TABLE orders (
+ order_id INTEGER PRIMARY KEY,
+ order_date DATE DEFAULT CURRENT_DATE,
+ status TEXT DEFAULT 'PENDING'
+);
+```
+
+Now if you insert a new account without specifying `status`, it automatically gets `'PENDING'`.
+
+**Adding a DEFAULT to an existing table:**
+
+```sql
+ALTER TABLE accounts ALTER COLUMN account_type SET DEFAULT 'PURCHASE';
+```
+
+> *“A DEFAULT constraint is the sensible fallback – it fills the gaps when you forget.”*
 
 ---
 
@@ -417,6 +476,109 @@ This design eliminates redundancy and anomalies. It also reflects a real‑world
 
 ---
 
+### 🏗️ Final Banking Schema – CREATE TABLE Statements (with Constraints)
+
+
+### 📋 Core Transaction Types
+
+| Transaction Type | Description |
+|------------------|-------------|
+| **PURCHASE** | Standard transaction where goods or services are bought. |
+| **CASH_ADVANCE** | Withdrawing cash at an ATM or bank branch using the credit card. |
+| **BALANCE_TRANSFER** | Moving debt from another credit card to this account. |
+| **SETTLEMENT** | Finalizing a pre‑authorized transaction. |
+| **REFUND** | Reversal of a sale, returning money to the cardholder's balance. |
+| **CHARGEBACK** | A disputed charge that is reversed. |
+| **VERIFICATION** | A zero‑dollar transaction to verify the card is active. |
+
+---
+
+After normalizing the banking domain to 3NF, here are the final `CREATE TABLE` statements. 
+
+```sql
+-- Customers
+CREATE TABLE customers (
+    customer_id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    address TEXT,
+    phone TEXT
+);
+
+-- Accounts (with CHECK and DEFAULT constraints)
+CREATE TABLE accounts (
+    account_id INTEGER PRIMARY KEY,
+    customer_id INTEGER NOT NULL,
+    account_type TEXT DEFAULT 'PURCHASE'
+        CHECK (account_type IN ('PURCHASE', 'CASH_ADVANCE', 'BALANCE_TRANSFER', 'SETTLEMENT', 'REFUND', 'CHARGEBACK', 'VERIFICATION')),
+    balance REAL NOT NULL CHECK(balance > 0),
+    opening_date DATE NOT NULL,
+    overdraft_limit REAL,
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+);
+
+-- Credit Cards
+CREATE TABLE credit_cards (
+    card_id INTEGER PRIMARY KEY,
+    customer_id INTEGER NOT NULL,
+    card_limit REAL NOT NULL,
+    outstanding REAL DEFAULT 0,
+    credit_rating INTEGER CHECK(credit_rating BETWEEN 300 AND 850),
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+);
+
+-- Loan Types
+CREATE TABLE loan_types (
+    loan_type_id INTEGER PRIMARY KEY,
+    loan_type_name TEXT NOT NULL,
+    interest_rate REAL NOT NULL CHECK(interest_rate > 0)
+);
+
+-- Loans
+CREATE TABLE loans (
+    loan_id INTEGER PRIMARY KEY,
+    loan_type_id INTEGER NOT NULL,
+    amount REAL NOT NULL CHECK(amount > 0),
+    emi_amount REAL NOT NULL,
+    auto_debit_account TEXT,
+    FOREIGN KEY (loan_type_id) REFERENCES loan_types(loan_type_id)
+);
+
+-- Loan Applications (junction for many-to-many)
+CREATE TABLE loan_applications (
+    customer_id INTEGER,
+    loan_id INTEGER,
+    application_date DATE NOT NULL,
+    loan_role TEXT CHECK(loan_role IN ('Primary', 'Co-applicant')),
+    PRIMARY KEY (customer_id, loan_id),
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id),
+    FOREIGN KEY (loan_id) REFERENCES loans(loan_id)
+);
+
+-- Loan Transactions
+CREATE TABLE loan_transactions (
+    transaction_id INTEGER PRIMARY KEY,
+    loan_id INTEGER NOT NULL,
+    transaction_date DATE NOT NULL,
+    amount REAL NOT NULL CHECK(amount > 0),
+    FOREIGN KEY (loan_id) REFERENCES loans(loan_id)
+);
+
+-- Credit Card Transactions
+CREATE TABLE card_transactions (
+    transaction_id INTEGER PRIMARY KEY,
+    card_id INTEGER NOT NULL,
+    transaction_date DATE NOT NULL,
+    amount REAL NOT NULL,
+    transaction_type TEXT DEFAULT 'PURCHASE'
+        CHECK (transaction_type IN ('PURCHASE', 'CASH_ADVANCE', 'BALANCE_TRANSFER', 'SETTLEMENT', 'REFUND', 'CHARGEBACK', 'VERIFICATION')),
+    FOREIGN KEY (card_id) REFERENCES credit_cards(card_id)
+);
+
+
+```
+
+---
+
 ## 🏫 Training Institution – Reverse‑Engineering a Normalized Database
 
 Now let’s look at a database you already know: the **Training Institution**. You’ve been querying it since Module 2. But have you ever wondered *why* it’s designed with separate `students`, `courses`, `enrollments`, and `instructors` tables?
@@ -565,10 +727,10 @@ flowchart LR
 
 | Previous Step | Next Step |
 |:---:|:---:|
-| [← Back to File 3: Relationships](./3-Relationships.md) | [Return to Module 4 Guide →](../MODULE4_GUIDE.md) |
+| [← Back to File 3: Relationships](./3-Relationships.md) | [Return to Module 4 Guide →](../../MODULE4_GUIDE.md) |
 
 ---
 
 *Part of our mission for 🎯 Quality Education for Anyone, Anywhere, Anytime — 💫 with Comfort, Convenience at no Cost.*
 
-**Level 1 | Module 4 | SQLVerse Architect’s Blueprint | Next: [Module 4 Guide](../MODULE4_GUIDE.md)**
+**Level 1 | Module 4 | SQLVerse Architect’s Blueprint | Next: [Module 4 Guide](../../MODULE4_GUIDE.md)**

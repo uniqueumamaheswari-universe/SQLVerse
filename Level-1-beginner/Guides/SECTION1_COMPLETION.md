@@ -1,5 +1,6 @@
 
 
+
 # 🗄️🤖 SQL & GenAI Course
 **🎯 Quality Education for Anyone, Anywhere, Anytime — 💫 with Comfort, Convenience at no Cost**
 
@@ -381,13 +382,16 @@ CREATE TABLE insights_level1 (
 -- 6. The Performance Record (quizzes + exercises + reports + simulations)
 CREATE TABLE achievements_level1 (
     achievement_id INTEGER PRIMARY KEY,
-    achievement_type TEXT, -- 'Quiz', 'Exercise', 'Report', 'Simulation'
+    achievement_type TEXT CHECK(achievement_type IN ('Quiz', 'Exercise', 'Report', 'Simulation')),
     module_id INTEGER,
     source_filename TEXT,
     score_or_status TEXT,
     student_viewpoint TEXT,
     FOREIGN KEY (module_id) REFERENCES modules_level1(module_id)
 );
+
+> 💡 This ensures that only valid achievement types are inserted – especially important when using CSV import.
+
 ```
 
 **Seed Data (Phases & Modules):**
@@ -532,6 +536,44 @@ Use the same workflow (Form → CSV → Import) for:
 ---
 
 ## 🧠 PART 3 – Query & Display the Gems: The Artisan's Showcase (20–30 mins)
+
+## 📝 README.md Template
+
+Copy this template into your `ACQUIRE_COMPLETION/README.md` file.
+
+```markdown
+# 🏆 My Level 1 SQL Mastery Portfolio
+
+## 📊 Transformation Dashboard
+```
+[PASTE YOUR DASHBOARD QUERY RESULT HERE]
+```
+
+## 🔍 Quick Query – See My Data Instantly
+
+Copy this query, open **[SQLite Online](https://sqliteonline.com)**, paste it, and explore my learning journey:
+
+```sql
+-- My top 5 skills and their modules
+SELECT m.module_name, s.skill_name
+FROM modules_level1 m
+JOIN skills_level1 s ON m.module_id = s.module_id
+ORDER BY m.module_id LIMIT 5;
+```
+
+*(Replace the query above with your own – choose something that showcases your best skills.)*
+
+## 📸 Screenshots
+![Transformation Report](transformation.png)
+![Consistency Check](consistency.png)
+
+## 📝 Reflections
+[Write a short paragraph about your journey through Modules 1–4]
+
+**ACQUIRE → ARCHITECT: Complete Level 1 journey captured.**
+
+---
+
 
 Now that your tables are populated, ask them questions. Write SQL queries to answer:
 

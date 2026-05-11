@@ -42,14 +42,28 @@ All six SQLVerse characters – **Arjun, Geetha, Raj, Ravi, Annie, Simon** – r
 
 ---
 
+
+## 🚀 Defining “Acceleration” vs “Speed”
+
+**What “Acceleration” means here:**  
+We don’t accelerate to *finish the course faster*. We accelerate to **handle more complex business logic in less time** – depth per hour, not queries per minute.
+
+> This isn’t a typing race. It’s about **solving harder problems** – not solving easy problems faster.
+
+In ACCELERATE, the same SQL concepts take the same number of keystrokes. What changes is your **clarity, confidence, and ability to reason about real‑world data puzzles**.
+
+---
+
 ## 📌 Note for ACCELERATE Induction
 
 While working through ACCELERATE, you can **parallel‑ly keep building the Skill‑Tree database** you kick‑started in ACQUIRE Completion. This is relatively easy because we will be discussing the **same Modules (2, 3, and 4)** you already completed in ACQUIRE – now through the lens of AI Acceleration.
 
+The ACQUIRE Completion task asked you to log a significant amount of data (skills, objectives, quiz scores, insights, etc.). To save you from manual `INSERT` syntax fatigue, a professional **data loading technique** with Google Forms and CSV import was recommended. That same workflow will serve you well as you continue to grow your Skill‑Tree database during ACCELERATE.
+
 > *“Every time you revisit a concept, add a new row to your `skills_level1` or `insights_level1`. Your database grows as you grow.”*
 
-> 💡 **A Note on Data Entry**  
-> The ACQUIRE Completion task asked you to log a significant amount of data (skills, objectives, quiz scores, insights, etc.). To save you from manual `INSERT` syntax fatigue,  a professional **data loading technique** with Google Forms and CSV import was recommended. That same workflow will serve you well as you continue to grow your Skill‑Tree database during ACCELERATE – just add new rows to `skills_level1` or `insights_level1` whenever you revisit a concept.
+🔮 **Coming in Module 5 (Socratic Mirror):**  
+You will create an `AI_Prompts` table in your Skill‑Tree database to store your best “Socratic Master Prompts” – turning your AI dialogues into a searchable asset.
 
 ---
 

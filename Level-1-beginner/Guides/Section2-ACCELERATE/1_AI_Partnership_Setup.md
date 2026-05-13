@@ -1,5 +1,6 @@
 
 
+
 # 🗄️🤖 SQL & GenAI Course
 **🎯 Quality Education for Anyone, Anywhere, Anytime — 💫 with Comfort, Convenience at no Cost**
 
@@ -114,41 +115,50 @@ flowchart LR
 
 ---
 
-## 🎯 **Phase 1: Configure AI Persona for ACCELERATE**
+## 🎯 Phase 1: Configure AI Persona for ACCELERATE
 
 **Focus:** Establish the “No‑Code” protocol and configure your AI as a Socratic mentor.
 
-### **Step 1: Feed the AI Persona Prompt**
+### Step 1: Complete the Browser Office Context Setup
 
-Copy and paste the following prompt into your AI Consultant (Tab 3). This configures the AI to act as a **Socratic SQL mentor**.
+Before configuring the persona, you must feed the AI the necessary context (character stories and database schemas).
 
-```text
-You are a Socratic SQL mentor. You are an expert data engineer with 20 years of experience.
+👉 Follow the instructions in **[`BROWSER-OFFICE-ACCELERATE.md`](../../Module5-GenAI-Walkthrough/BROWSER-OFFICE-ACCELERATE.md)**.
 
-**Your rules:**
-- NEVER write full SQL code. Only explain logic, suggest approaches, and ask guiding questions.
-- When the student asks for code, politely decline and ask: “What is the logical relationship you are trying to express?”
-- Help the student break down problems into small, logical steps.
-- Validate the student’s manual SQL by asking: “Does this handle NULLs? What about edge cases?”
-- Use examples from the SQLVerse (Arjun, Geetha, Raj, Ravi, Annie, Simon) to ground your explanations.
-- Maintain a tone that is encouraging but intellectually demanding. Use metaphors of ‘mining’ and ‘polishing’ to align with the SQLVerse Artisan theme.
+This file guides you through:
+- Feeding the SQLVerse character stories
+- Loading generic schema anchors (Modules 2 & 3)
+- Understanding the two‑tier context strategy
 
-**Your goal:** Turn the student into an independent data artisan who thinks in systems, not syntax.
-```
+> 💡 Complete this **before** moving to Step 2.
 
-> 💡 **Keep this prompt saved.** You will use it every time you interact with the AI during ACCELERATE.
+---
 
-### **Step 2: Test the Persona**
+### Step 2: Copy the AI Persona Prompt
 
-Ask the AI a question about SQL logic. It should respond with **strategies and questions**, not code.
+Once the context is loaded, configure the AI persona.
 
-**Example test prompt:**  
-*“How would I find customers who bought coffee AND pizza in the same visit?”*
+👉 Follow the instructions in **[`AI_PERSONA_PROMPT.md`](../../Module5-GenAI-Walkthrough/AI_PERSONA_PROMPT.md)**.
 
-**Expected AI response:**  
-*“First, think about what defines a ‘visit’ – a common timestamp window (e.g., 2 hours). You’ll need to join the coffee and pizza sales tables on the same customer identifier (phone or loyalty card), then filter transactions within that window. What columns could you use to identify the same customer across both tables?”*
+That file contains:
+- The complete persona prompt
+- Veracity check (hallucination prevention)
+- Quick test to confirm the persona is working
+- Recovery protocol for when AI writes code
 
-If the AI writes code, remind it: *“Please explain the logic, don’t write SQL.”*
+---
+
+### Step 3: Verify the Persona
+
+After completing the persona setup, ask the AI a Socratic question to confirm it responds with logic, not code.
+
+**Example test prompt (Training Institution):**  
+*“How would I find the names of students who are enrolled in courses taught by instructor_id 501?”*
+
+**Expected response:** Logic and strategy – no SQL code.
+
+If the AI writes code, remind it: *“Explain the logic, don’t write SQL.”*
+
 
 ---
 
@@ -216,18 +226,13 @@ After each interaction with the AI (during the Socratic Mirror exercises), fill 
 | “Generate a schema for…” | “Based on my 3NF design, what entities should I consider?” |
 | “Give me the answer” | “Guide me through the steps to discover the answer.” |
 
+---
+
 ###  🧠 **The Artisan’s Veracity Check**  
 
  If the AI suggests a logic pattern or a specific SQL function you haven’t seen before, ask the AI for the official documentation link or a “Logic Stress Test” question to validate the suggestion for SQLite.
 
-**⚠️ Example – A Common SQLite Hallucination:**
-
-The AI may suggest:  
-`SELECT DATEDIFF('day', start_date, end_date) FROM orders;`
-
-**Problem:** SQLite does not have a `DATEDIFF()` function. It uses `JULIANDAY()`.
-
-**Your Veracity Check:** Ask the AI: *“Is that valid SQLite syntax? Show me how to calculate date differences in SQLite.”*
+We have discussed this in detail in **AI_PERSONA_PROMPT** markdown file you used in **Phase 1.**
 
 > *“The AI is your co‑pilot, not your autopilot.”*
 
@@ -235,16 +240,7 @@ The AI may suggest:
 
 ## 🔄 Recovery Protocol (When AI Accidentally Writes Code)
 
-If the AI generates SQL (even by accident):
-
-1. **Stop** – do not copy the query.
-2. **Redirect** – ask the AI to explain the logic conceptually instead.
-3. **Rewrite** – write the SQL manually from scratch, based on the explanation.
-4. **Log** – in your Socratic Journal, note:
-   - What triggered the code generation?
-   - How did you redirect the AI?
-
-> *Discipline is not about never making mistakes. It’s about recovering with integrity.*
+If the AI generates SQL (even by accident), Redirect the AI to explain the logic and continue. We have discussed the **Workflow for Recovery Protocol** in **AI_PERSONA_PROMPT** markdown file you used in Phase 1.
 
 ---
 

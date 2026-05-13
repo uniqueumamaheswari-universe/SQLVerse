@@ -1,28 +1,59 @@
 
 
+
 # 🗄️🤖 SQL & GenAI Course
 **🎯 Quality Education for Anyone, Anywhere, Anytime — 💫 with Comfort, Convenience at no Cost**
+
+---
 
 ## 🤖 AI Persona Prompt – Socratic SQL Mentor
 
 This prompt configures your AI Consultant (Tab 3) as a **Socratic SQL mentor** for the ACCELERATE phase. It will **never write code** – only explain logic, suggest strategies, and ask guiding questions.
 
 ---
+## 🧭 The 6‑Step Configuration Workflow
 
-## 📖 Before Configuring the AI – Provide Context
+Configuring your AI as a Socratic mentor is a **sequence of deliberate actions**, not a single copy‑paste. Follow these steps in order. Do not skip.
 
-**First, give the AI the background it needs.** Follow the strategy outlined in [`BROWSER-OFFICE-ACCELERATE.md`](./BROWSER-OFFICE-ACCELERATE.md):
+| Step | Action | Why It Matters |
+|------|--------|----------------|
+| **1** | Provide generic schema context | The AI needs to know the actual database structure (Education & E‑Commerce planets). |
+| **2** | Feed character stories | Without the SQLVerse lore, the AI’s examples will be generic or hallucinated. |
+| **3** | Copy the persona prompt | This locks in the “No‑Code” rules and Socratic tone. |
+| **4** | Veracity check | Prevents the AI from suggesting invalid SQLite syntax. |
+| **5** | Quick test | Confirms the AI is responding with logic, not code. |
+| **6** | Recovery protocol | A safety net for when the AI accidentally writes code – turns mistakes into learning. |
 
-1. **For Modules 2 & 3 (once):** Feed the generic schema anchors (`SCHEMA_ANCHOR_TRAINING_INSTITUTION_SAMPLE.md` and `SCHEMA_ANCHOR_LEVEL1_ESTORE_BASIC.md`).
-2. **For Module 4 (per concept):** Feed the file‑specific context boxes provided in each Socratic Mirror file.
+**Prerequisite:** Complete the setup in [`BROWSER-OFFICE-ACCELERATE.md`](./BROWSER-OFFICE-ACCELERATE.md) (character stories + generic schema anchors). That file handles Steps 1 and 2.
 
-> 💡 **Pro‑Tip:** When switching between Module 4 databases, always reset the AI’s memory: *“Discard previous specific table structures for Module 4. Here is the new context for [Concept Name].”*
+> *“The Artisan doesn’t just configure once. The Artisan follows a ritual.”*
 
 ---
 
-## 🎭 The Persona Prompt
+## 📋 Step 1: Provide Context (Generic Schemas)
 
-Copy and paste the following prompt into your AI Consultant (Tab 3) **after** you have fed the necessary context.
+**Feed the AI the core database schemas it needs for Modules 2 & 3.**  
+
+You have followed the generic context feeding strategy in **BROWSER-OFFICE-ACCELERATE** markdown file and completed this step.
+
+---
+
+## 📖 Step 2: Feed the Character Stories (SQLVerse Lore)
+
+**The AI needs to know the SQLVerse characters.**
+
+You have already pasted the **CAPSTONE STORY** and **CAPSTONE STORY EXPANSION** in **BROWSER-OFFICE-ACCELERATE**
+
+
+> 💡 **Why this matters:** Without this context, the AI may ignore the character names or hallucinate fake stories. Feeding the stories first ensures its examples are grounded in the SQLVerse universe.
+
+---
+
+## 🎭 Step 3: Copy the Persona Prompt
+
+Copy and paste the following **Persona Prompt** into your AI Consultant **(Tab 3)** :
+
+### 🎭 The Persona Prompt
 
 ```text
 You are a Socratic SQL mentor. You are an expert data engineer with 20 years of experience.
@@ -38,37 +69,53 @@ You are a Socratic SQL mentor. You are an expert data engineer with 20 years of 
 **Your goal:** Turn the student into an independent data artisan who thinks in systems, not syntax.
 ```
 
-> 💡 **Keep this prompt saved.** You will use it every time you interact with the AI during ACCELERATE and beyond.
+---
+
+## 🧠 Step 4: Veracity Check (Hallucination Prevention)
+
+**Always verify AI suggestions, especially for SQLite.**  
+
+If the AI suggests a function you don’t recognise, ask:  
+*“Is that valid SQLite syntax? Show me the official documentation or an alternative.”*
+
+**Common SQLite hallucination example:**  
+AI may suggest `DATEDIFF()` – but SQLite uses `JULIANDAY()`.
+
+> *“The Artisan never trusts blindly. The Artisan verifies.”*
 
 ---
 
-## 🧪 Quick Test
+## 🧪 Step 5: Quick Test
 
-After configuring the AI, ask a Socratic question:
+Ask the AI a Socratic question. It must **not** write code.
 
-> *“How would I find customers who bought coffee AND pizza in the same visit?”*
+**Example prompt:**  
+*“How would I find the names of students who are enrolled in courses taught by instructor_id 501?”*
 
-**The AI should respond with logic and strategy – not SQL code.** If it writes code, remind it: *“Please explain the logic, don’t write SQL.”*
+**Expected response:** Logic and strategy – no SQL code. For example:  
+*“You would join the students table to enrollments, then to courses, then filter by instructor_id. You need to decide which join type preserves students with no enrollments and which columns to select.”*
+
+If the AI writes code, remind it: *“Explain the logic, don’t write SQL.”*
 
 ---
 
-## 🔄 Recovery Protocol
+## 🔄 Step 6: Recovery Protocol (When AI Writes Code)
 
-If the AI accidentally writes SQL (even by accident):
+If the AI accidentally generates SQL:
 
 1. **Stop** – do not copy the query.
 2. **Redirect** – ask the AI to explain the logic conceptually instead.
 3. **Rewrite** – write the SQL manually from scratch, based on the explanation.
-4. **Log** – in your Socratic Journal, note what triggered the code generation and how you redirected the AI.
+4. **Log** – in your Socratic Journal, note what triggered the code and how you redirected.
 
-> *Discipline is not about never making mistakes. It’s about recovering with integrity.*
+> *“Discipline is not about never making mistakes. It’s about recovering with integrity.”*
 
 ---
+## ✅ Ready
 
-## 📚 Reference
+Once all 6 steps are complete, your AI is configured as a **Socratic SQL mentor.**  
 
-- **Context strategy:** [`BROWSER-OFFICE-ACCELERATE.md`](./BROWSER-OFFICE-ACCELERATE.md)
-- **Socratic Journal template:** See `1_AI_Partnership_Setup.md` in `Guides/Section2-ACCELERATE/`
+Proceed with your learning.
 
 ---
 

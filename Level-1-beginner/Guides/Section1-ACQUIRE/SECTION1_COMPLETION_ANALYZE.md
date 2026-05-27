@@ -18,7 +18,7 @@ In this file you will:
 - **Build** a professional `README.md` portfolio page.
 - **Prepare** the MATRIX RELOADED interview weapon – three queries that turn your GitHub repo into a live, interactive demo.
 
-> 📘 **Prerequisite:** You have completed the BUILD file. Your Skill‑Tree database is populated with data.
+> 📘 **Prerequisite:** You have completed the BUILD file. Your Skill‑Tree database (`Skill-Tree-DB/skill_tree.db`) is populated with data.
 
 ---
 
@@ -26,7 +26,11 @@ In this file you will:
 
 <div style="border-left: 4px solid #9c27b0; background-color: #f3e5f5; padding: 15px; margin: 20px 0; border-radius: 0 8px 8px 0;">
 
-**You are in the ANALYZE & SHOWCASE phase – turning your raw data into insights, a portfolio, and an interview weapon.**
+Now that your Skill-Tree database is built and populated, you will transform **raw data** into a narrative of **technical mastery**. In this phase, you will write **analytic queries** to build a dynamic portfolio dashboard and construct your structural **Interview Arsenal**.
+
+The data is inside the vault. Now, we make it speak.
+
+Data without analysis is dormant footprint. **Data with queries** is an **undisputed portfolio**.
 
 **The difference between a coder and an Artisan is discipline.**
 
@@ -51,21 +55,44 @@ flowchart LR
     style E fill:#fff8e1,stroke:#ff9800,stroke-width:4px
     style F fill:#e8f5e8,stroke:#4caf50
 ```
----
-
-## 🧠 PART 3 – Query & Display the Gems (20–30 mins)
-
-### The Artisan's Showcase
-
-Now that your Skill‑Tree database is populated, you will query it to uncover insights, build your portfolio README, and prepare the **MATRIX RELOADED** interview weapon.
-
-This phase turns your data into a **live transcript for recruiters**.
 
 ---
 
-### 📊 Your Skill‑Tree Database at a Glance
+## 🏗️ PART 1 – Your Skill‑Tree Database in the Vault at a Glance
 
-#### 🔗 Entity Relationship Diagram (ERD)
+### 📁 Your Permanent Skill‑Tree Folder Structure
+
+```mermaid
+flowchart TD
+    A["📁 Skill-Tree-DB/"] --> B["📄 skill_tree.db"]
+    A --> C["📁 Meta/"]
+    A --> D["📁 schema/"]
+    A --> E["📁 analytics-graph/"]
+    A --> F["📄 README.md"]
+
+    C --> C1["📄 erd.md (you will save here)"]
+    C --> C2["📄 dfd.md (you will save here)"]
+
+    D --> D1["📁 ACQUIRE/"]
+    D1 --> D1a["📄 schema.sql"]
+
+    E --> E1["📁 ACQUIRE/"]
+    E1 --> E1a["📄 portfolio_queries.sql"]
+    E1 --> E1b["📄 transformation_report.sql"]
+    E1 --> E1c["📄 matrix_reloaded.sql"]
+
+    style A fill:#c8e6c9
+    style C fill:#e1f5fe
+    style D fill:#fff8e1
+    style E fill:#f3e5f5
+    style F fill:#ffecb3
+```
+
+**Action:** Open `Skill-Tree-DB/skill_tree.db` in **Tab 2 (The Factory)**.
+
+---
+
+### 🗂️ Entity Relationship Diagram (ERD)
 
 ```mermaid
 erDiagram
@@ -81,19 +108,21 @@ erDiagram
     achievements_level1 }o--|| modules_level1 : belongs_to
 ```
 
-#### 🔄 Data Flow Diagram (DFD)
+---
+
+### 🔄 Data Flow Diagram (DFD)
 
 **Context Level (High‑Level)**
 
 ```mermaid
 graph TD
-    A["📚 Learning Journey<br/>(Modules 1-4)"] --> B["📝 Google Forms & CSV"]
+    A["📚 Learning Journey<br/>(Modules 1-4)"] --> B["📝 CSV Import via Staging Table"]
     B --> C["🗄️ Skill‑Tree Database"]
     C --> D["🔍 Portfolio Queries"]
     C --> E["🎯 Interview Toolbox<br/>(MATRIX RELOADED)"]
 ```
 
-**Detailed Flow (How Data Populates Tables)**
+**Detailed Flow – How Data Populates Tables**
 
 ```mermaid
 graph LR
@@ -104,103 +133,55 @@ graph LR
     R["Reports & simulations"] --> A
 ```
 
-#### 📁 Table Schemas (Quick Reference)
+---
 
-**`phases_level1`**
+### 💡 Save These Diagrams to Your Permanent Portfolio
 
-| Column | Type | Description |
-|--------|------|-------------|
-| `phase_id` | INTEGER | Primary key |
-| `phase_name` | TEXT | ACQUIRE, ACCELERATE, ANALYZE, ARCHITECT |
-| `phase_description` | TEXT | Optional description |
-| `start_module` | INTEGER | First module of the phase |
+Now that you have seen the folder structure and the diagrams, save them:
 
-**`modules_level1`**
+- Create the folder `Skill-Tree-DB/Meta/` (if not already present).
+- Save the ERD mermaid code as `Skill-Tree-DB/Meta/erd.md`.
+- Save the DFD mermaid code (context + detailed) as `Skill-Tree-DB/Meta/dfd.md`.
 
-| Column | Type | Description |
-|--------|------|-------------|
-| `module_id` | INTEGER | Primary key |
-| `module_name` | TEXT | e.g., 'Module 4: Joining Tables Mastery' |
-| `phase_id` | INTEGER | Foreign key to `phases_level1` |
-| `folder_pattern` | TEXT | e.g., '1-sqlCommands/' |
+These diagrams will become part of your permanent portfolio documentation.
 
-**`skills_level1`**
-
-| Column | Type | Description |
-|--------|------|-------------|
-| `skill_id` | INTEGER | Primary key |
-| `module_id` | INTEGER | Foreign key to `modules_level1` |
-| `filename` | TEXT | Concept file name |
-| `skill_name` | TEXT | Name of the skill |
-| `objective_text` | TEXT | Learning objective |
-| `student_viewpoint` | TEXT | Personal reflection |
-
-**`bonus_skills_level1`**
-
-| Column | Type | Description |
-|--------|------|-------------|
-| `bonus_skill_id` | INTEGER | Primary key |
-| `module_id` | INTEGER | Foreign key to `modules_level1` |
-| `bonus_skill_name` | TEXT | Name of the bonus skill |
-| `source_filename` | TEXT | File where it appears |
-
-**`insights_level1`**
-
-| Column | Type | Description |
-|--------|------|-------------|
-| `insight_id` | INTEGER | Primary key |
-| `insight_text` | TEXT | Perigon wisdom |
-| `source_filename` | TEXT | File where insight appears |
-| `module_id` | INTEGER | Foreign key to `modules_level1` |
-| `student_viewpoint` | TEXT | Personal reflection |
-
-**`achievements_level1`**
-
-| Column | Type | Description |
-|--------|------|-------------|
-| `achievement_id` | INTEGER | Primary key |
-| `achievement_type` | TEXT | 'Quiz', 'Exercise', 'Report', 'Simulation' |
-| `module_id` | INTEGER | Foreign key to `modules_level1` |
-| `source_filename` | TEXT | File name |
-| `score_or_status` | TEXT | Score or completion status |
-| `student_viewpoint` | TEXT | Personal reflection |
-
-#### 🔑 Relationship Summary
-
-| Relationship | Type | Significance |
-|--------------|------|--------------|
-| `phases_level1` → `modules_level1` | One‑to‑many | One phase contains many modules. |
-| `modules_level1` → `skills_level1` | One‑to‑many | One module contains many skills. |
-| `modules_level1` → `bonus_skills_level1` | One‑to‑many | One module may have many bonus skills. |
-| `modules_level1` → `insights_level1` | One‑to‑many | One module can have many Perigon insights. |
-| `modules_level1` → `achievements_level1` | One‑to‑many | One module records many achievements. |
-
-All relationships use `module_id` as the foreign key. No many‑to‑many relationships exist, which simplifies JOIN queries.
 
 ---
 
-### 🎯 Required Queries
+## 📊 PART 2 – Showcase Queries : Portfolio Intelligence
 
-Write SQL queries to answer these questions. Use the schema reference above.
+Write SQL queries to answer these questions. Use your knowledge of the schema.
 
-1. **Which module did I score the highest on the quiz?**
-2. **List all skills I learned in Module 3, with cleaned‑up names.**
-3. **Show me all bonus skills across all modules.**
-4. **Count how many practice exercises I completed.**
-5. **Display each Perigon insight from Module 4, along with my viewpoint.**
-6. **List all learning objectives for Module 2, along with my personal viewpoint.**
-7. **Show all exercises I completed in Module 4 with my reflections.**
-8. **Total number of skills per module.**
-9. **Total number of bonus skills per module.**
+1. Which module did I score the highest on the quiz?
+2. List all skills I learned in Module 3, with cleaned‑up names.
+3. Show me all bonus skills across all modules.
+4. Count how many practice exercises I completed.
+5. Display each Perigon insight from Module 4, along with my viewpoint.
+6. List all learning objectives for Module 2, along with my personal viewpoint.
+7. Show all exercises I completed in Module 4 with my reflections.
+8. Total number of skills per module.
+9. Total number of bonus skills per module.
 
-Save your queries in `display/queries.sql`.
+**Save all 9 queries** in `Skill-Tree-DB/analytics-graph/ACQUIRE/portfolio_queries.sql`.
 
 ---
 
-### 📊 Portfolio Showcase Query
+## 💎 PART 3 – ACQUIRE Gemstone Queries
+
+These queries turn your raw data into insights. These queries prove to technical recruiters that you don't just write queries—you **analyze structural patterns.**
+
+Save each one as a separate file in the same `analytics-graph/ACQUIRE/` folder.
+
+### 📊 Portfolio Showcase Query – `transformation_report.sql`
+
+This query compiles a high-level executive summary of your progress across all modules. It calculates exact skill counts, maps phase locations, and uses aggregation mechanics to showcase your momentum.
 
 ```sql
--- "My Transformation Report"
+-- =====================================================================
+-- SCRIPT 1: THE TRANSFORMATION REPORT
+-- Focus: Aggregate progress tracking across the curriculum matrix
+-- =====================================================================
+
 SELECT 
     m.module_name,
     COUNT(s.skill_id) as skills_mastered,
@@ -220,24 +201,28 @@ GROUP BY m.module_id
 ORDER BY skills_mastered DESC;
 ```
 
----
-
-### 🔍 The Consistency Check (Proving Your Normalization Worked)
+### 🔍 The Consistency Check – `consistency_check.sql`
 
 ```sql
--- Find any modules that exist but have zero skills recorded
+-- =====================================================================
+-- SCRIPT 2: THE CONSISTENCY CHECK
+-- Focus: Proving that the Normalization worked
+-- =====================================================================
+
 SELECT m.module_name
 FROM modules_level1 m
 LEFT JOIN skills_level1 s ON m.module_id = s.module_id
 WHERE s.skill_id IS NULL;
 ```
 
----
-
-### 🛠️ The Toolbox Query (The Interview Closer)
+### 🛠️ The Toolbox Query (Interview Closer) – `toolbox_query.sql`
 
 ```sql
--- "The Artisan's Master Toolbox"
+-- =====================================================================
+-- SCRIPT 3: THE TOOLBOX QUERY
+-- Focus: Showcasing the Artisan's Master Toolbox
+-- =====================================================================
+
 SELECT 
     p.phase_name AS "🎯 Phase",
     m.module_name AS "📚 Module",
@@ -249,23 +234,29 @@ JOIN skills_level1 s ON m.module_id = s.module_id
 ORDER BY p.phase_id, m.module_id, s.skill_id;
 ```
 
----
-
-### 📝 Your Legacy Query
+### 📝 Your Legacy Query – `legacy_query.sql`
 
 ```sql
+-- =====================================================================
+-- SCRIPT 4: THE LEGACY QUERY
+-- Focus: Curated and accumulated Wisdom
+-- =====================================================================
+
 SELECT insight_text 
 FROM insights_level1 
 WHERE student_viewpoint LIKE '%click%'
 ORDER BY RANDOM() 
 LIMIT 1;
 ```
----
 
-### 🎯 Module Difficulty Ranking Query
+### 🎯 Module Difficulty Ranking – `difficulty_ranking.sql`
 
 ```sql
--- "Module Difficulty Ranking"
+-- =====================================================================
+-- SCRIPT 5: THE DIFFICULTY RANKING QUERY
+-- Focus: Skill Audit
+-- =====================================================================
+
 SELECT 
     m.module_name,
     COUNT(s.skill_id) AS total_skills
@@ -277,17 +268,17 @@ ORDER BY total_skills DESC;
 
 ---
 
-## 📝 README.md Template
+## 📄 PART 4 – README.md Template for Your Portfolio
 
-Create a `README.md` file in your `ACQUIRE_COMPLETION/` folder. Use this template:
+Create `Skill-Tree-DB/README.md` using this template:
 
 ```markdown
 # 🏆 My Level 1 SQL Mastery Portfolio
 
 ## 📊 Transformation Dashboard
 ```
-[PASTE YOUR DASHBOARD QUERY RESULT HERE]
-
+[PASTE YOUR TRANSFORMATION REPORT QUERY RESULT HERE]
+```
 
 ## 🔍 Quick Query – See My Data Instantly
 
@@ -303,19 +294,17 @@ ORDER BY m.module_id LIMIT 5;
 
 *(Replace the query with one that best showcases your skills.)*
 
-## 📸 Screenshots
-![Transformation Report](transformation.png)
-![Consistency Check](consistency.png)
-
 ## 📝 Reflections
 [Write a short paragraph about your journey through Modules 1–4]
 
 **ACQUIRE → ARCHITECT: Complete Level 1 journey captured.**
 
 
+*(Screenshots are optional – you can add them later if you wish.)*
+
 ---
 
-## 🧨 PART 4 – Your Interview Weapon (15 mins)
+## 🧨 PART 5 – Your Interview Weapon (15 mins)
 
 ## 🟢 MATRIX RELOADED: Your Interview Arsenal
 
@@ -327,8 +316,6 @@ The queries below are not for learning. They are for **proving**. You have built
 
 **Three queries. One mission.** Leave no doubt that you are a Data Artisan.
 
-> *“This is your secret weapon. Do it last, after your data is complete.”*
-
 </div>
 
 ### 🎯 Why This Matters
@@ -339,15 +326,20 @@ The queries below are not for learning. They are for **proving**. You have built
 | **The Growth Trajectory** | "Tell me about your learning journey" | Shows self‑awareness & progress |
 | **The Master Toolbox** | "What SQL skills do you have?" | **The knockout punch** |
 
+Save all three in `Skill-Tree-DB/analytics-graph/ACQUIRE/matrix_reloaded.sql`.
+
 ---
 
 ### 🔵 Query 1: The Integrity Check
 
-**Purpose:** Prove your database is normalized, your relationships are intact, and you understand schema design.
-
-**When to use:** When the interviewer asks, *"Walk me through how you built this."*
+A stellar data engineer monitors system health. **This diagnostic script** scans for orphan milestones, mismatched structural entries, and logs potential data-entry gaps before a system audit flags them.
 
 ```sql
+-- =====================================================================
+-- RELATIONAL INTEGRITY CHECK
+-- Focus: Finding unmatched modules, orphan metrics, or data-entry gaps
+-- =====================================================================
+
 -- Part A: Phases exist?
 SELECT '✅ PHASES LOADED' AS status, COUNT(*) AS count FROM phases_level1;
 
@@ -372,18 +364,21 @@ FROM skills_level1 s
 LEFT JOIN modules_level1 m ON s.module_id = m.module_id
 WHERE m.module_id IS NULL;
 ```
+
 **What this proves:** You understand foreign keys, referential integrity, and defensive query design.
 
 ---
 
 ### 🟡 Query 2: The Growth Trajectory
 
-**Purpose:** Show your learning progression – which phases you mastered, how your skills accumulated, and where you improved.
-
-**When to use:** When the interviewer asks, *"Tell me about your learning journey through Level 1."*
+A reflective data artisan tracks their own evolution. This query reveals your skill accumulation, phase completion, and performance trends – proving **continuous growth**, not just checklist completion.
 
 ```sql
--- THE GROWTH TRAJECTORY
+-- =====================================================================
+-- GROWTH TRAJECTORY
+-- Focus: Aggregating and showcasing accumulated skills across the module journey
+-- =====================================================================
+
 SELECT 
     p.phase_name,
     COUNT(DISTINCT m.module_id) AS modules_completed,
@@ -399,19 +394,21 @@ LEFT JOIN achievements_level1 a ON m.module_id = a.module_id
 GROUP BY p.phase_id
 ORDER BY p.phase_id;
 ```
+
 **What this proves:** You didn't just "do the work" – you **tracked your growth**.
 
 ---
 
 ### 🔴 Query 3: The Interview Closer (Master Toolbox)
 
-**Purpose:** Flatten your entire journey into a single, undeniable skill matrix.
-
-**When to use:** When the interviewer asks, *"So... what can you actually do?"*
-
-**How to use:** Run this query. Slide the laptop toward them. Say nothing. Let the results speak.
+This is your knockout punch. A flattened, undeniable inventory of every skill, module, and phase – with file‑level proof. No more ‘what can you do?’ Just results.
 
 ```sql
+-- =====================================================================
+-- INTERVIEW CLOSER
+-- Focus: The Artisan's Pride
+-- =====================================================================
+
 SELECT 
     p.phase_name AS "🎯 Phase",
     m.module_name AS "📚 Module",
@@ -422,23 +419,24 @@ JOIN modules_level1 m ON p.phase_id = m.phase_id
 JOIN skills_level1 s ON m.module_id = s.module_id
 ORDER BY p.phase_id, m.module_id, s.skill_id;
 ```
+
 **What this proves:** Everything. Every skill. Every module. Every phase. Documented. Verifiable. **Yours.**
 
 ---
+
+## 🎤 PART 6 – Interview Preparation: The Elevator Pitch
 
 ### 🎯 The Interview Script
 
 | Step | Action | Words (if any) |
 |------|--------|----------------|
 | **1** | Open your laptop | *"May I share my screen?"* |
-| **2** | Navigate to Tab 2 (The Factory) | *"I built a database to track my own learning journey."* |
-| **3** | Run Query 1 (Integrity Check) | *"The schema is normalized. No orphans. Clean foreign keys."* |
-| **4** | Run Query 2 (Growth Trajectory) | *"Here's my progress across all 4 phases."* |
-| **5** | Run Query 3 (Master Toolbox) | *"And this... is everything I can do. Ask me about any row."* |
+| **2** | Navigate to Tab 2 (The Factory) | *"I built a database to track my own learning journey."* |
+| **3** | Run Query 1 (Integrity Check) | *"The schema is normalized. No orphans. Clean foreign keys."* |
+| **4** | Run Query 2 (Growth Trajectory) | *"Here's my progress across all 4 phases."* |
+| **5** | Run Query 3 (Master Toolbox) | *"And this... is everything I can do. Ask me about any row."* |
 
 **Then stop talking.** Let them scroll. Let them ask. You've already won.
-
----
 
 ### 📋 Interview Day Checklist
 
@@ -448,21 +446,27 @@ Copy this into your phone or print it:
 ## 🎯 INTERVIEW DAY – SQL PORTFOLIO
 
 **Before the interview:**
-- [ ] Database loaded in Tab 2 (The Factory)
-- [ ] All 3 queries saved and tested
+- [ ] Database loaded in Tab 2 (The Factory) – `Skill-Tree-DB/skill_tree.db`
+- [ ] All 3 MATRIX RELOADED queries saved and tested
 - [ ] Screen sharing tested
 
 **During the interview (if asked about SQL):**
-- [ ] Query 1: Integrity Check – "Prove the design"
-- [ ] Query 2: Growth Trajectory – "Show the journey"  
-- [ ] Query 3: Master Toolbox – "Close the deal"
+- [ ] Query 1: Integrity Check – "Prove the design"
+- [ ] Query 2: Growth Trajectory – "Show the journey"  
+- [ ] Query 3: Master Toolbox – "Close the deal"
 
 **The Golden Rule:** Run the query. Show the results. Let them ask the next question.
 ```
 
+### 🎯 The "Elevator Pitch" Architecture
+
+When a hiring manager asks: "Tell me about a time you handled complex relational data structures," you will not speak in abstract concepts. You will walk them through the physical architecture of your own tracking core.
+
+"Instead of tracking my learning progress on a static, unnormalized checklist, I designed a 3rd Normal Form relational schema to track my progression as an engineer. I mapped out the core learning modules, decoupled many-to-many achievements, isolated transitive dependencies like bonus tools, and set up an automated staging-table design pattern using SQLite to parse my structural data securely without anomalies."
+
 ---
 
-### 💡 The Designer's Secret
+### 💡 The Designer’s Secret
 
 **Most candidates** talk about their skills.  
 **You** will *run a query* that proves them.
@@ -485,28 +489,28 @@ Copy this into your phone or print it:
 
 ---
 
-## 🌟 Why This Structure Works
+## 🌟 PART 7 – Why Your Skill‑Tree DB Structure Works
 
 | Principle | How It Applies |
 |-----------|----------------|
-| **Uniformity** | Even though ANALYZE and ARCHITECT are project‑based, the database treats them as "Deliverables". |
-| **Scalability** | When you start Level 2, you can create `_level2` tables or add a `level_id` column. |
-| **The Interviewer Effect** | An interviewer will be impressed by the SQL query, but they will be **floored** that you designed a future‑proof schema. |
+| **Separation of concerns** | `schema/` holds definitions; `analytics-graph/` holds queries; `Meta/` holds diagrams. |
+| **Scalability** | Add `ACCELERATE/`, `ANALYZE/`, `ARCHITECT/` subfolders as you grow. |
+| **Version control** | `Skill-Tree-DB/` is tracked; temporary files go elsewhere. |
+| **Interview‑ready** | Your entire skills inventory is one query away. |
 
 ---
 
 ## ✅ Final Checklist
 
-- [ ] I completed Part 0 – celebrated my journey.
-- [ ] I ran all required queries and saved them in `display/queries.sql`.
-- [ ] I created my `README.md` using the template, including the Quick Query.
-- [ ] I tested the 3 MATRIX RELOADED queries.
-- [ ] I practiced the Interview Script.
-- [ ] I saved all files in my Vault.
+- [ ] I opened `Skill-Tree-DB/skill_tree.db` in Tab 2.
+- [ ] I wrote the 9 required queries and saved them in `analytics-graph/ACQUIRE/portfolio_queries.sql`.
+- [ ] I saved the Gemstone Queries (transformation report, consistency check, toolbox, legacy, difficulty) in the same folder.
+- [ ] I saved the 3 MATRIX RELOADED queries in `matrix_reloaded.sql`.
+- [ ] I created `Skill-Tree-DB/README.md` using the template.
+- [ ] I practiced the Interview Script and Elevator Pitch.
 - [ ] I am proud of what I built.
 
 ---
-
 ## 💎 DESIGNER'S PERIGON
 
 <div style="border: 3px solid #9c27b0; border-radius: 10px; padding: 20px; margin: 25px 0; background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);">
@@ -536,14 +540,14 @@ In the Artisan's Garden, this is the **final bouquet of the ACQUIRE phase** – 
 
 ---
 
- ### 📅 **Suggested Pacing Guide – Grow Your Skill‑Tree**  
- 
- | Week | Daily Target | Weekly Total | Milestone |
- |------|--------------|--------------|-----------|
- | **Week 1** | 10–15 rows/day | 60–90 rows | Foundation laid (phases, modules, basic skills) |
- | **Week 2** | 10–15 rows/day | 60–90 rows | Core skills + first insights |
- | **Week 3** | 10–15 rows/day | 60–90 rows | Advanced concepts + bonus skills |
- | **Week 4** | 10–15 rows/day | 60–90 rows | All ACQUIRE data captured – sapling → mature tree 🌳 |
+### 📅 **Suggested Pacing Guide – Grow Your Skill‑Tree**  
+
+| Week | Daily Target | Weekly Total | Milestone |
+|------|--------------|--------------|-----------|
+| **Week 1** | 10–15 rows/day | 60–90 rows | Foundation laid (phases, modules, basic skills) |
+| **Week 2** | 10–15 rows/day | 60–90 rows | Core skills + first insights |
+| **Week 3** | 10–15 rows/day | 60–90 rows | Advanced concepts + bonus skills |
+| **Week 4** | 10–15 rows/day | 60–90 rows | All ACQUIRE data captured – sapling → mature tree 🌳 |
 
 > **Total after 4 weeks:** 240–360 rows – a fully documented learning journey.
 > 
@@ -560,7 +564,6 @@ In **SQLVerse – Uma Maheswari's Unique Universe**, the Artisans are interview�
 
 *Wondering who is Uma Maheswari? The DESIGNER of SQLVerse – Yours truly.*
 
-
 </div>
 
 ---
@@ -569,17 +572,12 @@ In **SQLVerse – Uma Maheswari's Unique Universe**, the Artisans are interview�
 
 ```mermaid
 flowchart LR
-    A["✅ ACQUIRE Induction<br/>Calibration Complete"] --> B["✅ Modules 1-4<br/>Skills Mastered"]
+    A["✅ ACQUIRE Induction"] --> B["✅ Modules 1-4"]
     B --> C["✅ ACQUIRE COMPLETION<br/>Mission Control"]
-    C --> D["✅ BUILD<br/>(Skill‑Tree Schema & Data)"]
-    D --> E["✅ ANALYZE & SHOWCASE<br/>(Queries & Interview Arsenal)"]
+    C --> D["✅ BUILD"]
+    D --> E["✅ ANALYZE & SHOWCASE"]
     E --> F["📍 Return to<br/>MASTER GUIDE<br/>NEXT"]
     
-    style A fill:#c8e6c9,stroke:#2e7d32
-    style B fill:#c8e6c9,stroke:#2e7d32
-    style C fill:#c8e6c9,stroke:#2e7d32
-    style D fill:#c8e6c9,stroke:#2e7d32
-    style E fill:#c8e6c9,stroke:#2e7d32
     style F fill:#fff8e1,stroke:#ff9800,stroke-width:4px
 ```
 

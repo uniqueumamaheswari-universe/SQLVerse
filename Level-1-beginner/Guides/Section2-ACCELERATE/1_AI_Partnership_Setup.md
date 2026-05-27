@@ -11,32 +11,50 @@
 
 
 ## 📍 **YOUR PILLAR PROGRESSION**
-**Current Status:** Beginning the ACCELERATE Framework • First of Three Pillars
+**Current Status:** Beginning the ACCELERATE Framework • Pillar 1 of 4
 
 ```mermaid
 flowchart LR
     A["<span style='font-size:12px'>🤖 1️⃣ START HERE<br/>AI Partnership Setup<br/>📍 YOU ARE HERE</span>"]
     B["<span style='font-size:12px'>⚡ 2️⃣<br/>Query Optimization</span>"]
     C["<span style='font-size:12px'>🧠 3️⃣<br/>Socratic Method</span>"]
-    D["<span style='font-size:12px'>✅<br/>ACCELERATE Module<br/>Ready</span>"]
+    D["<span style='font-size:12px'>📚 4a<br/>Understand Mirror Bridge</span>"]
+    E["<span style='font-size:12px'>🏗️ 4b<br/>Vault Build</span>"]
+    F["<span style='font-size:12px'>✅<br/>Verify Readiness<br/>Test & Unlock</span>"]
     
-    A --> B --> C --> D
+    A --> B --> C --> D --> E --> F
     
     style A fill:#e1f5fe,stroke:#2196f3,stroke-width:4px
-    style B fill:#fff8e1,stroke:#ff9800,stroke-width:2px
-    style C fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px
-    style D fill:#e8f5e8,stroke:#4caf50,stroke-width:2px
+    style B fill:#fff8e1,stroke:#ff9800
+    style C fill:#f3e5f5,stroke:#9c27b0
+    style D fill:#fff8e1,stroke:#ff9800
+    style E fill:#fff8e1,stroke:#ff9800
+    style F fill:#e8f5e8,stroke:#4caf50,stroke-dasharray:5 5
 ```
+
+
+---
+## 📋 Temporary Scratchpad
+
+### Setup for Pillars 1–3
+
+For this setup phase, you do not need to worry about permanent repositories or folder hierarchies.
+
+**Action:** Open a single, raw text file or document on your computer and title it `Temporary Scratchpad`.
+
+You will use this single scratchpad to dump all raw observations, tests, and task outputs across Pillars 1, 2, and 3. Your permanent storage vault – including a dedicated folder named `INDUCTION_TASKS/` – will be formally commissioned later in **Pillar 4b** to house these logs.
+
+> *“Capture first. Structure later.”*
 
 ---
 
 ## 🎯 **Quick Win Promise**
 
-**In the next 20-30 minutes,** you'll configure your AI as a **Socratic mentor** – a partner that sharpens your thinking, never writes code for you. You will establish the "No‑Code" protocol and create your **Socratic Journal** in your Vault.
+**In the next 20-30 minutes,** you'll configure your AI as a **Socratic mentor** – a partner that sharpens your thinking, never writes code for you. You will establish the "No‑Code" protocol and create your **Socratic Log** space in your **temporary workspace**. (In Pillar 4, you will commit these into your permanent ACCELERATE Vault.)
 
 The **AI** is your **Senior Architect.** It explains logic, suggests strategies, and **validates your reasoning.** You write every line of **SQL yourself.**
 
-**Your Goal:** ACCELERATE‑ready AI partnership with guardrails, a configured persona, and a structured log for every dialogue.
+**Your Goal:** ACCELERATE‑ready AI partnership with guardrails, a configured persona, and a structured logging workflow for every dialogue.
 
  
 ---
@@ -47,7 +65,7 @@ The **AI** is your **Senior Architect.** It explains logic, suggests strategies,
 
 - [x] **ACQUIRE Completion** is finished (your Skill‑Tree database is populated).
 - [x] You have your AI platform ready (ChatGPT, Claude, or Gemini).
-- [x] Your Vault (GitHub) is open in Tab 4.
+- [x] Your Vault (GitHub) repository workspace is open in Tab 4.
 
 > ⚠️ **If you have not completed ACQUIRE Completion, stop here.** Go back to `SECTION1_COMPLETION.md` and finish that first. ACCELERATE builds directly on your Skill‑Tree database.
 
@@ -65,19 +83,25 @@ The **AI** is your **Senior Architect.** It explains logic, suggests strategies,
 | **1: The Map** | ACCELERATE instructions & Socratic Mirror files | Reference only | 🚫 No saving here |
 | **2: The Factory** | **Write SQL manually** after AI logic | No AI‑generated code pasted here | 💾 Copy to Tab 4 |
 | **3: The Consultant** | **Socratic guidance ONLY** | ❌ Never ask for code | 📋 Log all dialogues in Tab 4 |
-| **4: The Vault** | Socratic Journal & ACCELERATE logs | Structured `Socratic_Journals/` folder | ✅ Everything here |
+| **4: The Vault** | Socratic Journal & ACCELERATE logs | Structured `ACCELERATE/` layout | ✅ Everything here |
+
+> *Note for Pillars 1–3:* You are working in a **temporary capture layer**. Save your outputs to your `Temporary Scratchpad` – not to a permanent Vault. The full Vault structure (including `INDUCTION_TASKS/`) will be built in Pillar 4b.
 
 **Pro Tip:** Use `Ctrl+3` / `Cmd+3` to jump to your AI Consultant – but remember: ask for logic, not code.
 
-### **📅 Your 3‑Day ACCELERATE Calibration Ritual**
+### **📅 Your 4‑Day ACCELERATE Calibration Ritual**
 
-**Total Time:** 2–3 hours over 3 days → **Result:** A calibrated AI partnership for Module 5.
+**Total Time:** 2–3 hours over 4 days → **Result:** A calibrated AI partnership for Module 5.
 
 | Pillar | Duration | Core Focus | **Calibration Outcome** |
 | :--- | :--- | :--- | :--- |
-| **🤖 1. AI Partnership Setup** | Day 1 | Guardrails, Persona & Socratic Journal | **AI as Mentor:** A configured co‑pilot that never writes code. |
+| **🤖 1. AI Partnership Setup** | Day 1 | Guardrails, Persona & Socratic Journal boundaries| **AI as Mentor:** A configured co‑pilot that never writes code. |
 | **⚡ 2. Query Optimization** | Day 2 | Efficiency Patterns & Anti‑Patterns | **Speed Mindset:** Prompt for performance, spot AI hallucinations. |
 | **🧠 3. Socratic Method** | Day 3 | Prompting Ladder, Validation, Context Feeding | **Critical Thinking:** Extract reliable logic from any AI. |
+| **📚 4a. Mirror Bridge** | Day 4  | Structural isomorphism (ACQUIRE ↔ ACCELERATE) | Pattern Recognition |
+| **🏗️ 4b. Vault Build** | Day 4  | Folder setup, workspace creation, verification test | ACCELERATE Ready |
+
+
 
 ### **🧠 ACCELERATE Cognitive Workflow**
 
@@ -162,55 +186,37 @@ If the AI writes code, remind it: *“Explain the logic, don’t write SQL.”*
 
 ---
 
-## 📓 **Phase 2: Create Your Socratic Journal**
+## 📓 **Phase 2: Master the Logging Systems**
 
-**Focus:** Build a permanent log of every AI dialogue – proof of your thinking, not just your typing.
+**Focus:** Understand where regular lessons and specialized AI errors live to build a pristine portfolio.
 
-### **Step 1: Create the Folder Structure**
+### **Step 1: Map Out the Architecture Paths ...**
+### **Step 2: Apply the Quick Summary Format for Regular Entry Logs** ...
+### **Step 3: Keep the Error Hub Clean** ...
 
-In your Vault (Tab 4), create the following folder:
+**Step 1, Step 2, and Step 3** (mapping architecture paths, applying Quick Summary Format, and maintaining the Error Hub) are detailed in the **ACCELERATE Completion document** – they will guide your permanent workflow once Pillar 4b is complete.
 
-```
-Vault/
-└── Socratic_Journals/
-    ├── README.md
-    └── (your journal files will go here)
-```
+**For now, during Pillars 1–3, use a simpler approach:**
 
-### **Step 2: Copy the Journal Template**
+- Open your `Temporary Scratchpad` (created at the start of this pillar).
+- Every time you interact with the AI, add:
+  - Your prompt
+  - The AI’s logic (no code)
+  - Any manual SQL you wrote
+  - A short reflection
 
-Save this template as `Socratic_Journals/README.md` or as a separate file for each session:
+**Optional template (makes future migration easier):**
 
 ```markdown
 # [Date] – [Concept]
 
-## Business problem
-(Describe the real‑world question you were answering)
-
-## My prompt to AI
-(Exact words you used)
-
-## AI’s guidance (logic only, no code)
-(What the AI said – strategies, relationships, edge cases)
-
-## My final SQL (written manually)
-`(Your SQL code)`
-
-## The Delta
-**Before:** (what I thought the solution might be)  
-**After:** (what I realised after the AI’s guidance)
-
-## Reflection
-(What clicked? What was hard?)
+**My prompt to AI:** ...
+**AI’s guidance:** ...
+**My manual SQL:** ...
+**What I realised:** ...
 ```
 
-> 💡 **Future‑Proofing:** Keep your Socratic Journals tidy! In **Module 5 (Calibration)** , you will migrate these logs into your actual Skill‑Tree database to build a searchable history of your AI‑assisted logic.
-
-### **Step 3: Log Your First Dialogue**
-
-After each interaction with the AI (during the Socratic Mirror exercises), fill out a journal entry. This becomes **evidence** that you lead the AI, not the other way around.
-
-> 💡 **Why log?** Your journal is a portfolio of your thinking process. In an interview, you can say: *“Here’s how I reasoned through every JOIN decision.”*
+> *“The full logging architecture waits in Pillar 4b. For now, just capture.”*
 
 ---
 
@@ -313,7 +319,8 @@ Write the AI’s response here (should be strategy only):
 
 **Part 2: Journal Entry (5 minutes)**
 ```markdown
-Create a journal entry for the dialogue above using the template.
+Add a journal entry for the dialogue above to your `Temporary Scratchpad` using the template shown in Phase 2.
+
 ```
 
 **Part 3: Guardrail Recall (2 minutes)**
@@ -329,6 +336,8 @@ List 3 things you must NEVER ask the AI:
 - **Needs Practice:** Repeat the test until the AI never writes code.
 
 **Your Score:** ___ / 3
+
+*Store your answers in your `Temporary Scratchpad`. You will migrate these to `INDUCTION_TASKS/` in Pillar 4b.*
 
 </div>
 
@@ -358,19 +367,23 @@ All of this stays true to the **“No‑Code” protocol** – the AI guides, yo
 
 ## 🚀 **Your Calibration Navigation Journey**
 
-**Complete ALL 3 pillars in sequence before Module 5:**
+**Complete ALL 4 pillars in sequence to unlock Module 5:**
 
 ```mermaid
 flowchart LR
-    A["<span style='font-size:12px'>🤖 1️⃣<br/>AI Partnership Setup<br/>📍 You are here</span>"] --> 
-    B["<span style='font-size:12px'>⚡ 2️⃣<br/>Query Optimization</span>"] --> 
-    C["<span style='font-size:12px'>🧠 3️⃣<br/>Socratic Method</span>"] -->
-    D["<span style='font-size:12px'>✅<br/>Verify Readiness<br/>Test & Unlock</span>"]
+    A["<span style='font-size:12px'>✅ 1️⃣<br/>AI Partnership Setup<br/>Completed</span>"]
+    B["<span style='font-size:12px'>⚡ 2️⃣<br/>Query Optimization</span>"]
+    C["<span style='font-size:12px'>🧠 3️⃣<br/>Socratic Method</span>"]
+    D["<span style='font-size:12px'>📚 4️⃣<br/>Understand Mirror Bridge + Vault Build<br/>(4a+4b)</span>"]
+    E["<span style='font-size:12px'>✅<br/>Verify Readiness<br/>Test & Unlock</span>"]
     
-    style A fill:#e1f5fe,stroke:#2196f3,stroke-width:4px,color:#000
-    style B fill:#fff8e1,stroke:#ff9800,stroke-width:3px
-    style C fill:#f3e5f5,stroke:#9c27b0,stroke-width:3px
-    style D fill:#fff,stroke:#4caf50,stroke-width:3px,stroke-dasharray: 5 5
+    A --> B --> C --> D --> E
+    
+    style A fill:#c8e6c9,stroke:#2e7d32,stroke-width:4px
+    style B fill:#fff8e1,stroke:#ff9800
+    style C fill:#fff8e1,stroke:#ff9800
+    style D fill:#fff8e1,stroke:#ff9800
+    style E fill:#fff8e1,stroke:#ff9800,stroke-dasharray:5 5
 ```
 
 ### **🔄 Navigation Controls:**
@@ -385,6 +398,10 @@ flowchart LR
 
 **After you pass the Tool Mastery Challenge, continue to Query Optimization**:
 
+Your **persona** is set. Your logging system boundaries are drawn. Now, let's learn how to make your **queries**—and your prompts—**lightning fast.**
+
+
+
 # [▶️ **NEXT: QUERY OPTIMIZATION**](./2_Query_Optimization.md)
 
 **Learn efficiency patterns, anti‑patterns, and how to prompt for performance**
@@ -393,18 +410,7 @@ flowchart LR
 
 </div>
 
-**🚫 Module 5 remains locked until ALL 3 calibration steps are complete.**
-
----
-
-<div align="center" style="margin-top: 40px; padding: 15px; background: #f5f5f5; border-radius: 6px; font-size: 0.9em;">
-
-**Calibration Time:** 20-30 minutes  
-**Calibration Focus:** AI Partnership, Socratic Journal, “No‑Code” Protocol  
-**Next Step:** Query Optimization  
-**Core Principle:** You write the SQL. AI explains the logic.
-
-</div>
+**🚫 Module 5 remains locked until ALL 4 calibration steps are complete.**
 
 ---
 

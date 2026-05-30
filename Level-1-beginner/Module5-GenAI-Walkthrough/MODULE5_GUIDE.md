@@ -1,354 +1,332 @@
 
 
-Here is the complete set of ACCELERATE documentation for Module 5, following the same structure as the ACQUIRE Module 1 Guide but adapted for the twisted, spiral path.
-
----
-
 # 🗄️🤖 SQL & GenAI Course
 **🎯 Quality Education for Anyone, Anywhere, Anytime — 💫 with Comfort, Convenience at no Cost**
 
-## 🗺️ Module 5 Guide: Your AI Acceleration Journey
+---
 
-This guide follows the **🔍 Socratic Mirror → 🧪 LAB → 🔑 KEY → 💎 Gemstone Array** rhythm. Unlike the linear path of ACQUIRE, you will spiral through concepts from Modules 2, 3, and 4, revisiting each with AI acceleration.
+## 🛠️ MODULE5 GUIDE: The Tactical Playbook for ACCELERATE
+
+> **Prerequisites:** You have completed the ACCELERATE induction (Fire Drill) and read the **README** (emotional gateway) and **VISION** (philosophy). Now you execute.
 
 ---
 
-<div align="center" style="border: 2px solid #9c27b0; border-radius: 8px; padding: 15px; margin: 20px 0; background: #f3e5f5;">
+# ACCELERATE ATLAS
 
-### 📍 Your Position in the 4 A's Journey
+## ACCELERATE Piloting with AI Co‑pilot
 
-| Phase | Current Module | AI Role |
-|-------|----------------|---------|
-| **🔴 ACCELERATE** (Week 5) | **Module 5: GenAI SQL Co‑pilot Walkthrough** | **Socratic AI Mentor – No Code Generation** |
-
-**You are here:** Sharpening your SQL skills with AI as a thinking partner, not a ghostwriter.
-
-</div>
-
----
-
-## 🏢 **The Browser Office: Your Universal Launchpad**
-
-**🚀 Kickstart: Any Computer, Any Browser, Anytime.**  
-**🌍 Destination: Any country, Any city, Any Platform.**
-
-### **📋 The Standard Four-Tab Setup (Levels 1 & 2)**
-| Tab | Purpose | Tools & Examples | Description |
-| :--- | :--- | :--- | :--- |
-| **1: The Map** | Learning content & navigation | Course Repository (GitHub) | Your central hub for all course materials, module guides, and resources. |
-| **2: The Factory** | Hands-on practice | SQLite Online | An online SQL environment where you'll run queries and experiment with databases. |
-| **3: The Consultant** | AI assistance & explanations | ChatGPT, Claude, Gemini | Your AI learning partner, configured to provide conceptual guidance without writing code for you. |
-| **4: The Vault** | Progress tracking & portfolio | GitHub Web, notes | Your personal GitHub repository where you'll store all your work, reflections, and completed exercises. |
-
-> **Keyboard Shortcuts:** `Ctrl+1` / `Cmd+1` for Tab 1, `Ctrl+2` / `Cmd+2` for Tab 2, `Ctrl+3` / `Cmd+3` for Tab 3, `Ctrl+4` / `Cmd+4` for Tab 4.
-
----
-
-### 🔧 **Need Help?**
-
-| 🔧 Troubleshooting | 🔄 Workflow | ⌨️ Tab Operations |
-| :---: | :---: | :---: |
-| [Troubleshooting Common Issues](../../../Setup/STEP1_COMMISSION_BROWSER_OFFICE.md) | [Browser Office Workflow](../../../Setup/STEP2_ESTABLISH_LEARNING_RITUAL.md) | [Tab Operations & Shortcuts](../../../Setup/STEP3_MASTER_TAB_OPERATIONS.md) |
-
----
-
-## 🏢 **Your Browser Office for Module 5 (AI Acceleration Mode)**
-
-For this module, here's exactly how to use each tab:
-
-| Tab | Purpose | Tools & Examples for This Module | Description |
-| :--- | :--- | :--- | :--- |
-| **1: The Map** | Follow the twisted path | • `01-The-Socratic-Mirror/ACQUIRE-MODULE2/` → `1-the-sieve-select.md`<br>• Then `02-Exercises/MODULE2/1-basic-select-LAB.md`<br>• Then `03-Solutions/MODULE2/1-basic-select-KEY.md`<br>• Then repeat for MODULE3, MODULE4<br>• Finally `04-Interactive-Simulations/` | The twisted path: you'll bounce between modules, not go linearly. |
-| **2: The Factory** | Write SQL manually | • Load `training_institution_sample.db` or `level1_estore_basic.db` as needed<br>• Write your own queries based on AI's logic | **You write every line of SQL.** The AI only explains logic. |
-| **3: The Consultant** | Socratic guidance only | • "What is the logical relationship between students and enrollments?"<br>• "How would you find customers with no orders?"<br>❌ **NO SQL CODE – logic only** | Your AI is configured as a Socratic mentor. Never ask for code. |
-| **4: The Vault** | Store mirrored logs & Skill‑Tree gems | • Save Socratic logs in `Learning/Level-1-beginner/ACCELERATE/01-The-Socratic-Mirror/ACQUIRE-MODULE2/1-the-sieve-select.md`<br>• Save LAB solutions in `.../02-Exercises/MODULE2/...`<br>• Use `EXTRACTION_BAY/SkillTree/GemstoneArray.md` to collect gems for your Skill‑Tree database | Your Vault mirrors the course structure exactly – 1:1 mapping. |
-
----
-
-<div style="border: 2px solid #ff9800; border-radius: 10px; padding: 15px; margin: 20px 0; background: #fff8e1;">
-
-### 🔶 **Why the Twisted Path? (The Spiral Curriculum)**
-
-In ACQUIRE, you learned SQL concepts linearly. In ACCELERATE, you will revisit them in a **spiral** – jumping between Modules 2, 3, and 4. This is not random. It's a deliberate pedagogical technique that:
-
-- **Strengthens long‑term memory** by spacing out retrieval practice
-- **Builds connections** between related concepts (e.g., WHERE vs HAVING, JOIN vs subquery)
-- **Simulates real‑world problem solving** where you rarely work on one isolated topic
-- **Accelerates Skill‑Tree building** by extracting gemstones from both ACQUIRE and ACCELERATE files in parallel
-
-> *“The twisted path is not chaos. It is the shortest route to professional intuition.”*
-
-</div>
-
----
-
-## 🌀 The Twisted Path Workflow (Spiral Rhythm)
-
-Instead of a linear **PREPARE → PRACTICE → EVALUATE**, you will follow a **spiral loop** for each concept group.
+Your journey through ACCELERATE follows a deliberate sequence of three **Acceleration Cycles**, each revisiting the concepts from one ACQUIRE module through the four engines. After completing all three cycles, you enter the final proving ground: the **SQLVerse Reality Chambers**.
 
 ```mermaid
 flowchart LR
-    subgraph Loop ["Per Module (MODULE2 → MODULE3 → MODULE4)"]
-        direction LR
-        A["🔍 Socratic Mirror<br/>Read concept file<br/>Ask AI for logic<br/>Write SQL manually"] 
-        B["🧪 LAB<br/>Debug AI‑generated query<br/>Diagnose error<br/>Write corrected SQL"]
-        C["🔑 KEY<br/>Compare with<br/>Golden Prompt<br/>Validate reasoning"]
-        D["💎 Gemstone Array<br/>Extract skill/insight<br/>Add to Extraction Bay"]
-    end
+    C1["ACCELERATE Cycle 1<br/>(Module 2 Concepts)"] --> C2["ACCELERATE Cycle 2<br/>(Module 3 Concepts)"] --> C3["ACCELERATE Cycle 3<br/>(Module 4 Concepts)"] --> RC["🎭 SQLVerse Reality Chambers"]
     
-    A --> B --> C --> D --> A
-    
-    style A fill:#e1f5fe,stroke:#2196f3
-    style B fill:#fff8e1,stroke:#ff9800
-    style C fill:#f3e5f5,stroke:#9c27b0
-    style D fill:#e8f5e8,stroke:#4caf50
+    style C1 fill:#fff8e1,stroke:#ff9800
+    style C2 fill:#fff8e1,stroke:#ff9800
+    style C3 fill:#fff8e1,stroke:#ff9800
+    style RC fill:#f44336,stroke:#b71c1c,color:white
 ```
 
-### Detailed Loop Steps
+Instead of “repeating” old modules, you will enter **Acceleration Cycles**:
 
-| Step | Folder | What You Do | Outcome |
-|------|--------|-------------|---------|
-| **🔍 Socratic Mirror** | `01-The-Socratic-Mirror/ACQUIRE-MODULE2/` | Read a concept file (e.g., `1-the-sieve-select.md`). Ask the AI a Socratic question about the logic. Write the SQL manually in Tab 2. | You understand the *why* before the *how*. |
-| **🧪 LAB** | `02-Exercises/MODULE2/` | Open the corresponding LAB file (e.g., `1-basic-select-LAB.md`). It contains a broken AI‑generated query. Diagnose the error using Socratic questioning. Write the corrected SQL manually. | You can spot and fix AI hallucinations. |
-| **🔑 KEY** | `03-Solutions/MODULE2/` | Open the KEY file (e.g., `1-basic-select-KEY.md`). It provides a **golden prompt** and validation checklist – **not full SQL code**. Compare your reasoning. | You learn to verify AI logic, not trust it blindly. |
-| **💎 Gemstone Array** | `EXTRACTION_BAY/SkillTree/GemstoneArray.md` | Extract the skill name, objective, and your viewpoint from the concept file. Also extract any insights from the LAB/KEY. Append to the Gemstone Array. | Your Skill‑Tree database accumulates gemstones from both ACQUIRE and ACCELERATE. |
+| Cycle | Covers ACQUIRE Module | Number of Concepts |
+|-------|----------------------|--------------------|
+| **ACCELERATE Cycle 1** | Module 2 (SELECT, WHERE, NULL, DISTINCT, etc.) | 7 files |
+| **ACCELERATE Cycle 2** | Module 3 (ORDER BY, GROUP BY, HAVING, aggregate functions) | 5 files |
+| **ACCELERATE Cycle 3** | Module 4 (JOINs, normalisation, self‑join) | 7 files |
 
-**Repeat this loop for every concept file in MODULE2, then MODULE3, then MODULE4.** After you finish all three modules, you will have a complete set of gemstones ready to import into your Skill‑Tree database.
+**Order:** ACCELERATE Cycle 1 → ACCELERATE Cycle 2 → ACCELERATE Cycle 3. Do not mix cycles. After all three cycles, you will tackle the **SQLVerse Reality Chambers** (the crown jewel).
+
+To pilot this landscape, this guide is organised into 6 phases.
 
 ---
 
-## 🎭 The Crown Jewel: Interactive Simulations
+## Phase 1: Technical Framework Setup
 
-After mastering the spiral loop, you will tackle the **04-Interactive-Simulations/** folder. These 8 cross‑character scenarios are the **grand finale** of ACCELERATE.
+### The Four Engines – Operational View
+
+| Engine | What You Do | Where Files Live |
+|--------|-------------|------------------|
+| **🔍 Socratic Mirror** | Read a concept file, map abstract database logic via Socratic dialogue with AI,(No code generation) and save session logs in your Vault mirror. | `01-The-Socratic-Mirror/ACQUIRE-MODULE2/` (and 3,4) |
+| **🧪 Exercise Bay** | Open a LAB file (broken AI query), diagnose error via Socratic questioning, and write corrected SQL manually in the Factory. | `02-Exercises/MODULE2/` (and 3,4) |
+| **🔑 Solution Validation** | Open the KEY file, compare your reasoning with the golden prompt and validation checklist. | `03-Solutions/MODULE2/` (and 3,4) |
+| **🎭 Reality Chambers** | Solve 8 cross‑character business problems; execute full SQL refactoring, document tradeoffs, and perform gem extraction. | `04-Interactive-Simulations/` |
+
+```
+ACCELERATE/
+├── 01-The-Socratic-Mirror/
+│   ├── ACQUIRE-MODULE2/       (7 concept files, e.g., 1-the-sieve-select.md)
+│   ├── ACQUIRE-MODULE3/       (5 concept files)
+│   └── ACQUIRE-MODULE4/       (7 concept files)
+├── 02-Exercises/
+│   ├── MODULE2/               (LAB files, e.g., 1-basic-select-LAB.md)
+│   ├── MODULE3/               (LAB files)
+│   └── MODULE4/               (LAB files)
+├── 03-Solutions/
+│   ├── MODULE2/               (KEY files, e.g., 1-basic-select-KEY.md)
+│   ├── MODULE3/               (KEY files)
+│   └── MODULE4/               (KEY files)
+└── 04-Interactive-Simulations/   (8 scenario files)
+```
+
+**Your Vault mirror** (in your GitHub repository) must have the same structure. Save every log, corrected SQL, and reflection in the corresponding folder.
+
+---
+
+### AI Usage Protocols – Strict Rules
+
+These are non‑negotiable. Violating them will undermine your learning.
+
+#### 🟢 Allowed (Green)
+
+- Ask for **conceptual guidance**: “What is the logical relationship between these tables?”
+- Ask for **optimisation hints**: “What would make this query faster?”
+- Ask for **reasoning critique**: “Did I miss any edge cases in my approach?”
+- Ask for **validation**: “Does my query handle NULLs correctly?”
+- Ask for **anti‑pattern detection**: “What’s wrong with using `SELECT *` here?”
+
+#### 🔴 Forbidden (Red)
+
+- **“Write me a query that…”** – never ask for code.
+- **“Fix my SQL”** – instead ask “What could cause this error? Hint me, don’t fix it.”
+- **“Generate a schema for…”** – instead ask “Based on my 3NF design, what entities should I consider?”
+- **“Give me the answer”** – instead ask “Guide me through the steps to discover the answer.”
+
+#### 🟡 Conditional (Yellow – only after you have written your own version)
+
+- Ask for a **function signature** (e.g., “What is the syntax for `COALESCE`?”) – but only after you have attempted to write it yourself.
+
+> **If the AI writes code anyway** – redirect: “Explain the logic, don’t write SQL.” If it persists, restart the conversation.
+
+---
+
+### Browser Office – Tab Configuration 
+
+**Tuned to AI Protocols and Boundaries**
+
+| Tab | Purpose | Resource | Keyboard Shortcut |
+|-----|---------|----------|-------------------|
+| **1: The Map** | ACCELERATE files (Socratic Mirror, Exercises, etc.) | `Module5-GenAI-Walkthrough/` | `Ctrl+1` / `Cmd+1` |
+| **2: The Factory** | Manual SQL execution | SQLite Online – load `training_institution_sample.db`, `level1_estore_basic.db`, or specialised Module 4 databases (e.g., `level1_estore_self_join.db`, `tourism_planet_self_join.db`) as needed | `Ctrl+2` / `Cmd+2` |
+| **3: The Consultant** | Socratic AI mentor (no code generation) – obey the protocols above | ChatGPT, Claude, or Gemini configured with:<br>`AI_PERSONA_PROMPT.md`<br>SQLVerse character stories<br>Relevant schema anchor for the database loaded in Tab 2<br>(See [`BROWSER-OFFICE-ACCELERATE.md`](./BROWSER-OFFICE-ACCELERATE.md) for full setup) | `Ctrl+3` / `Cmd+3` |
+| **4: The Vault** | Your GitHub repository, ACCELERATE mirror | `Learning/Level-1-beginner/ACCELERATE/` | `Ctrl+4` / `Cmd+4` |
+
+> **Before starting:** Ensure your AI Consultant is still in **Student Mode / Socratic Mentor** mode. If you are unsure, re‑run the persona prompt from `AI_PERSONA_PROMPT.md`. The protocols above are the operating rules for every interaction.
+
+---
+
+## Phase 2: Gemstone Mining
+
+### Extraction Bay – Operational Instructions
+
+The Extraction Bay is the factory where gemstones are mined. This is where you will collect, refine, and prepare your reusable **knowledge artifacts** before they are permanently stored in your **Skill‑Tree** database.
+
+### Locate `GemstoneArray.md`
+
+You already created `EXTRACTION_BAY/SkillTree/` during the ACCELERATE induction. Inside that folder, you will find `GemstoneArray.md`. If it is missing for any reason, create it now.
+
+**File location:** `EXTRACTION_BAY/SkillTree/GemstoneArray.md`
+
+### Gemstone Table Format
+
+Use this **Markdown table** – copy the header once, then append rows for each gem.
+
+```markdown
+| skill_id | module_id | filename | skill_name | objective_text | student_viewpoint |
+|----------|-----------|----------|------------|----------------|--------------------|
+| (auto)   | 2         | 1-the-sieve-select.md | SELECT fundamentals | Choose columns | "Select is like a lens" |
+```
+
+- **skill_id** – leave empty (SQLite will auto‑increment) or use a placeholder.
+- **module_id** – 2 for Cycle 1, 3 for Cycle 2, 4 for Cycle 3.
+- **filename** – exact name of the concept file.
+- **skill_name** – short name of the skill.
+- **objective_text** – what the concept teaches.
+- **student_viewpoint** – your personal reflection (what clicked, what surprised you).
+
+> **For other tables** (`bonus_skills_level1`, `insights_level1`, `achievements_level1`), use the same Markdown table pattern with the appropriate columns. Refer to the schema in [`SKILL_TREE_ARCHITECTURE.md`](../../Guides/SKILL_TREE_ARCHITECTURE.md) (Sections 3.4–3.6) for column names.
+
+### Convert to CSV and Import
+
+**At the end of each Acceleration Cycle** (after all concepts in that cycle are done):
+
+1. **Copy** the entire Markdown table (including header row) from `GemstoneArray.md`.
+2. **Paste** into a new Google Sheet (or Excel).
+3. **Export as CSV** (File → Download → CSV) and save as `cycle1_skills.csv` (or `cycle2_skills.csv`, etc.) inside `EXTRACTION_BAY/SkillTree/csv/`.
+4. **Import into your Skill‑Tree database** using the staging table pattern (see `SECTION1_COMPLETION_BUILD.md`, Part 2). Use `temp_skills_level1` staging table.
+5. **Clear** the Markdown table in `GemstoneArray.md` (keep the header row, delete the data rows) for the next cycle.
+
+---
+
+## Phase 3: Daily Workflow
+
+### The 9‑Step Algorithmic Daily Workflow
+
+This is the core **execution engine** of ACCELERATE. Repeat these 9 steps for every concept file in each Acceleration Cycle. The workflow ensures you extract knowledge from both ACQUIRE and ACCELERATE, refine it through AI partnership, and capture reusable gemstones for your Skill‑Tree.
+
+**Time expectation per concept:** ~45‑60 minutes.
 
 ```mermaid
 flowchart LR
-    A["🎭 Simulation 1-8"] --> B["Extract business problem"]
-    B --> C["Socratic dialogue with AI"]
-    C --> D["Write full SQL manually"]
-    D --> E["Save log & gemstones"]
-    
-    style A fill:#f44336,stroke:#b71c1c,color:white
-    style E fill:#4caf50,stroke:#2e7d32
+    Step1["1. Read ACQUIRE<br/>Materials"] --> 
+    Step2["2. Extract ACQUIRE<br/>Gemstones"] --> 
+    Step3["3. Open ACCELERATE File<br/>& Initialize Mirror Prompt"] -->
+    Step4["4. Map the Logical<br/>Blueprint"] -->
+    Step5["5. Hit the SQL<br/>Factory"] -->
+    Step6["6. Check SQL &<br/>Prompt AI on Errors"] -->
+    Step7["7. Validate Against<br/>Framework"] -->
+    Step8["8. Extract ACCELERATE<br/>Gemstone"] -->
+    Step9["9. Log Hallucination<br/>(if any)"]
+
+    style Step1 fill:#fff8e1,stroke:#ff9800
+    style Step2 fill:#e8f5e9,stroke:#4caf50
+    style Step3 fill:#f3e5f5,stroke:#9c27b0
+    style Step4 fill:#f3e5f5,stroke:#9c27b0
+    style Step5 fill:#e1f5fe,stroke:#2196f3
+    style Step6 fill:#e1f5fe,stroke:#2196f3
+    style Step7 fill:#f3e5f5,stroke:#9c27b0
+    style Step8 fill:#e8f5e9,stroke:#4caf50
+    style Step9 fill:#ffebee,stroke:#f44336
 ```
 
-Each simulation presents a real‑world business problem featuring the SQLVerse characters (Arjun, Geetha, Raj, Ravi, Annie, Simon). You will:
+---
+### 🔬 Detailed Deep Dive of the Steps
 
-1. **Understand the data context** (provided in the scenario)
-2. **Ask the AI Socratic questions** about the required logic
-3. **Write the SQL manually** in Tab 2
-4. **Save your query and reflections** in your Vault (mirroring the simulation filename)
-5. **Extract gemstones** (new skills/insights) into your Gemstone Array
+| Step | Action | Time | Save / Output |
+|------|--------|------|----------------|
+| **1** | Read ACQUIRE Materials – Open the ACQUIRE lesson file mirroring your ACCELERATE file, exercises, quiz, and solutions. Read them thoroughly for complete conceptual understanding. | 10 min | – |
+| **2** | Extract ACQUIRE Gemstones – Collect gems (skill name, objective, your viewpoint, quiz scores, exercise completions) and add them to `GemstoneArray.md`. | 5 min | Append to Extraction Bay table |
+| **3** | Open the ACCELERATE lesson file and Initialize Mirror Prompt (Ask for abstract logic, NO code). | 5 min | Conversation in Tab 3 |
+| **4** | Map the Logical Blueprint (Write out pseudo‑steps). | 5 min | Scratchpad notes |
+| **5** | Hit the SQL Factory (Manually type and run SQL). | 10 min | SQL in Tab 2 |
+| **6** | Check if the SQL works. If not, prompt AI with SQL Errors and ask for logic to fix the errors. | 10 min | Iterative debugging |
+| **7** | Validate Against Framework (Run the 5‑point safety check). | 5 min | – |
+| **8** | Extract ACCELERATE gemstone for the lesson file and add it to `GemstoneArray.md` using the format provided in [`SOCRATIC_LOG_TEMPLATE.md`](./SOCRATIC_LOG_TEMPLATE.md) (Extract reusable structure). | 5 min | Append to Extraction Bay table |
+| **9** | Log Hallucination (if any) – Add to `Socratic_Journals/hallucination_log.md` using the template provided in [`AI_ERROR_HALLUCINATION_LOG.md`](./AI_ERROR_HALLUCINATION_LOG.md). | 5 min | Hallucination entry |
 
-After completing all simulations, you will have a rich portfolio of AI‑assisted problem‑solving examples to show employers.
+### 🔍 The 5‑Point Validation Checklist (for Step 7)
+
+When reviewing any SQL (your own, AI‑generated, or from KEY files), apply this checklist:
+
+- **NULL Safety:** How are missing or `NULL` inputs handled? Does the logic safely account for how SQLite treats unexpected blank records during filters or arithmetic operations?
+- **Edge Cases:** What happens at completely empty tables, missing relational match records, or maximum boundary parameters?
+- **SQLite Syntax Compliance:** Is the statement natively compliant with the SQLite runtime engine (ensuring zero usage of incompatible expressions like `DATEDIFF` or `TOP`)?
+- **Scalability & Performance:** Will this specific query architecture experience sudden degradation or index blocks if the table scales to millions of data records?
+- **Hidden Business Assumptions:** What hidden assumptions is this logic making about the overall schema relationships, ordering states, or raw incoming data quality?
 
 ---
 
-## 💎 Building Your Skill‑Tree Database During ACCELERATE
+### The Dual Purpose of This Workflow
 
-You have already created a Skill‑Tree database in ACQUIRE. Now you will **keep it up to date** using the **Gemstone Array** method.
+This workflow is designed with a dual purpose:
 
-### 🛠️ The Gemstone Array Workflow
+1) By thoroughly reading your **ACQUIRE lessons**, exercises, and Vault reflections before working on the Socratic Mirror file, you **solidify** your understanding of **foundational concepts** to a top‑notch level.
 
-1. **Create `GemstoneArray.md`** in `EXTRACTION_BAY/SkillTree/` (if not already present).
-2. **During the spiral loop**, for each concept file (e.g., `1-the-sieve-select.md`):
-   - Open the **ACQUIRE version** of the file in the course map (Tab 1) and extract:
-     - `skill_name`, `module_id`, `filename`, `objective_text`, `student_viewpoint`
-   - Open the **ACCELERATE version** of the file and extract:
-     - How the Socratic prompt changed your understanding
-     - Any new insight about AI collaboration
-   - Append these as rows to the **Markdown table** in `GemstoneArray.md`.
-3. **After completing MODULE2**, convert the table to CSV:
-   - Copy the entire table (including header) into a new Google Sheet.
-   - Export as CSV and save in `EXTRACTION_BAY/SkillTree/csv/skills_batch_2.csv`.
-4. **Import the CSV** into your Skill‑Tree database using the staging table pattern (see BUILD file).
-5. **Clear the table** in `GemstoneArray.md` and repeat for MODULE3 and MODULE4.
-6. **Also import insights** from the Socratic Mirror and simulations.
-
-> 💡 **Why this works:** By extracting gemstones *during* the spiral, you never have to go back and manually enter data. Your Skill‑Tree grows naturally with your learning.
+2) When you prompt the AI with a question, you **automatically focus** on the **logic** behind the SQL – because you are already well‑versed with the syntax.
 
 ---
 
-## 🚀 Your ACCELERATE Journey: Step by Step
+## Phase 4: Skill‑Tree Update Routine (After Each Cycle)
 
-### 📍 Stage 1: Complete the Spiral Loop for MODULE2
+After you have imported the CSV, run these verification queries in Tab 2 to confirm that the new rows are present:
 
-| Step | Action | Folder | Time |
-|------|--------|--------|------|
-| 1 | Read `1-the-sieve-select.md`, ask AI, write SQL | `01-The-Socratic-Mirror/ACQUIRE-MODULE2/` | 15 min |
-| 2 | Complete LAB `1-basic-select-LAB.md` | `02-Exercises/MODULE2/` | 10 min |
-| 3 | Review KEY `1-basic-select-KEY.md` | `03-Solutions/MODULE2/` | 5 min |
-| 4 | Extract gemstones into `GemstoneArray.md` | `EXTRACTION_BAY/SkillTree/` | 5 min |
-| 5 | **Repeat** for all 7 files in MODULE2 (1-the-sieve-select.md through 7-distinct-aliases.md) | | |
-| 6 | **After MODULE2**, convert GemstoneArray to CSV and import into Skill‑Tree | | 15 min |
+```sql
+SELECT COUNT(*) FROM skills_level1 WHERE module_id = 2;  -- for Cycle 1
+SELECT COUNT(*) FROM skills_level1 WHERE module_id = 3;  -- for Cycle 2
+SELECT COUNT(*) FROM skills_level1 WHERE module_id = 4;  -- for Cycle 3
+```
 
-### 📍 Stage 2: Complete the Spiral Loop for MODULE3
+You should see the number of new skills added. Also run:
 
-Same rhythm, but for the 5 files in `ACQUIRE-MODULE3/` (1-order-by.md through 5-execution-order.md).
+```sql
+SELECT * FROM skills_level1 ORDER BY skill_id DESC LIMIT 10;
+```
 
-### 📍 Stage 3: Complete the Spiral Loop for MODULE4
+to visually inspect the latest entries.
 
-Same rhythm, for the 7 files in `ACQUIRE-MODULE4/` (1-IntroToJoins.md through 7-Normalization.md).
-
-### 📍 Stage 4: The Crown Jewel – Interactive Simulations
-
-Complete all 8 simulation scenarios in `04-Interactive-Simulations/`. For each:
-
-1. Read the scenario.
-2. Engage in Socratic dialogue with AI.
-3. Write SQL manually.
-4. Save your query and log in your Vault.
-5. Extract any new gemstones (e.g., “Handling missing phone numbers with COALESCE”).
+Repeat the exact same **operational routine** for your adjacent metric domains: bonus_skills_level1, insights_level1, and achievements_level1. Export their **parsed datasets** via the tracking spreadsheet tool, pass the records through the explicit staging system layer, and verify the total commits via SELECT COUNT(*).
 
 ---
 
-## ✅ Module 5 Completion Checklist
+## Phase 5: Hallucination Detection & Logging
 
-Before you graduate from ACCELERATE, ensure you can:
+Whenever the AI makes a mistake – wrong function, missing edge case, invalid SQLite syntax – you **must** log it.
 
-- [ ] Explain the difference between ACQUIRE and ACCELERATE learning approaches.
-- [ ] Complete a Socratic Mirror cycle (read → ask → write) without the AI generating code.
-- [ ] Diagnose and fix a broken AI‑generated query from a LAB file.
-- [ ] Use the golden prompt and validation checklist from a KEY file.
-- [ ] Extract gemstones into `GemstoneArray.md` and import CSV into Skill‑Tree.
-- [ ] Successfully solve at least 3 interactive simulations.
-- [ ] Feel confident using AI as a **thinking partner**, not a crutch.
+**Where:** `Socratic_Journals/hallucination_log.md` (create the file if it doesn’t exist). Use the template from `AI_ERROR_HALLUCINATION_LOG.md`.
 
----
+**What to log:**
+- What the AI said (quote)
+- What was actually correct
+- How you caught it
+- What you learned
 
-## 💎 DESIGNER'S PERIGON (ACCELERATE EDITION)
+**What to discard (do not log):**
+- Simple typos you corrected
+- Unverified suggestions that you ignored
+- Code the AI wrote (you should have redirected it)
 
-<div style="border: 3px solid #9c27b0; border-radius: 10px; padding: 20px; margin: 25px 0; background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);">
-
-### *The Artisan's Acceleration*
-
-You have now experienced the **twisted path** – a spiral that intentionally disrupts linear comfort. Why? Because real data problems never arrive in textbook order. They are messy, interconnected, and require you to jump between concepts.
-
-By revisiting Modules 2, 3, and 4 with AI acceleration, you have:
-
-- **Strengthened your retrieval** of fundamentals (spacing effect)
-- **Built mental bridges** between related concepts (e.g., WHERE vs HAVING, JOIN vs subquery)
-- **Learned to lead the AI** – to ask the right questions, validate the answers, and write the final SQL yourself.
-- **Grown your Skill‑Tree** naturally, without a separate data entry marathon.
-
-> *“The twisted path is not chaos. It is the shortest route to professional intuition.”*
-
-</div>
+> **Why this is important:** This log becomes proof of your AI auditing skill – a portfolio asset.
 
 ---
 
-## 🎉 MODULE 5 COMPLETE
+## Phase 6: Reality Chambers (Simulations) – How to Approach
 
-<div align="center" style="border: 3px solid #4caf50; border-radius: 10px; padding: 25px; margin: 30px 0; background: linear-gradient(135deg, #e8f5e8, #c8e6c9);">
+After completing **all three Acceleration Cycles** (Cycle 1, Cycle 2, Cycle 3), you are ready for the crown jewel.
 
-### ✅ Congratulations, You've Mastered AI‑Accelerated SQL!
+Before beginning with the crown jewel, make a thorough study of the **CTO, CEO, and CFO Report exercises** in `2-practiceExercises/Capstone Reports/` folder and the **interview simulations** in the folder `4-exerciseAndQuizSolutions/6-capstone-solutions/simulations/` in ACQUIRE Module 4. This will give you a clear understanding of the SQLVerse characters, their domains, and the interconnected relationships between the domains.
 
-**You have successfully:**
-- Applied the Socratic AI Method™ across all ACQUIRE concepts
-- Debugged and corrected AI‑generated queries
-- Validated AI logic using a sanity protocol
-- Extracted and imported gemstones to your Skill‑Tree database
-- Conquered 8 interactive simulations with real‑world business problems
+
+**Folder:** `04-Interactive-Simulations/` (8 scenarios)
+
+**For each scenario:**
+
+1. **Read the scenario** carefully. Identify the business problem and the characters involved.
+2. **Extract the data context** – which tables? what relationships? (Use the schema anchors if needed.)
+3. **Engage in Socratic dialogue with the AI** – ask about the logical steps, edge cases, and performance considerations. **Never ask for code.**
+4. **Write the full SQL manually** in Tab 2.
+5. **Test your query** – verify the results match the expected business outcome (described in the scenario).
+6. **Save your solution** in your Vault mirror: `Learning/Level-1-beginner/ACCELERATE/04-Interactive-Simulations/1-SCENARIO_Arjuns_Repair_Leak.md` (use the same filename as the scenario).
+7. **Extract any new gemstones** (e.g., “Handling missing phone numbers with COALESCE”) into `GemstoneArray.md`.
+8. **After completing all 8 simulations**, import the final gemstones into your Skill‑Tree (same CSV process).
+
+**Time expectation per simulation:** 30‑45 minutes.
+
+---
+## 🗺️ Your ACCELERATE Flight Plan (Track Your Journey)
+
+> **Note to Pilot:** You are at the starting line. Use this section to preview where you are heading, and check off these milestones as you complete each phase of the playbook.
+
+- [ ] **Milestone 1:** Finished Cycle 1 (Module 2 Concepts) & imported Gems into the Skill-Tree.
+- [ ] **Milestone 2:** Finished Cycle 2 (Module 3 Concepts) & imported Gems into the Skill-Tree.
+- [ ] **Milestone 3:** Finished Cycle 3 (Module 4 Concepts) & imported Gems into the Skill-Tree.
+- [ ] **Milestone 4:** Conquered all 8 Reality Chambers (Simulations) and pushed code to the Vault.
+- [ ] **Milestone 5:** Caught and logged at least one AI error in your Hallucination Log.
 
 ---
 
-### 🎓 **Your Achievement Awaits**
+## 🔁 Navigation
 
-You've successfully completed Module 5! Your transformation from manual coder to AI‑accelerated Artisan is complete.
+```mermaid
+flowchart LR
+    Link1["📚 READ: README.md"] --> 
+    Link2["🧠 STUDY: VISION.md"] --> 
+    Link3["🛠️ EXECUTE: GUIDE.md<br/>(You Are Here)"] -->
+    Link4["🗺️ NAVIGATE: MODULE5_NAVIGATION_GUIDE.md"]
+    
+    style Link1 fill:#fff8e1,stroke:#ff9800
+    style Link2 fill:#e8f5e8,stroke:#4caf50
+    style Link3 fill:#e1f5fe,stroke:#2196f3,stroke-width:4px
+    style Link4 fill:#fff8e1,stroke:#ff9800
+```
 
-**View your official certificate here:**  
-[📜 **MODULE 5 CERTIFICATE →**](./MODULE5_GRADUATION.md)
-
-*Print it, share it, celebrate it. Then return here to continue your journey.*
-
----
-
-<div align="center" style="border: 1px solid #2196f3; padding: 20px; margin: 30px 0; background: #e1f5fe; border-radius: 8px;">
-
-### 💎 **REFLECT BEFORE YOU PROCEED**
-
-**What was the most surprising insight you gained from the twisted path? How did revisiting concepts out of order change your understanding?**
-
-_______________________________________________________
-_______________________________________________________
-
-**Which AI hallucination did you catch, and how did you verify the correct logic?**
-
-_______________________________________________________
-
-*Document these reflections in your Vault. They're the evidence of your evolution from SQL coder to AI‑savvy data artisan.*
-
-</div>
-
----
-
-### 🚀 **Ready for the Next Adventure?**
-
-You are now ready for the **ANALYZE** phase, where you will study professional projects (HR Analytics Dashboard, University Manager) and learn from expert code patterns.
-
----
-
-# [▶️ **PROCEED TO ANALYZE PHASE**](../../Guides/SECTION3_INDUCTION.md)
-
-</div>
+| Previous | Next |
+|----------|------|
+| [← ACCELERATE VISION](./ACCELERATE_VISION.md) | [MODULE5 NAVIGATION GUIDE →](./MODULE5_NAVIGATION_GUIDE.md) |
 
 ---
 
 *Part of our mission for 🎯 Quality Education for Anyone, Anywhere, Anytime — 💫 with Comfort, Convenience at no Cost.*
 
-**Level 1 | Module 5 Guide | AI Acceleration | Next: ANALYZE Induction**
-
----
-
-## 🎯 **Learning Objectives**
-
-By completing Module 5, you will be able to:
-
-1. **Apply the Socratic AI Method™** – prompt for logic, not code, across all ACQUIRE concepts.
-2. **Audit AI‑generated SQL** – spot hallucinations, edge case omissions, and performance anti‑patterns.
-3. **Use the validation checklist** – ask about NULLs, edge cases, SQLite syntax, scaling, and hidden assumptions.
-4. **Extract gemstones** – capture skills, insights, and patterns into your Skill‑Tree database.
-5. **Solve real‑world business problems** through 8 interactive simulations (cross‑character role‑play).
-6. **Transition from “correctness” to “judgment”** – know when to trust AI and when to challenge it.
+**Level 1 | ACCELERATE Phase | Module 5 Guide | Ready for NAVIGATION**
 
 
-## 🧭 **Your Learning Compass for This Module**
-
-**Journey Stage:** AI Acceleration – **refining existing knowledge**  
-**AI Co‑pilot Role:** Socratic Mentor – explains logic, never writes code  
-**Primary Goal:** Learn to lead AI, not follow it – extract gemstones into your Skill‑Tree, complete 8 interactive simulations, and emerge as an AI‑augmented analyst.
-
-**What This Means for You:**
-- **🧠 Mindset Shift:** From “how do I write this?” to “what is the logical relationship?” The AI gives strategy; you write the SQL.
-- **🤖 AI Guidelines:** Never ask for code. Ask for conceptual guidance, optimisation hints, validation checks, and anti‑pattern detection. If the AI writes code, redirect.
-- **🎯 Success Metric:** You can take a broken AI‑generated query, diagnose the error through Socratic questioning, write the correct SQL manually, and explain *why* the AI was wrong.
-
-> **Philosophical Anchor:** “ACQUIRE builds correctness. ACCELERATE builds judgment.”
-
----
-
-## 🏢 **The Browser Office: Your Universal Launchpad**
-
-**🚀 Kickstart: Any Computer, Any Browser, Anytime.**  
-**🌍 Destination: Any country, Any city, Any Platform.**
-
-### **📋 The Standard Four-Tab Setup (Levels 1 & 2)**
-| Tab | Purpose | Tools & Examples | Keyboard Shortcut |
-| :--- | :--- | :--- | :--- |
-| **1: The Map** | Learning content & navigation | Course Repository (GitHub) | `Ctrl+1` / `Cmd+1` |
-| **2: The Factory** | Hands‑on practice | SQLite Online | `Ctrl+2` / `Cmd+2` |
-| **3: The Consultant** | AI assistance & explanations | ChatGPT, Claude, Gemini | `Ctrl+3` / `Cmd+3` |
-| **4: The Vault** | Progress tracking & portfolio | GitHub Web, notes | `Ctrl+4` / `Cmd+4` |
-
----
-
-## 📋 **Prerequisites**
-
-Before beginning Module 5, ensure you have:
-
-- [ ] **ACQUIRE Phase Complete** – Modules 1‑4 finished, Skill‑Tree database populated.
-- [ ] **ACCELERATE Induction Verified** – You passed the verification test (`SECTION2_INDUCTION_FINISH.md`).
-- [ ] **Browser Office Open** – All four tabs configured.
-- [ ] **AI Persona Set** – Your Consultant (Tab 3) is configured as a Socratic SQL mentor (never writes code).
-- [ ] **Vault Ready** – Your GitHub repository contains the ACCELERATE folder structure (mirroring the course).
-- [ ] **Extraction Bay Created** – `EXTRACTION_BAY/SkillTree/GemstoneArray.md` exists (temporary capture for gemstones).

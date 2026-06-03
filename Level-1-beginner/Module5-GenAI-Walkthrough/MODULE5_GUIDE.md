@@ -117,6 +117,12 @@ These are non‑negotiable. Violating them will undermine your learning.
 
 ## Phase 2: Gemstone Mining
 
+### Purpose of the Extraction Bay
+
+The **Extraction Bay** (`EXTRACTION_BAY/` at your portfolio root) is a **temporary scratchpad** used across all phases (ACQUIRE, ACCELERATE, ANALYZE, ARCHITECT). In ACCELERATE, you use it to collect gemstones from concept files. In later phases, you may use it for temporary backups, CSV exports, Excel imports, or other data transformation tasks.
+
+> **Important:** Add `EXTRACTION_BAY/` to your `.gitignore` file. This folder is transient – it should never be committed to your repository. Only the final Skill‑Tree database (`Skill-Tree-DB/`) is versioned.
+
 ### Extraction Bay – Operational Instructions
 
 The Extraction Bay is the factory where gemstones are mined. This is where you will collect, refine, and prepare your reusable **knowledge artifacts** before they are permanently stored in your **Skill‑Tree** database.
@@ -244,7 +250,26 @@ SELECT * FROM skills_level1 ORDER BY skill_id DESC LIMIT 10;
 
 to visually inspect the latest entries.
 
-Repeat the exact same **operational routine** for your adjacent metric domains: bonus_skills_level1, insights_level1, and achievements_level1. Export their **parsed datasets** via the tracking spreadsheet tool, pass the records through the explicit staging system layer, and verify the total commits via SELECT COUNT(*).
+### Update Routine for Other Core Tables
+
+Repeat the exact same **operational routine** for your adjacent metric domains: `bonus_skills_level1`, `insights_level1`, and `achievements_level1`. For each:
+
+1. Maintain a **separate section** in `GemstoneArray.md` (or use the same table with appropriate columns).
+2. Export their **parsed datasets** via the tracking spreadsheet tool (copy Markdown table → Google Sheets → CSV).
+3. Pass the records through the explicit **staging system layer** (create staging table → import CSV → insert into main table).
+4. Verify the **total commits** via `SELECT COUNT(*)` on each table after import.
+
+> *“Consistency across all core tables ensures your Skill‑Tree remains complete and queryable.”*
+
+### Updating After Reality Chambers (Simulations)
+
+After completing the 3 ACCELERATE cycles, your Skill‑Tree contains **gemstones** from the entire **ACQUIRE phase** and **gemstones for the 3 cycles** in the ACCELERATE phase.
+
+After completing each simulation, extract any new gemstones (e.g., patterns, anti‑patterns, validation insights) into `GemstoneArray.md`. At the end of all 8 simulations, follow the same ETL workflow (Transform → Load) to import these gemstones into your Skill‑Tree database. Use the staging table pattern for the appropriate core table (`skills_level1`, `insights_level1`, or `achievements_level1` depending on the gem type).
+
+Now your **Skill‑Tree** is **up to date** with the **entire data** from **ACQUIRE** and **ACCELERATE** phases.
+
+> *“Simulations are not just exercises – they are rich sources of judgment‑level gemstones.”*
 
 ---
 

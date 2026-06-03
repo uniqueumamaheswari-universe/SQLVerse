@@ -341,12 +341,12 @@ The Skill-Tree database schema you have created supports **ALL 4 phases** of Lev
 
 ### 🔹 EXTRACT – Mining the Gemstones
 
-Your Skill‑Tree database already has **8 rows** from the seed data (phases and modules). To lay a solid foundation, you only need to add **15 more rows**:
+Your Skill‑Tree database already has 8 rows from the seed data (phases and modules). To lay a solid foundation, you need to add rows from **Module 1** (lesson files, exercises, quiz, solutions, and Perigon insights):
 
-- **10 rows** to `skills_level1` (one skill per concept you mastered)
-- **5 rows** to `insights_level1` (your favorite Perigon takeaways)
+- **Skills:** Extract all skills you learned from each concept file in Module 1. Add them to `skills_level1`.
+- **Insights:** Extract 5–10 Perigon takeaways (your favourite insights) from Module 1. Add them to `insights_level1`.
 
-That’s it. Once you’ve added these, **celebrate** – you’ve laid the foundation for your permanent learning record. You can always add more rows later as you continue through ACCELERATE, ANALYZE, and ARCHITECT.
+That’s it. Once you’ve added these, celebrate – you’ve laid the foundation for your permanent learning record. You can always add more rows later as you continue through ACCELERATE, ANALYZE, and ARCHITECT.
 
 #### 📋 Where to Find Information (Extraction Templates)
 

@@ -539,22 +539,16 @@ In the Artisan's Garden, this is the **final bouquet of the ACQUIRE phase** – 
 **The SQLVerse expands. Your portfolio is proof.**
 
 ---
+### 📅 Suggested Pacing Guide – Build Your Skill‑Tree Foundation
 
-### 📅 **Suggested Pacing Guide – Grow Your Skill‑Tree**  
+| Phase | What to Do | Expected Contribution |
+|-------|------------|------------------------|
+| **ACQUIRE Completion** | Populate your Skill‑Tree with data from **Module 1** (lesson files, exercises, quiz, solutions, and Perigon insights). Use the CSV import workflow described in `SECTION1_COMPLETION_BUILD.md`. | 10–15 rows (foundation) |
+| **ACCELERATE** | The workflow for growing your Skill‑Tree further (Modules 2, 3, and 4) will be explained in the **ACCELERATE induction** (`SECTION2_INDUCTION.md`). | 100–200 additional rows by the end of ACCELERATE |
 
-| Week | Daily Target | Weekly Total | Milestone |
-|------|--------------|--------------|-----------|
-| **Week 1** | 10–15 rows/day | 60–90 rows | Foundation laid (phases, modules, basic skills) |
-| **Week 2** | 10–15 rows/day | 60–90 rows | Core skills + first insights |
-| **Week 3** | 10–15 rows/day | 60–90 rows | Advanced concepts + bonus skills |
-| **Week 4** | 10–15 rows/day | 60–90 rows | All ACQUIRE data captured – sapling → mature tree 🌳 |
+**Total after ACCELERATE:** 110–215 rows – a solid Skill‑Tree with foundational skills and AI‑augmented insights.
 
-> **Total after 4 weeks:** 240–360 rows – a fully documented learning journey.
-> 
-> *This is a suggested rhythm, not a deadline. Some weeks you’ll add more, some weeks less. The goal is steady growth, not perfection.*
-
-*The ACQUIRE Completion task has kick‑started your database building process – but you cannot collect and add all your ACQUIRE data in one day. Don’t rush. Take your own time. If you simply read one concept file per day and add just five records, that is perfectly fine. This is a marathon, not a sprint.*
-
+> *Focus on completing Module 1 data entry accurately. Building your Skill‑Tree is a marathon, not a sprint. The rest will flow smoothly in ACCELERATE.*
 ---
 
 **What distinguishes SQLVerse from other courses?**  

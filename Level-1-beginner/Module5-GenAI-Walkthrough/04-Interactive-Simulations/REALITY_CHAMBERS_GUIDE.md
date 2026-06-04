@@ -122,19 +122,30 @@ Unlike the previous seven domain‑specific chambers, Chamber 8 is the **final
 
 ---
 
-## 🏁 AFTER COMPLETING ALL 8 CHAMBERS
+## 🚀 Next Step
 
-1. Export CSV from `GemstoneArray.md` (skills, insights, patterns from all chambers)
-2. Import into your Skill‑Tree database using the staging table pattern
-3. Return to the **Navigation Guide** and log your Lap 4 Black Box Feedback
+You have read the rules. You understand the domains. Now enter the first chamber.
 
-You are no longer operating as a student of SQL. You are operating as a **database strategist** inside a living AI-augmented business ecosystem.
+Remember you are no longer operating as a student of SQL. You are operating as a **database strategist** inside a living AI-augmented business ecosystem.
 
-<div align="center" style="border: 3px solid #ff9800; border-radius: 10px; padding: 25px; margin: 30px 0; background: linear-gradient(135deg, #fff8e1 0%, #ffe0b2 100%); box-shadow: 0 8px 20px rgba(255, 152, 0, 0.2);">
+```mermaid
+flowchart LR
+    C1["Chamber 1<br/>Arjun's Repair Leak"] --> C2["Chamber 2<br/>Geetha's Cross‑Sell"] --> C3["Chamber 3<br/>Raj's Library"] --> C4["Chamber 4<br/>Ravi's Missing Phone"] --> C5["Chamber 5<br/>Annie's Margin Leak"] --> C6["Chamber 6<br/>Simon's Email Classifier"] --> C7["Chamber 7<br/>SQLVerse Travels Investment"] --> C8["Chamber 8<br/>The SQLVerse Convergence"] --> Complete["🏁 Return to<br/>Flight control deck"]
+    
+    style C1 fill:#e1f5fe,stroke:#2196f3
+    style C2 fill:#e1f5fe,stroke:#2196f3
+    style C3 fill:#e1f5fe,stroke:#2196f3
+    style C4 fill:#e1f5fe,stroke:#2196f3
+    style C5 fill:#e1f5fe,stroke:#2196f3
+    style C6 fill:#e1f5fe,stroke:#2196f3
+    style C7 fill:#e1f5fe,stroke:#2196f3
+    style C8 fill:#ffebee,stroke:#f44336
+    style Complete fill:#e8f5e8,stroke:#2e7d32,stroke-dasharray:5 5
+```
 
-# [▶️ **RETURN TO FLIGHT CONTROL DECK**](../MODULE5_NAVIGATION_GUIDE.md)
+<div align="center" style="border: 3px solid #2196f3; border-radius: 10px; padding: 25px; margin: 30px 0; background: linear-gradient(135deg, #e1f5fe 0%, #bbdefb 100%); box-shadow: 0 8px 20px rgba(33, 150, 243, 0.2);">
 
-**Log your Lap 4 Black Box Telemetry**
+# [▶️ **ENTER CHAMBER 1: ARJUN'S REPAIR LEAK**](./1-SCENARIO_Arjuns_Repair_Leak.md)
 
 </div>
 
@@ -142,6 +153,6 @@ You are no longer operating as a student of SQL. You are operating as a **databa
 
 *Part of our mission for 🎯 Quality Education for Anyone, Anywhere, Anytime — 💫 with Comfort, Convenience at no Cost.*
 
-**Level 1 | ACCELERATE Phase | Reality Chambers Guide | Next: Return to Navigation Guide**
+**Level 1 | ACCELERATE Phase | Reality Chambers Guide | Next: Begin Chamber 1**
 
 

@@ -81,6 +81,7 @@ Unlike Modules 2 and 3 (which used `level1_estore_basic.db` and `training_inst
 
 Module 4 is where the **SQLVerse characters** (Arjun, Geetha, Raj, Ravi, Annie, Simon) and their domains first appear. The concepts you master here – JOINs, normalisation, self‑join – are the foundation for the **Reality Chambers** (the next leg of ACCELERATE). You are not solving simulations inside this cycle; simulations are reserved for Reality Chambers. You are building the **relational and architectural foundation** required to conquer them later.
 
+The **Capstone Report Solutions** (CTO, CEO, CFO) are not analysed in this cycle. They will be revisited and examined through an AI‑augmented lens in the **SQLVerse Reality Chambers**.
 
 </div>
 
@@ -141,7 +142,7 @@ You are entering the abstraction layer. This is where you build mental models, c
 
 **This is where judgment begins.**
 
-### Mapping ACQUIRE and ACCELERATE
+### Mirror Bridge Mapping: ACQUIRE ↔ ACCELERATE
 
 **Base path:** `01-The-Socratic-Mirror/ACQUIRE-MODULE4/`
 
@@ -181,7 +182,7 @@ Before dropping to the next phase, answer this single question:
 
 The mirror phase is over. You now operate under implementation pressure. The LABs are intentionally imperfect – broken AI queries, hidden assumptions, structural defects, misleading outputs. Your goal is diagnosis, not speed. Struggle is expected.
 
-### Mapping ACQUIRE and ACCELERATE
+### Mirror Bridge Mapping: ACQUIRE ↔ ACCELERATE
 
 **Base path:** `02-Exercises/MODULE4/`
 
@@ -238,7 +239,7 @@ Before dropping to the next phase, answer this single question:
 
 Implementation alone is not mastery. You must now compare your reasoning against golden solutions, alternative interpretations, structural baselines, and AI‑generated approaches. Do not merely check correctness – calibrate your assumptions, efficiency, readability, and architectural judgment.
 
-### Mapping ACQUIRE and ACCELERATE
+### Mirror Bridge Mapping: ACQUIRE ↔ ACCELERATE
 
 **Base path:** `03-Solutions/MODULE4/`
 

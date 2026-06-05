@@ -110,7 +110,7 @@ You are entering the abstraction layer. This is where you build mental models, c
 
 **This is where judgment begins.**
 
-### Mapping ACQUIRE and ACCELERATE
+### Mirror Bridge Mapping: ACQUIRE ↔ ACCELERATE
 
 **Base path:** `01-The-Socratic-Mirror/ACQUIRE-MODULE2/`
 
@@ -150,7 +150,7 @@ Before dropping to the next phase, answer this single question:
 
 The mirror phase is over. You now operate under implementation pressure. The LABs are intentionally imperfect – broken AI queries, hidden assumptions, structural defects, misleading outputs. Your goal is diagnosis, not speed. Struggle is expected.
 
-### Mapping ACQUIRE and ACCELERATE
+### Mirror Bridge Mapping: ACQUIRE ↔ ACCELERATE
 
 **Base path:** `02-Exercises/MODULE2/`
 
@@ -190,7 +190,7 @@ Before dropping to the next phase, answer this single question:
 
 Implementation alone is not mastery. You must now compare your reasoning against golden solutions, alternative interpretations, structural baselines, and AI‑generated approaches. Do not merely check correctness – calibrate your assumptions, efficiency, readability, and architectural judgment.
 
-### Mapping ACQUIRE and ACCELERATE
+### Mirror Bridge Mapping: ACQUIRE ↔ ACCELERATE
 
 **Base path:** `03-Solutions/MODULE2/`
 

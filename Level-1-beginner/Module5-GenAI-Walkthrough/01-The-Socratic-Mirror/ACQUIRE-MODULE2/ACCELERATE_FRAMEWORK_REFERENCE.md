@@ -21,7 +21,7 @@ Before you enter any AUGMENT chamber, complete the ACQUIRE foundation for that c
 
 1. **Read ACQUIRE Materials** – Open the ACQUIRE lesson file mirroring the ACCELERATE file, along with its exercises, quiz, and solutions. Read them thoroughly for complete conceptual understanding.
 
-2. **Extract ACQUIRE Gemstones** – Collect gems (skill name, objective, your viewpoint, quiz scores, exercise completions) and add them to `GemstoneArray.md` using the **ETL Workflow** described in [`SKILL_TREE_ARCHITECTURE.md`](../../Guides/SKILL_TREE_ARCHITECTURE.md).
+2. **Extract ACQUIRE Gemstones** – Collect gems (skill name, objective, your viewpoint, quiz scores, exercise completions) and add them to `GemstoneArray.md` using the **ETL Workflow** described in [`SKILL_TREE_ARCHITECTURE.md`](../../../Guides/SKILL_TREE_ARCHITECTURE.md).
 
 > 🔁 **Spiral Rule:** ACQUIRE builds foundation. ACCELERATE builds judgment. Do not skip the foundation.
 
@@ -35,9 +35,9 @@ Before you enter any AUGMENT chamber, complete the ACQUIRE foundation for that c
 | Tab | Purpose | What to Do |
 | :--- | :--- | :--- |
 | **1: The Map** | Read AUGMENT files | Open the concept file from `01-The-Socratic-Mirror/`. |
-| **2: The Factory** | Run queries | Keep [`training_institution_sample.db`](../../../Resources/sample_databases/training_institution_sample.db) loaded. Run every query you see in the file. |
-| **3: The Consultant** | Socratic questioning | Configured with [`BROWSER-OFFICE-ACCELERATE.md`](../../Module5-GenAI-Walkthrough/BROWSER-OFFICE-ACCELERATE.md) – Persona prompt, SQLVerse characters. Configured with [`SCHEMA_ANCHOR_TRAINING_INSTITUTION_SAMPLE.md`](../../../SCHEMA_ANCHOR_TRAINING_INSTITUTION_SAMPLE.md). Ask about logic, never code. |
-| **4: The Vault** | Save reflections & gemstones | Save Socratic logs in your Vault at `Learning/Level-1-beginner/ACCELERATE/01-The-Socratic-Mirror/ACQUIRE-MODULE2/[filename].md` using [`SOCRATIC_LOG_TEMPLATE.md`](../../Module5-GenAI-Walkthrough/SOCRATIC_LOG_TEMPLATE.md).<br><br>If you spot AI hallucinations or edge cases, save them in `Learning/Level-1-beginner/ACCELERATE/Socratic_Journals/` as separate markdown files (e.g., `hallucination_log_X.md`, `edge_case_anomalies_X.md`). |
+| **2: The Factory** | Run queries | Keep [`training_institution_sample.db`](../../../../Resources/sample_databases/training_institution_sample.db) loaded. Run every query you see in this file. |
+| **3: The Consultant** | Socratic questioning | Configured with [`BROWSER-OFFICE-ACCELERATE.md`](../../BROWSER-OFFICE-ACCELERATE.md) – Persona prompt, SQLVerse characters. Configured with [`SCHEMA_ANCHOR_TRAINING_INSTITUTION_SAMPLE.md`](../../../SCHEMA_ANCHOR_TRAINING_INSTITUTION_SAMPLE.md). Ask about logic, never code. |
+| **4: The Vault** | Save reflections & gemstones | Save all your Socratic logs in your Vault at `Learning/Level-1-beginner/ACCELERATE/01-The-Socratic-Mirror/ACQUIRE-MODULE2/1-the-sieve-select.md` using the template provided in [`SOCRATIC_LOG_TEMPLATE.md`](../../SOCRATIC_LOG_TEMPLATE.md).<br><br>If you spot any AI hallucinations, missed edge cases, or other mistakes made by the AI, save those unusual occurrences in your Vault at `Learning/Level-1-beginner/ACCELERATE/Socratic_Journals/` as a separate markdown file (e.g., `hallucination_log_1.md`, `edge_case_anomalies_1.md`). |
 
 ---
 
@@ -48,7 +48,7 @@ Before you enter any AUGMENT chamber, complete the ACQUIRE foundation for that c
 
 | | | |
 |---|---|---|
-| [Browser Office Workflow](../../../Setup/STEP2_ESTABLISH_LEARNING_RITUAL.md) | [Knowledge Base](../../Guides/Section1-ACQUIRE/3_Knowledge_Base.md) | [Mindset Tuning](../../Guides/Section1-ACQUIRE/4_Mindset.md) |
+| [Browser Office Workflow](../../../../Setup/STEP2_ESTABLISH_LEARNING_RITUAL.md) | [Knowledge Base](../../../Guides/Section1-ACQUIRE/3_Knowledge_Base.md) | [Mindset Tuning](../../../Guides/Section1-ACQUIRE/4_Mindset.md) |
 
 ---
 
@@ -59,8 +59,8 @@ Before you enter any AUGMENT chamber, complete the ACQUIRE foundation for that c
 
 | Core Pillar Guides | Optimization Strategy | Systemic Architecture |
 |--------------------|----------------------|------------------------|
-| 🏎️ [Query Optimization](../../Guides/Section2-ACCELERATE/2_Query_Optimization.md) | 🧭 [ACCELERATE Atlas](../../Module5-GenAI-Walkthrough/MODULE5_GUIDE.md) | 🔄 [ACCELERATE Vision](../../Module5-GenAI-Walkthrough/ACCELERATE_VISION.md) |
-| 🧠 [Socratic Method](../../Guides/Section2-ACCELERATE/3_Socratic_Method.md) | 🪞 [Mirror Bridge](../../Guides/Section2-ACCELERATE/4a_ACCELERATE_MIRROR.md) | 🌳 [Skill Tree Map](../../Guides/SKILL_TREE_ARCHITECTURE.md) |
+| 🏎️ [Query Optimization](../../../Guides/Section2-ACCELERATE/2_Query_Optimization.md) | 🧭 [ACCELERATE Atlas](../../MODULE5_GUIDE.md) | 🔄 [ACCELERATE Vision](../../ACCELERATE_VISION.md) |
+| 🧠 [Socratic Method](../../../Guides/Section2-ACCELERATE/3_Socratic_Method.md) | 🪞 [Mirror Bridge](../../../Guides/Section2-ACCELERATE/4a_ACCELERATE_MIRROR.md) | 🌳 [Skill Tree Map](../../../Guides/SKILL_TREE_ARCHITECTURE.md) |
 
 ---
 

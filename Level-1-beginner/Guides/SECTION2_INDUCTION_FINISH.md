@@ -345,7 +345,7 @@ Then:
 
 <div align="center" style="border: 3px solid #4caf50; border-radius: 10px; padding: 30px; margin: 30px 0; background: linear-gradient(135deg, #e8f5e8 0%, #f1f8e9 100%); box-shadow: 0 8px 20px rgba(76, 175, 80, 0.2);">
 
-# [▶️ **BEGIN MODULE 5: GENAI SQL CO‑PILOT WALKTHROUGH**](../Modules/Module5-GenAI-Walkthrough/README.md)
+# [▶️ **BEGIN MODULE 5: GENAI SQL CO‑PILOT WALKTHROUGH**](../Module5-GenAI-Walkthrough/README.md)
 
 **Start your AI‑accelerated SQL journey**  
 *Learn to prompt, verify, and collaborate with AI as a Socratic mentor*

@@ -62,9 +62,6 @@ The ACQUIRE Completion task asked you to log a significant amount of data (skill
 
 > *“Every time you revisit a concept, add a new row to your `skills_level1` or `insights_level1`. Your database grows as you grow.”*
 
-🔮 **Coming in Module 5 (Socratic Mirror):**  
-You will create an `AI_Prompts` table in your Skill‑Tree database to store your best “Socratic Master Prompts” – turning your AI dialogues into a searchable asset.
-
 ---
 
 ## 🛩️ Pre‑flight Check: Is Your Skill‑Tree Database Ready?

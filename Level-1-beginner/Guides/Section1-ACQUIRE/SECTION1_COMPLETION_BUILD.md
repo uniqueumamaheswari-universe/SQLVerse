@@ -339,6 +339,17 @@ The Skill-Tree database schema you have created supports **ALL 4 phases** of Lev
 
 **ETL (Extract, Transform, Load)** is a standard data pipeline pattern used in professional data engineering. You will now apply it to fill your Skill‑Tree database with real learning data from your ACQUIRE module files.
 
+### 📋 Gemstone Source Map – Where to Find Data for Each Table (ACQUIRE)
+
+Before you extract gemstones, you need to know where to look. Use this map to locate source material for each core table from your ACQUIRE module files.
+
+| Core Table | Source Location | What to Look For |
+|------------|-----------------|------------------|
+| **`skills_level1`** | `1-sqlCommands/` – every lesson file | 🎯 What You'll Learn (skills) + ✅ Progress Check (verified capabilities) |
+| **`bonus_skills_level1`** | `1-sqlCommands/` – bonus skill sections<br>`2-practiceExercises/` – bonus skills in practice files | Bonus skill names and source filenames |
+| **`insights_level1`** | `1-sqlCommands/` – Perigon sections<br>`2-practiceExercises/` – Perigon sections<br>`4-exerciseAndQuizSolutions/` – Perigon sections | 💎 DESIGNER'S PERIGON – insights, wisdom, reflections |
+| **`achievements_level1`** | `2-practiceExercises/` | Quiz scores, exercise completions, capstone reports, simulation results |
+
 ### 🔹 EXTRACT – Mining the Gemstones
 
 Your Skill‑Tree database already has 8 rows from the seed data (phases and modules). To lay a solid foundation, you need to add rows from **Module 1** (lesson files, exercises, quiz, solutions, and Perigon insights):
@@ -347,28 +358,6 @@ Your Skill‑Tree database already has 8 rows from the seed data (phases and mod
 - **Insights:** Extract 5–10 Perigon takeaways (your favourite insights) from Module 1. Add them to `insights_level1`.
 
 That’s it. Once you’ve added these, celebrate – you’ve laid the foundation for your permanent learning record. You can always add more rows later as you continue through ACCELERATE, ANALYZE, and ARCHITECT.
-
-#### 📋 Where to Find Information (Extraction Templates)
-
-**Module 4 Skills (copy‑paste template):**
-
-| Skill Name | Filename |
-|------------|----------|
-| Intro to Joins | 1-IntroToJoins.md |
-| INNER JOIN | 2-InnerJoin.md |
-| LEFT JOIN | 3-LeftJoin.md |
-| Joining Multiple Tables | 4-JoiningMultipleTables.md |
-| Self Join | 5-SelfJoin.md |
-| Join Conditions | 6-JoinConditions.md |
-
-**Bonus Skills (look in these files):**
-- `0-refactoring-lab.md` → CREATE TABLE, ALTER TABLE, DROP TABLE
-- `5-SelfJoin.md` (Dynamic Data Check) → INSERT OR IGNORE
-- `SQLVerse-Architects-Blueprint/2-Foreign-Keys-Referential-Integrity.md` → DELETE
-
-**Perigon Insights:** Search for `💎 DESIGNER'S PERIGON` across every Level 1 file.
-
-> 💡 **Refer to the Module‑by‑Module Reference in the original ACQUIRE Completion document for exact file locations.**
 
 ### 🔹 TRANSFORM – Table → Spreadsheet → CSV
 

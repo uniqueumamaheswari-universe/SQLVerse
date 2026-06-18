@@ -201,8 +201,47 @@ erDiagram
 All relationships use `module_id` as the foreign key. No many‑to‑many relationships exist, which simplifies JOIN queries.
 
 ---
+## 5. ACCELERATE Table Schemas
 
-## 5. ETL Workflow for Populating the Skill‑Tree
+In ACCELERATE, you will capture not just the skills you learn, but the **process of interrogation** – the Socratic dialogue that led to those skills. The `socratic_logs_level1` table stores your probing questions, the AI's guidance, and your own reasoning shifts.
+
+### 5.1 `socratic_logs_level1`
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `log_id` | INTEGER | Primary key |
+| `module_id` | INTEGER | Foreign key to `modules_level1` (2, 3, or 4) |
+| `sub_module` | TEXT | 'ACQUIRE-MODULE2', 'ACQUIRE-MODULE3', 'ACQUIRE-MODULE4' |
+| `cycle` | TEXT | 'AUGMENT', 'APPLY', or 'AUDIT' |
+| `filename` | TEXT | The concept file name (e.g., '1-the-sieve-select.md') |
+| `structural_question` | TEXT | The probing question you asked the AI |
+| `ai_guidance` | TEXT | The logic/strategy the AI suggested (no code) |
+| `student_final_sql` | TEXT | Your manually written SQL after the Socratic dialogue |
+| `initial_understanding` | TEXT | What you thought before the Socratic exchange |
+| `realised_insight` | TEXT | What you learned from the exchange |
+
+```sql
+CREATE TABLE socratic_logs_level1 (
+    log_id INTEGER PRIMARY KEY,
+    module_id INTEGER,
+    sub_module TEXT NOT NULL,
+    cycle TEXT NOT NULL,
+    filename TEXT NOT NULL,
+    structural_question TEXT,
+    ai_guidance TEXT,
+    student_final_sql TEXT,
+    initial_understanding TEXT,
+    realised_insight TEXT,
+    FOREIGN KEY (module_id) REFERENCES modules_level1(module_id),
+    CHECK (cycle IN ('AUGMENT', 'APPLY', 'AUDIT'))
+);
+```
+
+**Why this table matters:** It turns your Socratic dialogues into searchable, queryable assets. This is the evidence that you led the AI, not the other way around.
+
+---
+
+## 6. ETL Workflow for Populating the Skill‑Tree
 
 ### 📥 ETL Workflow for ACQUIRE
 
@@ -215,6 +254,17 @@ In ACCELERATE, you will grow your Skill‑Tree further by extracting gemstones f
 For ACCELERATE, ANALYZE, and ARCHITECT you will use the ETL workflow described below, where the dedicated workspace `EXTRACTION_BAY` is used for accumulating gemstone data.
 
 **ETL (Extract, Transform, Load)** is the standard data pipeline pattern you will follow for populating the Skill-Tree.
+
+## 📋 Gemstone Source Map – Where to Find Data for Each Table (ACQUIRE)
+
+Before you extract gemstones, you need to know where to look. Use this map to locate source material for each core table from your ACQUIRE module files.
+
+| Core Table | Source Location | What to Look For |
+|------------|-----------------|------------------|
+| **`skills_level1`** | `1-sqlCommands/` – every lesson file | 🎯 What You'll Learn (skills) + ✅ Progress Check (verified capabilities) |
+| **`bonus_skills_level1`** | `1-sqlCommands/` – bonus skill sections<br>`2-practiceExercises/` – bonus skills in practice files | Bonus skill names and source filenames |
+| **`insights_level1`** | `1-sqlCommands/` – Perigon sections<br>`2-practiceExercises/` – Perigon sections<br>`4-exerciseAndQuizSolutions/` – Perigon sections | 💎 DESIGNER'S PERIGON – insights, wisdom, reflections |
+| **`achievements_level1`** | `2-practiceExercises/` | Quiz scores, exercise completions, capstone reports, simulation results |
 
 ### 🔹 EXTRACT – Mining the Gemstones (Using the Extraction Bay)
 
@@ -246,7 +296,7 @@ A reusable pattern or insight, not raw code. Examples:
 
 > **For other tables** (`bonus_skills_level1`, `insights_level1`, `achievements_level1`), use the same Markdown table pattern with the appropriate columns. Refer to the schemas in Section 3.
 
-As you navigate through the ACCELERATE phase, for every concept file you work on, you will keep accumulating the gems from ACQUIRE files as well as ACCELERATE files and adding them to `EXTRACTION_BAY/SkillTree/GemstoneArray.md`. The exact workflow for this gemstone mining is described in the **`MODULE5_GUIDE.md`** (Phase 3: Daily Workflow).
+As you navigate through the ACCELERATE phase, for every concept file you work on, you will keep accumulating the gems from ACQUIRE files as well as ACCELERATE files and adding them to `EXTRACTION_BAY/SkillTree/GemstoneArray.md`. The exact workflow for this gemstone mining will be described when you reach the **ACCELERATE module**.
 
 ### 🔹 TRANSFORM – Markdown Table → Spreadsheet → CSV
 
@@ -363,7 +413,7 @@ FROM temp_insights_level1;
 
 ---
 
-## 6. Summary / Quick Reference Checklist
+## 7. Summary / Quick Reference Checklist
 
 | Action | When | Location |
 |--------|------|----------|
@@ -376,7 +426,7 @@ FROM temp_insights_level1;
 
 ---
 
-## 7. Next Steps
+## 8. Next Steps
 
 This document is your **reference** for all Skill‑Tree operations. Keep it handy during ACCELERATE, ANALYZE, and ARCHITECT. When you encounter a new concept, remember:
 

@@ -292,6 +292,42 @@ VALUES (5, 'Module 5: GenAI Walkthrough', 2, 'Module5-GenAI-Walkthrough/01-The-S
 
 > *“Your Skill‑Tree is the living record of your journey. ACCELERATE will add to it.”*
 
+---
+
+### 📝 Socratic Logs for ACCELERATE
+
+In ACQUIRE, you captured **what** you learned (skills, insights, achievements). In ACCELERATE, you must also capture **how** you learned it – the Socratic dialogue, the probing questions, the AI's guidance, and your own reasoning shifts.
+
+The `socratic_logs_level1` table stores the **process of interrogation**, not just the outcome.
+
+**Create** this table in your Skill‑Tree database:
+
+```sql
+CREATE TABLE socratic_logs_level1 (
+    log_id INTEGER PRIMARY KEY,
+    module_id INTEGER,
+    sub_module TEXT NOT NULL,             -- 'ACQUIRE-MODULE2', 'ACQUIRE-MODULE3', 'ACQUIRE-MODULE4'
+    cycle TEXT NOT NULL,
+    filename TEXT NOT NULL,
+    structural_question TEXT,
+    ai_guidance TEXT,
+    student_final_sql TEXT,               -- Your manually written SQL after the Socratic dialogue
+    initial_understanding TEXT,
+    realised_insight TEXT,
+    FOREIGN KEY (module_id) REFERENCES modules_level1(module_id),
+    CHECK (cycle IN ('AUGMENT', 'APPLY', 'AUDIT'))
+);
+```
+
+**Why this table matters:**
+
+| Without it | With it |
+|------------|---------|
+| You know *what* skill you gained | You also know *why* you needed it |
+| You have the final query | You have the reasoning that led there |
+| Your portfolio shows results | Your portfolio shows **judgment** |
+
+This table is the evidence that you led the AI, not the other way around. It turns your Socratic dialogues into searchable, queryable assets for interviews and retrospectives.
 
 ---
 

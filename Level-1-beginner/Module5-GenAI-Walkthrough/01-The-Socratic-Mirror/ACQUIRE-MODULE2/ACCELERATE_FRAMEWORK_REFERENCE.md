@@ -240,7 +240,7 @@ In ACCELERATE, the skill is **hidden inside the reasoning**. You must mine it fr
 
 All your `🔍 Probing Questions` are available in your Vault under `01-The-Socratic-Mirror/ACQUIRE-MODULEX/`.
 
-**Selection Rule:** Select only the questions that provide **unique and rare insights**.
+**Selection Rule:** Select only the questions that provide **unique and rare insights** — questions that changed your mental model, exposed a hidden production risk, revealed a new architectural principle, or corrected an incorrect assumption.
 
 - ✅ **Add** – if the question reveals a new perspective not already captured elsewhere.
 - ❌ **Skip** – if it duplicates a skill or insight already documented.

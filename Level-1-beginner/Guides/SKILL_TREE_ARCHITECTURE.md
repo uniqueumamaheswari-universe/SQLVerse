@@ -224,12 +224,12 @@ In ACCELERATE, you will capture not just the skills you learn, but the **process
 CREATE TABLE socratic_logs_level1 (
     log_id INTEGER PRIMARY KEY,
     module_id INTEGER,
-    sub_module TEXT NOT NULL,
+    sub_module TEXT NOT NULL,     -- 'ACQUIRE-MODULE2', 'ACQUIRE-MODULE3', 'ACQUIRE-MODULE4'
     cycle TEXT NOT NULL,
     filename TEXT NOT NULL,
     structural_question TEXT,
     ai_guidance TEXT,
-    student_final_sql TEXT,
+    student_final_sql TEXT,         -- Your manually written SQL after the Socratic dialogue
     initial_understanding TEXT,
     realised_insight TEXT,
     FOREIGN KEY (module_id) REFERENCES modules_level1(module_id),

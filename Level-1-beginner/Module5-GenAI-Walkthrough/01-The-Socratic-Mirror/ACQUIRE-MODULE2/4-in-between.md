@@ -608,7 +608,7 @@ flowchart LR
 
 | Previous Step | Next Step |
 |:---:|:---:|
-| [← Return to File 3: Logical Operators](./3-logical-operators.md) | [Continue to File 5: LIKE & Wildcards →](./5-like-wildcards.md) |
+| [← Return to File 3: Logical Operators](./3-logical-operators.md) | [Continue to File 5: LIKE & Wildcards →](./5-like-pattern-matching.md) |
 
 ---
 

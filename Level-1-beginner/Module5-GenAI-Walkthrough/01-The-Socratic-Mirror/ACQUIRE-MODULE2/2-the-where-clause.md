@@ -345,7 +345,7 @@ In ACCELERATE, the skill is **hidden inside the reasoning**. You must mine it fr
 
 All your `🔍 Probing Questions` are available in your Vault under `01-The-Socratic-Mirror/ACQUIRE-MODULEX/Lesson file` .
 
-**Selection Rule:** From those questions, select only the ones that provide **unique and rare insights** for your Skill‑Tree mining.
+**Selection Rule:** Select only the questions that provide **unique and rare insights** — questions that changed your mental model, exposed a hidden production risk, revealed a new architectural principle, or corrected an incorrect assumption.
 
 - ✅ **Add to `socratic_logs_level1`** – if the question reveals a new perspective, edge case, or architectural nuance not already captured in `🎭 The Copilot's Script`, `🔗 The Architectural Guardrail`, or `🛰️ Production Echo`.
 - ❌ **Skip** – if the question reveals the same skill or insight already documented elsewhere.

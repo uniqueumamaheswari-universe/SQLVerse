@@ -427,6 +427,8 @@ What you are building is not just a Vault – it is **Your Personalized Google i
 
 > *“The SQLVerse expands. Your portfolio is proof.”*
 
+> 📘 **Note:** The techniques and methodologies for extracting ACCELERATE gemstones – including the Extraction Compass, Socratic log entries, and Skill‑Tree updates – will be described in **File 2 (The WHERE Clause)** and formalised in the **ACCELERATE Operating System**.
+
 </div>
 
 ---

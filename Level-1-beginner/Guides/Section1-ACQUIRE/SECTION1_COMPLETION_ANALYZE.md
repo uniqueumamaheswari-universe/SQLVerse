@@ -577,7 +577,7 @@ flowchart LR
 
 | Previous Step | Next Step |
 |:---:|:---:|
-| [← Back to BUILD File](./SECTION1_COMPLETION_BUILD.md) | [Return to MASTER GUIDE →](../SECTION1_COMPLETION.md) |
+| [← Back to BUILD File](./SECTION1_COMPLETION_BUILD.md) | [Return to MASTER GUIDE →](../MASTER_GUIDE.md) |
 
 ---
 

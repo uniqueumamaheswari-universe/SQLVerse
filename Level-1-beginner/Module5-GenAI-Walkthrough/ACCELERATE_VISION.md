@@ -214,10 +214,13 @@ Now, make this artifact yours. Your `Skill-Tree-DB/` folder should already conta
 ```
 Skill-Tree-DB/
 ├── interview_preparation/
-│   └── my_personalized_google.md
+│   └── mirror_bridge/
+│       └── my_personalized_google.md
 ├── schema/
-│   └── ACQUIRE/
-│       └── schema.sql
+│   ├── ACQUIRE/
+│   │   └── schema.sql
+│   └── ACCELERATE/
+│       └── accelerate-schema.sql
 ├── analytics-graph/
 │   └── ACQUIRE/
 │       ├── portfolio_queries.sql
@@ -226,11 +229,48 @@ Skill-Tree-DB/
 └── README.md
 ```
 
-**Action:** 
-1. Create the folder `interview_preparation/` inside `Skill-Tree-DB/`.
-2. Save the content above (the entire “10‑Minute Interview Prep” section) as `my_personalized_google.md` inside `Skill-Tree-DB/interview_preparation/`.
 
-This file now lives in your permanent portfolio – a tangible proof of your isomorphic knowledge system. You can use it to demonstrate your preparation strategy in interviews.
+**Action:** 
+1. Create the folder `interview_preparation/mirror_bridge/` inside `Skill-Tree-DB/`.
+2. Save the content above (the entire “10‑Minute Interview Prep” section) as `my_personalized_google.md` inside `Skill-Tree-DB/interview_preparation/mirror_bridge/`.
+
+This file now lives in your permanent portfolio – a tangible proof of your **isomorphic knowledge system.** You can use it to demonstrate your preparation strategy in interviews.
+
+### 📁 Your Permanent Skill‑Tree Folder Structure Now
+
+```mermaid
+flowchart TD
+    A["📁 Skill-Tree-DB/"] --> B["📄 skill_tree.db"]
+    A --> C["📁 Meta/"]
+    A --> D["📁 schema/"]
+    A --> E["📁 analytics-graph/"]
+    A --> F["📄 README.md"]
+    A --> G["📁 interview_preparation/"]
+
+    C --> C1["📄 erd.md (you will save here)"]
+    C --> C2["📄 dfd.md (you will save here)"]
+
+    D --> D1["📁 ACQUIRE/"]
+    D1 --> D1a["📄 schema.sql"]
+    D --> D2["📁 ACCELERATE/"]
+    D2 --> D2a["📄 accelerate-schema.sql"]
+
+    E --> E1["📁 ACQUIRE/"]
+    E1 --> E1a["📄 portfolio_queries.sql"]
+    E1 --> E1b["📄 transformation_report.sql"]
+    E1 --> E1c["📄 matrix_reloaded.sql"]
+
+    G --> G1["📁 mirror_bridge/"]
+    G1 --> G1a["📄 my_personalized_google.md"]
+
+    style A fill:#c8e6c9
+    style C fill:#e1f5fe
+    style D fill:#fff8e1
+    style E fill:#f3e5f5
+    style F fill:#ffecb3
+    style G fill:#fff8e1
+    style G1 fill:#fff8e1
+```
 
 ---
 

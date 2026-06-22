@@ -128,7 +128,7 @@ You are entering the abstraction layer. This is where you build mental models, c
 
 ### Begin Your AUGMENT Journey
 
-➡️ [Start with Concept 1: The Sieve](./01-The-Socratic-Mirror/ACQUIRE-MODULE2/1-the-sieve-select.md)
+➡️ [Start with Concept 1: The Sieve](./ACQUIRE-MODULE2/1-the-sieve-select.md)
 
 ✅ **After completing all 7 concepts**, return here.
 
@@ -168,7 +168,7 @@ The mirror phase is over. You now operate under implementation pressure. The LAB
 
 ### Begin Your APPLY Journey
 
-➡️ [Start with LAB 1: Basic Extraction Defect Cleanup](./02-Exercises/MODULE2/1-basic-select-LAB.md)
+➡️ [Start with LAB 1: Basic Extraction Defect Cleanup](../02-Exercises/MODULE2/1-basic-select-LAB.md)
 
 ✅ **After completing all 5 LABs**, return here.
 
@@ -206,7 +206,7 @@ Implementation alone is not mastery. You must now compare your reasoning against
 
 ### Begin Your AUDIT Journey
 
-➡️ [Start with KEY 1: Sieve Verification Metrics](./03-Solutions/MODULE2/1-basic-select-KEY.md)
+➡️ [Start with KEY 1: Sieve Verification Metrics](../03-Solutions/MODULE2/1-basic-select-KEY.md)
 
 ✅ **After completing all 5 KEYs**, your Cycle 1 spiral is complete.
 

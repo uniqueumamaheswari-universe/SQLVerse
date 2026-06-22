@@ -150,7 +150,7 @@ Use this **Markdown table** – copy the header once, then append rows for each 
 - **objective_text** – what the concept teaches.
 - **student_viewpoint** – your personal reflection (what clicked, what surprised you).
 
-> **For other tables** (`bonus_skills_level1`, `insights_level1`, `achievements_level1`), use the same Markdown table pattern with the appropriate columns. Refer to the schema in [`SKILL_TREE_ARCHITECTURE.md`](../../Guides/SKILL_TREE_ARCHITECTURE.md) (Sections 3.4–3.6) for column names.
+> **For other tables** (`bonus_skills_level1`, `insights_level1`, `achievements_level1`), use the same Markdown table pattern with the appropriate columns. Refer to the schema in [`SKILL_TREE_ARCHITECTURE.md`](../Guides/SKILL_TREE_ARCHITECTURE.md) (Sections 3.4–3.6) for column names.
 
 ### Convert to CSV and Import
 

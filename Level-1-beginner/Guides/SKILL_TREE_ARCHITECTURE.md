@@ -30,13 +30,16 @@ flowchart TD
     
     Schema --> AcquireSchema["📁 ACQUIRE/"]
     AcquireSchema --> SchemaSQL["📄 schema.sql"]
+    Schema --> AccelerateSchema["📁 ACCELERATE/"]
+    AccelerateSchema --> AccelerateSQL["📄 accelerate-schema.sql"]
     
     Analytics --> AcquireAnalytics["📁 ACQUIRE/"]
     AcquireAnalytics --> PortQueries["📄 portfolio_queries.sql"]
     AcquireAnalytics --> TransReport["📄 transformation_report.sql"]
     AcquireAnalytics --> Matrix["📄 matrix_reloaded.sql"]
     
-    Interview --> PrepFile["📄 my_personalized_google.md"]
+    Interview --> MirrorBridge["📁 mirror_bridge/"]
+    MirrorBridge --> PrepFile["📄 my_personalized_google.md"]
     
     EX --> SkillBay["📁 SkillTree/"]
     SkillBay --> GemArray["📄 GemstoneArray.md"]
@@ -66,7 +69,8 @@ Portfolio Root/
 │   ├── schema/                            # Phase‑by‑phase table definitions
 │   │   ├── ACQUIRE/
 │   │   │   └── schema.sql                 # CREATE TABLE statements
-│   │   ├── ACCELERATE/                    # (future)
+│   │   ├── ACCELERATE/
+│   │   │   └── accelerate-schema.sql      # ACCELERATE table definitions
 │   │   ├── ANALYZE/                       # (future)
 │   │   └── ARCHITECT/                     # (future)
 │   │
@@ -80,9 +84,11 @@ Portfolio Root/
 │   │   └── ARCHITECT/                     # (future)
 │   │
 │   └── interview_preparation/             # Career readiness artifacts
-│       └── my_personalized_google.md      # Your isomorphic mirror bridge proof
+│       └── mirror_bridge/
+│           └── my_personalized_google.md  # Your isomorphic mirror bridge proof
 
 ```
+
 ---
 
 ## 3. Core Table Schemas

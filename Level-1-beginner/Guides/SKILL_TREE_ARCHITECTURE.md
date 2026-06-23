@@ -247,36 +247,6 @@ CREATE TABLE socratic_logs_level1 (
 
 **Why this table matters:** It turns your Socratic dialogues into searchable, queryable assets. This is the evidence that you led the AI, not the other way around.
 
-### 📁 Your Permanent Skill‑Tree Folder Structure
-
-```mermaid
-flowchart TD
-    A["📁 Skill-Tree-DB/"] --> B["📄 skill_tree.db"]
-    A --> C["📁 Meta/"]
-    A --> D["📁 schema/"]
-    A --> E["📁 analytics-graph/"]
-    A --> F["📄 README.md"]
-
-    C --> C1["📄 erd.md (you will save here)"]
-    C --> C2["📄 dfd.md (you will save here)"]
-
-    D --> D1["📁 ACQUIRE/"]
-    D1 --> D1a["📄 schema.sql"]
-    D --> D2["📁 ACCELERATE/"]
-    D2 --> D2a["📄 accelerate-schema.sql"]
-
-    E --> E1["📁 ACQUIRE/"]
-    E1 --> E1a["📄 portfolio_queries.sql"]
-    E1 --> E1b["📄 transformation_report.sql"]
-    E1 --> E1c["📄 matrix_reloaded.sql"]
-
-    style A fill:#c8e6c9
-    style C fill:#e1f5fe
-    style D fill:#fff8e1
-    style E fill:#f3e5f5
-    style F fill:#ffecb3
-```
-
 ---
 
 ## 6. ETL Workflow for Populating the Skill‑Tree

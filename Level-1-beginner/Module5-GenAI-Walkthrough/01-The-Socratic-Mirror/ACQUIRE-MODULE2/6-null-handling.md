@@ -331,7 +331,7 @@ When the institution was a startup, this query served its purpose well – retur
 > 🧠 **Architectural Twist:** Assume the `NULL` problem has already been fixed. The query is now logically correct. **Can a logically correct query still fail in production?**
 > 
 
-**Analysis:** The query was architecturally correct but **architecturally** and **business-wise incomplete.** It failed on multiple layers:
+**Analysis:** The query was logically correct but **architecturally** and **business-wise incomplete.** It failed on multiple layers:
 
 | Failure Layer | Description |
 |---------------|-------------|

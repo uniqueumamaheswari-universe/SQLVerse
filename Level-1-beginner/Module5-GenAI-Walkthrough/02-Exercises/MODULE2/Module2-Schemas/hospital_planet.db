@@ -1,0 +1,115 @@
+-- =============================================
+-- Hospital Planet Database (ACCELERATE Module 2)
+-- Used for Production Echo exercises
+-- =============================================
+
+-- =============================================
+-- DROP TABLES (if they already exist)
+-- =============================================
+DROP TABLE IF EXISTS bills;
+DROP TABLE IF EXISTS appointments;
+DROP TABLE IF EXISTS treatments;
+DROP TABLE IF EXISTS patients;
+
+-- =============================================
+-- CREATE TABLES
+-- =============================================
+
+-- 1. Patients Table
+CREATE TABLE patients (
+    patient_id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    email TEXT NOT NULL,
+    phone TEXT,
+    status TEXT DEFAULT 'Active'
+);
+
+-- 2. Treatments Table
+CREATE TABLE treatments (
+    treatment_id INTEGER PRIMARY KEY,
+    treatment_name TEXT NOT NULL,
+    cost REAL NOT NULL,
+    category TEXT
+);
+
+-- 3. Appointments Table
+CREATE TABLE appointments (
+    appointment_id INTEGER PRIMARY KEY,
+    patient_id INTEGER NOT NULL,
+    appointment_date TEXT NOT NULL,
+    FOREIGN KEY (patient_id) REFERENCES patients(patient_id)
+);
+
+-- 4. Bills Table
+CREATE TABLE bills (
+    bill_id INTEGER PRIMARY KEY,
+    patient_id INTEGER NOT NULL,
+    amount REAL NOT NULL,
+    bill_date TEXT NOT NULL,
+    FOREIGN KEY (patient_id) REFERENCES patients(patient_id)
+);
+
+-- =============================================
+-- INSERT SAMPLE DATA
+-- =============================================
+
+-- Insert Patients
+INSERT INTO patients (patient_id, name, email, phone, status) VALUES
+(1, 'John Smith', 'john.smith@email.com', '555-1001', 'Active'),
+(2, 'Emma Wilson', 'emma.w@email.com', '555-1002', 'Active'),
+(3, 'Michael Brown', 'michael.b@email.com', NULL, 'Active'),
+(4, 'Sarah Davis', 'sarah.d@email.com', '555-1004', 'Inactive'),
+(5, 'James Johnson', 'james.j@email.com', '555-1005', 'Active'),
+(6, 'Maria Garcia', 'maria.g@email.com', NULL, 'Active'),
+(7, 'Robert Lee', 'robert.l@email.com', '555-1007', 'Active'),
+(8, 'Patricia Moore', 'patricia.m@email.com', '555-1008', 'Inactive'),
+(9, 'David Miller', 'david.m@email.com', '555-1009', 'Active'),
+(10, 'Linda Taylor', 'linda.t@email.com', '555-1010', 'Active');
+
+-- Insert Treatments
+INSERT INTO treatments (treatment_id, treatment_name, cost, category) VALUES
+(1, 'General Checkup', 120.00, 'Primary Care'),
+(2, 'X-Ray Imaging', 350.00, 'Diagnostic'),
+(3, 'Blood Test Panel', 85.00, 'Diagnostic'),
+(4, 'Surgery - Minor', 1200.00, 'Surgical'),
+(5, 'Surgery - Major', 4500.00, 'Surgical'),
+(6, 'Physiotherapy', 75.00, 'Rehabilitation'),
+(7, 'CT Scan', 550.00, 'Diagnostic'),
+(8, 'Prescription Refill', 25.00, 'Pharmacy'),
+(9, 'MRI Scan', 850.00, 'Diagnostic'),
+(10, 'Vaccination', 45.00, 'Preventative');
+
+-- Insert Appointments
+INSERT INTO appointments (appointment_id, patient_id, appointment_date) VALUES
+(1, 1, '2025-01-10'),
+(2, 2, '2025-01-15'),
+(3, 3, '2025-02-01'),
+(4, 4, '2025-02-10'),
+(5, 5, '2025-03-01'),
+(6, 1, '2025-03-05'),
+(7, 6, '2025-03-10'),
+(8, 7, '2025-04-01'),
+(9, 8, '2025-04-05'),
+(10, 9, '2025-04-15'),
+(11, 10, '2025-05-01'),
+(12, 2, '2025-05-10');
+
+-- Insert Bills
+INSERT INTO bills (bill_id, patient_id, amount, bill_date) VALUES
+(1, 1, 120.00, '2025-01-12'),
+(2, 2, 350.00, '2025-01-18'),
+(3, 3, 85.00, '2025-02-05'),
+(4, 4, 1200.00, '2025-02-12'),
+(5, 5, 45.00, '2025-03-03'),
+(6, 1, 550.00, '2025-03-08'),
+(7, 6, 75.00, '2025-03-12'),
+(8, 7, 25.00, '2025-04-03'),
+(9, 8, 850.00, '2025-04-08'),
+(10, 9, 120.00, '2025-04-18'),
+(11, 10, 45.00, '2025-05-03'),
+(12, 2, 75.00, '2025-05-12');
+
+
+-- ============================================= 
+-- DATABASE READY FOR USE 
+-- =============================================

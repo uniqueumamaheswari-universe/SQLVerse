@@ -650,7 +650,7 @@ flowchart LR
 
 | Previous Step | Next Step |
 |:---:|:---:|
-| [← Return to File 5: LIKE & Wildcards](./5-like-pattern-matching.md) | [Continue to File 7: DISTINCT & Aliases →](./7-distinct-aliases.md) |
+| [← Return to File 5: LIKE & Wildcards](./5-like-pattern-matching.md) | [Continue to File 7: DISTINCT & Aliases →](./7-the-polish.md) |
 
 ---
 

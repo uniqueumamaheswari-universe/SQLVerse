@@ -1,5 +1,6 @@
 
 
+
 # 🗄️🤖 SQL & GenAI Course
 **🎯 Quality Education for Anyone, Anywhere, Anytime — 💫 with Comfort, Convenience at no Cost**
 
@@ -354,7 +355,7 @@ flowchart LR
 
 | Previous Step | Next Step |
 |:---:|:---:|
-| [← Return to Cycle Guide](../CYCLE1_GUIDE.md) | [Continue to Exercise 2: WHERE Clause →](./2-where-operators.md) |
+| [← Return to Cycle Guide](../../01-The-Socratic-Mirror/CYCLE1_GUIDE.md) | [Continue to Exercise 2: WHERE Clause →](./2-where-operators-LAB.md) |
 
 ---
 

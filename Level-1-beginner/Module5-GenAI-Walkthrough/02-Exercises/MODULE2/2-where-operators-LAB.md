@@ -1,5 +1,6 @@
 
 
+
 # 🗄️🤖 SQL & GenAI Course
 **🎯 Quality Education for Anyone, Anywhere, Anytime — 💫 with Comfort, Convenience at no Cost**
 
@@ -104,7 +105,7 @@ For this lab, you remain anchored across your twin **foundational landscapes.** 
 
 ## 📋 Business Use Case
 
-Three clients. Two domains. Same SQL patterns.
+Two clients. Two domains. Same SQL patterns.
 
 ---
 
@@ -266,7 +267,7 @@ flowchart LR
 
 | Previous Step | Next Step |
 |:---:|:---:|
-| [← Return to Cycle Guide](../CYCLE1_GUIDE.md) | [Continue to Exercise 3: Logical & IN/BETWEEN →](./3-logical-and-in-between-LAB.md) |
+| [← Return to Exercise 1: Basic SELECT](./1-basic-select-LAB) | [Continue to Exercise 3: Logical & IN/BETWEEN →](./3-logical-and-in-between-LAB.md) |
 
 ---
 

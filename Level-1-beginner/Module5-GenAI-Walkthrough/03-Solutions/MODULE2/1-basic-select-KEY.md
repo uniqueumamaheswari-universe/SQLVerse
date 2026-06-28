@@ -471,7 +471,7 @@ Next, you will audit the **WHERE Clause** APPLY exercise:
 
 | Previous Step | Next Step |
 |:---:|:---:|
-| [← Return to Cycle Guide](../CYCLE1_GUIDE.md) | [Continue to 2-where-operators-KEY.md →](./2-where-operators-KEY.md) |
+| [← Return to Cycle Guide](../../01-The-Socratic-Mirror/CYCLE1_GUIDE.md) | [Continue to 2-where-operators-KEY.md →](./2-where-operators-KEY.md) |
 
 
 ---

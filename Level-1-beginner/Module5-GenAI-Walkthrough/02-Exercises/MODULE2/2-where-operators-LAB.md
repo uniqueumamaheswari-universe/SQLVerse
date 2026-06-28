@@ -267,7 +267,7 @@ flowchart LR
 
 | Previous Step | Next Step |
 |:---:|:---:|
-| [← Return to Exercise 1: Basic SELECT](./1-basic-select-LAB) | [Continue to Exercise 3: Logical & IN/BETWEEN →](./3-logical-and-in-between-LAB.md) |
+| [← Return to Exercise 1: Basic SELECT](./1-basic-select-LAB.md) | [Continue to Exercise 3: Logical & IN/BETWEEN →](./3-logical-and-in-between-LAB.md) |
 
 ---
 

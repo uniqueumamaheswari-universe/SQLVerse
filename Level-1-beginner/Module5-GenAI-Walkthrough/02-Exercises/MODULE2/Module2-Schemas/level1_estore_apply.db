@@ -1,0 +1,211 @@
+
+-- =============================================
+-- The E-Store Apply Database
+-- For ACCELERATE APPLY Phase (Module 2)
+--
+-- Location:
+--   Module5-GenAI-Walkthrough/02-Exercises/MODULE2/Module2-Schemas/
+--   level1_estore_apply.db
+-- =============================================
+
+-- =============================================
+-- DROP EXISTING TABLES (if any)
+-- =============================================
+
+DROP TABLE IF EXISTS Order_Items;
+DROP TABLE IF EXISTS Orders;
+DROP TABLE IF EXISTS Products;
+DROP TABLE IF EXISTS Customers;
+
+-- =============================================
+-- CREATE TABLES
+-- =============================================
+
+CREATE TABLE Customers (
+    customer_id INTEGER PRIMARY KEY,
+    name TEXT,
+    email TEXT,
+    phone TEXT,
+    city TEXT
+);
+
+CREATE TABLE Products (
+    product_id INTEGER PRIMARY KEY,
+    product_name TEXT,
+    category TEXT,
+    price REAL
+);
+
+CREATE TABLE Orders (
+    order_id INTEGER PRIMARY KEY,
+    customer_id INTEGER,
+    order_date TEXT,
+    FOREIGN KEY(customer_id) REFERENCES Customers(customer_id)
+);
+
+CREATE TABLE Order_Items (
+    order_item_id INTEGER PRIMARY KEY,
+    order_id INTEGER,
+    product_id INTEGER,
+    quantity INTEGER,
+    FOREIGN KEY(order_id) REFERENCES Orders(order_id),
+    FOREIGN KEY(product_id) REFERENCES Products(product_id)
+);
+
+-- =============================================
+-- INSERT SAMPLE DATA
+-- =============================================
+
+-- ---------- Customers ----------
+INSERT INTO Customers (customer_id, name, email, phone, city) VALUES
+(1, 'Alice Smith', 'alice@email.com', '555-0101', 'New York'),
+(2, 'Bob Johnson', 'bob@email.com', NULL, 'Chicago'),
+(3, 'Charlie Lee', 'charlie@email.com', '555-0103', 'New York'),
+(4, 'David Kim', 'david@email.com', NULL, 'San Francisco'),
+(5, 'Eva Gomez', 'eva@email.com', '555-0105', 'Chicago'),
+(6, 'Frank Turner', NULL, '555-0106', 'Boston'),
+(7, 'Grace Martin', NULL, '555-0107', 'Chicago'),
+(8, 'Henry Williams', 'henry@email.com', '555-0108', 'Boston');
+
+-- ---------- Products ----------
+INSERT INTO Products (product_id, product_name, category, price) VALUES
+(1, 'Laptop', 'Electronics', 1200.00),
+(2, 'Coffee Maker', 'Appliances', 80.00),
+(3, 'SQL Essentials Book', 'Books', 45.00),
+(4, 'Headphones', 'Electronics', 150.00),
+(5, 'Blender', 'Appliances', 60.00),
+(6, 'Desk', 'Furniture', 250.00),
+(7, 'Chair', 'Furniture', 120.00),
+(8, 'Gaming Monitor', 'Electronics', 750.00),  
+(9, 'Smart Watch', 'Electronics', 600.00);      
+
+-- ---------- Orders ----------
+INSERT INTO Orders (order_id, customer_id, order_date) VALUES
+(1, 1, '2025-10-01'),
+(2, 2, '2025-10-01'),
+(3, 1, '2025-10-03'),
+(4, 4, '2025-10-04'),
+(5, 5, '2025-10-05'),
+(6, 6, '2025-10-10'),
+(7, 7, '2025-10-11'),
+(8, 8, '2025-10-12'),
+(9, 1, '2025-10-15'),
+(10, 2, '2025-03-01'),   
+(11, 4, '2025-03-15'),   
+(12, 6, '2025-03-20');   
+
+-- ---------- Order Items ----------
+INSERT INTO Order_Items (order_item_id, order_id, product_id, quantity) VALUES
+(1, 1, 1, 1),
+(2, 1, 3, 1),
+(3, 2, 2, 1),
+(4, 3, 4, 2),
+(5, 4, 3, 1),
+(6, 4, 5, 1),
+(7, 6, 2, 1),
+(8, 7, 4, 2),
+(9, 8, 1, 1),
+(10, 9, 4, 5),
+(11, 8, 6, 6);
+
+-- =============================================
+-- PEDAGOGICAL DESIGN
+-- =============================================
+
+-- NULL handling (Email)
+--   Customers 6 (Frank Turner) and 7 (Grace Martin) have NULL email
+--   Enables IS NULL / IS NOT NULL exercises
+
+-- NULL handling (Phone)
+--   Customers 2 (Bob Johnson) and 4 (David Kim) have NULL phone
+--   Creates rich NULL combinations:
+--     - Email NULL only: Frank, Grace
+--     - Phone NULL only: Bob, David
+--     - Both present: Alice, Charlie, Eva, Henry
+--   Enables exercises combining NULL conditions
+
+-- DISTINCT / Duplicate Cities
+--   Boston appears twice (customers 6, 8)
+--   Chicago appears twice (customers 2, 5, 7)
+--   New York appears twice (customers 1, 3)
+--   Enables DISTINCT city exercises with meaningful results
+
+-- Comparison Operators (>, >=, <, <=, =, <>)
+--   Price: Laptop (1200), Gaming Monitor (750), Smart Watch (600), Desk (250), Chair (120)
+--   Quantity: 5 (Order 9) and 6 (Order 8, item 11)
+--   Enables >, >=, <, <=, =, <> exercises
+
+-- BETWEEN (Date Range)
+--   Orders spread across October 1-15 AND March 1-20
+--   Enables BETWEEN date range exercises
+
+-- Category Filtering
+--   Furniture category added (Desk, Chair)
+--   Electronics now has 4 products (Laptop, Headphones, Gaming Monitor, Smart Watch)
+--   Enables category-based filtering exercises
+
+-- LIKE / Pattern Matching
+--   Names: Alice, Bob, Charlie, David, Eva, Frank, Grace, Henry
+--   Enables LIKE with '%', '_', starts with, ends with
+
+-- Aliases
+--   Column names: name, email, phone, city, product_name, etc.
+--   Enables AS alias exercises
+
+-- JOIN Exercises
+--   Additional products (6,7,8,9) and orders (6-12) included
+--   Enables multi-table JOIN exercises
+
+-- Bulk Order Detection
+--   quantity >= 5 returns at least two rows:
+--     Order 9 (Alice, 5 Headphones)
+--     Order 8, item 11 (Henry, 6 Desks)
+--   Enables >= comparison with meaningful result set
+
+-- =============================================
+-- VERIFICATION QUERIES
+-- =============================================
+
+-- Customers with NULL emails
+-- Expected: Frank Turner, Grace Martin
+-- SELECT * FROM Customers WHERE email IS NULL;
+
+-- Customers with NULL phone numbers
+-- Expected: Bob Johnson, David Kim
+-- SELECT * FROM Customers WHERE phone IS NULL;
+
+-- Customers with missing contact details (email OR phone NULL)
+-- Expected: Frank, Grace, Bob, David
+-- SELECT * FROM Customers WHERE email IS NULL OR phone IS NULL;
+
+-- Distinct cities
+-- Expected: New York, Chicago, San Francisco, Boston
+-- SELECT DISTINCT city FROM Customers ORDER BY city;
+
+-- Orders with quantity >= 5
+-- Expected: Order 9 (Alice, 5 Headphones), Order 8 (Henry, 6 Desks)
+-- SELECT o.order_id, c.name, oi.product_id, oi.quantity
+-- FROM Orders o
+-- JOIN Customers c ON o.customer_id = c.customer_id
+-- JOIN Order_Items oi ON o.order_id = oi.order_id
+-- WHERE oi.quantity >= 5;
+
+-- Products in Electronics category with price > 500
+-- Expected: Laptop, Gaming Monitor, Smart Watch
+-- SELECT * FROM Products WHERE category = 'Electronics' AND price > 500;
+
+-- Orders on or after March 1, 2025
+-- Expected: 3 orders (10, 11, 12)
+-- SELECT * FROM Orders WHERE order_date >= '2025-03-01';
+
+-- Products in Furniture category
+-- Expected: Desk, Chair
+-- SELECT * FROM Products WHERE category = 'Furniture';
+
+-- Customers from Boston with email
+-- Expected: Henry Williams
+-- SELECT * FROM Customers WHERE city = 'Boston' AND email IS NOT NULL;
+
+-- =============================================
+-- DATABASE READY FOR APPLY PHASE
+-- =============================================

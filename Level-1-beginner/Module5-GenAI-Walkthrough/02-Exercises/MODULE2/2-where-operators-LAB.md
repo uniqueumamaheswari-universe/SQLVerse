@@ -1,6 +1,5 @@
 
 
-
 # 🗄️🤖 SQL & GenAI Course
 **🎯 Quality Education for Anyone, Anywhere, Anytime — 💫 with Comfort, Convenience at no Cost**
 
@@ -24,13 +23,13 @@ Welcome to your second **APPLY Phase** challenge. You have already mastered simp
 
 <div style="border-left: 4px solid #9c27b0; background-color: #f3e5f5; padding: 15px; margin: 20px 0; border-radius: 0 8px 8px 0;">
 
-You delivered your business requests across E‑Store and Hospital Planet in the previous LAB. You survived the Day 1 onboarding. The training wheels are entirely gone. 
+ You survived the Day 1 onboarding. The training wheels are entirely gone. 
 
-Now you begin **EXERCISE 2** – where the requests ask for **specific operational conditions**, not just blanket extracts.
+Now you begin **EXERCISE 2** – where the requests ask for **specific operational conditions**, not just blanket extracts. For this lab, you remain anchored across your twin **foundational landscapes:**  your **Home Turf** (E‑Store) and a **Familiar Landscape** (Hospital Planet). The structural symmetry remains unbroken for one final sprint before the un-mirroring phase begins.
 
 ### ⚠️ THE ILLUSION OF SYMMETRY
 
-The title of this file is **WHERE Clause**. This confirms your _milestone theme_, not your boundary limits. The scope of *every single APPLY file* encompasses the entire the entire **cumulative gamut** of your toolkit—from Basic SELECT to NULL Handling, DISTINCT, and the Query Execution Order.
+The title of this file is **WHERE Clause**. This confirms your _milestone theme_, not your boundary limits. The scope of *every single APPLY file* encompasses the entire **cumulative gamut** of your toolkit—from Basic SELECT to NULL Handling, DISTINCT, and the Query Execution Order.
 
  - **60% of this floor** is anchored in the conditional  `WHERE` clause. 
  -  **The other 40% is a wildcard zone** and can draw from any concept in the spiral.
@@ -77,13 +76,56 @@ flowchart LR
 | **3: The Consultant** | Socratic questioning (no code) | Configured with persona prompt. Explains logic – **never writes SQL code**. Follow the **3‑Attempt Rule**. |
 | **4: The Vault** | Save your work | Save each completed deliverable. Log any AI hallucinations. |
 
+> **Professional Habit:** Understand the data model before you query it – **Professional SQL developers** do that.
 ---
 
-## 🏛️ Meet Your Datasets
+## 🏛️ Meet Your APPLY Resource Repository
 
-For this lab, you remain anchored across your twin **foundational landscapes.** The structural symmetry remains unbroken for one final sprint before the un-mirroring phase begins.
+The **APPLY Resource Repository** is your central hub for all databases, ER diagrams, and schema guides used throughout the **APPLY cycle.** Each time you begin a new exercise, you will return here to load the required database and study its blueprint.
 
-### Dataset 1: E‑Store – Your Home Turf
+### 🗄️ Repository Artifacts
+
+**All resources** used throughout this **APPLY cycle** are located in the APPLY Resource Repository:
+
+1. **Customized E-Store database** – `level1_estore_apply.db` (extended dataset with NULLs, bulk orders, new categories)
+2. **Production Echo databases** – domain-specific datasets (e.g., `hospital_planet.db`, `real_estate_planet.db`, `fintech_planet.db`)
+3. **ER Diagrams and Schema Guides** – Blueprint files for every database (e.g., `E-Store_APPLY_Blueprint.md`, `Hospital_Planet_Blueprint.md`)
+
+### 📂 APPLY Resource Repository Location
+```
+Module5-GenAI-Walkthrough/02-Exercises/MODULE2/Module2-Schemas/
+```
+
+### Why does APPLY use a different E-Store database `level1_estore_apply.db`?
+
+The APPLY version of the E-Store extends the original ACQUIRE dataset with production-oriented data such as `NULL` values, additional records, and richer business scenarios. The schema remains unchanged; only the data has evolved.
+
+**Same schema. Different data. Different business outcomes.**
+
+---
+
+## ⚠ APPLY Rule
+
+The business request will not tell you:
+- which SQL command to use
+- which operator to use
+- which concept to use
+
+Part of APPLY is identifying the correct SQL tool yourself.
+
+---
+
+## 🛒 Section 1: Workshop Floor – E‑Store 
+
+Before solving the requests, spend a few minutes understanding the business model, workflow, ER diagram, and table schemas.
+
+**Business first. Data model second. SQL third.**
+
+**📁 Database:** Load [`level1_estore_apply.db`](./Module2-Schemas/level1_estore_apply.db) in **Tab 2 (The Factory)** before starting this section.
+
+**🗺️ ER Diagram & Schema Guide:** Study [`E-Store_APPLY_Blueprint.md`](./Module2-Schemas/E-Store_APPLY_Blueprint.md) before writing any SQL.
+
+### 📋 Meet Your Dataset: E‑Store – Your Home Turf
 
 | Table | Columns | What It Tells Us |
 |-------|---------|------------------|
@@ -92,24 +134,7 @@ For this lab, you remain anchored across your twin **foundational landscapes.** 
 | `orders` | `order_id`, `customer_id`, `order_date` | Transaction timeline events |
 | `order_items` | `order_item_id`, `order_id`, `product_id`, `quantity` | Itemized invoice lines |
 
-### Dataset 2: Hospital Planet – Familiar Landscape
-
-| Table | Columns | What It Tells Us |
-|-------|---------|------------------|
-| `patients` | `patient_id`, `name`, `email`, `phone`, `status` | Patient admission rosters |
-| `treatments` | `treatment_id`, `treatment_name`, `cost`, `category` | Clinical medical services catalog |
-| `appointments` | `appointment_id`, `patient_id`, `appointment_date` | Outpatient slot bookings |
-| `bills` | `bill_id`, `patient_id`, `amount`, `bill_date` | Financial medical ledger entries |
-
 ---
-
-## 📋 Business Use Case
-
-Two clients. Two domains. Same SQL patterns.
-
----
-
-## 🛒 Section 1: Workshop Floor – E‑Store 
 
 ### Business Request #1 – High-Value Electronics Drilldown
 
@@ -153,7 +178,29 @@ The Promotions Team wants to run an experimental campaign on items that represen
 
 ## 🏥 Section 2: Production Echo – Hospital Planet
 
-**📁 Database:** Load [`hospital_planet.db`](../../../Module5-GenAI-Walkthrough/02-Exercises/MODULE2/Module2-Schemas/hospital_planet.db) in **Tab 2 (The Factory)** before starting this section.
+> 📋 **Hospital Planet Policy:** Patients must settle all outstanding bills before discharge. For reporting purposes, bill settlement is treated as completion of the discharge process.
+
+> 💡 **Architect's Note:** Not every business event has its own dedicated column. In real production systems, organizations often use operational proxies. At Hospital Planet, a settled bill is used as the reporting proxy for a completed discharge.
+
+---
+Before solving the requests, spend a few minutes understanding the business model, workflow, ER diagram, and table schemas.
+
+**Business first. Data model second. SQL third.**
+
+**📁 Database:** Load [`hospital_planet.db`](./Module2-Schemas/hospital_planet.db) in **Tab 2 (The Factory)** before starting this section.
+
+**🗺️ ER Diagram & Schema Guide:** Study [`Hospital_Planet_Blueprint.md`](./Module2-Schemas/Hospital_Planet_Blueprint.md) before writing any SQL.
+
+### 📋 Meet Your Dataset: Hospital Planet – Familiar Landscape
+
+| Table | Columns | What It Tells Us |
+|-------|---------|------------------|
+| `patients` | `patient_id`, `name`, `email`, `phone`, `status` | Patient admission rosters |
+| `treatments` | `treatment_id`, `treatment_name`, `cost`, `category` | Clinical medical services catalog |
+| `appointments` | `appointment_id`, `patient_id`, `appointment_date`, `treatment_id` | Outpatient slot bookings with treatment performed |
+| `bills` | `bill_id`, `patient_id`, `amount`, `bill_date` | Financial medical ledger entries |
+
+---
 
 ### Request 6 – High-Risk Care Tier Tracking
 

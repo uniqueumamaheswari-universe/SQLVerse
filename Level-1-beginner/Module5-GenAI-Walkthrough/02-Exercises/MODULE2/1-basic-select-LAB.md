@@ -1,6 +1,5 @@
 
 
-
 # 🗄️🤖 SQL & GenAI Course
 **🎯 Quality Education for Anyone, Anywhere, Anytime — 💫 with Comfort, Convenience at no Cost**
 
@@ -87,39 +86,62 @@ flowchart LR
 | Tab | Purpose | What to Do |
 | :--- | :--- | :--- |
 | **1: The Map** | Open this exercise file | You are here – reading this file. Complete the business requests below. |
-| **2: The Factory** | Run queries | Load the **E‑Store database** (`Resources/sample_databases/level1_estore_basic.db`) for Workshop Floor requests. The database for **Production Echo** will be mentioned in that section. |
-| **3: The Consultant** | Socratic questioning (no code generation) | Configured with [`BROWSER-OFFICE-ACCELERATE.md`](../../Module5-GenAI-Walkthrough/BROWSER-OFFICE-ACCELERATE.md) – Persona prompt, SQLVerse characters, and relevant schema anchor. Explains logic, suggests strategies, validates reasoning – **never writes SQL code**. Follow the **3‑Attempt Rule**: try from memory, check your notes, then ask for a conceptual hint. |
+| **2: The Factory** | Understand the data model and execute SQL | 1. Study the **ER Diagram & Schema Guide** (60 seconds is enough).<br>2. Identify the **entities** and their **relationships.**<br>3. Load the database **referenced** in the exercise section.<br>4. Write and execute your SQL queries. |
+| **3: The Consultant** | Socratic questioning (no code generation) | Configured with [`BROWSER-OFFICE-ACCELERATE.md`](../../BROWSER-OFFICE-ACCELERATE.md) – Persona prompt, SQLVerse characters, and relevant schema anchor. Explains logic, suggests strategies, validates reasoning – **never writes SQL code**. Follow the **3‑Attempt Rule**: try from memory, check your notes, then ask for a conceptual hint. |
 | **4: The Vault** | Save your work | Save each completed business deliverable in your Vault under: `Learning/Level-1-beginner/ACCELERATE/02-Exercises/MODULE2/`.<br><br>If you spot AI hallucinations or edge cases, log them in `Learning/Level-1-beginner/ACCELERATE/Socratic_Journals/` as separate files (e.g., `hallucination_log_1.md`). |
 
----
+> 📌 **Note:** The **ER Diagram & Schema Guide** and the corresponding database for each exercise are specified in the **Workshop Floor** and **Production Echo** sections. For the full resource structure, refer to **🏛️ Meet Your APPLY Repository** below.
 
-## 🏛️ Meet Your Datasets
+> **Professional Habit:** Understand the data model before you query it – **Professional SQL developers** do that.
 
-You will work with two datasets in this exercise: your **Home Turf** (E‑Store) and a **New Landscape** (Hospital Planet).
-
----
-
-### Dataset 1: E‑Store – Your Home Turf
-
-| Table | Columns | What It Tells Us |
-|-------|---------|------------------|
-| `customers` | `customer_id`, `name`, `email`, `city`, `phone` | Who our customers are and where they live |
-| `products` | `product_id`, `product_name`, `price`, `category` | What products we sell and how much they cost |
-| `orders` | `order_id`, `customer_id`, `order_date` | When each order was placed and which customer placed it |
-| `order_items` | `order_item_id`, `order_id`, `product_id`, `quantity` | The line‑item details – which products and how many |
 
 ---
 
-### Dataset 2: Hospital Planet – New Landscape
+## 🏛️ Meet Your APPLY Resource Repository
 
-| Table | Columns | What It Tells Us |
-|-------|---------|------------------|
-| `patients` | `patient_id`, `name`, `email`, `phone`, `status` | Who the patients are and their contact details |
-| `treatments` | `treatment_id`, `treatment_name`, `cost`, `category` | What treatments are available and their costs |
-| `appointments` | `appointment_id`, `patient_id`, `appointment_date` | When each appointment is scheduled |
-| `bills` | `bill_id`, `patient_id`, `amount`, `bill_date` | Billing records for each patient |
+The **APPLY Resource Repository** is your central hub for all databases, ER diagrams, and schema guides used throughout the **APPLY cycle.** Each time you begin a new exercise, you will return here to load the required database and study its blueprint.
 
-> 💡 **Notice the pattern:** The tables in Hospital Planet mirror the E‑Store structure. `patients` = `customers`, `treatments` = `products`, `appointments` = `orders`, `bills` = `order_items`. The nouns change. The SQL stays the same.
+### 🗄️ Repository Artifacts
+
+**All resources** used throughout this **APPLY cycle** are located in the APPLY Resource Repository:
+
+1. **Customized E-Store database** – `level1_estore_apply.db` (extended dataset with NULLs, bulk orders, new categories)
+2. **Production Echo databases** – domain-specific datasets (e.g., `hospital_planet.db`, `real_estate_planet.db`, `fintech_planet.db`)
+3. **ER Diagrams and Schema Guides** – Blueprint files for every database (e.g., `E-Store_APPLY_Blueprint.md`, `Hospital_Planet_Blueprint.md`)
+
+### 📂 APPLY Resource Repository Location
+```
+Module5-GenAI-Walkthrough/02-Exercises/MODULE2/Module2-Schemas/
+```
+
+Each **APPLY exercise** will explicitly specify which database(s) you need to load from this repository – both for the **Workshop Floor** and **Production Echo** sections.
+
+> 💡 **Tip:** Browse the repository before you begin. **Familiarise** yourself with the available databases and schema guides. You will **revisit** this repository throughout the **APPLY phase.**
+
+
+### Why does APPLY use a different E-Store database `level1_estore_apply.db`?
+
+The **APPLY** uses the same schema but a richer dataset because production work is driven by realistic data rather than simplified classroom examples.
+
+ - **ACQUIRE:** The E-Store database was designed for learning SQL syntax. It intentionally avoided NULL values, edge cases, and production-style data anomalies.
+ - **APPLY:** The same E-Store has been extended to simulate realistic business environments while keeping the database schema unchanged.
+   
+To simulate production environments more realistically, the APPLY version of the E-Store extends the original dataset with additional business scenarios, including:
+
+* Customers with missing (`NULL`) email addresses
+* Additional cities for more meaningful filtering and `DISTINCT` operations
+* New product categories
+* Additional orders across different dates
+* Bulk purchase scenarios
+* Richer datasets for business-oriented reporting
+
+The database schema remains unchanged. Only the data has evolved.
+
+**This reflects real software systems, where the database structure often remains stable while the data grows richer and more complex over time.**
+
+This allows you to practise production-style problem solving without affecting the clean instructional dataset used throughout the ACQUIRE phase.
+
+**Same schema. Different data. Different business outcomes.**
 
 ---
 
@@ -149,6 +171,26 @@ Two clients. Two domains. Same SQL patterns.
 ---
 
 ## 🛒 Section 1: Workshop Floor – E‑Store
+
+Before solving the requests, spend a few minutes understanding the business model, workflow, ER diagram, and table schemas.
+
+**Business first. Data model second. SQL third.**
+
+**📁 Database:** Load [`level1_estore_apply.db`](./Module2-Schemas/level1_estore_apply.db) in **Tab 2 (The Factory)** before starting this section.
+
+**🗺️ ER Diagram & Schema Guide:** Study [`E-Store_APPLY_Blueprint.md`](./Module2-Schemas/E-Store_APPLY_Blueprint.md) before writing any SQL.
+
+### 📋 Meet Your Dataset: E‑Store – Your Home Turf
+
+| Table | Columns | What It Tells Us |
+|-------|---------|------------------|
+| `customers` | `customer_id`, `name`, `email`, `city`, `phone` | Retail consumer profile data |
+| `products` | `product_id`, `product_name`, `price`, `category` | Complete store stock inventory |
+| `orders` | `order_id`, `customer_id`, `order_date` | Transaction timeline events |
+| `order_items` | `order_item_id`, `order_id`, `product_id`, `quantity` | Itemized invoice lines |
+
+
+---
 
 ### Business Request #1 – Missing Email Addresses
 
@@ -220,8 +262,29 @@ The Marketing Team wants a list of customers whose names start with the letter `
 > 📋 **Hospital Planet Policy:** Patients must settle all outstanding bills before discharge. For reporting purposes, bill settlement is treated as completion of the discharge process.
 
 > 💡 **Architect's Note:** Not every business event has its own dedicated column. In real production systems, organizations often use operational proxies. At Hospital Planet, a settled bill is used as the reporting proxy for a completed discharge.
+---
 
-**📁 Database:** Load [`hospital_planet.db`](../../../Module5-GenAI-Walkthrough/02-Exercises/MODULE2/Module2-Schemas/hospital_planet.db) in **Tab 2 (The Factory)** before starting this section.
+Before solving the requests, spend a few minutes understanding the business model, workflow, ER diagram, and table schemas.
+
+**Business first. Data model second. SQL third.**
+
+**📁 Database:** Load [`hospital_planet.db`](./Module2-Schemas/hospital_planet.db) in **Tab 2 (The Factory)** before starting this section.
+
+**🗺️ ER Diagram & Schema Guide:** Study [`Hospital_Planet_Blueprint.md`](./Module2-Schemas/Hospital_Planet_Blueprint.md) before writing any SQL.
+
+### 📋 Meet Your Dataset: Hospital Planet – New Landscape
+
+| Table | Columns | What It Tells Us |
+|-------|---------|------------------|
+| `patients` | `patient_id`, `name`, `email`, `phone`, `status` | Patient admission rosters |
+| `treatments` | `treatment_id`, `treatment_name`, `cost`, `category` | Clinical medical services catalog |
+| `appointments` | `appointment_id`, `patient_id`, `appointment_date`, `treatment_id` | Outpatient slot bookings with treatment performed |
+| `bills` | `bill_id`, `patient_id`, `amount`, `bill_date` | Financial medical ledger entries |
+
+> 💡 **Notice the pattern:** The tables in Hospital Planet mirror the E‑Store structure. `patients` = `customers`, `treatments` = `products`, `appointments` = `orders`, `bills` = `order_items`. The nouns change. The SQL stays the same.
+
+
+---
 
 ### Business Request #9 – Missing Phone Numbers
 
@@ -255,27 +318,30 @@ Patient Relations needs a contact list with email addresses first, followed by p
 
 ---
 
-### Business Request #13 – Appointments in First Week of February
+### Business Request #13 – Financial Ledger Reconciliation
 
-The scheduling team wants all appointments scheduled during the first week of February 2025 (February 1–7). They are analysing clinic capacity.
+The hospital's finance team is reconciling billing records with the accounting ledger. Before beginning the reconciliation, they require a complete export of every billing transaction exactly as recorded in the system.
 
-**Deliverable:** A list of appointments with `appointment_id`, `patient_id`, and `appointment_date`.
-
----
-
-### Business Request #14 – Complete Bills Audit
-
-The finance team needs a complete audit of the `bills` table. They want to verify all billing records.
-
-**Deliverable:** A full extract of all columns from the `bills` table.
+**Deliverable:** A full extract of all columns from the `bills` table. 
 
 ---
 
-### Business Request #15 – Patients Discharged and Billed in the Past Week
+### Business Request #14 – Bills from a Specific Month
 
-The Hospital Administrator wants a list of patients who have paid their bills and checked out in the past one week. They are tracking discharge efficiency and billing turnaround.
+The finance team wants to verify all bills issued in **April 2025**. They are preparing for the quarterly audit.
 
-**Deliverable:** A two‑column report showing `patient_id` (aliased as `"Patient ID"`) and `amount` (aliased as `"Bill Amount"`).
+**Deliverable:** A list of `bill_id`, `patient_id`, and `amount` for bills issued in April 2025.
+
+---
+
+### Business Request #15 – Patients Discharged and Billed during the first week of March 2025.
+
+The Hospital Administrator wants a list of patients who completed the discharge process by settling their bills during the first week of March 2025 (between **March 1, 2025** and **March 7, 2025**). The hospital is tracking discharge efficiency and billing turnaround.
+
+**Deliverable:** A two‑column report showing:
+
+ - `patient_id` aliased as **"Patient ID"** 
+ -  `amount` aliased as **"Bill Amount"**
 
 ---
 
@@ -313,10 +379,9 @@ The Hospital Administrator wants a list of patients who have paid their bills an
 | 11:00 AM | Treatment Catalog (Hospital) | ☐ |
 | 01:30 PM | Unique Treatment Categories (Hospital) | ☐ |
 | 03:00 PM | Custom Patient Contact Order (Hospital) | ☐ |
-| 04:30 PM | Appointments in First Week of February (Hospital) | ☐ |
-| 06:00 PM | Complete Bills Audit (Hospital) | ☐ |
-| 07:00 PM | Patients with "a" in Name (Hospital) | ☐ |
-| 08:00 PM | Patients Discharged and Billed in the Past Week (Hospital) | ☐ |
+| 04:30 PM | Financial Ledger Reconciliation (Hospital) | ☐ |
+| 06:00 PM | Bills from a Specific Month (Hospital) | ☐ |
+| 07:00 PM | Patients Discharged and Billed during First Week of March 2025 (Hospital) | ☐ |
 | 09:00 PM | Executive Desk – Treatment Cost Variance Index | ☐ |
 
 **Reflection:** What was the most valuable takeaway from your first day as a junior analyst?

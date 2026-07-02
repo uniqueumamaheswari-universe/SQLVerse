@@ -88,14 +88,31 @@ The client needs to clean up user accounts where critical contact data profiles 
 
 ### 💎 Gemstone Extraction
 
+**Pattern Identified:** Void State Detection
+
+**E‑Store Keywords:** `"missing"`
+**Hospital Planet Keywords:** `"missing"`
+
 Look at the linguistic clues: `"missing"`, `"unavailable"`, `"unknown"`, `"not provided"`, or `"blank"`. When a business user utters these words, the hidden structural gemstone is **Void State Detection**.
 
 ### 🧭 Concept Mapping & Alternate Paths
 
 - **Technical Translation:** `NULL` State Predication
 - **The Absolute Path:** `WHERE column_name IS NULL`
-- **❌ The Pitfall Trap:** `WHERE column_name = NULL`
-- **The Post‑Mortem Lesson:** The database engine operates on Three‑Valued Logic (True, False, Unknown). `NULL` represents a completely missing or unknown state, not a concrete value. Comparing anything to an unknown using an equality operator (`=`) yields `UNKNOWN`, which causes the engine to discard the rows entirely.
+
+- **❌ The Pitfall Trap:**
+  ```sql
+  WHERE column_name = NULL
+  ```
+  *Why this breaks production:* The database engine operates on Three‑Valued Logic (True, False, Unknown). `NULL` represents a completely missing or unknown state, not a concrete value. Comparing anything to an unknown using an equality operator (`=`) yields `UNKNOWN`, which causes the engine to discard the rows entirely. The query will return zero rows—silently.
+
+- **💎 The Gemstone Solution:**
+  ```sql
+  WHERE column_name IS NULL
+  ```
+  `IS NULL` is the only correct way to detect missing values. It explicitly checks for the absence of a value, not equality to an unknown.
+
+- **The Post‑Mortem Lesson:** `NULL` is not a value—it is the absence of a value. Use `IS NULL` and `IS NOT NULL` for void state detection.
 
 ### 🪞 Pattern Reflection
 
@@ -119,13 +136,31 @@ The executive board needs a clean overview of regional footprints or service bra
 
 ### 💎 Gemstone Extraction
 
+**Pattern Identified:** Cardinality Simplification / Set Deduplication
+
+**E‑Store Keywords:** `"unique"`
+**Hospital Planet Keywords:** `"unique"`
+
 The business keywords are explicit: `"unique"` or `"distinct list"`. The hidden gemstone is **Cardinality Simplification**.
 
 ### 🧭 Concept Mapping & Alternate Paths
 
 - **Technical Translation:** Row‑Set Deduplication
 - **The Choice Pattern:** `SELECT DISTINCT city FROM customers;`
-- **🔄 The Alternate Extraction Path:** You could technically achieve this using a `GROUP BY` clause. However, a Senior Architect rejects this because `GROUP BY` explicitly communicates *aggregation intent* (counting, summing, or grouping rows to compute statistics). `DISTINCT` cleanly communicates *uniqueness intent*. We choose our tools based on **readability and intent communication**, not just raw execution compatibility.
+
+- **❌ The Pitfall Trap:**
+  ```sql
+  SELECT city FROM customers GROUP BY city;
+  ```
+  *Why this is architecturally questionable:* This query returns the same unique cities. However, `GROUP BY` explicitly communicates *aggregation intent* (counting, summing, or grouping rows to compute statistics). Using it solely for deduplication misleads the next engineer who reads your code.
+
+- **💎 The Gemstone Solution:**
+  ```sql
+  SELECT DISTINCT city FROM customers;
+  ```
+  `DISTINCT` cleanly communicates *uniqueness intent*. We choose our tools based on **readability and intent communication**, not just raw execution compatibility.
+
+- **The Post‑Mortem Lesson:** Two queries can produce identical results but communicate very different intentions. Write code that tells the reader what you meant, not just what you did.
 
 ### 🪞 Pattern Reflection
 
@@ -141,7 +176,7 @@ The business keywords are explicit: `"unique"` or `"distinct list"`. The hidden 
 
 | E‑Store Request | Hospital Planet Request |
 |-----------------|-------------------------|
-| Request #2 & #5 – Historical Surge Tracker / First Week of October | Request #13 – Appointments in First Week of February |
+| Request #5 – Orders in First Week of October | Request #15 – Patients Discharged in First Week of March |
 
 ### 🪵 The Surface Reading
 
@@ -149,52 +184,28 @@ Isolate a subset of transactions to a strictly bounded chronological window.
 
 ### 💎 Gemstone Extraction
 
-Keywords: `"during the first week"`, `"settled between X and Y"`. The hidden gemstone is **Inclusive Range Evaluation**.
+**Pattern Identified:** Inclusive Range Evaluation
+
+**E‑Store Keywords:** `"during the first week"`
+**Hospital Planet Keywords:** `"during the first week of March"`
+
+Keywords: `"during the first week"`, `"first week of March"`. The hidden gemstone is **Inclusive Range Evaluation**.
 
 ### 🧭 Concept Mapping & Alternate Paths
 
-- **Technical Translation:** Range Targeting
-- **Path A (The Idiomatic Shape):** `WHERE order_date BETWEEN '2025-10-01' AND '2025-10-07'`
-- **Path B (The Relational Shape):** `WHERE order_date >= '2025-10-01' AND order_date <= '2025-10-07'`
-- **Architectural Reflection:** Both paths emit identical execution plans in the database engine. However, `BETWEEN` scales visually – it reads like spoken business English, significantly reducing cognitive drag during intensive code reviews.
+- **Technical Translation (E‑Store):** `WHERE order_date BETWEEN '2025-10-01' AND '2025-10-07'`
+- **Technical Translation (Hospital):** `WHERE bill_date BETWEEN '2025-03-01' AND '2025-03-07'`
+- **Path A (The Idiomatic Shape):** `BETWEEN`
+- **Path B (The Relational Shape):** `>=` and `<=`
+- **Architectural Reflection:** Both paths emit identical execution plans. However, `BETWEEN` reads like spoken business English, significantly reducing cognitive drag during intensive code reviews.
 
 ### 🪞 Pattern Reflection
 
 | E‑Store | Hospital Planet | Same SQL Pattern |
 |---------|-----------------|------------------|
-| Orders in first week of October | Appointments in first week of February | `BETWEEN` |
+| Orders in first week of October | Bills settled in first week of March | `BETWEEN` |
 
 **Insight:** The dates change. The domain changes. The `BETWEEN` pattern does not. This is the **Range Invariance Pattern** – a timeless geometric shape in data engineering.
-
----
-
-## 🛒 Ticket Pair 4: Pattern Matching & String Traversal
-
-| E‑Store Request | Hospital Planet Request |
-|-----------------|-------------------------|
-| Request #7 & #8 – Customers with "e" in Name / Names Starting with A or Ending with a | Request #14 – Patients with "a" in Name |
-
-### 🪵 The Surface Reading
-
-Filter accounts based on partial textual cues or specific character placements.
-
-### 💎 Gemstone Extraction
-
-Keywords: `"contains"`, `"starting with"`, `"ending with"`. The hidden gemstone is **Textual Pattern Identification**.
-
-### 🧭 Concept Mapping & Alternate Paths
-
-- **Technical Translation:** Wildcard String Matching
-- **The Choice Pattern:** `WHERE name LIKE '%e%'` or `WHERE name LIKE 'A%' OR name LIKE '%a'`
-- **The Post‑Mortem Lesson:** The `%` wildcard is a powerful structural tool. Placing it at both ends searching for an element anywhere inside a field prevents the query from leveraging column indexes efficiently on massive tables, causing a full table scan. Use text matching purposefully.
-
-### 🪞 Pattern Reflection
-
-| E‑Store | Hospital Planet | Same SQL Pattern |
-|---------|-----------------|------------------|
-| Customers with "e" in name | Patients with "a" in name | `LIKE '%a%'` |
-
-**Insight:** Pattern matching is pattern matching – whether you are searching for 'e' in customer names or 'a' in patient names. The same wildcard rules apply everywhere.
 
 ---
 
@@ -235,6 +246,29 @@ Keywords: `"contains"`, `"starting with"`, `"ending with"`. The hidden gemstone 
 **The Choice Pattern:** `SELECT *` is acceptable for exploration and auditing, but should be used sparingly in production.
 
 ---
+### Request #7 – Customers with "e" in Name
+
+**Business Language:** "names contain the letter 'e'"
+
+**Gemstone Extraction:** The keyword `"contain"` signals a pattern match. The hidden gemstone is **Textual Pattern Identification**.
+
+**Technical Translation:** `WHERE name LIKE '%e%'`
+
+**The Choice Pattern:** Use `LIKE` with wildcard `%` for substring matching. Note that leading wildcards prevent index usage at scale – use intentionally.
+
+---
+
+### Request #8 – Customers with Names Starting with A or Ending with a
+
+**Business Language:** "names start with 'A' or end with 'a'"
+
+**Gemstone Extraction:** The keywords `"starts with"` and `"ends with"` signal pattern matching with logical `OR`. The hidden gemstone is **Multi‑Condition Pattern Matching**.
+
+**Technical Translation:** `WHERE name LIKE 'A%' OR name LIKE '%a'`
+
+**The Choice Pattern:** Use `LIKE` with `%` at the end for prefix matching (can use index), and `%` at the beginning for suffix matching (cannot use index). Combine with `OR` for inclusive logic.
+
+---
 
 ### Request #10 – Treatment Catalog
 
@@ -255,16 +289,38 @@ Keywords: `"contains"`, `"starting with"`, `"ending with"`. The hidden gemstone 
 **Technical Translation:** `SELECT email AS "Email Address", name AS "Patient Name"`
 
 ---
+### Request #13 – Financial Ledger Reconciliation
 
-### Request #15 – Patients Discharged and Billed in the Past Week
+**Business Language:** "a complete export of every billing transaction exactly as recorded in the system"
 
-**Business Language:** "patients who have paid their bills and checked out in the past one week"
+**Gemstone Extraction:** The keyword `"complete export"` signals a full extract.
 
-**Gemstone Extraction:** The keyword `"past one week"` signals a date filter. The keywords `"Patient ID"` and `"Bill Amount"` signal the need for aliases.
+**Technical Translation:** `SELECT *`
 
-**Technical Translation:** `WHERE bill_date >= DATE('now', '-7 days')` with aliases
+**The Choice Pattern:** `SELECT *` is acceptable for exploration and auditing, but should be used sparingly in production.
 
-**The Choice Pattern:** `SELECT patient_id AS "Patient ID", amount AS "Bill Amount" FROM bills WHERE bill_date >= DATE('now', '-7 days')`
+---
+### Request #14 – Bills from a Specific Month
+
+**Business Language:** "verify all bills issued in April 2025"
+
+**Gemstone Extraction:** The keyword `"April 2025"` signals a date filter. The request specifies `bill_id`, `patient_id`, and `amount` – a column-restricted extract rather than a full `SELECT *`.
+
+**Technical Translation:** `SELECT bill_id, patient_id, amount FROM bills WHERE bill_date BETWEEN '2025-04-01' AND '2025-04-30'`
+
+**The Choice Pattern:** Use `BETWEEN` for an inclusive date range. Restrict columns to only what is needed – a production habit.
+
+---
+
+### Request #15 – Patients Discharged and Billed during the First Week of March 2025
+
+**Business Language:** "completed the discharge process by settling their bills during the first week of March 2025 (between March 1, 2025 and March 7, 2025)"
+
+**Gemstone Extraction:** The keywords `"first week of March"` signal a date filter. The keywords `"Patient ID"` and `"Bill Amount"` signal the need for aliases.
+
+**Technical Translation:** `WHERE bill_date BETWEEN '2025-03-01' AND '2025-03-07'` with aliases
+
+**The Choice Pattern:** `SELECT patient_id AS "Patient ID", amount AS "Bill Amount" FROM bills WHERE bill_date BETWEEN '2025-03-01' AND '2025-03-07'`
 
 ---
 
@@ -310,7 +366,7 @@ This is the ultimate prize. You are stripping away the industry context to map t
 | Context | Query Shape |
 |---------|-------------|
 | **E‑Store Context** | `FROM orders WHERE order_date BETWEEN '2025-10-01' AND '2025-10-07'` |
-| **Hospital Context** | `FROM appointments WHERE appointment_date BETWEEN '2025-02-01' AND '2025-02-07'` |
+| **Hospital Context** | `FROM bills WHERE bill_date BETWEEN '2025-03-01' AND '2025-03-07'` |
 | **Architectural Shape** | `FROM Table T WHERE T.Chronological_Marker BETWEEN Point_A AND Point_B` |
 
 **The insight:** The domain changes. The SQL pattern does not. This is the Mirror Bridge in action.
@@ -401,19 +457,18 @@ FROM treatments;
 SELECT email AS "Email Address", name AS "Patient Name"
 FROM patients;
 
--- Request 13: Appointments in First Week of February
-SELECT appointment_id, patient_id, appointment_date
-FROM appointments
-WHERE appointment_date BETWEEN '2025-02-01' AND '2025-02-07';
-
--- Request 14: Complete Bills Audit
+-- Request 13: Financial Ledger Reconciliation
 SELECT * FROM bills;
 
--- Request 15: Patients Discharged and Billed in the Past Week
+-- Request 14: Bills from a Specific Month
+SELECT bill_id, patient_id, amount
+FROM bills
+WHERE bill_date BETWEEN '2025-04-01' AND '2025-04-30';
+
+-- Request 15: Patients Discharged and Billed during the First Week of March 2025
 SELECT patient_id AS "Patient ID", amount AS "Bill Amount"
 FROM bills
-WHERE bill_date >= DATE('now', '-7 days');
-```
+WHERE bill_date BETWEEN '2025-03-01' AND '2025-03-07';
 
 ---
 

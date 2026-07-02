@@ -394,7 +394,7 @@ You have applied `SELECT` to E‑Store and Hospital Planet. The nouns changed �
 
 Next, you will add `WHERE` filters to your toolkit.
 
-➡️ [Proceed to Exercise 2: WHERE Clause →](./2-where-operators.md)
+➡️ [Proceed to Exercise 2: WHERE Clause →](./2-where-operators-LAB.md)
 
 ---
 

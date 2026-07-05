@@ -352,6 +352,8 @@ Both approaches are highly professional. They succeeded because they **defended 
 
 > 📐 **Designer's Takeaway:** In the absence of explicit requirements, the Artisan does not freeze. The Artisan makes a defensible choice, documents their assumptions, and delivers a report that serves the end‑user with clarity and purpose.
 
+> 💡 **Curriculum Note:** You'll notice the use of `ORDER BY` in this solution. While sorting is formally mastered in Module 3, you've already unlocked this skill in your ACQUIRE phase! We are intentionally bringing it forward here to keep our real estate reports looking clean and professional.
+
 ---
 
 # 🌲 Phase 2: Skill‑Tree Update

@@ -23,6 +23,40 @@ By completing this cycle, you will be able to:
 
 ---
 
+## ⚓ The Pre-Flight Anchor: SQLVerse Worldview
+
+### CRITICAL PREREQUISITE
+
+Before you touch a single tool or write a line of code, you must anchor your technical execution in business strategy.
+
+Stop and read the **SQLVerse Business Multiverse Manifesto**.
+
+This document establishes the philosophy, laws, and operational principles that govern everything you will learn from this point onward.
+
+➡️ [Read the SQLVerse Business Multiverse Manifesto](./ACQUIRE-MODULE3/1-theArchitectsLedger/SQLVERSE_BUSINESS_MULTIVERSE.md)
+
+You have **completed** ACCELERATE Module2 and about to **begin** ACCELERATE Module3. This document serves as your official **Curtain Raiser.** Do not treat it as a temporary introduction; it is your core architectural compass. Return to it whenever you lose sight of *why you are building a query.* **Look at the bones.**
+
+
+> 💡 **Why this matters:** The concepts in this module are not just syntax. They are the tools for **business reasoning**. The Worldview explains *why* you are learning them.
+
+---
+
+## 📋 What to Expect
+
+Once anchored, you will execute every module in this phase using this exact operational lifecycle:
+
+1. **Align with the Worldview**– `SQLVerse: The Quantum Multiverse`
+2. **Follow this Cycle Guide** to navigate through concept files
+3. **Work through AUGMENT files** – Socratic interrogation of AI logic
+4. **Extract gemstones** into your Skill‑Tree
+5. **Complete APPLY exercises** – real-world business requests
+6. **Audit your work** – reflect, calibrate, and learn
+
+The **SQLVerse Business Multiverse Manifesto** is your permanent compass. Return to it whenever you need to remember _why_ you are learning what you are learning.
+
+---
+
 ## 🗺️ The Spiral Flight Path
 
 > **Flight Rule:** Complete an entire Pass horizontally across all concepts before dropping down to the next vertical layer. Never cross‑thread or jump ahead.
@@ -127,7 +161,7 @@ You are entering the abstraction layer. This is where you build mental models, c
 
 ### Begin Your AUGMENT Journey
 
-➡️ [Start with Concept 1: Ordering Results](./01-The-Socratic-Mirror/ACQUIRE-MODULE3/1-order-by.md)
+➡️ [Start with Concept 1: Ordering Results](../01-The-Socratic-Mirror/ACQUIRE-MODULE3/1-order-by.md)
 
 ✅ **After completing all 5 concepts**, return here.
 
@@ -167,7 +201,7 @@ The mirror phase is over. You now operate under implementation pressure. The LAB
 
 ### Begin Your APPLY Journey
 
-➡️ [Start with LAB 1: Sorting Basics Debugging](./02-Exercises/MODULE3/1-sorting-basics-LAB.md)
+➡️ [Start with LAB 1: Sorting Basics Debugging](../02-Exercises/MODULE3/1-sorting-basics-LAB.md)
 
 ✅ **After completing all 5 LABs**, return here.
 
@@ -205,7 +239,7 @@ Implementation alone is not mastery. You must now compare your reasoning against
 
 ### Begin Your AUDIT Journey
 
-➡️ [Start with KEY 1: Sorting Correctness Check](./03-Solutions/MODULE3/1-sorting-basics-KEY.md)
+➡️ [Start with KEY 1: Sorting Correctness Check](../03-Solutions/MODULE3/1-sorting-basics-KEY.md)
 
 ✅ **After completing all 5 KEYs**, your Cycle 2 spiral is complete.
 
@@ -242,5 +276,3 @@ Click below to close out your cycle.
 *Part of our mission for 🎯 Quality Education for Anyone, Anywhere, Anytime — 💫 with Comfort, Convenience at no Cost.*
 
 **Level 1 | ACCELERATE Phase | Cycle 2 Guide (Module 3) | Next: Return to Navigation Guide**
-
-

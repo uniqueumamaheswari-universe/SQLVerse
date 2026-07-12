@@ -130,7 +130,9 @@ Over the course of **ACCELERATE,** you will encounter multiple business universe
 | **Hospital Planet** | Healthcare | Patient volumes, treatment costs, appointment analytics |
 | **Real Estate Planet** | Property | Deal counts, price averages, agent performance |
 
-Apart from these, we may introduce **mini‑universes** for certain specialised topics and extend the above universes by adding more tables to cater to advanced SQL concepts as we move through **Level 2** and **Level 3**. For example, we may introduce **Credit Cards**, **Fraud Detection**, and **International Money Transfer** to FinVERSE at Level 2 or Level 3.
+Apart from these, **mini‑universes** may be introduced for certain specialised topics and the above universes may be extended by adding more tables to cater to advanced SQL concepts as you progress through **Level 2** and **Level 3**. For example, **Credit Cards**, **Fraud Detection**, and **International Money Transfer** may be added to FinVERSE at Level 2 or Level 3.
+
+The **SQLVerse Business Multiverse** is open to vertical scaling (adding specialized domains) and horizontal schema growth (adding complex tables like Fraud/Transfers) in future.
 
 ---
 

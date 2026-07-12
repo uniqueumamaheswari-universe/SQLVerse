@@ -125,10 +125,12 @@ Over the course of **ACCELERATE,** you will encounter multiple business universe
 | Universe | Domain | Purpose |
 |----------|--------|---------|
 | **Training Institution** | Education | Foundation – the dataset you already know |
+| **E‑Store** | Retail | Home turf – the dataset you mastered in ACQUIRE |
 | **FinVERSE** | Digital Banking | KPI thinking, revenue metrics, customer analytics |
 | **Hospital Planet** | Healthcare | Patient volumes, treatment costs, appointment analytics |
-| **Retail Planet** | Retail | Sales, order volumes, category performance |
 | **Real Estate Planet** | Property | Deal counts, price averages, agent performance |
+
+Apart from these, we may introduce **mini‑universes** for certain specialised topics and extend the above universes by adding more tables to cater to advanced SQL concepts as we move through **Level 2** and **Level 3**. For example, we may introduce **Credit Cards**, **Fraud Detection**, and **International Money Transfer** to FinVERSE at Level 2 or Level 3.
 
 ---
 

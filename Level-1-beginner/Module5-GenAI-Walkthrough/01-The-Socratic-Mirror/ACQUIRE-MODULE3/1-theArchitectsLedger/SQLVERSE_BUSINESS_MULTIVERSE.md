@@ -177,7 +177,9 @@ From this file onward, every single lab challenge requires you to process your t
 
 ## 🪜 The Aggregation Ladder
 
-The CFO will not be interested in looking at monthly transactions spanning 700 rows and manually calculating revenue for each product category. They need a **business report**—summarised into 10 lines, one line per product category.
+The CFO will not be interested in looking at monthly transactions spanning 700 rows and manually calculating revenue for each product category. They need a **business report**—summarised into 10 lines, one line per product category—to find out: 
+
+Did we **hit, beat, or miss** the monthly revenue goal?
 
 That is the purpose of aggregation.
 
@@ -200,6 +202,15 @@ Level 4: Present
 ```
 
 **The Elevation:** Filtering is about *reducing rows*. Aggregation is about *creating meaning*. A business executive doesn't need to see every transaction—they need to see the story the transactions tell.
+
+The CFO **focuses** on just three questions:
+- Which product categories have **met the target?**
+- Which product categories have **underperformed?**
+- Which product categories have **outperformed?**
+
+The raw numbers tell you what happened. The **aggregation** tells you what it means. **Executives** don't need more data—they need the right **answers** to **drive** the **right decisions.**
+
+An executive-level report exists to **answer the questions** that truly matter.
 
 ---
 

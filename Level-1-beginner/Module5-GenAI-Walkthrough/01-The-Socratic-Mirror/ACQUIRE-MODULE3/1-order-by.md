@@ -246,7 +246,7 @@ Different database engines handle this differently:
 
 **The Business Impact:** If a Finance Executive in a PostgreSQL environment runs `ORDER BY account_balance DESC`, all `NULL` balances will appear at the **top** of the dashboard—rendering the most important view useless.
 
-**The Artisan's Solution:** Always filter out `NULL` states using `WHERE column IS NOT NULL` before sorting critical business metrics, or use explicit dialect-specific sequencing rules.
+**The Artisan's Judgment:** When `NULL` values do not carry **business meaning**, filter them using `WHERE column IS NOT NULL` before sorting critical metrics. Otherwise, make the placement of `NULL` values an explicit business decision rather than relying on the database's default behavior.
 
 ---
 

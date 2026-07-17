@@ -172,11 +172,14 @@ The layout plan where columns are evaluated sequentially from left to right. The
 
 Throughout the **ACCELERATE** phase, all Socratic demonstrations will traverse the business universes described in the **SQLVerse Business Multiverse Manifesto**. Each universe is designed to teach you the same SQL patterns through different business languages—proving that **the nouns change, but the logic does not.**
 
-All demonstration databases are located in:
+All demonstration databases for the **MultiVerse Suite** are located in:
 
 ```
 Module5-GenAI-Walkthrough/02-Exercises/MODULE2/Module2-Schemas/
 ```
+> 📌 **Note:** The **Training Institution** database (`training_institution_sample.db`) is located in the Course Repository Resources folder—the same folder you have used throughout the ACQUIRE phase. Its exact path is specified in the **ACCELERATE Framework Reference** document. All other MultiVerse Suite databases (E‑Store, FinVERSE, Hospital Planet, Real Estate Planet) are located in the APPLY Database Repository path above.
+
+---
 
 For this file, our journey begins in the **Training Institution**—the universe you already know. Subsequent demonstrations will expand to **FinVERSE**, **Hospital Planet**, and **Real Estate Planet**.
 
@@ -185,7 +188,7 @@ For this file, our journey begins in the **Training Institution**—the universe
 | **Training Institution** | Education | Cognitive Reorientation & Opening Reflection |
 | **Hospital Planet** | Healthcare | Production Echo – Case 1 |
 | **Real Estate Planet** | Property | Production Echo – Case 2 |
-| **FinVERSE** | Digital Banking | Production Echo – Case 3 |
+| **FinVERSE** | Digital Banking | Production Echo – Same Data, Three Lenses, Three Stories |
 
 > 💡 **Same SQL. Different business.**
 
@@ -370,12 +373,19 @@ That is the SQLVerse Artisan's magic. `ORDER BY` is a **magic wand**—it transf
 **Business Scenario:** A fraud analyst requested a list of the 10 largest transactions in the last 30 days, sorted by amount, to investigate suspicious activity.
 
 ```sql
-SELECT is_fraud, transaction_id, account_id, amount, transaction_date
+SELECT 
+    is_fraud AS "Fraud Flag", 
+    status AS "Transaction Status", 
+    amount AS "Amount",
+    transaction_id, 
+    account_id, 
+    transaction_date
 FROM transactions
 WHERE transaction_date >= DATE('now', '-30 days')
 ORDER BY is_fraud, amount DESC
 LIMIT 10;
 ```
+**Business Priority:** Fraud flags first → then largest amounts.
 
 **The Story:** This query tells the fraud analyst: *"Here are the largest transactions. Fraudulent ones are grouped together so you can spot patterns."*
 
@@ -388,16 +398,18 @@ LIMIT 10;
 **Business Scenario:** A Finance Executive requested a list of all transactions in the past 3 months, appropriately sorted, to study transaction patterns. The sort criteria was not specified—open to interpretation with defensible logic.
 
 ```sql
-SELECT status AS "Transaction Status",
-       is_fraud AS "Fraud Flag",
-       amount AS "Amount",
-       transaction_id,
-       account_id,
-       transaction_date
+SELECT 
+    status AS "Transaction Status",
+    is_fraud AS "Fraud Flag",
+    amount AS "Amount",
+    transaction_id,
+    account_id,
+    transaction_date
 FROM transactions
 WHERE transaction_date >= DATE('now', '-90 days')
 ORDER BY status, is_fraud, amount DESC;
 ```
+**Business Priority:** Transaction health (status) → fraud flags → amounts.
 
 **The Executive View:** This query tells the Finance Executive: *"Here are all transactions, grouped by status, then by fraud flags, then by amount—so you can see the health and risk profile of transaction activity at a glance."*
 
@@ -410,20 +422,36 @@ ORDER BY status, is_fraud, amount DESC;
 **Business Scenario:** The Analytics team wants to analyse the correlation between time and volume of transactions over a period of three months, and also to analyse what time fraudulent transactions occur. They requested a list of all transactions in the past 3 months.
 
 ```sql
-SELECT status AS "Transaction Status",
-       is_fraud AS "Fraud Flag",
-       transaction_date,
-       amount AS "Amount",
-       transaction_id,
-       account_id
+SELECT 
+    transaction_date,
+    status AS "Transaction Status",
+    is_fraud AS "Fraud Flag",
+    amount AS "Amount",
+    transaction_id,
+    account_id
 FROM transactions
 WHERE transaction_date >= DATE('now', '-90 days')
 ORDER BY transaction_date, status, is_fraud, amount;
 ```
+**Business Priority:** Time (temporal patterns) → status → fraud → amounts.
+
 
 **The Pattern Revealed:** This query tells the Analytics team: *"Here are all transactions, arranged chronologically, so you can see patterns over time—when fraud occurs, how status changes, and how volume fluctuates."*
 
 **The Artisan's Insight:** The Analytics team needs temporal patterns. Sorting by `transaction_date` first reveals daily, weekly, and monthly trends. The secondary sort by `status` and `is_fraud` allows them to correlate time with outcomes.
+
+---
+
+### The 3 Lenses
+
+#### The Art of Structural Alignment
+
+| Reason | Why |
+|--------|-----|
+| **Consistency** | The `SELECT` order now visually mirrors the sort priority—the output tells the same story as the query logic. |
+| **Clarity** | Each stakeholder sees their most important column first, making the report immediately usable. |
+| **Teaching Impact** | The learner can instantly see how the same data transforms across different lenses, reinforcing the power of `ORDER BY`. |
+| **Professional Standard** | A well‑structured `SELECT` with clear aliases turns raw data into a board‑ready artefact. |
 
 ---
 
@@ -760,6 +788,37 @@ Each method serves a different purpose. Each order prioritises a different need.
 The AI frequently organizes data alphabetically by category name because it **looks pleasing** on a layout sheet. An artisan coordinates sequencing based on **business value metrics**, forcing secondary categories to serve purely as deterministic tie-breakers. 
 
 You're not just arranging data. You're **telling a story** with it.
+
+---
+
+### ⚡ The SQLVerse Witness
+
+**Business Requirement:** Arjun needs a list of customers for a regional outreach campaign. He wants to see customers grouped by city, and within each city, sorted alphabetically by last name.
+
+**The Careless Query (Just Syntax):**
+```sql
+SELECT customer_id, first_name, last_name, city
+FROM customers
+ORDER BY city, last_name;
+```
+This query returns the correct order. But it returns *every* customer across all cities—hundreds or thousands of rows. Arjun must scroll endlessly to find the information he needs.
+
+**The Artisan's Edge:**
+```sql
+SELECT 
+    city AS "City",
+    last_name AS "Last Name",
+    first_name AS "First Name",
+    customer_id AS "Customer ID"
+FROM customers
+WHERE status = 'Active'
+ORDER BY city, last_name;
+```
+Now Arjun sees only active customers, with clear column aliases, sorted exactly as requested. The report is focused, scannable, and ready for the campaign team.
+
+**The Reflection:** A careless query returns the right rows. An Artisan's query returns the right **story**—filtered, ordered, and presented with intention.
+
+---
 
 **Treat your ordering clauses  as the final, absolute assertion of business priority.**
 

@@ -249,7 +249,7 @@ Not all validations belong at the database level. For `email` and `phone`, `NOT 
 >
 > - **Where SQL is used:** Queries targeting `customers` with missing contact details (`email IS NULL OR phone IS NULL`) identify records requiring cleanup.
 > - **Why SQL is suitable:** SQL efficiently filters, isolates, and aggregates incomplete customer records, enabling targeted data remediation efforts.
-> - **Roadmap reference:** This filtering technique was introduced in **Module 2 of ACQUIRE** and will be applied to production‑grade data quality pipelines in **Module 4 of ACCELERATE**.
+> - **Roadmap reference:** This filtering technique was introduced in **Module 2 of ACQUIRE** and will be applied to production‑grade data quality pipelines in **All Modules of ACCELERATE**.
 
 ---
 
@@ -280,7 +280,7 @@ In production, category performance reviews must process large volumes of order 
 >
 > - **Where SQL is used:** Queries joining `products`, `order_items`, and `orders` with `GROUP BY category` and `SUM(quantity * price)` calculate revenue and volume by category.
 > - **Why SQL is suitable:** SQL efficiently aggregates millions of order line‑items into business KPIs, enabling data‑driven inventory and pricing decisions.
-> - **Roadmap reference:** Aggregation techniques (`SUM`, `GROUP BY`, `JOIN`)  introduced in **Module 3  of ACQUIRE**  will be applied to real‑time business reporting in **Module 4 of ACCELERATE**.
+> - **Roadmap reference:** Aggregation techniques (`SUM`, `GROUP BY`, `JOIN`)  introduced in **Module 3  of ACQUIRE**  will be applied to real‑time business reporting in **Module 3 & Module 4 of ACCELERATE**.
 
 ---
 

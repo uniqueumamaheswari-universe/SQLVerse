@@ -107,8 +107,14 @@ The SQL stays the same. The nouns change. But the *purpose* — the *why* — is
 | **Treatment** | A medical service provided — consultation, diagnostic test, surgery, or rehabilitation. |
 | **Bill** | An invoice generated for treatments received by a patient. |
 | **Discharge** | The formal release of a patient after their bill is settled. |
-| **Status** | Indicates whether a patient is `Active`, `Inactive`, or `Admitted`. |
+| **Status** |  Indicates patient state — `Active`, `Inactive`, `Admitted`, or `Discharged`. |
 | **Category** | The clinical department of a treatment — `Primary Care`, `Diagnostic`, `Surgical`, `Rehabilitation`, `Pharmacy`, `Preventative`, `Cardiology`, `Neurology`, or `Surgery`. |
+
+### 📋 Hospital Planet Policy
+> Patients must settle all outstanding bills before discharge. For reporting purposes, bill settlement is treated as completion of the discharge process.
+
+### 💡 Architect's Note
+> Not every business event has its own dedicated column. In real production systems, organizations often use operational proxies. At Hospital Planet, bill settlement serves as the operational reporting proxy for patient discharge.
 
 ---
 
@@ -127,11 +133,13 @@ The SQL stays the same. The nouns change. But the *purpose* — the *why* — is
 >
 > Medicine is a noble profession. Patients do not see a Doctor as a service provider; they see them as a healer, a guide, and often, a guardian in their most vulnerable moments. In many cultures, patients regard Doctors as God in human form.
 >
-> Reducing the Doctor to a business entity — a row in a table, a foreign key in a relationship — would diminish that sacred bond.
+> Reducing the Doctor to merely another business entity — a row in a table, a foreign key in a relationship — would diminish that sacred bond.
 >
 > The Doctor is not a "business object." The Doctor is the clinical heartbeat of the hospital. The data is merely a reflection of that relationship.
 >
-> In Hospital Planet, the Doctor is respected, not represented.
+> In Hospital Planet, the Doctor is **respected, not represented.**
+>
+>> **The Doctor is not excluded — they are exclusive.**
 
 ---
 
@@ -156,7 +164,8 @@ Bills
 | Relationship | Business Meaning |
 |--------------|------------------|
 | **Patient → Appointments** | One patient can have many appointments |
-| **Appointments → Treatments** | One appointment can involve one treatment |
+| **Doctor → Appointments** | One doctor can perform many appointments |
+| **Treatment → Appointments** | One treatment can be offered in many appointments |
 | **Patient → Bills** | One patient can have many bills |
 
 > 💡 **Business Insight:** The patient is not just a "customer." A patient is a person under medical care. The doctor‑patient relationship is the **clinical heartbeat** of the hospital — and the data is merely a reflection of that relationship.
@@ -235,7 +244,7 @@ Sarah is referred to the hospital by her local doctor. She does not need admissi
 
 ## Why Three Walkthroughs?
 
-Most SQL courses give you one dataset, one schema, and one story. Hospital Planet gives you three — because healthcare is not one story.
+Most SQL courses give you one dataset, one schema, and one story. **SQLVerse** Hospital Planet gives you three — because healthcare is not one story.
 
 | Journey | Patient | Urgency | Admission | Data Complexity |
 |---------|---------|---------|-----------|-----------------|

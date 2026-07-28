@@ -81,7 +81,7 @@ In Exercise 3, you moved beyond simple equality filters into three distinct logi
 |-----------|-----------|----------------------|
 | **Set Membership** | `IN` | "any of these values" |
 | **Range Boundaries** | `BETWEEN` | "between X and Y" |
-| **NULL Detection** | `IS NOT NULL` | "has a value" |
+| **Missing Information** | `IS NULL / IS NOT NULL` | "missing" / "available" |
 
 These patterns are **domain-invariant** – they apply equally to cities, categories, prices, and contact information.
 
@@ -97,7 +97,7 @@ These patterns are **domain-invariant** – they apply equally to cities, catego
 
 Both requests ask for records that belong to a predefined set of locations – cities in E‑Store, cities in Real Estate. The business wants to isolate operations in specific geographic hubs.
 
-### The Mechanism (`IN` vs. `OR` Chains)
+### The SQL Design Choice (`IN` vs. `OR` Chains)
 
 When a business request demands that an attribute match any item out of an explicit list (e.g., Request #1's target hubs: `'New York'`, `'Chicago'`, or `'Boston'`), a developer faces a stylistic and structural choice:
 
@@ -295,64 +295,156 @@ This room is where we examine those decisions.
 
 #### Request #11 – Executive Desk: High-Impact Corporate Asset Exposure Report (Underspecified)
 
-**Business Language:** "I need a clean report of our premium available real estate assets to present to investors at the board meeting this afternoon."
+**Business Language:** *"I need a clean report of our premium active real estate assets to present to investors at the board meeting this afternoon."*
 
-**The Ambiguity:** The CFO did not specify:
-- Which columns to project
-- What numeric value defines "premium"
-- How the output should be ordered
-- How to filter for availability
 
-This request represents **Production Reality**. There are no columns listed, no exact thresholds defined, and no explicit sort orders provided. Let's look at how two different architectural approaches safely interpreted this business vacuum.
+**The Ambiguity:** The CFO has intentionally left several business terms undefined. Your task is to interpret them using the available schema and business workflow.
+- Which **columns** to project?
+- What qualifies as **premium**?
+- What qualifies as **active**?
+- Which columns best communicate **value** to investors?
+- How should the output be **ordered** to make business sense?
 
-### 🏛️ Approach A: The High-Volume Luxury Roster (The Growth Model)
-
-```sql
-SELECT 
-    address AS "Premium Asset Listing",
-    property_type AS "Property Classification",
-    list_price AS "Investor Purchase Price"
-FROM properties
-WHERE status = 'Available' AND list_price >= 750000
-ORDER BY list_price DESC;
-```
-
-**Defensible Interpretation:** This architect defined "premium" as an absolute price floor ($\ge 750,000$ credits) based on luxury market tier data. They filtered explicitly for `'Available'` properties because an investor cannot buy a property that is already marked `'Sold'`. They sorted by `list_price DESC` to make sure the highest-impact numbers instantly caught the board's attention.
-
-**Technical Translation:** A clean, investor‑focused projection with high‑value active properties, ordered by price descending to prioritise the most significant opportunities.
-
-**Architectural Reflection:** This approach assumes the CFO wants to showcase the absolute crown jewels of the portfolio. It prioritises impact and scarcity. The risk is that the report may be too narrow if the investor is looking for volume or regional distribution.
+**Production Reality:** There are no columns listed, no exact thresholds defined, and no explicit sort orders provided. Let's look at how different architectural approaches safely interpreted this business vacuum.
 
 ---
 
-### 🏛️ Approach B: The Diversified Strategic Portfolio (The Balanced Model)
+### 🏛️ Approach 1: The Listed Status Model
 
 ```sql
 SELECT 
-    city AS "Target Market Hub",
-    address AS "Property Location",
-    property_type AS "Asset Class",
-    list_price AS "Current Market Value"
+    address AS "Property Address",
+    city AS "City",
+    property_type AS "Property Type",
+    list_price AS "List Price",
+    status AS "Current Status"
 FROM properties
-WHERE status = 'Available' AND list_price BETWEEN 500000 AND 1000000
-ORDER BY city ASC, list_price DESC;
+WHERE status = 'Active'
+  AND list_price >= 500000
+ORDER BY list_price DESC;
 ```
 
-**Defensible Interpretation:** This architect assumed the CFO wanted a broader look at the core premium market ($500,000$ to $1,000,000$). They grouped the output first by `city ASC` so the presentation looked cleanly segmented for regional expansion discussions, then sorted by price descending within each market pool to preserve commercial clarity.
+**Defensible Interpretation:** This architect defined "active" as `status = 'Active'` — properties currently listed on the market. They defined "premium" as an absolute price floor of $500,000 based on the distribution of active properties. They sorted by `list_price DESC` to prioritise the highest-value assets.
 
-**Technical Translation:** A segmented, regionally organised report that showcases premium opportunities across multiple markets while maintaining price prioritisation within each location.
+**Technical Translation:** A clean, investor‑focused projection with active, premium properties, ordered by price descending to prioritise the most significant opportunities.
 
-**Architectural Reflection:** This approach assumes the CFO wants to demonstrate market reach and diversification. It is more comprehensive and may be better suited for investors evaluating geographic exposure. The risk is that the highest single asset might not stand out as prominently.
+**Architectural Reflection:** This approach assumes the CFO wants to showcase the absolute crown jewels of the portfolio. It prioritises impact and simplicity. The risk is that it may exclude properties in negotiation (Pending) that are still viable investments.
+
+---
+
+### 🏛️ Approach 2: The Sales Pipeline Model
+
+```sql
+SELECT 
+    address AS "Property Address",
+    city AS "City",
+    property_type AS "Property Type",
+    list_price AS "List Price",
+    status AS "Current Status"
+FROM properties
+WHERE status IN ('Active', 'Pending')
+  AND list_price >= 500000
+ORDER BY list_price DESC;
+```
+
+**Defensible Interpretation:** This architect defined "active" more broadly as `status IN ('Active', 'Pending')` — properties that are either currently listed or actively being negotiated. They included `Pending` properties because they represent committed deals that could still be of interest to investors.
+
+**Technical Translation:** A broader report that includes properties in the active sales pipeline, not just open listings.
+
+**Architectural Reflection:** This approach assumes the CFO wants to show investor interest and deal momentum. The risk is that `Pending` properties may already be under contract and not actually available for purchase.
+
+---
+
+### 🏛️ Approach 3: The Market Activity Model
+
+```sql
+SELECT 
+    p.address AS "Property Address",
+    p.city AS "City",
+    p.property_type AS "Property Type",
+    p.list_price AS "List Price",
+    COUNT(v.viewing_id) AS "Viewing Count"
+FROM properties p
+LEFT JOIN viewings v ON p.property_id = v.property_id
+WHERE p.status NOT IN ('Sold', 'Withdrawn')
+  AND p.list_price >= 500000
+GROUP BY p.property_id
+HAVING COUNT(v.viewing_id) > 0
+ORDER BY p.list_price DESC;
+```
+
+**Defensible Interpretation:** This architect defined "active" as properties that have received at least one viewing — demonstrating genuine market interest. They defined "premium" as a price floor of $500,000 and excluded `Sold` and `Withdrawn` properties.
+
+**Technical Translation:** A market‑engaged report showing only properties with demonstrated buyer interest.
+
+**Architectural Reflection:** This approach assumes the CFO wants to show assets that are generating market activity. The risk is that it excludes high‑value properties that haven't been viewed yet.
+
+---
+
+### 🏛️ Approach 4: The Buyer Interest Model
+
+```sql
+SELECT 
+    p.address AS "Property Address",
+    p.city AS "City",
+    p.property_type AS "Property Type",
+    p.list_price AS "List Price",
+    COUNT(o.offer_id) AS "Offer Count"
+FROM properties p
+LEFT JOIN offers o ON p.property_id = o.property_id
+WHERE p.status NOT IN ('Sold', 'Withdrawn')
+  AND p.list_price >= 500000
+GROUP BY p.property_id
+HAVING COUNT(o.offer_id) > 0
+ORDER BY p.list_price DESC;
+```
+
+**Defensible Interpretation:** This architect defined "active" as properties that have received at least one offer — indicating serious buyer interest and negotiation activity.
+
+**Technical Translation:** A buyer‑interest report showing only properties that have generated concrete offers.
+
+**Architectural Reflection:** This approach assumes the CFO wants to show assets with proven buyer demand. The risk is that it excludes newer listings that haven't yet received offers.
 
 ---
 
 ### 💡 The Takeaway
 
-Both approaches are highly professional. They succeeded because they **defended the end-user**. They applied explicit titles, filtered out irrelevant non-available rows, and enforced deterministic sorting. They did not output raw database keys (`property_id`, `agent_id`) that would look like gibberish to a corporate board.
+All four approaches are highly professional. They succeeded because they:
+- **Defined the ambiguous term "active"** with a defensible business rationale
+- **Defined "premium"** with a clear, justifiable threshold
+- **Applied explicit titles** for board‑readability
+- **Enforced deterministic sorting** to present the most impactful data first
+- **Filtered out irrelevant rows** (Sold, Withdrawn)
+
+> None of these is objectively right or wrong; the bottom line is how well the assumptions match the **stakeholder's likely intent.**
 
 > 📐 **Designer's Takeaway:** In the absence of explicit requirements, the Artisan does not freeze. The Artisan makes a defensible choice, documents their assumptions, and delivers a report that serves the end‑user with clarity and purpose.
 
-> 💡 **Curriculum Note:** You'll notice the use of `ORDER BY` in this solution. While sorting is formally mastered in Module 3, you've already unlocked this skill in your ACQUIRE phase! We are intentionally bringing it forward here to keep our real estate reports looking clean and professional.
+> 💡 **Curriculum Note:** You'll notice the use of `ORDER BY` and `JOIN` in some of these solutions. While these are formally mastered in later modules, you've already unlocked these skills in your ACQUIRE phase! We intentionally use them here to keep our real estate reports comprehensive and professional.
+
+---
+
+## 💎 Final Gemstone
+
+Every request in this exercise followed the same invisible workflow:
+
+1. **Understand the business language.**
+2. **Translate it into the data model.**
+3. **Select the appropriate SQL pattern.**
+4. **Deliver a defensible solution.**
+
+Students who begin with SQL often struggle.
+
+Professionals begin with the business.
+
+In this exercise, you navigated the most complex domain you have encountered so far — Real Estate Planet. You worked with six interconnected tables. You interpreted ambiguous requests. You defended your assumptions. You designed a report for a CFO.
+
+That is not just SQL. That is **consulting**.
+
+> 🏛️ **Architect's Law:**
+> *"The nouns change. The logic does not."*
+>
+> And the workflow? It stays the same.
 
 ---
 
@@ -485,22 +577,34 @@ WHERE client_type IN ('Buyer', 'Both');
 
 ```sql
 -- Request 11: High-Impact Corporate Asset Exposure Report
--- Assumptions:
---   1. "Premium" defined as list_price > 500000 (above median active list price)
---   2. Only Active properties are relevant for investors
---   3. Columns selected: address, city, list_price, property_type, status
---   4. Sorted by highest list price first
+-- Assumptions (Defensible Interpretations):
+--   "Active" = status = 'Active' (properties currently listed on the market)
+--   "Premium" = list_price >= 500000
+--   Columns selected: address, city, property_type, list_price, status
+--   Sorted by highest list price first
 
 SELECT 
     address AS "Property Address",
     city AS "City",
-    list_price AS "List Price",
     property_type AS "Property Type",
-    status AS "Availability"
+    list_price AS "List Price",
+    status AS "Current Status"
 FROM properties
-WHERE status = 'Available' AND list_price > 500000
+WHERE status = 'Active'
+  AND list_price >= 500000
 ORDER BY list_price DESC;
 ```
+---
+**Alternative Defensible Approaches:**
+
+| Approach | "Active" Definition | Query Modifier |
+|----------|---------------------|----------------|
+| **Sales Pipeline** | `status IN ('Active', 'Pending')` | `WHERE status IN ('Active', 'Pending') AND list_price >= 500000` |
+| **Market Activity** | At least one viewing | `JOIN viewings` and `HAVING COUNT(viewing_id) > 0` |
+| **Buyer Interest** | At least one offer | `JOIN offers` and `HAVING COUNT(offer_id) > 0` |
+| **Marketable Inventory** | `status NOT IN ('Sold', 'Withdrawn')` | `WHERE status NOT IN ('Sold', 'Withdrawn') AND list_price >= 500000` |
+
+---
 
 ### 🏛️ Architectural Reflection – Executive Desk
 

@@ -96,19 +96,36 @@ flowchart LR
 
 ---
 
-## 🏛️ Meet Your APPLY Resource Repository
 
-The **APPLY Resource Repository** is your central hub for all databases, ER diagrams, and schema guides used throughout the **APPLY cycle.** Each time you begin a new exercise, you will return here to load the required database and study its blueprint.
+## 🌍 Meet your SQLVerse Multiverse Business Suite
+
+### SQLVerse Resource Repository
+
+The **SQLVerse Resource Repository** is your central hub for all databases, ER diagrams, and schema guides used across the **AUGMENT** and **APPLY** phases of Module 3. Each time you begin a new file—whether for Socratic demonstration or hands-on practice—you will return here to load the required database and study its blueprint before entering the business universe.
 
 ### 🗄️ Repository Artifacts
 
-**All resources** used throughout this **APPLY cycle** are located in the APPLY Resource Repository:
+**All resources** used throughout the **AUGMENT** and  **APPLY**  phases are located in the SQLVerse Resource Repository:
 
-1. **Customized E-Store database** – `level1_estore_apply.db` (extended dataset with NULLs, bulk orders, new categories)
-2. **Production Echo databases** – domain-specific datasets (e.g., `hospital_planet.db`, `real_estate_planet.db`, `finverse.db`)
-3. **ER Diagrams and Schema Guides** – Blueprint files for every database (e.g., `E-Store_APPLY_Blueprint.md`, `FinVERSE_Blueprint.md`)
+1. **Enhanced E‑Store (Home Turf)** – The ACQUIRE E‑Store enhanced with NULL values, bulk orders, new categories, and production‑ready edge cases to align with the **Business‑first philosophy** of ACCELERATE.
 
-### 📂 APPLY Resource Repository Location
+   *This is your anchor—the dataset you already know, now enriched for production thinking.*
+
+   - **Database:** `level1_estore_apply.db`
+
+2. **SQLVerse MultiVerse Suite** – The complete collection of business universes, each mirroring real‑world production environments with distinct business logic, stakeholders, and data patterns:
+
+   - **FinVERSE** – A digital banking ecosystem designed for KPI thinking, revenue analytics, and customer‑centric reporting. Its rich schema—transactions, accounts, loans, cards, and fraud flags—makes it the **flagship enterprise universe** for advanced SQL reasoning.
+
+   - **Hospital Planet** – A healthcare operations universe built around patient journeys, treatment costs, appointment analytics, and billing cycles. It introduces domain‑specific terminology while preserving the same SQL patterns.
+
+   - **Real Estate Planet** – A property and brokerage universe with agents, clients, properties, deals, and payments. It models a complete deal lifecycle—from listing to closing.
+
+   Additional mini‑universes may be introduced as you progress through Level 2 and Level 3.
+
+3. **Blueprint Files** – ER Diagrams and Schema Guides that serve as the essential map before entering any new business universe. Each Blueprint provides the conceptual foundation—table relationships, business vocabulary, and design intent—so you can query with confidence, not guesswork.
+
+### 📂 SQLVerse Resource Repository Location
 ```
 Module5-GenAI-Walkthrough/02-Exercises/MODULE2/Module2-Schemas/
 ```

@@ -77,35 +77,47 @@ flowchart LR
 | Tab | Purpose | What to Do |
 | :--- | :--- | :--- |
 | **1: The Map** | Open this exercise file | You are here – reading this file. Complete the business requests below. |
-| **2: The Factory** | Run queries | Load **E‑Store** (`level1_estore_basic.db`) for Section 1. Load **Real Estate** (`real_estate.db`) for Section 2. |
+| **2: The Factory** | Run queries |Load the relevant database for each section. |
 | **3: The Consultant** | Socratic questioning (no code) | Explains logic, suggests strategies – **never writes SQL**. Follow the **3‑Attempt Rule**. |
 | **4: The Vault** | Save your work | Save each deliverable. Log any AI hallucinations. |
 
 > **Professional Habit:** Understand the data model before you query it – **Professional SQL developers** do that.
 
 ---
+## 🏛️ Meet Your SQLVerse Resource Repository
 
-## 🏛️ Meet Your APPLY Resource Repository
+The **SQLVerse Resource Repository** is your central hub for all databases, ER diagrams, and schema guides used throughout the **APPLY phase of Module 2** and the **AUGMENT and APPLY phases** of the remaining modules in ACCELERATE. 
 
-The **APPLY Resource Repository** is your central hub for all databases, ER diagrams, and schema guides used throughout the **APPLY cycle.** Each time you begin a new exercise, you will return here to load the required database and study its blueprint.
+Each time you begin a new exercise—whether for hands-on practice or Socratic demonstration—you will return here to **load** the required database and study its **blueprint**  and **schema guide** before entering the business universe.
 
 ### 🗄️ Repository Artifacts
 
-**All resources** used throughout this **APPLY cycle** are located in the APPLY Resource Repository:
+**All resources** used throughout this **APPLY cycle** are located in the SQLVerse Resource Repository, organised by business universe.
 
-1. **Customized E-Store database** – `level1_estore_apply.db` (extended dataset with NULLs, bulk orders, new categories)
-2. **Production Echo databases** – domain-specific datasets (e.g., `hospital_planet.db`, `real_estate_planet.db`, `fintech_planet.db`)
-3. **ER Diagrams and Schema Guides** – Blueprint files for every database (e.g., `E-Store_APPLY_Blueprint.md`, `Hospital_Planet_Blueprint.md`)
+The repository currently contains four flagship **business universes**, each representing a **different industry** and business workflow:
 
-### 📂 APPLY Resource Repository Location
+| Universe | Domain | What You'll Explore |
+|----------|--------|---------------------|
+| **E‑Store** | Retail | Customer orders, product inventory, and transaction analytics |
+| **Hospital Planet** | Healthcare | Patient journeys, appointments, treatments, and billing cycles |
+| **Real Estate Planet** | Property | Property listings, buyer journeys, agent‑managed transactions |
+| **FinVERSE** | Digital Banking | Customer accounts, transactions, cards, loans, and fraud detection |
+
+Each universe has its own dedicated sub‑folder containing its database, Blueprint, and Schema Guide:
+
+### 📂 SQLVerse Resource Repository Location
 ```
-Module5-GenAI-Walkthrough/02-Exercises/MODULE2/Module2-Schemas/
+Level-1-beginner/sqlverse-foundation/resources/data-models/flagship-universes/
 ```
+Each **APPLY exercise** will explicitly specify which database(s) you need to load from this repository – both for the **Workshop Floor** and **Production Echo** sections.
+
+> 💡 **Tip:** Browse the repository before you begin. **Familiarise** yourself with the business universes, their databases, and their Blueprint documents and schemas. You will **revisit** this repository throughout the **APPLY phase.** 
+
 ---
 
 ## 📋 Business Use Case
 
-Your consultancy has just landed a **major new client**—a property brokerage that operates across multiple states. They need help extracting insights from their operational data: property listings, agent performance, client activity, and deal pipelines.
+Your consultancy has just landed a **major new client**—a property brokerage that operates across multiple states. They need help extracting insights from their operational data: **properties, agent performance, client activity, and deal pipelines.**
 
 This is not E‑Store. There are no product categories, customer orders, or shopping carts.
 
@@ -114,15 +126,15 @@ Instead, you are dealing with:
 - **Agents** who list properties and close deals.
 - **Clients** who view properties, submit offers, and sign contracts.
 - **Properties** with statuses, price points, and types.
-- **Viewings, offers, contracts, and payments**—a complete lifecycle from listing to sale.
+- **Viewings, offers, contracts, and payments**—a complete lifecycle from  property listing to completed sale.
 
-The schema is richer. The relationships are more layered. The business logic is unfamiliar.
+The schema is richer. The relationships are more layered. The business logic is unfamiliar. Success now depends on understanding the data model before writing SQL.
 
 **This is your first true production landscape shift.**
 
 Two clients. Two domains. Same SQL patterns.
 
-The challenge is not the syntax. The challenge is Understanding the Business model.
+**The challenge is not the syntax. The challenge is Understanding the Business model.**
 
 ---
 
@@ -132,9 +144,14 @@ Before solving the requests, spend a few minutes understanding the business mode
 
 **Business first. Data model second. SQL third.**
 
-**📁 Database:** Load [`level1_estore_apply.db`](./Module2-Schemas/level1_estore_apply.db) in **Tab 2 (The Factory)** before starting this section.
 
-**🗺️ ER Diagram & Schema Guide:** Study [`E-Store_APPLY_Blueprint.md`](./Module2-Schemas/E-Store_APPLY_Blueprint.md) before writing any SQL.
+**📁 Database:** Load [`level1_estore_apply.db`](../../../sqlverse-foundation/resources/data-models/flagship-universes/1-e-store/level1_estore_apply.db) in **Tab 2 (The Factory)** before starting this section.
+
+**🗺️ Blueprint:** Study [`E-Store_Blueprint.md`](../../../sqlverse-foundation/resources/data-models/flagship-universes/1-e-store/E-Store_Blueprint.md) before writing any SQL.
+
+**📊 Schema Guide:** Refer to [`E-Store_SchemaGuide.md`](../../../sqlverse-foundation/resources/data-models/flagship-universes/1-e-store/E-Store_SchemaGuide.md) for detailed technical implementation.
+
+---
 
 ### 📋 Meet Your Dataset: E‑Store – Your Home Turf
 
@@ -203,9 +220,14 @@ Before solving the requests, spend a few minutes understanding the business mode
 
 **Business first. Data model second. SQL third.**
 
-**📁 Database:** Load [`real_estate_planet`](./Module2-Schemas/real_estate_planet.db) in **Tab 2 (The Factory)** before starting this section.
 
-**🗺️ ER Diagram & Schema Guide:** Study [`RealEstate_Planet_Blueprint.md`](./Module2-Schemas/RealEstate_Planet_Blueprint.md) before writing any SQL.
+📁 **Database:** Load [`real_estate_planet.db`](../../../sqlverse-foundation/resources/data-models/flagship-universes/3-real-estate-planet/real_estate_planet.db) in **Tab 2 (The Factory)** before starting this section.
+
+🗺️ **Blueprint:** Study [`Real_Estate_Planet_Blueprint.md`](../../../sqlverse-foundation/resources/data-models/flagship-universes/3-real-estate-planet/Real_Estate_Planet_Blueprint.md) before writing any SQL.
+
+📊 **Schema Guide:** Refer to [`Real_Estate_Planet_Schema.md`](../../../sqlverse-foundation/resources/data-models/flagship-universes/3-real-estate-planet/Real_Estate_Planet_Schema.md) for detailed technical implementation.
+
+---
 
 ### 📋 Meet Your Dataset: Real Estate Planet – Fresh Landscape (The Cushions are Gone)
 
@@ -213,15 +235,15 @@ Notice that the names, prefixes, and tracking loops no longer copy E-Store.
 
 | Table | Columns | What It Tells Us |
 |-------|---------|------------------|
-| `agents` | `agent_id`, `first_name`, `last_name`, `email`, `phone`, `brokerage` | Licensed real estate professionals |
-| `clients` | `client_id`, `first_name`, `last_name`, `email`, `phone`, `client_type` | Buyers, sellers, or both |
-| `properties` | `property_id`, `agent_id`, `address`, `city`, `state`, `zip`, `property_type`, `list_price`, `status` | Real estate inventory |
-| `viewings` | `viewing_id`, `property_id`, `client_id`, `viewing_date`, `feedback` | Scheduled property tours |
-| `offers` | `offer_id`, `property_id`, `client_id`, `agent_id`, `offer_amount`, `offer_date`, `status` | Purchase offers made by clients |
-| `contracts` | `contract_id`, `offer_id`, `property_id`, `client_id`, `agent_id`, `sale_price`, `closing_date` | Binding agreements after offer acceptance |
-| `payments` | `payment_id`, `contract_id`, `payment_date`, `amount`, `payment_method` | Payments made against contracts |
+| `buyers` | `buyer_id`, `first_name`, `last_name`, `email`, `phone`, `buyer_type`, `budget`, `preferred_location`, `status` | People searching for properties — individuals, investors, or corporate entities |
+| `agents` | `agent_id`, `first_name`, `last_name`, `email`, `phone`, `brokerage`, `availability`, `status` | Licensed real estate professionals managing listings and transactions |
+| `properties` | `property_id`, `address`, `city`, `state`, `zip`, `property_type`, `list_price`, `square_feet`, `status` | Physical assets — apartments, villas, plots, offices, commercial spaces |
+| `listings` | `listing_id`, `property_id`, `agent_id`, `listing_date`, `status` | Properties advertised for sale, managed by agents |
+| `visits` | `visit_id`, `buyer_id`, `listing_id`, `visit_date`, `feedback` | Scheduled property inspections by buyers |
+| `transactions` | `transaction_id`, `buyer_id`, `listing_id`, `agent_id`, `offer_amount`, `final_price`, `transaction_date`, `status` | Offers, negotiations, and completed sales |
 
-> 💡 **Notice the pattern:** Real Estate Planet is *not* a 1:1 mirror of E‑Store. It has 7 tables, not 4. You cannot rely on structural memory. **Read the blueprint. Understand the workflow. Then query.**
+
+> 💡 **Notice the pattern:** Real Estate Planet is *not* a 1:1 mirror of E‑Store. It has 6 tables, not 4. You cannot rely on structural memory. **Read the blueprint. Understand the workflow. Then query.**
 
 ---
 
@@ -229,22 +251,19 @@ Notice that the names, prefixes, and tracking loops no longer copy E-Store.
 
 The Sales Director needs to audit specific property groupings. Extract a list of all properties that are classified as either a **'Condo'** or a **'Single-Family'**.
 
-
 **Deliverable:** A list of `address`, `property_type`, and `list_price`.
 
 ---
 
 ### Request #7 – Brokerage and Contact Availability
 
-
-The regional VP wants a list of agents from **Premier Realty** or **Summit Homes** who have a phone number on file. They are planning a brokerage‑specific training.
+The regional VP wants a list of agents from **Premier Realty** or **Summit Homes** who have a valid phone number on file. They are planning a brokerage‑specific training.
 
 **Deliverable:** A list of `first_name`, `last_name`, `brokerage`, and `phone` for agents in those brokerages with a non‑NULL phone number.
 
 ---
 
 ### Request #8 – Properties in Preferred Cities
-
 
 The market analyst wants a list of properties located in either **Austin** or **Miami**. They are evaluating regional market performance.
 
@@ -254,8 +273,7 @@ The market analyst wants a list of properties located in either **Austin** or **
 
 ### Request #9 – Properties with Specific Price Range
 
-
-The finance team wants a list of properties with a list price between **$300,000 and $700,000**. They are evaluating middle‑market investment opportunities.
+The finance team wants a list of properties with a list price in the range of **$300,000 to $700,000.** They are evaluating middle‑market investment opportunities.
 
 **Deliverable:** A report showing `address`, `city`, `list_price`, and `property_type`.
 
@@ -263,7 +281,7 @@ The finance team wants a list of properties with a list price between **$300,000
 
 ### Request #10 – Client Type Filter
 
-The sales team wants a list of clients who are either **Buyers** or **Both** (Buyer & Seller). They are preparing a targeted outreach list.
+The sales team wants a list of clients whose client type is either **Buyer** or **Both**. They are preparing a targeted outreach campaign.
 
 **Deliverable:** A list of `first_name`, `last_name`, `email`, and `phone` for clients who are not purely Sellers.
 
@@ -275,14 +293,16 @@ The sales team wants a list of clients who are either **Buyers** or **Both** (Bu
 
 **📁 Database:** real_estate_planet.db
 
-The Strategic Prompt **From the CFO**: "I need a clean report of our premium available real estate assets to present to investors at the board meeting this afternoon."
+The Strategic Prompt **From the CFO**: "I need a clean report of our **premium active real estate assets** to present to investors at the board meeting this afternoon."
 
 #### 🛑 THE PRODUCTION VACUUM
 
-Notice that the CFO did not specify:
+The CFO has intentionally left several business terms undefined. Your task is to interpret them using the available schema and business workflow.
 
  - Which **columns** to project. 
- - What exact numeric **value** defines a property as **"premium".** 
+ - What qualifies as **premium**?
+ - What qualifies as **active**? 
+ - Which columns best communicate **value** to investors?
  - How the output should be **ordered** to make business sense. 
  - How to **filter** for availability based on schema states.
 
@@ -292,13 +312,12 @@ You cannot ask the CFO for clarification; she is in a closed-door briefing. You 
 
 **Requirements:**
 
- 1. **Determine** a logical definition of "premium" using an inclusive or
-    one-sided price boundary based on the schema data.
+ 1. **Choose and justify** a logical definition of "premium" using an inclusive or   one-sided price boundary based on the schema data.
  2. **Select** only columns that provide immediate business meaning to an investor.
  3. **Apply** professional, human-readable column aliases.
  4. **Order** the data deliberately so that the most high-impact information commands the viewer's attention first.
    
- In your saved file, add a short comment block (--) stating the business assumptions you made to justify your structural choices.   
+ In your saved file, add a short comment block (`--`)  stating the business assumptions you made to justify your structural choices.   
   
 ---
 
@@ -320,7 +339,6 @@ Review your engineering output before committing queries to your repository log 
 | 06:30 PM | Request #10 – Client Type Filter | Real Estate | ☐ |
 | 07:30 PM | Request #11 – Executive Desk – High-Impact Corporate Asset Exposure Report | Integrated | ☐ |
 
-
 **Reflection:** Which request required the most defensible interpretation? What did you learn from defining your own filter logic?
 
 ---
@@ -331,7 +349,7 @@ Review your engineering output before committing queries to your repository log 
 
 You may have noticed something unsettling in this exercise. The comfortable 1:1 mirror between E‑Store and Hospital Planet—`customers` → `patients`, `orders` → `appointments`, `products` → `treatments`—is **gone.**
 
-Real Estate Planet does not follow that pattern. It has **7 tables**, not 4. The workflow is different. The business logic is different. The relationships are more layered and nuanced.
+Real Estate Planet does not follow that pattern. It has **6 tables**, not 4. The workflow is different. The business logic is different. The relationships are more layered and nuanced.
 
 **This was not an accident. It was a deliberate architectural decision.**
 
@@ -376,7 +394,9 @@ The fracture was not a punishment. It was a **promotion**—from pattern matcher
 
 ---
 
-**Carry this lesson forward.** Fintech Planet will be even more unfamiliar. You will survive that too—because now you know the method: **Business first. Data model second. SQL third.**
+**Carry this lesson forward.** Fintech Planet will be even more unfamiliar. You will survive that too—because now you know the method: 
+
+**Business first. Data model second. SQL third.**
 
 ---
 

@@ -90,34 +90,67 @@ flowchart LR
 | **3: The Consultant** | Socratic questioning (no code generation) | Configured with [`BROWSER-OFFICE-ACCELERATE.md`](../../BROWSER-OFFICE-ACCELERATE.md) – Persona prompt, SQLVerse characters, and relevant schema anchor. Explains logic, suggests strategies, validates reasoning – **never writes SQL code**. Follow the **3‑Attempt Rule**: try from memory, check your notes, then ask for a conceptual hint. |
 | **4: The Vault** | Save your work | Save each completed business deliverable in your Vault under: `Learning/Level-1-beginner/ACCELERATE/02-Exercises/MODULE2/`.<br><br>If you spot AI hallucinations or edge cases, log them in `Learning/Level-1-beginner/ACCELERATE/Socratic_Journals/` as separate files (e.g., `hallucination_log_1.md`). |
 
-> 📌 **Note:** The **ER Diagram & Schema Guide** and the corresponding database for each exercise are specified in the **Workshop Floor** and **Production Echo** sections. For the full resource structure, refer to **🏛️ Meet Your APPLY Repository** below.
+> 📌 **Note:** The **ER Diagram & Schema Guide** and the corresponding database for each exercise are specified in the **Workshop Floor** and **Production Echo** sections. For the full resource structure, refer to **🏛️ Meet Your  SQLVerse Resource Repository** section below.
 
 > **Professional Habit:** Understand the data model before you query it – **Professional SQL developers** do that.
 
 
 ---
 
-## 🏛️ Meet Your APPLY Resource Repository
+## 🏛️ Meet Your SQLVerse Resource Repository
 
-The **APPLY Resource Repository** is your central hub for all databases, ER diagrams, and schema guides used throughout the **APPLY cycle.** Each time you begin a new exercise, you will return here to load the required database and study its blueprint.
+The **SQLVerse Resource Repository** is your central hub for all databases, ER diagrams, and schema guides used throughout the **APPLY phase of Module 2** and the **AUGMENT and APPLY phases** of the remaining modules in ACCELERATE. 
+
+Each time you begin a new exercise—whether for hands-on practice or Socratic demonstration—you will return here to **load** the required database and study its **blueprint**  and **schema guide** before entering the business universe.
 
 ### 🗄️ Repository Artifacts
 
-**All resources** used throughout this **APPLY cycle** are located in the APPLY Resource Repository:
+**All resources** used throughout this **APPLY cycle** are located in the SQLVerse Resource Repository, organised by business universe.
 
-1. **Customized E-Store database** – `level1_estore_apply.db` (extended dataset with NULLs, bulk orders, new categories)
-2. **Production Echo databases** – domain-specific datasets (e.g., `hospital_planet.db`, `real_estate_planet.db`, `fintech_planet.db`)
-3. **ER Diagrams and Schema Guides** – Blueprint files for every database (e.g., `E-Store_APPLY_Blueprint.md`, `Hospital_Planet_Blueprint.md`)
+The repository currently contains four flagship **business universes**, each representing a **different industry** and business workflow:
 
-### 📂 APPLY Resource Repository Location
+| Universe | Domain | What You'll Explore |
+|----------|--------|---------------------|
+| **E‑Store** | Retail | Customer orders, product inventory, and transaction analytics |
+| **Hospital Planet** | Healthcare | Patient journeys, appointments, treatments, and billing cycles |
+| **Real Estate Planet** | Property | Property listings, buyer journeys, agent‑managed transactions |
+| **FinVERSE** | Digital Banking | Customer accounts, transactions, cards, loans, and fraud detection |
+
+Each universe has its own dedicated sub‑folder containing its database, Blueprint, and Schema Guide:
+
+### 📂 SQLVerse Resource Repository Location
 ```
-Module5-GenAI-Walkthrough/02-Exercises/MODULE2/Module2-Schemas/
+Level-1-beginner/sqlverse-foundation/resources/data-models/flagship-universes/
 ```
+
+flagship-universes/
+│
+├── 1-e-store/
+│ ├── level1_estore_apply.db -- Database
+│ ├── E-Store_Blueprint.md -- Business & Conceptual Guide
+│ └── E-Store_SchemaGuide.md -- Technical Reference
+│
+├── 2-hospital-planet/
+│ ├── hospital_planet.db
+│ ├── Hospital_Planet_Blueprint.md
+│ └── Hospital_Planet_SchemaGuide.md
+│
+├── 3-real-estate-planet/
+│ ├── real_estate_planet.db
+│ ├── Real_Estate_Planet_Blueprint.md
+│ └── Real_Estate_Planet_SchemaGuide.md
+│
+└── 4-finverse/
+├── finverse.db
+├── FinVERSE_Blueprint.md
+└── FinVERSE_SchemaGuide.md
+
 
 Each **APPLY exercise** will explicitly specify which database(s) you need to load from this repository – both for the **Workshop Floor** and **Production Echo** sections.
 
-> 💡 **Tip:** Browse the repository before you begin. **Familiarise** yourself with the available databases and schema guides. You will **revisit** this repository throughout the **APPLY phase.**
+> 💡 **Tip:** Browse the repository before you begin. **Familiarise** yourself with the business universes, their databases, and their Blueprint documents and schemas. You will **revisit** this repository throughout the **APPLY phase.** 
 
+---
 
 ### Why does APPLY use a different E-Store database `level1_estore_apply.db`?
 
@@ -174,11 +207,13 @@ Two clients. Two domains. Same SQL patterns.
 
 Before solving the requests, spend a few minutes understanding the business model, workflow, ER diagram, and table schemas.
 
-**Business first. Data model second. SQL third.**
+**📁 Database:** Load [`level1_estore_apply.db`](../../../sqlverse-foundation/resources/data-models/flagship-universes/1-e-store/level1_estore_apply.db) in **Tab 2 (The Factory)** before starting this section.
 
-**📁 Database:** Load [`level1_estore_apply.db`](./Module2-Schemas/level1_estore_apply.db) in **Tab 2 (The Factory)** before starting this section.
+**🗺️ Blueprint:** Study [`E-Store_Blueprint.md`](../../../sqlverse-foundation/resources/data-models/flagship-universes/1-e-store/E-Store_Blueprint.md) before writing any SQL.
 
-**🗺️ ER Diagram & Schema Guide:** Study [`E-Store_APPLY_Blueprint.md`](./Module2-Schemas/E-Store_APPLY_Blueprint.md) before writing any SQL.
+**📊 Schema Guide:** Refer to [`E-Store_SchemaGuide.md`](../../../sqlverse-foundation/resources/data-models/flagship-universes/1-e-store/E-Store_SchemaGuide.md) for detailed technical implementation.
+
+---
 
 ### 📋 Meet Your Dataset: E‑Store – Your Home Turf
 
@@ -268,18 +303,24 @@ Before solving the requests, spend a few minutes understanding the business mode
 
 **Business first. Data model second. SQL third.**
 
-**📁 Database:** Load [`hospital_planet.db`](./Module2-Schemas/hospital_planet.db) in **Tab 2 (The Factory)** before starting this section.
 
-**🗺️ ER Diagram & Schema Guide:** Study [`Hospital_Planet_Blueprint.md`](./Module2-Schemas/Hospital_Planet_Blueprint.md) before writing any SQL.
+📁 **Database:** Load [`hospital_planet.db`](../../../sqlverse-foundation/resources/data-models/flagship-universes/2-hospital-planet/hospital_planet.db) in **Tab 2 (The Factory)** before starting this section.
+
+🗺️ **Blueprint:** Study [`Hospital_Planet_Blueprint.md`](../../../sqlverse-foundation/resources/data-models/flagship-universes/2-hospital-planet/Hospital_Planet_Blueprint.md) before writing any SQL.
+
+📊 **Schema Guide:** Refer to [`Hospital_Planet_Schema.md`](../../../sqlverse-foundation/resources/data-models/flagship-universes/2-hospital-planet/Hospital_Planet_Schema.md) for detailed technical implementation.
+
+---
 
 ### 📋 Meet Your Dataset: Hospital Planet – New Landscape
 
 | Table | Columns | What It Tells Us |
 |-------|---------|------------------|
-| `patients` | `patient_id`, `name`, `email`, `phone`, `status` | Patient admission rosters |
+| `patients` | `patient_id`, `name`, `email`, `phone`, `status` | Patient admission rosters (`status`: `Active`, `Inactive`, `Admitted`, `Discharged`) |
+| `doctors` | `doctor_id`, `first_name`, `last_name`, `specialisation`, `email`, `phone`, `availability`, `status` | Licensed medical practitioners with their specialisation and availability |
 | `treatments` | `treatment_id`, `treatment_name`, `cost`, `category` | Clinical medical services catalog |
-| `appointments` | `appointment_id`, `patient_id`, `appointment_date`, `treatment_id` | Outpatient slot bookings with treatment performed |
-| `bills` | `bill_id`, `patient_id`, `amount`, `bill_date` | Financial medical ledger entries |
+| `appointments` | `appointment_id`, `patient_id`, `doctor_id`, `treatment_id`, `appointment_date` | Outpatient slot bookings with doctor and treatment performed |
+| `bills` | `bill_id`, `patient_id`, `amount`, `bill_date`, `payment_status` | Financial medical ledger entries (`payment_status`: `Pending`, `Paid`, `Insurance Pending`) |
 
 > 💡 **Notice the pattern:** The tables in Hospital Planet mirror the E‑Store structure. `patients` = `customers`, `treatments` = `products`, `appointments` = `orders`, `bills` = `order_items`. The nouns change. The SQL stays the same.
 

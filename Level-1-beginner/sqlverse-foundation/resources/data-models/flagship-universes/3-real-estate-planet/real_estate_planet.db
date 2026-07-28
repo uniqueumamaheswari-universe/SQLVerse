@@ -1,0 +1,304 @@
+
+-- =============================================
+-- Real Estate Planet Database (ACCELERATE Module 2)
+-- Used for APPLY Exercises 3, 4, 5 and future JOIN/aggregation modules
+--
+-- This dataset is designed to support:
+--   - Logical operators (AND, OR, NOT, IN)
+--   - Range filtering (BETWEEN, >, <)
+--   - Pattern matching (LIKE, wildcards)
+--   - NULL handling (IS NULL, IS NOT NULL)
+--   - Aggregation (GROUP BY, SUM, COUNT, HAVING) in Module 3
+--   - JOINs (INNER JOIN, LEFT JOIN, multi-table) in Module 4
+--
+-- Location:
+--   Module5-GenAI-Walkthrough/02-Exercises/MODULE2/Module2-Schemas/
+--   real_estate_planet.db
+-- =============================================
+
+-- =============================================
+-- DROP TABLES (if they already exist)
+-- =============================================
+DROP TABLE IF EXISTS payments;
+DROP TABLE IF EXISTS contracts;
+DROP TABLE IF EXISTS offers;
+DROP TABLE IF EXISTS viewings;
+DROP TABLE IF EXISTS properties;
+DROP TABLE IF EXISTS clients;
+DROP TABLE IF EXISTS agents;
+
+-- =============================================
+-- CREATE TABLES
+-- =============================================
+
+-- 1. Agents
+CREATE TABLE agents (
+    agent_id INTEGER PRIMARY KEY,
+    first_name TEXT NOT NULL,
+    last_name TEXT NOT NULL,
+    email TEXT,
+    phone TEXT,
+    brokerage TEXT NOT NULL
+);
+
+-- 2. Clients
+CREATE TABLE clients (
+    client_id INTEGER PRIMARY KEY,
+    first_name TEXT NOT NULL,
+    last_name TEXT NOT NULL,
+    email TEXT,
+    phone TEXT,
+    client_type TEXT NOT NULL  -- 'Buyer', 'Seller', 'Both'
+);
+
+-- 3. Properties
+CREATE TABLE properties (
+    property_id INTEGER PRIMARY KEY,
+    agent_id INTEGER NOT NULL,
+    address TEXT NOT NULL,
+    city TEXT NOT NULL,
+    state TEXT NOT NULL,
+    zip TEXT,
+    property_type TEXT NOT NULL,
+    list_price REAL NOT NULL,
+    status TEXT NOT NULL,  -- 'Active', 'Pending', 'Sold', 'Withdrawn'
+    FOREIGN KEY (agent_id) REFERENCES agents(agent_id)
+);
+
+-- 4. Viewings
+CREATE TABLE viewings (
+    viewing_id INTEGER PRIMARY KEY,
+    property_id INTEGER NOT NULL,
+    client_id INTEGER NOT NULL,
+    viewing_date TEXT NOT NULL,
+    feedback TEXT,
+    FOREIGN KEY (property_id) REFERENCES properties(property_id),
+    FOREIGN KEY (client_id) REFERENCES clients(client_id)
+);
+
+-- 5. Offers
+CREATE TABLE offers (
+    offer_id INTEGER PRIMARY KEY,
+    property_id INTEGER NOT NULL,
+    client_id INTEGER NOT NULL,
+    agent_id INTEGER NOT NULL,
+    offer_amount REAL NOT NULL,
+    offer_date TEXT NOT NULL,
+    status TEXT NOT NULL,  -- 'Pending', 'Accepted', 'Rejected', 'Withdrawn'
+    FOREIGN KEY (property_id) REFERENCES properties(property_id),
+    FOREIGN KEY (client_id) REFERENCES clients(client_id),
+    FOREIGN KEY (agent_id) REFERENCES agents(agent_id)
+);
+
+-- 6. Contracts
+CREATE TABLE contracts (
+    contract_id INTEGER PRIMARY KEY,
+    offer_id INTEGER NOT NULL UNIQUE,  -- one accepted offer becomes one contract
+    property_id INTEGER NOT NULL,
+    client_id INTEGER NOT NULL,
+    agent_id INTEGER NOT NULL,
+    sale_price REAL NOT NULL,
+    closing_date TEXT NOT NULL,
+    FOREIGN KEY (offer_id) REFERENCES offers(offer_id),
+    FOREIGN KEY (property_id) REFERENCES properties(property_id),
+    FOREIGN KEY (client_id) REFERENCES clients(client_id),
+    FOREIGN KEY (agent_id) REFERENCES agents(agent_id)
+);
+
+-- 7. Payments
+CREATE TABLE payments (
+    payment_id INTEGER PRIMARY KEY,
+    contract_id INTEGER NOT NULL,
+    payment_date TEXT NOT NULL,
+    amount REAL NOT NULL,
+    payment_method TEXT NOT NULL,  -- 'Wire', 'Cash', 'Check', 'ACH'
+    FOREIGN KEY (contract_id) REFERENCES contracts(contract_id)
+);
+
+-- =============================================
+-- INSERT SAMPLE DATA
+-- =============================================
+
+-- ---------- Agents ----------
+INSERT INTO agents (agent_id, first_name, last_name, email, phone, brokerage) VALUES
+(1, 'Sarah', 'Chen', 'sarah.chen@broker.com', '555-2001', 'Premier Realty'),
+(2, 'Michael', 'Rodriguez', 'michael.r@broker.com', NULL, 'Premier Realty'),
+(3, 'Emily', 'Thompson', NULL, '555-2003', 'Summit Homes'),
+(4, 'James', 'Williams', 'james.w@broker.com', '555-2004', 'Summit Homes'),
+(5, 'Jessica', 'Lee', 'jessica.lee@broker.com', '555-2005', 'Coastal Living'),
+(6, 'Robert', 'Garcia', 'robert.g@broker.com', NULL, 'Coastal Living');
+
+-- ---------- Clients ----------
+INSERT INTO clients (client_id, first_name, last_name, email, phone, client_type) VALUES
+(1, 'David', 'Kim', 'david.kim@email.com', '555-3001', 'Buyer'),
+(2, 'Priya', 'Patel', 'priya.p@email.com', '555-3002', 'Seller'),
+(3, 'Kevin', 'Park', NULL, '555-3003', 'Buyer'),
+(4, 'Rachel', 'Green', 'rachel.g@email.com', NULL, 'Both'),
+(5, 'Mark', 'Wilson', 'mark.w@email.com', '555-3005', 'Buyer'),
+(6, 'Laura', 'Martin', NULL, '555-3006', 'Seller'),
+(7, 'Thomas', 'White', 'thomas.w@email.com', '555-3007', 'Both'),
+(8, 'Olivia', 'Zhang', 'olivia.z@email.com', '555-3008', 'Buyer');
+
+-- ---------- Properties ----------
+INSERT INTO properties (property_id, agent_id, address, city, state, zip, property_type, list_price, status) VALUES
+(1, 1, '123 Main St', 'Austin', 'TX', '78701', 'Single-Family', 450000, 'Active'),
+(2, 2, '456 Oak Ave', 'Dallas', 'TX', '75201', 'Condo', 320000, 'Pending'),
+(3, 3, '789 Pine Rd', 'Miami', 'FL', '33101', 'Single-Family', 550000, 'Active'),
+(4, 4, '101 Lake Dr', 'Orlando', 'FL', NULL, 'Multi-Family', 680000, 'Sold'),
+(5, 5, '202 Sunset Blvd', 'Los Angeles', 'CA', '90210', 'Condo', 780000, 'Active'),
+(6, 1, '303 Birch St', 'San Francisco', 'CA', '94101', 'Single-Family', 1200000, 'Active'),
+(7, 2, '404 Cedar Ln', 'Austin', 'TX', NULL, 'Land', 150000, 'Withdrawn'),
+(8, 3, '505 Walnut St', 'Miami', 'FL', '33102', 'Commercial', 950000, 'Active'),
+(9, 4, '606 Maple Ave', 'Los Angeles', 'CA', '90211', 'Single-Family', 850000, 'Pending'),
+(10, 5, '707 Spruce Dr', 'Dallas', 'TX', '75202', 'Condo', 290000, 'Active'),
+(11, 6, '808 Elm St', 'Orlando', 'FL', '32801', 'Single-Family', 480000, 'Active');
+
+-- ---------- Viewings ----------
+INSERT INTO viewings (viewing_id, property_id, client_id, viewing_date, feedback) VALUES
+(1, 1, 1, '2025-01-10', 'Loved the kitchen renovation'),
+(2, 2, 3, '2025-01-15', NULL),
+(3, 3, 4, '2025-01-20', 'Too small for my needs'),
+(4, 5, 5, '2025-02-01', 'Great location, but needs updates'),
+(5, 6, 1, '2025-02-05', NULL),
+(6, 8, 7, '2025-02-10', 'Perfect for my business'),
+(7, 10, 3, '2025-02-15', 'Affordable and well-maintained'),
+(8, 1, 4, '2025-02-20', 'Second viewing, still interested'),
+(9, 11, 5, '2025-03-01', NULL),
+(10, 9, 6, '2025-03-05', 'Beautiful property, but out of budget'),
+(11, 7, 8, '2025-03-10', 'Great investment opportunity'),
+(12, 4, 2, '2025-03-15', 'Ready to make an offer');
+
+-- ---------- Offers ----------
+INSERT INTO offers (offer_id, property_id, client_id, agent_id, offer_amount, offer_date, status) VALUES
+(1, 1, 1, 1, 440000, '2025-01-12', 'Accepted'),
+(2, 2, 3, 2, 315000, '2025-01-18', 'Pending'),
+(3, 3, 4, 3, 530000, '2025-01-22', 'Rejected'),
+(4, 5, 5, 5, 760000, '2025-02-03', 'Accepted'),
+(5, 6, 1, 1, 1180000, '2025-02-07', 'Pending'),
+(6, 8, 7, 3, 920000, '2025-02-12', 'Accepted'),
+(7, 10, 3, 2, 285000, '2025-02-18', 'Withdrawn'),
+(8, 11, 5, 5, 470000, '2025-03-03', 'Pending'),
+(9, 9, 6, 4, 830000, '2025-03-07', 'Accepted'),
+(10, 4, 2, 4, 660000, '2025-03-18', 'Pending');
+
+-- ---------- Contracts ----------
+INSERT INTO contracts (contract_id, offer_id, property_id, client_id, agent_id, sale_price, closing_date) VALUES
+(1, 1, 1, 1, 1, 440000, '2025-02-15'),
+(2, 4, 5, 5, 5, 760000, '2025-03-01'),
+(3, 6, 8, 7, 3, 920000, '2025-03-15'),
+(4, 9, 9, 6, 4, 830000, '2025-04-01');
+
+-- ---------- Payments (multiple per contract) ----------
+INSERT INTO payments (payment_id, contract_id, payment_date, amount, payment_method) VALUES
+-- Contract 1 (3 payments)
+(1, 1, '2025-01-20', 44000, 'Wire'),   -- Earnest deposit (10%)
+(2, 1, '2025-02-10', 176000, 'Check'), -- Down payment
+(3, 1, '2025-02-15', 220000, 'Wire'),  -- Closing balance
+-- Contract 2 (2 payments)
+(4, 2, '2025-02-05', 76000, 'Cash'),   -- Earnest
+(5, 2, '2025-03-01', 684000, 'ACH'),   -- Closing
+-- Contract 3 (3 payments)
+(6, 3, '2025-02-20', 92000, 'Wire'),   -- Earnest
+(7, 3, '2025-03-10', 368000, 'Check'), -- Interim
+(8, 3, '2025-03-15', 460000, 'Wire'),  -- Final
+-- Contract 4 (1 payment – edge case)
+(9, 4, '2025-03-20', 83000, 'Cash'),   -- Earnest
+(10, 4, '2025-04-01', 747000, 'ACH');  -- Closing
+
+-- =============================================
+-- PEDAGOGICAL DESIGN
+-- =============================================
+
+-- NULL handling
+--   Agents 2 (phone), 3 (email) – missing contact
+--   Clients 3 (email), 4 (phone), 6 (email) – missing contact
+--   Properties 4, 7 (zip) – missing postal code
+--   Viewings 2,5,9 (feedback) – missing feedback
+
+-- Status values
+--   Properties: Active (5), Pending (2), Sold (1), Withdrawn (1)
+--   Offers: Accepted (4), Pending (3), Rejected (1), Withdrawn (1)
+--   Clients: Buyer (4), Seller (2), Both (2)
+
+-- Property types
+--   Single-Family (4), Condo (3), Multi-Family (1), Land (1), Commercial (1)
+
+-- Date ranges
+--   Viewings: Jan–Mar 2025
+--   Offers: Jan–Mar 2025
+--   Contracts: Feb–Apr 2025
+--   Payments: Jan–Apr 2025
+
+-- Price ranges
+--   List prices: 150,000 to 1,200,000
+--   Offer amounts: 285,000 to 1,180,000
+--   Sale prices: 440,000 to 920,000
+--   Payment amounts: 44,000 to 747,000
+
+-- Edge cases
+--   Agent 6 (Robert Garcia) has no properties listed → LEFT JOIN detection
+--   Client 8 (Olivia Zhang) has no viewings → LEFT JOIN detection
+--   Property 7 (404 Cedar Ln) has no offers → LEFT JOIN detection
+--   Property 11 (808 Elm St) has no contract → LEFT JOIN detection
+--   Contract 4 has only 1 payment (edge case for GROUP BY)
+--   Contract 1 and 3 have 3 payments each (for aggregation)
+
+-- =============================================
+-- VERIFICATION QUERIES
+-- =============================================
+
+-- Agents with no properties
+-- Expected: Agent 6 (Robert Garcia)
+-- SELECT a.first_name, a.last_name
+-- FROM agents a
+-- LEFT JOIN properties p ON a.agent_id = p.agent_id
+-- WHERE p.property_id IS NULL;
+
+-- Clients with no viewings
+-- Expected: Client 8 (Olivia Zhang)
+-- SELECT c.first_name, c.last_name
+-- FROM clients c
+-- LEFT JOIN viewings v ON c.client_id = v.client_id
+-- WHERE v.viewing_id IS NULL;
+
+-- Properties with no offers
+-- Expected: Property 7 (404 Cedar Ln) and Property 11 (808 Elm St)
+-- SELECT p.address
+-- FROM properties p
+-- LEFT JOIN offers o ON p.property_id = o.property_id
+-- WHERE o.offer_id IS NULL;
+
+-- Total payments per contract (for aggregation)
+-- Expected: Contract 1 (3), Contract 2 (2), Contract 3 (3), Contract 4 (1)
+-- SELECT contract_id, COUNT(*) AS payment_count, SUM(amount) AS total_paid
+-- FROM payments
+-- GROUP BY contract_id;
+
+-- Contracts with total payments < sale_price
+-- Expected: Contract 1,2,3,4 (all have total paid = sale_price)
+-- SELECT contract_id, SUM(amount) AS total_paid
+-- FROM payments
+-- GROUP BY contract_id
+-- HAVING SUM(amount) < (SELECT sale_price FROM contracts c WHERE c.contract_id = payments.contract_id);
+
+-- Properties with list_price > 500,000 AND status = 'Active'
+-- Expected: 3,5,6,8
+-- SELECT * FROM properties WHERE list_price > 500000 AND status = 'Active';
+
+-- Clients with email IS NULL OR phone IS NULL
+-- Expected: Kevin Park, Rachel Green, Laura Martin
+-- SELECT * FROM clients WHERE email IS NULL OR phone IS NULL;
+
+-- Agents with brokerage = 'Premier Realty' AND phone IS NOT NULL
+-- Expected: Sarah Chen, James Williams
+-- SELECT * FROM agents WHERE brokerage = 'Premier Realty' AND phone IS NOT NULL;
+
+-- Properties with city LIKE 'Los%' AND property_type = 'Condo' OR 'Single-Family'
+-- Expected: 5, 9
+-- SELECT * FROM properties WHERE city LIKE 'Los%' AND property_type IN ('Condo', 'Single-Family');
+
+-- =============================================
+-- DATABASE READY FOR APPLY PHASE
+-- =============================================
+
+

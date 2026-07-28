@@ -72,7 +72,7 @@ flowchart LR
 | Tab | Purpose | What to Do |
 | :--- | :--- | :--- |
 | **1: The Map** | Open this exercise file | You are here – reading this file. Complete the business requests below. |
-| **2: The Factory** | Run queries | Load [`finverse.db`](./Module2-Schemas/finverse.db) for all sections. |
+| **2: The Factory** | Run queries | Load [`finverse.db`](../../../sqlverse-foundation/resources/data-models/flagship-universes/4-finverse/finverse.db) for all sections. |
 | **3: The Consultant** | Socratic questioning (no code) | Explains logic, suggests strategies – **never writes SQL**. Follow the **3‑Attempt Rule**. |
 | **4: The Vault** | Save your work | Save each deliverable. Log any AI hallucinations. |
 
@@ -80,21 +80,30 @@ flowchart LR
 
 ---
 
-## 🏛️ Meet Your APPLY Resource Repository
+## 🏛️ Meet Your SQLVerse Resource Repository
 
-The **APPLY Resource Repository** is your central hub for all databases, ER diagrams, and schema guides used throughout the **APPLY cycle.** Each time you begin a new exercise, you will return here to load the required database and study its blueprint.
+The **SQLVerse Resource Repository** is your central hub for all databases, ER diagrams, and schema guides used throughout the **APPLY phase of Module 2** and the **AUGMENT and APPLY phases** of the remaining modules in ACCELERATE. 
+
+Each time you begin a new exercise—whether for hands-on practice or Socratic demonstration—you will return here to **load** the required database and study its **blueprint**  and **schema guide** before entering the business universe.
 
 ### 🗄️ Repository Artifacts
 
-**All resources** used throughout this **APPLY cycle** are located in the APPLY Resource Repository:
+**All resources** used throughout this **APPLY cycle** are located in the SQLVerse Resource Repository, organised by business universe.
 
-1. **Customized E-Store database** – `level1_estore_apply.db` (extended dataset with NULLs, bulk orders, new categories)
-2. **APPLY exercise databases** – domain‑specific datasets (e.g., `hospital_planet.db`, `real_estate_planet.db`, `finverse.db`)
-3. **ER Diagrams and Schema Guides** – Blueprint files for every database (e.g., `E-Store_APPLY_Blueprint.md`, `FinVERSE_Blueprint.md`)
+The repository currently contains four flagship **business universes**, each representing a **different industry** and business workflow:
 
-### 📂 APPLY Resource Repository Location
+| Universe | Domain | What You'll Explore |
+|----------|--------|---------------------|
+| **E‑Store** | Retail | Customer orders, product inventory, and transaction analytics |
+| **Hospital Planet** | Healthcare | Patient journeys, appointments, treatments, and billing cycles |
+| **Real Estate Planet** | Property | Property listings, buyer journeys, agent‑managed transactions |
+| **FinVERSE** | Digital Banking | Customer accounts, transactions, cards, loans, and fraud detection |
+
+Each universe has its own dedicated sub‑folder containing its database, Blueprint, and Schema Guide:
+
+### 📂 SQLVerse Resource Repository Location
 ```
-Module5-GenAI-Walkthrough/02-Exercises/MODULE2/Module2-Schemas/
+Level-1-beginner/sqlverse-foundation/resources/data-models/flagship-universes/
 ```
 
 ---
@@ -119,11 +128,16 @@ Before solving the requests, spend a few minutes understanding the business mode
 
 ### FinVERSE Data model
 
-**📁 Database:** Load [`finverse.db`](./Module2-Schemas/finverse.db) in **Tab 2 (The Factory)** before starting this section.
 
-**🗺️ ER Diagram & Schema Guide:** Study [`FinVERSE_Blueprint.md`](./Module2-Schemas/FinVERSE_Blueprint.md) before writing any SQL.
+📁 **Database:** Load [`finverse.db`](../../../sqlverse-foundation/resources/data-models/flagship-universes/4-finverse/finverse.db) in **Tab 2 (The Factory)** before starting this section.
+
+🗺️ **Blueprint:** Study [`FinVERSE_Blueprint.md`](../../../sqlverse-foundation/resources/data-models/flagship-universes/4-finverse/FinVERSE_Blueprint.md) before writing any SQL.
+
+📊 **Schema Guide:** Refer to [`FinVERSE_Schema.md`](../../../sqlverse-foundation/resources/data-models/flagship-universes/4-finverse/FinVERSE_Schema.md) for detailed technical implementation.
 
 **Business first. Data model second. SQL third.**
+
+---
 
 ### 📋 Meet Your Dataset: FinVERSE – Digital Banking Ecosystem
 
@@ -174,7 +188,7 @@ Before solving the requests, spend a few minutes understanding the business mode
 
 **Why This Matters:** Incomplete contact records are a compliance risk. Identifying these ghost accounts allows the Risk Team to freeze them before they are used for unauthorised activity.
 
-**Your Deliverable:** Write a query that returns all customer details for customers whose `status` is either `Active` or `Dormant` with **missing contact details.**
+**Your Deliverable:** Write a query that returns all customer details for customers who own accounts whose `account status` is either `Active` or `Dormant` and who have **missing contact details (email or phone).**
 
 ---
 
@@ -222,11 +236,12 @@ Before solving the requests, spend a few minutes understanding the business mode
 
 ### Challenge 7 – Escalation Bottleneck
 
+
 **Business Context:** The Support Center is swamped. The Support Director needs a clean dashboard view of all unresolved customer tickets that haven't been claimed by an agent yet, sorted so the oldest high‑priority items can be manually pushed to managers.
 
 **Why This Matters:** Unassigned open tickets represent a bottleneck in the customer support workflow. Identifying the oldest unassigned tickets allows the Support Director to escalate them before they breach service‑level agreements.
 
-**Your Deliverable:** Write a filtered query to return the unresolved support tickets.
+**Your Deliverable:** Write a filtered query to return the unresolved support tickets (Open or In Progress) that haven't been claimed by an agent yet (`employee_id IS NULL`). Sort the output so the oldest tickets appear first.
 
 ---
 

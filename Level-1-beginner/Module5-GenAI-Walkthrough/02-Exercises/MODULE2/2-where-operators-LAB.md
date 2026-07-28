@@ -105,6 +105,8 @@ Each universe has its own dedicated sub‑folder containing its database, Bluepr
 Level-1-beginner/sqlverse-foundation/resources/data-models/flagship-universes/
 ```
 
+### 📂 SQLVerse Resource Repository Contents
+```text
 flagship-universes/
 │
 ├── 1-e-store/
@@ -126,7 +128,8 @@ flagship-universes/
 ├── finverse.db
 ├── FinVERSE_Blueprint.md
 └── FinVERSE_SchemaGuide.md
-
+```
+---
 
 Each **APPLY exercise** will explicitly specify which database(s) you need to load from this repository – both for the **Workshop Floor** and **Production Echo** sections.
 

@@ -124,7 +124,7 @@ flowchart LR
 | Tab | Purpose | What to Do |
 | :--- | :--- | :--- |
 | **1: The Map** | Open this exercise file | You are here – reading this file. Complete the business requests below. |
-| **2: The Factory** | Run queries |  Load [`real_estate_planet.db`](./Module2-Schemas/real_estate_planet.db)  |
+| **2: The Factory** | Run queries |  Load [`real_estate_planet.db`](../../../sqlverse-foundation/resources/data-models/flagship-universes/3-real-estate-planet/real_estate_planet.db)|
 | **3: The Consultant** | Socratic questioning (no code) | Explains logic, suggests strategies – **never writes SQL**. Follow the **3‑Attempt Rule**. |
 | **4: The Vault** | Save your work | Save each deliverable. Log any AI hallucinations. |
 
@@ -132,23 +132,33 @@ flowchart LR
 
 ---
 
-## 🏛️ Meet Your APPLY Resource Repository
+## 🏛️ Meet Your SQLVerse Resource Repository
 
-The **APPLY Resource Repository** is your central hub for all databases, ER diagrams, and schema guides used throughout the **APPLY cycle.** Each time you begin a new exercise, you will return here to load the required database and study its blueprint.
+The **SQLVerse Resource Repository** is your central hub for all databases, ER diagrams, and schema guides used throughout the **APPLY phase of Module 2** and the **AUGMENT and APPLY phases** of the remaining modules in ACCELERATE. 
+
+Each time you begin a new exercise—whether for hands-on practice or Socratic demonstration—you will return here to **load** the required database and study its **blueprint**  and **schema guide** before entering the business universe.
 
 ### 🗄️ Repository Artifacts
 
-**All resources** used throughout this **APPLY cycle** are located in the APPLY Resource Repository:
+**All resources** used throughout this **APPLY cycle** are located in the SQLVerse Resource Repository, organised by business universe.
 
-1. **Customized E-Store database** – `level1_estore_apply.db` (extended dataset with NULLs, bulk orders, new categories)
-2. **Production Echo databases** – domain-specific datasets (e.g., `hospital_planet.db`, `real_estate_planet.db`, `fintech_planet.db`)
-3. **ER Diagrams and Schema Guides** – Blueprint files for every database (e.g., `E-Store_APPLY_Blueprint.md`, `Hospital_Planet_Blueprint.md`)
+The repository currently contains four flagship **business universes**, each representing a **different industry** and business workflow:
 
-### 📂 APPLY Resource Repository Location
+| Universe | Domain | What You'll Explore |
+|----------|--------|---------------------|
+| **E‑Store** | Retail | Customer orders, product inventory, and transaction analytics |
+| **Hospital Planet** | Healthcare | Patient journeys, appointments, treatments, and billing cycles |
+| **Real Estate Planet** | Property | Property listings, client journeys, agent‑managed transactions |
+| **FinVERSE** | Digital Banking | Customer accounts, transactions, cards, loans, and fraud detection |
+
+Each universe has its own dedicated sub‑folder containing its database, Blueprint, and Schema Guide:
+
+### 📂 SQLVerse Resource Repository Location
 ```
-Module5-GenAI-Walkthrough/02-Exercises/MODULE2/Module2-Schemas/
+Level-1-beginner/sqlverse-foundation/resources/data-models/flagship-universes/
 ```
 ---
+
 ## 📋 Business Use Case
 
 Your consultancy has been embedded with a **Real Estate Planet** brokerage. The client has engaged you to extract insights from their operational data.
@@ -177,21 +187,25 @@ Before you begin solving requests, take a moment to understand the landscape you
 ---
 ### Real Estate Data Model
 
-**📁 Database:** Load [`real_estate_planet.db`](./Module2-Schemas/real_estate_planet.db) in **Tab 2 (The Factory)** before starting this section.
 
-**🗺️ ER Diagram & Schema Guide:** Study [`Real_Estate_Planet_Blueprint.md`](./Module2-Schemas/Real_Estate_Planet_Blueprint.md) before writing any SQL.
+📁 **Database:** Load [`real_estate_planet.db`](../../../sqlverse-foundation/resources/data-models/flagship-universes/3-real-estate-planet/real_estate_planet.db) in **Tab 2 (The Factory)** before starting this section.
+
+🗺️ **Blueprint:** Study [`Real_Estate_Planet_Blueprint.md`](../../../sqlverse-foundation/resources/data-models/flagship-universes/3-real-estate-planet/Real_Estate_Planet_Blueprint.md) before writing any SQL.
+
+📊 **Schema Guide:** Refer to [`Real_Estate_Planet_Schema.md`](../../../sqlverse-foundation/resources/data-models/flagship-universes/3-real-estate-planet/Real_Estate_Planet_Schema.md) for detailed technical implementation.
+
+---
 
 ### 📋 Meet Your Dataset: Real Estate Planet – The Only Landscape
 
 | Table | Columns | What It Tells Us |
 |-------|---------|------------------|
-| `agents` | `agent_id`, `first_name`, `last_name`, `email`, `phone`, `brokerage` | Licensed real estate professionals |
-| `clients` | `client_id`, `first_name`, `last_name`, `email`, `phone`, `client_type` | Buyers, sellers, or both |
-| `properties` | `property_id`, `agent_id`, `address`, `city`, `state`, `zip`, `property_type`, `list_price`, `status` | Real estate inventory |
-| `viewings` | `viewing_id`, `property_id`, `client_id`, `viewing_date`, `feedback` | Scheduled property tours |
-| `offers` | `offer_id`, `property_id`, `client_id`, `agent_id`, `offer_amount`, `offer_date`, `status` | Purchase offers made by clients |
-| `contracts` | `contract_id`, `offer_id`, `property_id`, `client_id`, `agent_id`, `sale_price`, `closing_date` | Binding agreements after offer acceptance |
-| `payments` | `payment_id`, `contract_id`, `payment_date`, `amount`, `payment_method` | Payments made against contracts |
+| `buyers` | `buyer_id`, `first_name`, `last_name`, `email`, `phone`, `buyer_type`, `budget`, `preferred_location`, `status` | People searching for properties — individuals, investors, or corporate entities |
+| `agents` | `agent_id`, `first_name`, `last_name`, `email`, `phone`, `brokerage`, `availability`, `status` | Licensed real estate professionals managing listings and transactions |
+| `properties` | `property_id`, `address`, `city`, `state`, `zip`, `property_type`, `list_price`, `square_feet`, `status` | Physical assets — apartments, villas, plots, offices, commercial spaces |
+| `listings` | `listing_id`, `property_id`, `agent_id`, `listing_date`, `status` | Properties advertised for sale, managed by agents |
+| `visits` | `visit_id`, `buyer_id`, `listing_id`, `visit_date`, `feedback` | Scheduled property inspections by buyers |
+| `transactions` | `transaction_id`, `buyer_id`, `listing_id`, `agent_id`, `offer_amount`, `final_price`, `transaction_date`, `status` | Offers, negotiations, and completed sales |
 
 Before solving the requests, spend a few minutes understanding the business model, workflow, ER diagram, and table schemas.
 
@@ -372,7 +386,7 @@ In the Executive Desk, there were no more guardrails. No hints. No expected outp
 
 ### What You Actually Learned
 
-`LIKE` and `IS NULL` were never the point.
+`LIKE` and `IS NULL` were simply the vehicles. The real lesson was learning to **translate** incomplete **business language** into defensible SQL decisions.
 
 The point is that in the real world:
 
@@ -381,11 +395,11 @@ The point is that in the real world:
 - "Complete address data" means different things to different people.
 - "Top-performing agents" depends on who you ask.
 
-A junior analyst waits for clear instructions.
+A **junior analyst** waits for clear instructions.
 
-A consultant makes assumptions and justifies them.
+A **consultant** makes assumptions and justifies them.
 
-An architect owns the outcome.
+**An architect owns the outcome.**
 
 ---
 

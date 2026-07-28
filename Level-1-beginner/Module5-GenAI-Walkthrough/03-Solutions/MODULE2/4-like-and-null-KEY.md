@@ -106,7 +106,7 @@ In Exercise 4, you moved beyond equality and range filters into two distinct log
 These patterns are **domain-invariant**. The same `LIKE '%Ave%'` that works on street addresses works on any text column.
 
 ---
-## 🛒 Ticket Pair 1: Prefix and Contains Pattern Matching
+## 🛒 Ticket Pair 1: Pattern Matching (Prefix vs Contains)
 
 | **🏢 Product Stage** | **🎭 Consulting Stage** |
 |----------------------|-------------------------|
@@ -182,7 +182,7 @@ The `%` wildcard is the correct tool because the requirement is *prefix*‑based
 
 #### 💎 Gemstone Extraction
 
-**Pattern Identified:** Contains Pattern Matching
+**Pattern Identified:** Substring Pattern Matching
 
 The business wants the substring `"Ave"` to appear anywhere in the address – at the beginning, middle, or end.
 
@@ -370,7 +370,7 @@ The `AND` combines the two filters. The prefix uses `'B%'` (starts with B). The 
 
 #### 🪵 Business Language
 
-> "Find an older listing with 'Family' in the property type and a missing ZIP code."
+> "Find an older property record with 'Family' in the property type and a missing ZIP code."
 
 ---
 
@@ -379,7 +379,7 @@ The `AND` combines the two filters. The prefix uses `'B%'` (starts with B). The 
 | Perspective                       | Explanation                                                                         |
 | --------------------------------- | ----------------------------------------------------------------------------------- |
 | **Who is asking?**                | Senior Broker                                                                       |
-| **Why are they asking?**          | Trying to locate a specific older listing they remember but cannot fully recall.    |
+| **Why are they asking?**          | Trying to locate a specific older property they remember but cannot fully recall.    |
 | **What decision will they make?** | Whether this inventory item is active enough to present to an investor immediately.                           |
 
 ---
@@ -483,7 +483,7 @@ Use `>` for a strict threshold. The business said "above $800,000" – not "$800
 
 #### 💎 Gemstone Extraction
 
-**Pattern Identified:** Complete Record Retrieval
+**Pattern Identified:** Operational Audit Retrieval
 
 The business needs visibility into all payment records associated with contracts.
 

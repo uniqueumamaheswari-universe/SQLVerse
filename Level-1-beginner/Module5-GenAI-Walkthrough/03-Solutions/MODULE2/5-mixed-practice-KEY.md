@@ -204,7 +204,7 @@ WHERE risk_score = 'High';
 
 #### 🪵 Business Language
 
-> "Show me active or dormant customers with missing contact details."
+> "Show me customers who own accounts with status **Active** or **Dormant**, and whose contact details (email and phone) are missing."
 
 ---
 
@@ -213,37 +213,73 @@ WHERE risk_score = 'High';
 | Perspective | Explanation |
 |-------------|-------------|
 | **Who is asking?** | Risk Team |
-| **Why are they asking?** | They are auditing KYC compliance and need to flag customers with incomplete contact records. |
-| **What decision will they make?** | Identifying accounts to freeze before they are used for unauthorized activity. |
+| **Why are they asking?** | They need to identify customers with incomplete contact records who still have active or dormant accounts, as these represent compliance and operational risk. |
+| **What decision will they make?** | They will decide which accounts to freeze or flag for follow-up. |
 
 ---
 
 #### 💎 Gemstone Extraction
 
-**Pattern Identified:** Combined NULL Detection with Status Filtering
 
-The business wants to find customers with missing contact information who are still active or dormant.
+**Pattern Identified:** Combined NULL Detection with Account Status Filtering (Requires `JOIN`)
 
-> ⚠️ **The Golden Rule of NULL:**
-> Never compare `NULL` using `=`. Always use `IS NULL` or `IS NOT NULL`.
+The business wants to find customers with missing contact information who are linked to accounts that are still active or dormant.
+
+> ⚠️ **The Golden Rule of NULL:** Never compare `NULL` using `=`. Always use `IS NULL` or `IS NOT NULL`.
 
 ---
 
 #### 🧭 Technical Translation
 
 ```sql
-SELECT customer_id, first_name, last_name, email, phone, status
-FROM customers
-WHERE status IN ('Active', 'Dormant')
-  AND email IS NULL
-  AND phone IS NULL;
+SELECT
+    c.customer_id,
+    c.first_name,
+    c.last_name,
+    c.email,
+    c.phone,
+    a.account_id,
+    a.status AS account_status
+FROM customers c
+JOIN accounts a ON c.customer_id = a.customer_id
+WHERE a.status IN ('Active', 'Dormant')
+  AND c.email IS NULL
+  AND c.phone IS NULL;
 ```
 
 ---
 
 #### ⚙️ The Choice Pattern
 
-**Why this solution?** The request asks for customers with missing contact details and specific statuses. `IN` handles the multiple status values cleanly, while `IS NULL` correctly identifies missing data. `AND` ensures **both** contact fields are absent, which matches the compliance requirement for ghost accounts.
+**Why this solution?** The request requires filtering by account status (Active or Dormant) while also checking for missing contact details in the customer record. This requires linking the `customers` and `accounts` tables via `customer_id`. `IN` handles the multiple status values, while `IS NULL` correctly identifies missing data. `AND` ensures both contact fields are absent.
+
+> 🧠 **Curriculum Note:** This solution uses a `JOIN` between `customers` and `accounts`. You already learned the **syntax** and **types of JOINs** during the **ACQUIRE** phase.
+>
+> During ACQUIRE, you practised joins using the **Training Institution** database and later reinforced them in **E-Store**—domains you now know like the palm of your hand. There, the focus was on **how** to write joins correctly.
+>
+> Here, the focus is different. It shifts from **technical syntax** to **business reasoning**—recognising when a business requirement spans multiple entities and understanding **why** those entities must be joined.
+>
+> In this request, the business is asking for **customer contact details**, but the qualifying condition—**account status**—exists in a different table. Since the required information is distributed across multiple business entities, a `JOIN` becomes necessary.
+>
+> This is the **business perspective** on joins: knowing **when** and **why** to join tables, not just **how** to write the syntax.
+>
+> **This marks the beginning of professional SQL thinking.** In production, you won't solve familiar classroom exercises. You'll be dropped into an unfamiliar business domain and expected to discover which entities participate in the business question before writing a single line of SQL.
+
+```text
+ACQUIRE: "How do I write JOIN?"
+         ↓
+ACCELERATE: "Why do I need to join these tables?"
+         ↓
+PRODUCTION: "Which entities participate in this business question?"
+```
+
+#### How This Aligns with SQLVerse Philosophy
+
+| Principle                   | Application                                                                                                                                   |
+| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Progressive Abstraction** | ACQUIRE teaches the mechanics of `JOIN`; ACCELERATE teaches the business reasoning behind it.                                                 |
+| **Professional Pipeline**   | Business requirement → Business entities → Data model → SQL → Defensible solution.                                                            |
+| **Transfer of Learning**    | Students move from familiar practice databases to an unfamiliar business universe, applying the same SQL patterns in a completely new domain. |
 
 ---
 
@@ -279,7 +315,7 @@ The business wants to find unassigned tickets and prioritise them by age.
 SELECT ticket_id, customer_id, ticket_type, status, created_date
 FROM support_tickets
 WHERE employee_id IS NULL
-  AND status = 'Open'
+  AND status IN ('Open','In Progress')
 ORDER BY created_date ASC;
 ```
 
@@ -297,11 +333,12 @@ ORDER BY created_date ASC;
 
 ### 🪞 Pattern Reflection
 
+
 | Challenge 3 | Challenge 7 | Same SQL Pattern |
 |-------------|-------------|------------------|
-| `email IS NULL AND phone IS NULL` | `employee_id IS NULL` | `IS NULL` detection |
+| `IN` on account status + `IS NULL` on email and phone | `IS NULL` on employee_id | `IS NULL` detection |
 
-**Architect's Observation:** NULL detection is the same regardless of column. The pattern is invariant.
+**Architect's Observation:** `IS NULL` detection is invariant, but the data source may require a `JOIN` to access the relevant status columns. The pattern remains the same — the table structure changes.
 
 ---
 
@@ -479,23 +516,24 @@ WHERE status = 'Active'
 |-------------|-------------|
 | **Who is asking?** | Relationship Manager |
 | **Why are they asking?** | They want to identify active accounts with no recent activity for branch review. |
-| **What decision will they make?** | Decide accounts to reach out to or flag for review. |
-| **The Consulting Layer:** | In Request 8 ("Inactive but Active" Accounts), you had to define "inactive" yourself. Because Module 2 **cannot inspect** transaction history, we approximate inactivity using a **low‑balance proxy** (`balance <= 500.00`). What are the limitations of this approach? How would your query change if the Relationship Manager had access to transaction history and wanted to define "inactive" as "no transactions in 90 days"? What additional SQL concepts would you need to learn to implement that definition? |
+| **The Consulting Layer:** | In Request 8 ("Inactive but Active" Accounts), you had to define "inactive" yourself. Within Module 2, we intentionally avoid cross-table analysis because `JOIN` has not yet been introduced. Therefore, we approximate inactivity using a defensible proxy such as a very low balance (`balance <= 500.00`) to identify accounts that are technically active but likely abandoned. What are the limitations of this proxy? How would your query change if you could inspect transaction history (using `JOIN` with the `transactions` table)? |
 
 ---
+
 #### 💎 Gemstone Extraction
 
-**Pattern Identified:** Interpretive Account Engagement – Module 2 Scope
+**Pattern Identified:** Interpretive Account Engagement – Module 2 Proxy
 
-This is an underspecified request. There is no single correct answer. The learner must make a defensible choice using only the tools they have learned so far.
+This is an underspecified request. The learner must make a defensible choice using only the tools they have learned so far.
 
 **Defensible Interpretations (Module 2):**
 
 | Approach | Assumption | SQL Pattern |
 |----------|------------|-------------|
-| **A – Low Balance Flag** | Accounts with Active status but low balance (< 500) are likely abandoned | `WHERE status = 'Active' AND balance <= 500.00` |
-| **B – Inactive Status Proxy** | Accounts with Dormant status (if available) | `WHERE status = 'Dormant'` |
-| **C – Account Type Filter** | Specific account types (e.g., Savings) with low balance | `WHERE status = 'Active' AND account_type = 'Savings' AND balance <= 500.00` |
+| **A – Low Balance Proxy** | Accounts with Active status but low balance (< 500) are likely abandoned | `WHERE status = 'Active' AND balance <= 500.00` |
+| **B – Inactive Status** | Accounts with Dormant status | `WHERE status = 'Dormant'` |
+| **C – Account Type Filter** | Specific account types with low balance | `WHERE status = 'Active' AND account_type = 'Savings' AND balance <= 500.00` |
+
 
 ---
 
@@ -507,8 +545,9 @@ This is an underspecified request. There is no single correct answer. The learne
 ARCHITECT ASSUMPTIONS & DESIGN NOTES:
 1. "Active but Inactive" means the technical account status is 'Active', but there
    is no transactional activity within the last 90 days.
-2. Given that current transaction records run through March 2025, any account 
-   with zero completed transactions since January 1, 2025 is considered dormant.
+2. Within Module 2, we intentionally avoid cross-table analysis because JOIN has
+   not yet been introduced. Therefore, we approximate inactivity using a low-
+   balance proxy (balance <= 500.00).
 3. This is solved strictly using basic filtering tools (without subqueries or 
    joins) by isolating specific targets or analyzing balance anomalies.
 ================================================================================
@@ -527,32 +566,41 @@ WHERE status = 'Active'
 
 ---
 
-#### ⚙️ The Choice Pattern
+### ⚙️ The Choice Pattern
 
 **Why this solution?** Within Module 2 constraints, a low‑balance proxy (`balance <= 500.00`) is a reasonable, defensible interpretation of "inactive but active." It uses only basic filtering to identify accounts that are technically active but likely abandoned, which aligns with the Relationship Manager's need for a simple branch review list.
 
 ---
 
-#### 📌 Curriculum Note
-
-More sophisticated interpretations of "inactive" would require:
-- `LEFT JOIN` with `transactions` to check for transaction history.
-- `GROUP BY` and `HAVING` to filter by date thresholds.
-- Date functions like `DATE('now', '-90 days')` to calculate recency.
-
-These concepts will be covered in **Module 3 (Aggregations)** and **Module 4 (JOINs)** . For now, the low‑balance proxy is a valid, defensible approach that respects the learner's current skill level.
-
-
----
-
 ### 🪞 Pattern Reflection
-
 
 | Challenge 6 | Request 8 | Same SQL Pattern |
 |-------------|-----------|------------------|
-| `status = 'Active' AND outstanding_balance BETWEEN 200000 AND 800000 AND interest_rate > 9.0` | `status = 'Active' AND balance <= 500.00` | Status filtering + numeric threshold |
+| `BETWEEN` + `>` + `status = 'Active'` | `status = 'Active' AND balance <= 500.00` | Status filtering + numeric threshold |
 
-**Architect's Observation:** Both requests involve isolating active records based on numeric thresholds. Challenge 6 uses a range and a strict inequality on loan metrics. Request 8 uses a low‑balance proxy to identify accounts that are technically active but likely abandoned. The pattern is the same: `status = 'Active'` combined with a numeric condition. The threshold values and columns change – the logic does not.
+**Architect's Observation:** Both requests involve isolating active records based on numeric thresholds. The threshold values and columns change — the logic does not.
+
+### 📌 Advanced Perspective (For Your Reference)
+
+If `JOIN` were available, a more accurate interpretation of "inactive" would be:
+
+```sql
+-- Advanced interpretation (requires JOIN, introduced in Module 4)
+SELECT 
+    a.account_id,
+    a.customer_id,
+    a.account_type,
+    a.balance,
+    MAX(t.transaction_date) AS last_transaction_date
+FROM accounts a
+LEFT JOIN transactions t ON a.account_id = t.account_id
+WHERE a.status = 'Active'
+GROUP BY a.account_id
+HAVING MAX(t.transaction_date) < DATE('now', '-90 days')
+   OR MAX(t.transaction_date) IS NULL;
+```
+
+This identifies accounts with no transactions in the last 90 days. The learner will master this pattern in **Module 4**.
 
 ---
 
@@ -798,11 +846,19 @@ WHERE risk_score = 'High';
 
 ```sql
 -- Challenge 3: The Ghost Accounts
-SELECT customer_id, first_name, last_name, email, phone, status
-FROM customers
-WHERE status IN ('Active', 'Dormant')
-  AND email IS NULL
-  AND phone IS NULL;
+SELECT
+    c.customer_id,
+    c.first_name,
+    c.last_name,
+    c.email,
+    c.phone,
+    a.account_id,
+    a.status AS account_status
+FROM customers c
+JOIN accounts a ON c.customer_id = a.customer_id
+WHERE a.status IN ('Active', 'Dormant')
+  AND c.email IS NULL
+  AND c.phone IS NULL;
 
 -- Challenge 4: The High-Risk Merchant Clean-up
 SELECT name, category, settlement_type
@@ -829,7 +885,7 @@ WHERE status = 'Active'
 SELECT ticket_id, customer_id, ticket_type, status, created_date
 FROM support_tickets
 WHERE employee_id IS NULL
-  AND status = 'Open'
+  AND status IN ('Open','In Progress')
 ORDER BY created_date ASC;
 ```
 

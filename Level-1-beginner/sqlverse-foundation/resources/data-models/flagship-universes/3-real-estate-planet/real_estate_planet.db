@@ -1,4 +1,3 @@
-
 -- =============================================
 -- Real Estate Planet Database (ACCELERATE Module 2)
 -- Used for APPLY Exercises 3, 4, 5 and future JOIN/aggregation modules
@@ -12,7 +11,7 @@
 --   - JOINs (INNER JOIN, LEFT JOIN, multi-table) in Module 4
 --
 -- Location:
---   Module5-GenAI-Walkthrough/02-Exercises/MODULE2/Module2-Schemas/
+--   Level-1-beginner/sqlverse-foundation/resources/data-models/flagship-universes/3-real-estate-planet/
 --   real_estate_planet.db
 -- =============================================
 
@@ -126,7 +125,9 @@ INSERT INTO agents (agent_id, first_name, last_name, email, phone, brokerage) VA
 (3, 'Emily', 'Thompson', NULL, '555-2003', 'Summit Homes'),
 (4, 'James', 'Williams', 'james.w@broker.com', '555-2004', 'Summit Homes'),
 (5, 'Jessica', 'Lee', 'jessica.lee@broker.com', '555-2005', 'Coastal Living'),
-(6, 'Robert', 'Garcia', 'robert.g@broker.com', NULL, 'Coastal Living');
+(6, 'Robert', 'Garcia', 'robert.g@broker.com', NULL, 'Coastal Living'),
+(7, 'Brian', 'Anderson', 'brian.a@broker.com', '555-2007', 'Premier Realty'),        -- ADDED (LIKE 'B%')
+(8, 'Benjamin', 'Clark', 'benjamin.c@broker.com', '555-2008', 'Summit Homes');        -- ADDED (LIKE 'B%')
 
 -- ---------- Clients ----------
 INSERT INTO clients (client_id, first_name, last_name, email, phone, client_type) VALUES
@@ -142,7 +143,7 @@ INSERT INTO clients (client_id, first_name, last_name, email, phone, client_type
 -- ---------- Properties ----------
 INSERT INTO properties (property_id, agent_id, address, city, state, zip, property_type, list_price, status) VALUES
 (1, 1, '123 Main St', 'Austin', 'TX', '78701', 'Single-Family', 450000, 'Active'),
-(2, 2, '456 Oak Ave', 'Dallas', 'TX', '75201', 'Condo', 320000, 'Pending'),
+(2, 2, '456 Oak Avenue', 'Dallas', 'TX', '75201', 'Condo', 320000, 'Pending'),
 (3, 3, '789 Pine Rd', 'Miami', 'FL', '33101', 'Single-Family', 550000, 'Active'),
 (4, 4, '101 Lake Dr', 'Orlando', 'FL', NULL, 'Multi-Family', 680000, 'Sold'),
 (5, 5, '202 Sunset Blvd', 'Los Angeles', 'CA', '90210', 'Condo', 780000, 'Active'),
@@ -171,12 +172,12 @@ INSERT INTO viewings (viewing_id, property_id, client_id, viewing_date, feedback
 -- ---------- Offers ----------
 INSERT INTO offers (offer_id, property_id, client_id, agent_id, offer_amount, offer_date, status) VALUES
 (1, 1, 1, 1, 440000, '2025-01-12', 'Accepted'),
-(2, 2, 3, 2, 315000, '2025-01-18', 'Pending'),
+(2, 2, 3, 2, 315000, '2025-01-18', 'Accepted'),       -- Updated from 'Pending' to 'Accepted'
 (3, 3, 4, 3, 530000, '2025-01-22', 'Rejected'),
 (4, 5, 5, 5, 760000, '2025-02-03', 'Accepted'),
 (5, 6, 1, 1, 1180000, '2025-02-07', 'Pending'),
 (6, 8, 7, 3, 920000, '2025-02-12', 'Accepted'),
-(7, 10, 3, 2, 285000, '2025-02-18', 'Withdrawn'),
+(7, 10, 3, 2, 285000, '2025-02-18', 'Accepted'),       -- Updated from 'Withdrawn' to 'Accepted'
 (8, 11, 5, 5, 470000, '2025-03-03', 'Pending'),
 (9, 9, 6, 4, 830000, '2025-03-07', 'Accepted'),
 (10, 4, 2, 4, 660000, '2025-03-18', 'Pending');
@@ -186,7 +187,9 @@ INSERT INTO contracts (contract_id, offer_id, property_id, client_id, agent_id, 
 (1, 1, 1, 1, 1, 440000, '2025-02-15'),
 (2, 4, 5, 5, 5, 760000, '2025-03-01'),
 (3, 6, 8, 7, 3, 920000, '2025-03-15'),
-(4, 9, 9, 6, 4, 830000, '2025-04-01');
+(4, 9, 9, 6, 4, 830000, '2025-04-01'),
+(5, 2, 2, 3, 2, 315000, '2025-04-15'),   -- ADDED (Contract without payments)
+(6, 7, 10, 3, 2, 285000, '2025-05-01');   -- ADDED (Contract without payments)
 
 -- ---------- Payments (multiple per contract) ----------
 INSERT INTO payments (payment_id, contract_id, payment_date, amount, payment_method) VALUES
@@ -226,20 +229,22 @@ INSERT INTO payments (payment_id, contract_id, payment_date, amount, payment_met
 -- Date ranges
 --   Viewings: Jan–Mar 2025
 --   Offers: Jan–Mar 2025
---   Contracts: Feb–Apr 2025
+--   Contracts: Feb–May 2025
 --   Payments: Jan–Apr 2025
 
 -- Price ranges
 --   List prices: 150,000 to 1,200,000
 --   Offer amounts: 285,000 to 1,180,000
---   Sale prices: 440,000 to 920,000
+--   Sale prices: 285,000 to 920,000
 --   Payment amounts: 44,000 to 747,000
 
 -- Edge cases
 --   Agent 6 (Robert Garcia) has no properties listed → LEFT JOIN detection
+--   Agents 7 (Brian Anderson) and 8 (Benjamin Clark) added for Exercise 3 Request #5 (starts with 'B')
 --   Client 8 (Olivia Zhang) has no viewings → LEFT JOIN detection
 --   Property 7 (404 Cedar Ln) has no offers → LEFT JOIN detection
 --   Property 11 (808 Elm St) has no contract → LEFT JOIN detection
+--   Contracts 5 and 6 have NO payments → LEFT JOIN detection for Module 4
 --   Contract 4 has only 1 payment (edge case for GROUP BY)
 --   Contract 1 and 3 have 3 payments each (for aggregation)
 
@@ -254,6 +259,12 @@ INSERT INTO payments (payment_id, contract_id, payment_date, amount, payment_met
 -- LEFT JOIN properties p ON a.agent_id = p.agent_id
 -- WHERE p.property_id IS NULL;
 
+-- Agents with first names starting with 'B' (Exercise 3, Request #5)
+-- Expected: Brian Anderson, Benjamin Clark
+-- SELECT first_name, last_name, brokerage
+-- FROM agents
+-- WHERE first_name LIKE 'B%';
+
 -- Clients with no viewings
 -- Expected: Client 8 (Olivia Zhang)
 -- SELECT c.first_name, c.last_name
@@ -261,12 +272,21 @@ INSERT INTO payments (payment_id, contract_id, payment_date, amount, payment_met
 -- LEFT JOIN viewings v ON c.client_id = v.client_id
 -- WHERE v.viewing_id IS NULL;
 
+-- Contracts with no payments (Module 4 LEFT JOIN exercise)
+-- Expected: Contracts 5 and 6
+-- SELECT c.contract_id, c.property_id, c.sale_price
+-- FROM contracts c
+-- LEFT JOIN payments p ON c.contract_id = p.contract_id
+-- WHERE p.payment_id IS NULL;
+
 -- Properties with no offers
 -- Expected: Property 7 (404 Cedar Ln) and Property 11 (808 Elm St)
 -- SELECT p.address
 -- FROM properties p
 -- LEFT JOIN offers o ON p.property_id = o.property_id
 -- WHERE o.offer_id IS NULL;
+-- Property 7 was viewed but never offered.
+-- Property 11 was also viewed but never received an offer.
 
 -- Total payments per contract (for aggregation)
 -- Expected: Contract 1 (3), Contract 2 (2), Contract 3 (3), Contract 4 (1)
@@ -275,7 +295,7 @@ INSERT INTO payments (payment_id, contract_id, payment_date, amount, payment_met
 -- GROUP BY contract_id;
 
 -- Contracts with total payments < sale_price
--- Expected: Contract 1,2,3,4 (all have total paid = sale_price)
+-- Expected: No Rows Contracts 1,2,3,4 (all have total paid = sale_price) 
 -- SELECT contract_id, SUM(amount) AS total_paid
 -- FROM payments
 -- GROUP BY contract_id
@@ -290,15 +310,13 @@ INSERT INTO payments (payment_id, contract_id, payment_date, amount, payment_met
 -- SELECT * FROM clients WHERE email IS NULL OR phone IS NULL;
 
 -- Agents with brokerage = 'Premier Realty' AND phone IS NOT NULL
--- Expected: Sarah Chen, James Williams
+-- Expected: Sarah Chen, Brian Anderson
 -- SELECT * FROM agents WHERE brokerage = 'Premier Realty' AND phone IS NOT NULL;
 
 -- Properties with city LIKE 'Los%' AND property_type = 'Condo' OR 'Single-Family'
 -- Expected: 5, 9
 -- SELECT * FROM properties WHERE city LIKE 'Los%' AND property_type IN ('Condo', 'Single-Family');
 
--- =============================================
--- DATABASE READY FOR APPLY PHASE
--- =============================================
-
-
+-- =================================================
+-- DATABASE READY FOR APPLY PHASE – FROZEN FOR LEVEL 1
+-- =================================================

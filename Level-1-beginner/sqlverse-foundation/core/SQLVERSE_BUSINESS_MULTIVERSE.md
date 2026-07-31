@@ -322,7 +322,9 @@ Every learning experience inside a SQLVerse universe—whether a Blueprint, Case
 **The Schema Guide answers:** *"How does the database solve it?"*
 
 > *The **Business lens** gives you the **Bird's eye view.** 
+> 
 > The **Architectural lens** gives you the **Microscopic view.** 
+> 
 > Only **together** do you see the entire **landscape.***
 
 ---

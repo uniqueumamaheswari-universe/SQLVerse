@@ -132,15 +132,15 @@ flowchart LR
 
 ---
 
-## 🏛️ Meet Your SQLVerse Resource Repository
+## 🏛️ Meet Your SQLVerse Data Repository
 
-The **SQLVerse Resource Repository** is your central hub for all databases, ER diagrams, and schema guides used throughout the **APPLY phase of Module 2** and the **AUGMENT and APPLY phases** of the remaining modules in ACCELERATE. 
+The **SQLVerse Data Repository** is your central hub for all databases, ER diagrams, and schema guides used throughout the **APPLY phase of Module 2** and the **AUGMENT and APPLY phases** of the remaining modules in ACCELERATE. 
 
 Each time you begin a new exercise—whether for hands-on practice or Socratic demonstration—you will return here to **load** the required database and study its **blueprint**  and **schema guide** before entering the business universe.
 
 ### 🗄️ Repository Artifacts
 
-**All resources** used throughout this **APPLY cycle** are located in the SQLVerse Resource Repository, organised by business universe.
+**All resources** used throughout this **APPLY cycle** are located in the SQLVerse Data Repository, organised by business universe.
 
 The repository currently contains four flagship **business universes**, each representing a **different industry** and business workflow:
 
@@ -153,7 +153,7 @@ The repository currently contains four flagship **business universes**, each rep
 
 Each universe has its own dedicated sub‑folder containing its database, Blueprint, and Schema Guide:
 
-### 📂 SQLVerse Resource Repository Location
+### 📂 SQLVerse Data Repository Location
 ```
 Level-1-beginner/sqlverse-foundation/resources/data-models/flagship-universes/
 ```

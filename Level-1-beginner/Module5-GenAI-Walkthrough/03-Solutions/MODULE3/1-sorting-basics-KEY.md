@@ -136,6 +136,8 @@ ORDER BY name ASC;
 
 >  **🔍 Curiosity Prompt:** Ask your Socratic Consultant why SQLite behaves this way and how `NOCASE` changes the result.
 
+---
+
 #### 🎯 Skill Reinforced
 
 ✔ Single‑column ascending sort  
@@ -1089,4 +1091,6 @@ You have audited **Sorting Basics** across E‑Store and FinVERSE. The gemstones
 *Part of our mission for 🎯 Quality Education for Anyone, Anywhere, Anytime — 💫 with Comfort, Convenience at no Cost.*
 
 **Level 1 | ACCELERATE Phase | AUDIT | Module 3 | File 1**
+
+
 

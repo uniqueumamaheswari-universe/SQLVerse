@@ -747,7 +747,13 @@ When an architect walks into those same buildings, they don't see the decoration
 
 From this moment on, you are no longer a tourist in the database.
 
-When you step into FinVERSE or Hospital Planet, **strip away the facade**. Stop looking at the paint on the walls. **Look at the bones.** A `GROUP BY` is a load-bearing pillar whether it is supporting a financial ledger or a patient register.
+When you step into FinVERSE or Hospital Planet, **strip away the facade**. 
+
+Stop looking at the paint on the walls. 
+
+**Look at the bones.** 
+
+A `GROUP BY` is a load-bearing pillar whether it is supporting a financial ledger or a patient register.
 
 **Train your eyes to see the steel. The rest is just noise.**
 

@@ -96,67 +96,164 @@ flowchart LR
 
 ---
 
+## 🌍 The SQLVerse Multiverse
 
-## 🌍 Meet your SQLVerse Multiverse Business Suite
+### 🚀 One SQL Engine. Infinite Business Universes.
 
-### SQLVerse Resource Repository
+Real-world engineering is never confined to a single playground. The **SQLVerse Multiverse** is your flight simulator—a suite of production-grade business environments designed to develop one fundamental skill: 
 
-The **SQLVerse Resource Repository** is your central hub for all databases, ER diagrams, and schema guides used across the **AUGMENT** and **APPLY** phases of Module 3. Each time you begin a new file—whether for Socratic demonstration or hands-on practice—you will return here to load the required database and study its blueprint before entering the business universe.
+**Recognising invariant SQL patterns beneath changing business vocabularies.**
 
-### 🗄️ Repository Artifacts
+A professional SQL developer does **not** learn a different SQL for banking, healthcare, retail, or real estate.
 
-**All resources** used throughout the **AUGMENT** and  **APPLY**  phases are located in the SQLVerse Resource Repository:
+They learn to recognise the **same logical patterns** hidden beneath different business vocabularies.
 
-1. **Enhanced E‑Store (Home Turf)** – The ACQUIRE E‑Store enhanced with NULL values, bulk orders, new categories, and production‑ready edge cases to align with the **Business‑first philosophy** of ACCELERATE.
+That is the purpose of the **SQLVerse Multiverse**.
 
-   *This is your anchor—the dataset you already know, now enriched for production thinking.*
+Each business universe presents different industries, stakeholders, terminology, and operational challenges—but the underlying SQL reasoning remains the same.
 
-   - **Database:** `level1_estore_apply.db`
+**The business vocabulary changes. The invariant SQL patterns remain.**
 
-2. **SQLVerse MultiVerse Suite** – The complete collection of business universes, each mirroring real‑world production environments with distinct business logic, stakeholders, and data patterns:
+---
 
-   - **FinVERSE** – A digital banking ecosystem designed for KPI thinking, revenue analytics, and customer‑centric reporting. Its rich schema—transactions, accounts, loans, cards, and fraud flags—makes it the **flagship enterprise universe** for advanced SQL reasoning.
+### 🌌 Meet Your Business Universes
 
-   - **Hospital Planet** – A healthcare operations universe built around patient journeys, treatment costs, appointment analytics, and billing cycles. It introduces domain‑specific terminology while preserving the same SQL patterns.
+One SQL engine. 
 
-   - **Real Estate Planet** – A property and brokerage universe with agents, clients, properties, deals, and payments. It models a complete deal lifecycle—from listing to closing.
+Four flagship universes.
 
-   Additional mini‑universes may be introduced as you progress through Level 2 and Level 3.
+Countless business stories.
 
-3. **Blueprint Files** – ER Diagrams and Schema Guides that serve as the essential map before entering any new business universe. Each Blueprint provides the conceptual foundation—table relationships, business vocabulary, and design intent—so you can query with confidence, not guesswork.
+Mini-universes to be air-dropped at different stages to **expand the SQLVerse.**
 
-### 📂 SQLVerse Resource Repository Location
+
+####  🚩 Flagship Universes
+
+**You have already encountered the four flagship business universes in Module 2:**
+
+- The familiar aisles of **E‑Store**
+- The critical corridors of **Hospital Planet**
+- The deal‑driven landscape of **Real Estate Planet**
+- The precision‑focused ecosystem of **FinVERSE**
+
+Beneath the surface of every universe lies the same invariant SQL architecture.
+
+**Now let's visit each flagship universe and understand the business thinking it develops.**
+
+---
+
+### 🏠 Enhanced E-Store — Your Home Turf
+
+You already know this universe from **ACQUIRE**.
+
+In **ACCELERATE**, it returns with production-grade complexity—NULL values, bulk orders, new categories, and realistic edge cases.
+
+**This is where familiar SQL becomes production-ready SQL.**
+
+### 🏥 Hospital Planet
+
+Think like a Healthcare Operations Manager.
+
+Patients. Appointments. Treatments. Billing. Capacity planning.
+
+**A universe where operational decisions depend on reliable data.**
+
+### 🏘️ Real Estate Planet
+
+Think like a Brokerage Director.
+
+Properties. Agents. Clients. Deals. Payments.
+
+**A complete property lifecycle—from listing to closing.**
+
+### 💳 FinVERSE
+
+Think like a Banking Analyst.
+
+Loans. Accounts. Transactions. Cards. Fraud. Regulatory reporting.
+
+**The flagship enterprise universe for KPI thinking and production analytics.**
+
+---
+### 🏛️ The Invariant Logic
+
+**Each universe develops a different dimension of professional thinking.**
+
+> They look different. 
+ >
+> They speak different business languages.
+>
+> They solve different business problems.
+
+**Different domains. Different vocabularies. Same underlying SQL architecture.**
+
+As you progress through SQLVerse, additional satellites will be deployed into orbit around these flagship universes, exposing you to an ever-growing range of business scenarios.
+
+---
+
+### 🗄️ SQLVerse Data Repository
+
+The **SQLVerse Data Repository** is your central hub for all databases and related artifacts which reside in:
+
 ```
-Module5-GenAI-Walkthrough/02-Exercises/MODULE2/Module2-Schemas/
+Level-1-beginner/sqlverse-foundation/resources/data-models/flagship-universes/
 ```
 
-### Why does APPLY use a different E-Store database `level1_estore_apply.db`?
+### 🏛️ The Artifacts You Will Use
 
-The APPLY version of the E-Store extends the original ACQUIRE dataset with production-oriented data such as `NULL` values, additional records, and richer business scenarios. The schema remains unchanged; only the data has evolved.
+| Artifact | What It Gives You |
+|----------|-------------------|
+| **Blueprint** | **The business story**—who the stakeholders are, what they value, how the business operates. |
+| **Schema Guide** | **The technical architecture**—table layouts, primary/foreign keys, and data relationships. |
+| **Database** | **The living world**—the physical `.db` file you will query, analyze, and transform. |
 
-**Same schema. Different data. Different business outcomes.**
+The SQLVerse Data Repository is the launch pad for every business universe used throughout **AUGMENT** and **APPLY**.
 
-> 💡 **Tip:** Before beginning the exercises, take your time **exploring the repository.** Professional developers understand the resources available before they begin solving the problem.
+Before entering any universe, you will study its Blueprint, understand its business model, inspect its schema, and load its database.
+
+**Business first. Data model second. SQL third.**
 
 ---
 
 ## 📋 Business Use Case
 
-Your consultancy has been engaged by multiple clients this quarter. Each request comes from a different stakeholder with a different perspective on what "priority" means. Your job is to translate their business priority into the correct sort order.
+Your consultancy has been engaged by multiple clients this quarter. Every stakeholder already has the data—they need it organised, prioritised in the order that supports their decision. 
 
-Two clients. Two domains. Same SQL patterns.
+Your job is to translate their business priorities into precise sorting logic.
+
+**🎯 Core Theme:** Sorting is not just about organizing rows—it is prioritisation. The data stays the same. The order changes the story.
+
+---
+
+### ⚙️ Universal Pre-Flight Protocol
+
+Before tackling the requests in *any* section or business universe, execute this standard workflow:
+
+1. **Read the Blueprint** to understand the **Business model** and operational domain.
+2. **Read the Schema Guide** to understand the **Technical implementation** and table relationships.
+3. **Explore the Database File** to inspect the **schema definition, data types, constraints, and data distribution**.
+
+The ACCELERATE Mandate: **Business first. Data model second. SQL third.**
+
+---
+
+As you move through the requests, focus on recognising the pattern rather than memorising the business scenario.
+
+The business vocabulary changes. The skeletal pattern remains invariant.
+
+**Two clients. Two domains. Same core sorting patterns.**
 
 ---
 
 ## 🛒 Section 1: Workshop Floor – E‑Store
 
-Before solving the requests, spend a few minutes understanding the business model, workflow, ER diagram, and table schemas.
+**📁 Database:** Load [`level1_estore_apply.db`](../../../sqlverse-foundation/resources/data-models/flagship-universes/1-e-store/level1_estore_apply.db) in **Tab 2 (The Factory)** before starting this section.
 
-**Business first. Data model second. SQL third.**
+**🗺️ Blueprint:** Study [`E-Store_Blueprint.md`](../../../sqlverse-foundation/resources/data-models/flagship-universes/1-e-store/E-Store_Blueprint.md) before writing any SQL.
 
-**📁 Database:** Load [`level1_estore_apply.db`](./Module2-Schemas/level1_estore_apply.db) in **Tab 2 (The Factory)** before starting this section.
+**📊 Schema Guide:** Refer to [`E-Store_SchemaGuide.md`](../../../sqlverse-foundation/resources/data-models/flagship-universes/1-e-store/E-Store_SchemaGuide.md) for detailed technical implementation.
 
-**🗺️ ER Diagram & Schema Guide:** Study [`E-Store_APPLY_Blueprint.md`](./Module2-Schemas/E-Store_APPLY_Blueprint.md) before writing any SQL.
+---
 
 ### 📋 Meet Your Dataset: E‑Store – Your Home Turf
 
@@ -205,13 +302,15 @@ The Logistics Team wants a list of orders sorted by customer first, and within e
 
 **Domain Context:** You are deployed to a new client – **FinVERSE**, a digital banking ecosystem. The nouns have changed, but the SQL patterns remain identical.
 
-Before solving the requests, spend a few minutes understanding the business model, workflow, ER diagram, and table schemas.
 
-**Business first. Data model second. SQL third.**
+📁 **Database:** Load [`finverse.db`](../../../sqlverse-foundation/resources/data-models/flagship-universes/4-finverse/finverse.db) in **Tab 2 (The Factory)** before starting this section.
 
-**📁 Database:** Load [`finverse.db`](./Module2-Schemas/finverse.db) in **Tab 2 (The Factory)** before starting this section.
+🗺️ **Blueprint:** Study [`FinVERSE_Blueprint.md`](../../../sqlverse-foundation/resources/data-models/flagship-universes/4-finverse/FinVERSE_Blueprint.md) before writing any SQL.
 
-**🗺️ ER Diagram & Schema Guide:** Study [`FinVERSE_Blueprint.md`](./Module2-Schemas/FinVERSE_Blueprint.md) before writing any SQL.
+📊 **Schema Guide:** Refer to [`FinVERSE_Schema.md`](../../../sqlverse-foundation/resources/data-models/flagship-universes/4-finverse/FinVERSE_Schema.md) for detailed technical implementation.
+
+
+---
 
 ### 📋 Meet Your Dataset: FinVERSE – Digital Banking Ecosystem
 

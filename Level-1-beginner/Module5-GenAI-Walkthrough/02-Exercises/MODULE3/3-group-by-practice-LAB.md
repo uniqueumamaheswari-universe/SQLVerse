@@ -1,0 +1,1 @@
+Request #9 (Replaced - Executive Briefing): "Group active properties by state and property_type. Display the state, property type, count of active listings, average list price, and total market value. Filter out groups that have a total market value under $500,000 using HAVING."

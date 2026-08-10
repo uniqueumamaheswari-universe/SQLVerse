@@ -378,6 +378,60 @@ flowchart LR
 - **Business Stakeholders** – Each table supports a department (Customer Success, Fraud, Risk, Credit, Finance, Support, Operations).
 
 ---
+## 🔭 Future Architecture Preview
+
+FinVERSE begins with a deliberately focused banking model. As the business expands, new financial products and services are introduced by extending the existing domain model—not by rebuilding the customer foundation from scratch.
+
+---
+
+### 🏢 Architect's Note — SME Banking
+
+> Small businesses use the same `customers`, `accounts`, `transactions`, and `loans` tables introduced in Level 1. Enterprise banking extends these core entities through junction tables for multi-signatory permissions, approval workflow logs, and cash-management limits—rather than replacing the foundational schema.
+> 
+> * **Schema Invariant:** `customers` ↔ `account_signatories` ↔ `accounts`
+
+**Takeaway:** Commercial/SME banking is an extension of rules, permissions, and multi-entity relationships, not a replacement of the underlying relational model.
+
+---
+
+### 💳 Architect’s Note — Credit Cards
+
+> A credit card is not a separate customer universe; it is simply another financial instrument attached to the core customer and transaction ecosystem. The credit card account is an extension of `accounts` (e.g., via `account_type = 'REVOLVING_CREDIT'`), linked to statement schedules and authorization logs.
+> 
+> * **Schema Invariant:** Same `customer_id`, same `transaction_id` pipeline—governed by credit limit constraints rather than deposit balances.
+
+**Takeaway:** A credit card is a revolving credit ledger attached to a balance. By classifying it as an extension of the `accounts` model, the entire transaction engine remains reusable.
+
+---
+
+### 📈 Architect's Note — Wealth Management
+
+> Investment products extend FinVERSE through specialized `portfolios`, `holdings`, and `asset_classes` tables. However, the core identity anchor remains untouched: every portfolio traces back to the primary `customer_id` established during initial onboarding.
+> 
+> * **Schema Invariant:** New domain entities retain a foreign-key relationship back to the foundational `customers` entity.
+
+**Takeaway:** Vertical domain expansion happens via foreign key relationships (`customers` → `portfolios`), leaving the core identity pipeline undisturbed.
+
+---
+
+### 📊 Schema Evolution Summary
+
+| Future Capability | What Evolves? | What Remains Stable? |
+| :--- | :--- | :--- |
+| **SME Banking** | Permissions, signatories, workflow logs, limits | Customer identity & account ledger foundation |
+| **Credit Cards** | Financial-product rules, interest schedules & credit limits | Core customer, account & transaction pipeline |
+| **Wealth Management** | Investment domain entities (`portfolios`, `holdings`) | Core customer identity & KYC records |
+
+---
+
+> 💡 **Core Takeaway:** 
+> 
+> **Same Customer Identity + Same Transaction Ecosystem + Product-Specific Rules**
+> 
+> The SQL queries and relational joins you master in Level 1 remain intact as FinVERSE grows. The nouns change—credit cards, portfolios, signatories—but the skeletal pattern remains invariant.
+
+
+---
 
 ### SQLVerse Architect's Checklist
 
@@ -411,3 +465,4 @@ For a detailed walkthrough of the data model, refer to the **FinVERSE Schema Gui
 *Part of our mission for 🎯 Quality Education for Anyone, Anywhere, Anytime — 💫 with Comfort, Convenience at no Cost.*
 
 **SQLVerse | FinVERSE Blueprint | Level 1 | ACCELERATE Phase**
+

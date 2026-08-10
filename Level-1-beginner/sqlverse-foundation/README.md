@@ -52,6 +52,7 @@ sqlverse-foundation/
 | **Guide** | `core/00-SQLVerse-Business-Suite-Guide.md` | Teaches — the cinematic welcome and learner onboarding |
 | **Repository Standards** | `docs/Repository-Standards.md` | Maintains — naming conventions, versioning, expansion strategy |
 | **Data Models** | `resources/data-models/flagship-universes/` | Explores — the four flagship business universes |
+| **Architecture Frameworks** | `resources/architecture/` | Professional practices and audit templates |
 
 ---
 
@@ -66,44 +67,15 @@ sqlverse-foundation/
 The **Standards** preserve **consistency.**
 
 ---
+## 📂 Repository Evolution Strategy
 
-## 📁 Full Repository Structure
+The repository is designed to grow. New top-level folders may be added without restructuring:
 
-```
-sqlverse-foundation/
-│
-├── README.md
-│
-├── core/
-│   ├── SQLVERSE_BUSINESS_MULTIVERSE.md
-│   └── 00-SQLVerse-Business-Suite-Guide.md
-│
-├── resources/
-│   └── data-models/
-│       └── flagship-universes/
-│           ├── 1-e-store/
-│           │   ├── level1_estore_apply.db
-│           │   ├── E-Store_Blueprint.md
-│           │   └── E-Store_Schema.md
-│           ├── 2-hospital-planet/
-│           │   ├── hospital_planet.db
-│           │   ├── Hospital_Planet_Blueprint.md
-│           │   └── Hospital_Planet_Schema.md
-│           ├── 3-real-estate-planet/
-│           │   ├── real_estate_planet.db
-│           │   ├── Real_Estate_Planet_Blueprint.md
-│           │   └── Real_Estate_Planet_Schema.md
-│           └── 4-finverse/
-│               ├── finverse.db
-│               ├── FinVERSE_Blueprint.md
-│               └── FinVERSE_Schema.md
-│
-├── projects/
-│   └── (future)
-│
-└── docs/
-    └── Repository-Standards.md
-```
+- `skill-tree/` — The Skill‑Tree database and extraction workflows
+- `characters/` — SQLVerse characters and their scenarios
+- `templates/` — Project templates, report templates, query templates
+
+When a new top-level folder is added, only the Repository Standards document needs to be updated—the Manifesto, the Guide, and the README remain stable.
 
 ---
 

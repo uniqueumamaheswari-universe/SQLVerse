@@ -69,6 +69,18 @@ sqlverse-foundation/
 - Design principles
 
 ---
+**Split-view of core/**
+```
+core/
+├── SQLVERSE_BUSINESS_MULTIVERSE.md
+└── 00-SQLVerse-Business-Suite-Guide.md
+... (future)
+     ├── learning-philosophy.md
+     ├── pedagogical-frameworks.md
+     └── design-principles.md
+```
+
+---
 
 ### `resources/` — The What
 
@@ -77,16 +89,37 @@ sqlverse-foundation/
 #### Data Models
 
 ```
-resources/data-models/
+resources/
+├── data-models/
+│   ├── flagship-universes/
+│   │   ├── 1-e-store/
+│   │   │   ├── level1_estore_apply.db
+│   │   │   ├── E-Store_Blueprint.md
+│   │   │   └── E-Store_Schema.md
+│   │   ├── 2-hospital-planet/
+│   │   │   ├── hospital_planet.db
+│   │   │   ├── Hospital_Planet_Blueprint.md
+│   │   │   └── Hospital_Planet_Schema.md
+│   │   ├── 3-real-estate-planet/
+│   │   │   ├── real_estate_planet.db
+│   │   │   ├── Real_Estate_Planet_Blueprint.md
+│   │   │   └── Real_Estate_Planet_Schema.md
+│   │   └── 4-finverse/
+│   │       ├── finverse.db
+│   │       ├── FinVERSE_Blueprint.md
+│   │       ├── FinVERSE_Schema.md
+│   │       └── satellites/
+│   │           ├── L2-fraud-detection/
+│   │           ├── L2-credit-cards/
+│   │           ├── L3-portfolio-management/
+│   │           └── L3-international-transfers/
+│   │
+│   └── mini-universes/
+│       ├── L1-airlines-management/
+│       ├── L2-hotel-management/
+│       └── L3-manufacturing/
 │
-├── flagship-universes/
-│   ├── 1-e-store/
-│   ├── 2-hospital-planet/
-│   ├── 3-real-estate-planet/
-│   └── 4-finverse/
-│
-└── mini-universes/
-    └── (future)
+
 ```
 
 | Folder | Purpose |
@@ -117,6 +150,30 @@ Each universe folder contains three artifacts:
 ```
 
 ---
+#### Architecture Frameworks
+
+```
+resources/architecture/
+│
+└── data-gap-audit/
+    ├── DATA_GAP_AUDIT_FRAMEWORK.md
+    └── DATA_DEFICIT_NOTE_TEMPLATE.md
+```
+
+| Folder | Purpose |
+|--------|---------|
+| **`data-gap-audit/`** | Professional practice frameworks for diagnosing data model limitations and documenting schema gaps |
+
+**Purpose:** Contains architectural knowledge artifacts that apply across all business universes. These are **domain‑invariant practices**—frameworks, audit templates, and professional methodologies that students use to diagnose data gaps, evaluate schema completeness, and make professional decisions.
+
+| File | Purpose |
+|------|---------|
+| `DATA_GAP_AUDIT_FRAMEWORK.md` | The methodology—what, when, why, and how to perform a Data Gap Audit |
+| `DATA_DEFICIT_NOTE_TEMPLATE.md` | A reusable template for documenting data gaps and deferring requests professionally |
+
+**Note:** These artifacts are **domain‑invariant**. They apply to E‑Store, Hospital Planet, Real Estate Planet, FinVERSE, and any future universe—including mini‑universes and satellites.
+
+---
 
 ### `projects/` — The How
 
@@ -130,6 +187,87 @@ Each universe folder contains three artifacts:
 
 **Note:** `projects/` folder  will be populated as the ANALYZE and ARCHITECT phases are developed.
 
+```
+projects/
+└── (future)
+    ├── frameworks/
+    ├── templates/
+    └── patterns/
+```
+
+---
+
+### `docs/` — Maintainer Documentation
+
+**Purpose:** Contains documentation for repository maintainers, including standards, governance, and evolution strategies.
+
+```
+docs/
+└── Repository-Standards.md
+... (future)
+   ├── CONTRIBUTING.md
+   └── RELEASE-NOTES.md
+```
+
+---
+### `...` — Designed to Grow
+
+Additional top-level folders may be added as the SQLVerse evolves:
+
+```
+Future top-level folders (not yet created):
+   ├── skill-tree/
+   ├── characters/
+   └── templates/
+```
+
+---
+### 📂 The Repository: A Panoramic View
+
+The following tree shows the complete structure of the SQLVerse repository, including all current and future additions.
+
+```
+sqlverse-foundation/
+│
+├── README.md
+│
+├── core/
+│   ├── SQLVERSE_BUSINESS_MULTIVERSE.md
+│   └── 00-SQLVerse-Business-Suite-Guide.md
+│
+├── resources/
+│   ├── data-models/
+│   │   ├── flagship-universes/
+│   │   │   ├── 1-e-store/
+│   │   │   │   └── ...
+│   │   │   ├── 2-hospital-planet/
+│   │   │   │   └── ...
+│   │   │   ├── 3-real-estate-planet/
+│   │   │   │   └── ...
+│   │   │   └── 4-finverse/
+│   │   │       ├── ...
+│   │   │       └── satellites/
+│   │   │           ├── L2-fraud-detection/
+│   │   │           ├── L2-credit-cards/
+│   │   │           ├── L3-portfolio-management/
+│   │   │           └── L3-international-transfers/
+│   │   │
+│   │   └── mini-universes/
+│   │       ├── L1-airlines-management/
+│   │       ├── L2-hotel-management/
+│   │       └── L3-manufacturing/
+│   │
+│   └── architecture/
+│       └── data-gap-audit/
+│           ├── DATA_GAP_AUDIT_FRAMEWORK.md
+│           └── DATA_DEFICIT_NOTE_TEMPLATE.md
+│
+├── projects/
+│   └── (future)
+│
+└── docs/
+    └── Repository-Standards.md
+```
 ---
 
 ## 🌌 Universe Classification
@@ -295,57 +433,6 @@ mini-universes/
 ```
 
 **Naming Rule:** Use `L{level}-{domain-name}` (e.g., `L1-airlines-management`).
-
----
-
-### 📂 The Repository: A Panoramic View
-
-The following tree shows the complete structure of the SQLVerse repository, including all current and future additions.
-
-```
-sqlverse-foundation/
-│
-├── README.md
-│
-├── core/
-│   ├── SQLVERSE_BUSINESS_MULTIVERSE.md
-│   └── 00-SQLVerse-Business-Suite-Guide.md
-│
-├── resources/
-│   └── data-models/
-│       ├── flagship-universes/
-│       │   ├── 1-e-store/
-│       │   │   ├── level1_estore_apply.db
-│       │   │   ├── E-Store_Blueprint.md
-│       │   │   └── E-Store_Schema.md
-│       │   ├── 2-hospital-planet/
-│       │   │   ├── hospital_planet.db
-│       │   │   ├── Hospital_Planet_Blueprint.md
-│       │   │   └── Hospital_Planet_Schema.md
-│       │   ├── 3-real-estate-planet/
-│       │   │   ├── real_estate_planet.db
-│       │   │   ├── Real_Estate_Planet_Blueprint.md
-│       │   │   └── Real_Estate_Planet_Schema.md
-│       │   └── 4-finverse/
-│       │       ├── finverse.db
-│       │       ├── FinVERSE_Blueprint.md
-│       │       ├── FinVERSE_Schema.md
-│       │       └── satellites/
-│       │           ├── L2-fraud-detection/
-│       │           ├── L2-credit-cards/
-│       │           ├── L3-portfolio-management/
-│       │           └── L3-international-transfers/
-│       └── mini-universes/
-│           ├── L1-airlines-management/
-│           ├── L2-hotel-management/
-│           └── L3-manufacturing/
-│
-├── projects/
-│   └── (future)
-│
-└── docs/
-    └── Repository-Standards.md
-```
 
 ---
 

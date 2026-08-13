@@ -553,6 +553,14 @@ _(FADE TO BLACK)_
 
 ---
 
+### From the boardroom to the database server room 
+
+The board has identified the symptom. 
+
+Now we investigate the architecture that allowed it.
+
+---
+
 ## 🧠 TECHNICAL AUTOPSY: Know Your Business Jargon
 
 Now that you've witnessed the boardroom crisis, let's step into the database server room and perform a forensic autopsy on **why** the Junior Architect's script failed silently.

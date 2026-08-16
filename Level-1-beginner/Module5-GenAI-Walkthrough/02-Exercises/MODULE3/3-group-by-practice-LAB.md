@@ -272,7 +272,7 @@ Before solving the requests, spend a few minutes understanding the business mode
 
 The Customer Success Team wants to understand purchasing behaviour. They need to know how many orders each customer has placed to identify repeat buyers.
 
-**Deliverable:** For each customer, show the `customer_id` and the number of orders they have placed.
+**Deliverable:** For each customer, show the number of orders they have placed.
 
 ---
 
@@ -280,7 +280,7 @@ The Customer Success Team wants to understand purchasing behaviour. They need to
 
 The Product Manager wants to know which product categories generate the most revenue. They are preparing a category performance review.
 
-**Deliverable:** For each product category, show the total revenue (use `order_items` and `products`).
+**Deliverable:** For each product category, show the total revenue. 
 
 ---
 
@@ -322,17 +322,17 @@ Before solving the requests, spend a few minutes understanding the business mode
 
 ---
 
-### Request 4 – Total Revenue per Payment Status
+### Request 4 – **Total Billing Amount per Payment Status**
 
-The Finance Director wants to understand revenue distribution across different payment statuses (`Paid`, `Pending`, `Insurance Pending`).
+The Finance Director wants to understand the distribution of billed amounts across different payment statuses.
 
-**Deliverable:** For each payment status, show the total revenue (`SUM(amount)`).
+**Deliverable:** For each payment status, show the total billed amount.
 
 ---
 
 ### Request 5 – Number of Patients per Status
 
-The Operations Director wants to understand patient distribution by status (`Active`, `Inactive`, `Admitted`, `Discharged`).
+The Operations Director wants to understand patient distribution by status.
 
 **Deliverable:** For each patient status, show the number of patients.
 
@@ -340,19 +340,17 @@ The Operations Director wants to understand patient distribution by status (`Act
 
 ### Request 6 – Total Appointments per Doctor
 
-The Medical Director wants to understand doctor workload. They need the number of appointments handled by each doctor.
+The Medical Director wants to understand scheduled appointment workload.
 
-**Deliverable:** For each doctor, show the total number of appointments they have handled.
+**Deliverable:** For each doctor, show the total number of appointments._
 
 ---
 
-### Request 7 – Total Revenue per Treatment Category
+### Request 7 – **Total Billing Amount per Treatment Category**
 
-The Revenue Cycle Manager wants to understand which treatment categories generate the most revenue.
+The Revenue Cycle Manager wants to understand which treatment categories generate the most billing volume.
 
-**Deliverable:** For each treatment category, show the total revenue (`SUM(cost)`).
-
-> 💡 **Hint:** You'll need to join `appointments` and `treatments`.
+**Deliverable:** For each treatment category, show the total billed amount.
 
 ---
 
@@ -370,15 +368,30 @@ The Operations Director wants to understand appointment volume trends by month.
 
 **Deliverable:** For each month, show the total number of appointments.
 
-> 💡 **Hint:** Use `strftime('%Y-%m', appointment_date)` to extract month.
-
 ---
 
-### Request 10 – Monthly Revenue from Completed Payments
+### Request 10 – **Monthly Billing Amount from Paid Bills**
 
-The Finance Director wants to track monthly revenue trends from completed payments.
+The Finance Director wants to track monthly billing trends from paid bills.
 
-**Deliverable:** For each month, show the total revenue from bills with `payment_status = 'Paid'`.
+**Deliverable:** For each month, show the total billed amount from bills for completed payments.
+
+---
+### 🔍 Reflection
+
+In Request 4, you calculated the distribution of **billed amounts** by payment status.
+
+But suppose the Finance Director now asks:
+
+> *"For each payment status, show the total revenue."*
+
+Can you simply replace **`billed amount`** with **`revenue`**?
+
+**Stop. Think before you write the SQL.**
+
+*Is `bills.amount` actually a revenue fact?*
+
+That question will become very important later.
 
 ---
 
@@ -394,7 +407,7 @@ But there is a deeper question an SQLVerse Artisan must learn to ask:
 > A `GROUP BY` can have the correct granularity.
 > The database can return a perfectly valid result.
 
-> And yet the answer can still be **financially wrong**.
+> **And yet the answer can still be WRONG.**
 >
 > To understand why, step outside the hospital and enter **FinVERSE**.
 
@@ -406,7 +419,7 @@ But there is a deeper question an SQLVerse Artisan must learn to ask:
 
 ### 📽️ SCENE 1: THE ACCUSATION
 
-_(The camera tracks rapidly down the center of a long mahogany conference table, stopping abruptly at ARTHUR—the Lead External Auditor—standing at the head. His tie is loosened, sleeves rolled up. Next to him sits MAYA, his brilliant young associate, quietly opening a leather notebook. Across the table: five sweaty, bewildered Board Members and the CFO, surrounded by cold espresso cups and crumpled spreadsheets.)_
+_(The camera tracks rapidly down the center of a long mahogany conference table, stopping abruptly at ARTHUR—the Lead External Auditor—standing at the head. His tie is loosened, sleeves rolled up. Next to him sits MAYA, his brilliant young associate, quietly opening a leather notebook. Across the table: five sweaty, bewildered Board Members, CEO, CTO and the CFO, surrounded by cold espresso cups and crumpled spreadsheets.)_
 
 **ARTHUR**
 
@@ -423,6 +436,12 @@ _(Wiping his forehead with a handkerchief)_
 **ARTHUR**
 
 “Ten million dollars in *Revenue*?! Are you out of your mind?! It takes five full years of hard operations to recognize that kind of top-line performance! You took raw **Cash Collected**, slapped a **Revenue** label on it, and sent it to the press. You didn't discover a financial miracle—you just guaranteed a catastrophic public restatement!”
+
+**CEO**
+
+_(Gripping the edge of the table, face losing color)_
+
+“Arthur, wait. We sent that ten-million-dollar figure to the financial wires at 7:00 AM. Market open is in two hours. If we issue a retraction now, the board room isn't just in boiling soup—our stock gets hammered before lunch. Tell me there is an accounting treatment that salvages this!”
 
 **BOARD MEMBER 1**
 
@@ -486,17 +505,27 @@ _(The CFO’s eyes slowly widen. He lowers his pen.)_
 
 _We celebrated a number that didn't mean what we thought it meant._
 
+**CEO**
+
+_(Leaning back slowly into his chair, speaking with bitter clarity)_
+
+“We didn't discover a record quarter. We just counted our own capital returning home and threw a party for it. We celebrated a ten-million-dollar victory that didn't exist.”
+
 **MAYA**
 
 “Exactly. Returning money you lent someone isn't profit—it's just your own capital coming home. Principal repayment is not revenue. **Interest** and **applicable fees** may contribute to revenue, subject to the institution's accounting and recognition rules. 
 
-Under the accounting assumptions of this case, the recognized revenue was $1.5 Million. Your report gave the Board an answer that was inflated by $8.5 Million.”
+Under the accounting assumptions of this case, the recognized revenue was $1.5 Million. **Your report overstated recognized revenue by $8.5 Million.**”
 
-**BOARD MEMBER 1**
 
-“Then why did the script work?! Why didn't the system throw an error?!”
+**CEO**
+
+_(Turning his gaze slowly from the CFO down to the end of the table)_
+
+“Wait. The CFO asked for revenue, but who built the system that let a junior analyst query cash and call it revenue? **CTO... why was our database handing out nuclear warheads as reports?**”
 
 ---
+
 ### 📽️ SCENE 4: THE BOARD TURNS ON THE CTO
 
 *(The board members turn away from the CFO and fixedly glare down the table at the **CTO**, who has been sitting silently behind an open laptop.)*
@@ -545,9 +574,11 @@ A report can only reflect the level of truth your underlying system was courageo
 
 **CTO**
 
-“I will not patch this with another quick query. Before market close, I am submitting a complete **Technical Autopsy and Data Model Redesign** to this Board. Here is what happened inside our servers...”
+“I will not patch this with another quick query. 
 
-_(Camera pans slowly across the silent Board members. The CFO stares at his reflection in the dark glass table. The realization settles into the room with absolute weight.)_
+Before market close, I am submitting a complete **Technical Autopsy and Data Model Redesign** to this Board. Here is what happened inside our servers...”
+
+_(Camera pans slowly across the silent Board members. The CEO stares at his reflection in the dark glass table. The realization settles into the room with absolute weight.)_
 
 _(FADE TO BLACK)_
 
@@ -557,7 +588,7 @@ _(FADE TO BLACK)_
 
 The board has identified the symptom. 
 
-Now we investigate the architecture that allowed it.
+**Now we investigate the architecture that allowed it.**
 
 ---
 
@@ -801,7 +832,7 @@ The `loan_payments` table stores a single `amount`. It does **not** distinguish 
 
 Not only can you not calculate total revenue, but you also cannot run `GROUP BY revenue_type` (Principal vs. Interest vs. Fees). If the grain does not exist in the row structure, it cannot exist in your aggregated summary buckets.
 
-We will investigate this—and other real-world FinVERSE business cases—in **Module 4**, where the schema will evolve to support the business requirements.
+We will investigate this—and other real-world business cases from other Universes—in **Module 4**, where the schema will evolve to support the business requirements.
 
 **Takeaways:**
 
@@ -825,28 +856,40 @@ SQL can only calculate what the schema stores. Without `principal_portion`, `int
 
 **The business vocabulary changes. The skeletal pattern remains invariant.**
 
-**The nouns change. The logic does not.**
+The nouns change. The logic does not.
 
+ ### Business first. Data model second. SQL third.
+ 
 ---
 
 ## 📋 Section 3: Executive Desk – Integrated Challenge
 
-### Request 11 – Executive Hospital Revenue & Utilization Report
+### Request 11 –  Executive Hospital Billing & Utilization Report
 
 **The Chief Financial Officer (CFO) wants:** An executive summary evaluating hospital financial and operational performance.
 
 The request is deliberately open-ended:
 
-> *"Give me a high-level strategic overview of our hospital's performance. I need to understand revenue distribution by payment status, appointment volume by doctor, and monthly trends in revenue and appointments."*
+> *"Give me a high-level strategic overview of our hospital's performance. I need to understand billing distribution by payment status, appointment volume by doctor, and monthly trends in billing and appointments."*
+
+**Deliverable:** Produce the executive-level analysis you believe best answers the CFO's request.
+
+You may use **multiple SQL queries and multiple result sets** where appropriate.
+
+Your goal is **not** to force everything into one result set.
+
+Your goal is to communicate the **business picture clearly and meaningfully**.
 
 **Key Considerations:**
 - Decide which aggregates and groupings matter for executive reporting.
+- Identify the appropriate analytical grain for each view.
 - Choose columns that support strategic decision-making.
 - Use clear, business-friendly aliases.
 - Sort the results to highlight the most important patterns first.
 - Add a comment block explaining your assumptions.
+- Where different business questions require different result sets, **do not force them into a single query merely for the sake of producing one Resultset.**
 
-> No hints. No syntax templates. Just a business outcome.
+> **No hints. No syntax templates. Just a business outcome.**
 
 ---
 
@@ -859,14 +902,14 @@ Review your engineering output before committing queries to your repository log 
 | 09:00 AM | Request 1 – Number of Orders per Customer | E‑Store | ☐ |
 | 10:00 AM | Request 2 – Total Revenue per Product Category | E‑Store | ☐ |
 | 11:00 AM | Request 3 – Average Order Value per Customer | E‑Store | ☐ |
-| 01:00 PM | Request 4 – Total Revenue per Payment Status | Hospital | ☐ |
+| 01:00 PM | Request 4 – Total Billing Amount per Payment Status | Hospital | ☐ |
 | 02:00 PM | Request 5 – Number of Patients per Status | Hospital | ☐ |
 | 03:00 PM | Request 6 – Total Appointments per Doctor | Hospital | ☐ |
-| 04:00 PM | Request 7 – Total Revenue per Treatment Category | Hospital | ☐ |
+| 04:00 PM | Request 7 – Total Billing Amount per Treatment Category | Hospital | ☐ |
 | 05:00 PM | Request 8 – Average Cost per Treatment Category | Hospital | ☐ |
 | 06:00 PM | Request 9 – Monthly Appointment Volume | Hospital | ☐ |
-| 07:00 PM | Request 10 – Monthly Revenue from Completed Payments | Hospital | ☐ |
-| 08:00 PM | Request 11 – Executive Hospital Revenue & Utilization Report | Executive | ☐ |
+| 07:00 PM | Request 10 – Monthly Billing Amount from Paid Bills | Hospital | ☐ |
+| 08:00 PM | Request 11 – Executive Hospital Billing & Utilization Report | Executive | ☐ |
 
 **Reflection:** Which grouping dimension did you use most frequently across all requests? What pattern emerged across the E‑Store and Hospital domains?
 

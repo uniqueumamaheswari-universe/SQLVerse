@@ -99,9 +99,13 @@ INSERT INTO patients (patient_id, name, email, phone, status) VALUES
 (10, 'Linda Taylor', 'linda.t@email.com', '555-1010', 'Active'),
 (11, 'Thomas Clark', 'thomas.c@email.com', NULL, 'Admitted'),
 (12, 'Anna White', 'anna.w@email.com', NULL, 'Admitted'),
-(13, 'Elizabeth', 'elizabeth@email.com', '555-1013', 'Active');
+(13, 'Elizabeth', 'elizabeth@email.com', '555-1013', 'Active'),
+(14, 'Rahul Sharma', 'rahul.sharma@email.com', '555-1014', 'Active'),
+(15, 'Sneha Patel', 'sneha.patel@email.com', '555-1015', 'Active'),
+(16, 'Vikram Rajan', 'vikram.rajan@email.com', '555-1016', 'Active'),
+(17, 'Anita Desai', 'anita.desai@email.com', '555-1017', 'Active');
 
--- ---------- Doctors ----------
+------------ Doctors ----------
 INSERT INTO doctors (doctor_id, first_name, last_name, specialisation, email, phone, availability, status) VALUES
 (1, 'Rajesh', 'Sharma', 'Cardiology', 'dr.rajesh.sharma@hospital.com', '555-2001', 'Mon-Fri 9-5', 'Active'),
 (2, 'Priya', 'Menon', 'Neurology', 'dr.priya.menon@hospital.com', '555-2002', 'Mon-Fri 10-6', 'Active'),
@@ -109,9 +113,11 @@ INSERT INTO doctors (doctor_id, first_name, last_name, specialisation, email, ph
 (4, 'Ananya', 'Iyer', 'Primary Care', 'dr.ananya.iyer@hospital.com', '555-2004', 'Tue-Sat 9-5', 'Active'),
 (5, 'Karthik', 'Nair', 'Diagnostic Radiology', 'dr.karthik.nair@hospital.com', '555-2005', 'Mon-Fri 8-2', 'Active'),
 (6, 'Meera', 'Rao', 'Cardiology', 'dr.meera.rao@hospital.com', '555-2006', 'Mon-Fri 10-4', 'On Leave'),
-(7, 'Ravi', 'Kumar', 'Surgery', 'dr.ravi.kumar@hospital.com', '555-2007', 'Wed-Sun 9-5', 'Active');
+(7, 'Ravi', 'Kumar', 'Surgery', 'dr.ravi.kumar@hospital.com', '555-2007', 'Wed-Sun 9-5', 'Active'),
+(8, 'Suresh', 'Nair', 'Gastroenterology', 'dr.suresh.nair@hospital.com', '555-2008', 'Mon-Fri 9-5', 'Active'),
+(9, 'Arun', 'Pillai', 'Orthopedics', 'dr.arun.pillai@hospital.com', '555-2009', 'Mon-Fri 8-4', 'Active');
 
--- ---------- Treatments ----------
+------------ Treatments ----------
 INSERT INTO treatments (treatment_id, treatment_name, cost, category) VALUES
 (1, 'General Checkup', 120.00, 'Primary Care'),
 (2, 'X-Ray Imaging', 350.00, 'Diagnostic'),
@@ -129,10 +135,12 @@ INSERT INTO treatments (treatment_id, treatment_name, cost, category) VALUES
 (13, 'Cardiac Stress Test', 2200.00, 'Cardiology'),
 (14, 'Neurology Scan', 2500.00, 'Neurology'),
 -- ADDED FOR EXERCISE 2 (Request #11)
-(15, 'Surgery - Minor', 1200.00, 'Surgery'),
-(16, 'Surgery - Major', 4500.00, 'Surgery');
+(15, 'Appendectomy', 8500.00, 'Surgery'),
+(16, 'Femur Fracture Repair', 12000.00, 'Orthopedic Surgery'),
+(17, 'Abdominal Ultrasound', 450.00, 'Diagnostic'),
+(18, 'X-Ray (Fracture)', 300.00, 'Diagnostic');
 
--- ---------- Appointments ----------
+------------ Appointments ----------
 INSERT INTO appointments (appointment_id, patient_id, treatment_id, doctor_id, appointment_date) VALUES
 (1, 1, 1, 4, '2025-01-10'),   -- John Smith → General Checkup → Dr. Ananya Iyer
 (2, 2, 2, 5, '2025-01-15'),   -- Emma Wilson → X-Ray Imaging → Dr. Karthik Nair
@@ -151,7 +159,17 @@ INSERT INTO appointments (appointment_id, patient_id, treatment_id, doctor_id, a
 (14, 12, 14, 2, '2025-02-07'),-- Anna White → Neurology Scan → Dr. Priya Menon
 -- ADDED FOR PATIENT 13 (Elizabeth)
 (15, 13, 1, 4, '2025-03-15'), -- Elizabeth → General Checkup → Dr. Ananya Iyer
-(16, 13, 6, 4, '2025-03-20'); -- Elizabeth → Physiotherapy → Dr. Ananya Iyer
+(16, 13, 6, 4, '2025-03-20'), -- Elizabeth → Physiotherapy → Dr. Ananya Iyer
+
+-- Dr. Suresh Nair (Gastroenterology)
+(17, 14, 19, 8, '2025-04-10'),  -- Rahul Sharma → Abdominal Ultrasound
+(18, 15, 19, 8, '2025-04-12'),  -- Sneha Patel → Abdominal Ultrasound
+(19, 16, 17, 8, '2025-04-15'),  -- Vikram Rajan → Appendectomy (consult)
+
+-- Dr. Arun Pillai (Orthopedics)
+(20, 17, 20, 9, '2025-04-18'),  -- Anita Desai → X-Ray (Fracture)
+(21, 14, 18, 9, '2025-04-20'),  -- Rahul Sharma → Femur Fracture Repair
+(22, 15, 18, 9, '2025-04-22');  -- Sneha Patel → Femur Fracture Repair
 
 -- ---------- Bills ----------
 INSERT INTO bills (bill_id, patient_id, amount, bill_date, payment_status) VALUES
@@ -171,7 +189,16 @@ INSERT INTO bills (bill_id, patient_id, amount, bill_date, payment_status) VALUE
 (14, 7, 6000.00, '2025-04-20', 'Pending'),
 (15, 2, 350.00, '2025-03-05', 'Paid'),
 (16, 13, 120.00, '2025-03-18', 'Paid'),
-(17, 13, 75.00, '2025-03-22', 'Paid');
+(17, 13, 75.00, '2025-03-22', 'Paid'),
+-- Bills for Dr. Suresh Nair (Gastroenterology)
+(18, 14, 450.00, '2025-04-10', 'Pending'),  -- Abdominal Ultrasound
+(19, 15, 450.00, '2025-04-12', 'Paid'),     -- Abdominal Ultrasound
+(20, 16, 8500.00, '2025-04-15', 'Insurance Pending'), -- Appendectomy
+
+-- Bills for Dr. Arun Pillai (Orthopedics)
+(21, 17, 300.00, '2025-04-18', 'Pending'),   -- X-Ray (Fracture)
+(22, 14, 12000.00, '2025-04-20', 'Insurance Pending'), -- Femur Fracture Repair
+(23, 15, 12000.00, '2025-04-22', 'Paid');    -- Femur Fracture Repair
 
 -- =============================================
 -- PEDAGOGICAL DESIGN

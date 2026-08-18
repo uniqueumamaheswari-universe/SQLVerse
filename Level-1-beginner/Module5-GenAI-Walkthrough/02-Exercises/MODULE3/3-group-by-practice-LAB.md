@@ -342,7 +342,7 @@ The Operations Director wants to understand patient distribution by status.
 
 The Medical Director wants to understand scheduled appointment workload.
 
-**Deliverable:** For each doctor, show the total number of appointments._
+**Deliverable:** For each doctor, show the total number of appointments.
 
 ---
 
@@ -374,7 +374,7 @@ The Operations Director wants to understand appointment volume trends by month.
 
 The Finance Director wants to track monthly billing trends from paid bills.
 
-**Deliverable:** For each month, show the total billed amount from bills for completed payments.
+**Deliverable:** For each month, show the total billed amount from bills for paid bills.
 
 ---
 ### 🔍 Reflection
@@ -887,7 +887,7 @@ Your goal is to communicate the **business picture clearly and meaningfully**.
 - Use clear, business-friendly aliases.
 - Sort the results to highlight the most important patterns first.
 - Add a comment block explaining your assumptions.
-- Where different business questions require different result sets, **do not force them into a single query merely for the sake of producing one Resultset.**
+- Where different business questions require different result sets, **do not force them into a single query merely for the sake of producing one resultset.**
 
 > **No hints. No syntax templates. Just a business outcome.**
 

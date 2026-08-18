@@ -388,11 +388,15 @@ Without this relationship, the database cannot reliably attribute billing volume
 #### 🎯 Skill Reinforced
 
 ✔ Grain awareness when joining tables
+
 ✔ Fan‑out error detection and correction
+
 ✔ Recognizing data model limitations
+
 ✔ Knowing when SQL cannot answer a question reliably
 
 ---
+
 ### 🪞 SQLVerse Pattern Reflection
 
 | Business Request | Skeletal Pattern | Status |

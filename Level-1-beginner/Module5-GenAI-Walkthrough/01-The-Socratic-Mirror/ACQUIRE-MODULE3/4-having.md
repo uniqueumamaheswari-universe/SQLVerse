@@ -142,7 +142,7 @@ This chamber explores:
 - Filtering groups with aggregate conditions
 - Combining `WHERE` and `HAVING` in the same query
 - `HAVING` without `GROUP BY` (treats the whole table as one group)
-- Using derived columns in `HAVING`
+- Using aggregate expressions and understanding the portability risks of column aliases in `HAVING`
 
 This chamber does NOT yet include:
 - Subqueries – covered in Level 2
@@ -178,7 +178,7 @@ Filters individual rows **before** they are grouped. It operates on raw data, no
 
 Filters groups **after** aggregation. It operates on the results of `GROUP BY` and aggregate functions.
 
-**Why it matters:** `HAVING` is the only way to filter based on summary statistics.
+**Why it matters:** In a grouped query, `HAVING` is the standard clause for filtering groups based on aggregate conditions.
 
 ### Logical Sequence
 

@@ -1312,10 +1312,6 @@ Compare the skeletal structural patterns of your work against the verified solut
 
 ## 🛒 Section 1: Workshop Floor – E‑Store
 
----
-
-## 🛒 Section 1: Workshop Floor – E‑Store
-
 ```sql
 -- Request 1: Alias in WHERE (E‑Store)
 -- Original defect: ❌ Alias used in WHERE before it exists

@@ -36,17 +36,26 @@ The **SQLVerse Master Investigative Framework** defines the universal protocol f
 
 ### 🏛️ SQLVerse Core Architectural Pipeline
 
-```
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│                        SQLVERSE CORE ARCHITECTURAL PIPELINE                            │
-│                                                                                        │
-│   INVESTIGATION LABORATORY         CANONICAL DATABASE STATE       ANALYTICAL & PROD ENGINE │
-│  (Forensic Gap Diagnosis)        (Versioned DDL & Executable)     (Complex Query Execution)│
-│ ┌─────────────────────────┐     ┌─────────────────────────┐     ┌─────────────────────────┐│
-│ │   Blueprint Analysis    │ ──► │  Level 1 Foundation DB  │ ──► │   Level 2 & Level 3     ││
-│ │   & Decision Ledger     │     │   (v1.0 ──► v1.1 ──► v1.2)│     │   Analytical Queries    ││
-│ └─────────────────────────┘     └─────────────────────────┘     └─────────────────────────┘│
-└────────────────────────────────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart LR
+    subgraph LAB["🔍 INVESTIGATION LAB"]
+        A["Blueprint Analysis & Decision Ledger"]
+    end
+
+    subgraph STATE["🗄️ CANONICAL STATE"]
+        B["Level 1 Foundation DB (v1.0 → v1.1 → v1.2)"]
+    end
+
+    subgraph ENGINE["⚙️ ANALYTICAL ENGINE"]
+        C["Level 2 & Level 3 Analytical Queries"]
+    end
+
+    A -->|"Forensic Gap Diagnosis"| B
+    B -->|"Versioned DDL & Executable"| C
+
+    style LAB fill:#e1f5fe,stroke:#2196f3
+    style STATE fill:#e8f5e8,stroke:#4caf50
+    style ENGINE fill:#fff8e1,stroke:#ff9800
 ```
 
 ---

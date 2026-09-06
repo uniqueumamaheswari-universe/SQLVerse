@@ -1,6 +1,4 @@
 
-
-
 # 🗄️🤖 SQL & GenAI Course
 **🎯 Quality Education for Anyone, Anywhere, Anytime — 💫 with Comfort, Convenience at no Cost**
 
@@ -56,7 +54,7 @@ You’ve completed the four conceptual blueprint files. Now you’ll put theory 
 **🚀 Kickstart: Any Computer, Any Browser, Anytime.**  
 **🌍 Destination: Any country, Any city, Any Platform.**
 
-Unlike previous modules where you only queried data, **this lab changes the structure of the database itself**. You will use **DDL (Data Definition Language)** commands like `CREATE TABLE`, `ALTER TABLE`, and `DROP COLUMN`. These changes are permanent – but don’t worry, you can always re‑download the original `level1_estore_basic.db` file if needed.
+Unlike previous modules where you only queried data, **this lab changes the structure of the database itself**. You will use **DDL (Data Definition Language)** commands like `CREATE TABLE`, `ALTER TABLE`, and table-rebuild operations to evolve the schema. These changes are permanent – but don’t worry, you can always re‑download the original `level1_estore_basic.db` file if needed.
 
 | Tab | Purpose | What to Do |
 | :--- | :--- | :--- |
@@ -65,7 +63,9 @@ Unlike previous modules where you only queried data, **this lab changes the stru
 | **3: The Consultant** | Conceptual Q&A | Ask about normalization, foreign keys, or why an error occurs. Configure with Student Mode Prompt. |
 | **4: The Vault** | Save your work | Save the final queries as `refactoring-lab.sql` in your Module 4 folder. |
 
-> ⚠️ **Artisan’s Warning:** `CREATE TABLE`, `ALTER TABLE`, and `DROP` are irreversible. Always double‑check your commands. If you make a mistake, re‑download the original database from the Resources folder.
+> ⚠️ **Artisan’s Warning:** Some DDL operations can be destructive or difficult to reverse. 
+> Always verify the target object and understand the migration before executing it. In this lab, you are performing a controlled schema evolution.  
+> Always double‑check your commands. If you make a mistake, re‑download the original database from the Resources folder.
 
 ---
 
@@ -89,7 +89,7 @@ By the end of this lab, you will be able to:
 - Write `CREATE TABLE` statements with appropriate data types and constraints.
 - Use `ALTER TABLE` to add a new column.
 - Populate a new table with distinct values from an existing table.
-- Write an `UPDATE` with a subquery to map foreign keys.
+- Use `UPDATE` statements to map existing data to newly created foreign-key values.
 - Understand why we refactor flat tables into normalized schemas.
 - Write a `JOIN` to reunite normalized data.
 
@@ -181,7 +181,11 @@ Now you have the tools. Let’s sharpen the tools in Miniature Lab.
 
 ## 🧪 Miniature Lab: Mastering DDL Commands
 
-In this miniature lab, you’ll use **DDL** (`CREATE TABLE`, `ALTER TABLE`, `DROP TABLE`) and **DML** (`INSERT`, `UPDATE`, `INSERT FROM SELECT`). The goal is to get comfortable with these commands before applying them to the real E‑Store.
+In this miniature lab, you’ll use **DDL** (`CREATE TABLE`, `ALTER TABLE`, `DROP TABLE`) and **DML** (`INSERT`, `UPDATE`). 
+
+The pattern **`INSERT INTO ... SELECT ...`** is a form of `INSERT` used to migrate data from one table to another.
+
+The goal is to get comfortable with these commands before applying them to the real E‑Store.
 
 ---
 
@@ -315,7 +319,7 @@ DROP TABLE SkillCategories;
 **What you're seeing:** Both tables disappear.  
 **Reflect:** This pattern – create, populate, alter, update, join – is exactly what you’ll do in the main refactoring (except you won’t drop the final tables; you’ll keep them for the rest of the module).
 
-> 💡 **Artisan’s Insight:** You just performed a complete refactoring rehearsal using Module 4’s own curriculum. The steps you practiced – `CREATE TABLE`, `INSERT FROM SELECT`, `ALTER TABLE`, `UPDATE` with a subquery, and `JOIN` – are the exact steps you will now apply to the E‑Store.
+> 💡 **Artisan’s Insight:** You just performed a complete refactoring rehearsal using Module 4’s own curriculum. The steps you practiced – `CREATE TABLE`, `INSERT FROM SELECT`, `ALTER TABLE`, `UPDATE` to establish foreign-key mappings, and `JOIN` – are the exact steps you will now apply to the E‑Store.
 
 ---
 ## ⚓ The Tethers of the SQLVerse
@@ -462,13 +466,37 @@ UPDATE products SET category_id = 3 WHERE category = 'Books';
 
 ---
 
-###  Step 5: Add the Foreign Key Constraint
+###  Step 5: Rebuild the products table with the foreign key defined
 
 ```sql
-ALTER TABLE products ADD FOREIGN KEY (category_id) REFERENCES categories(category_id);
+CREATE TABLE products_new (
+    product_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    product_name TEXT NOT NULL,
+    category_id INTEGER NOT NULL,
+    price REAL,
+    FOREIGN KEY (category_id)
+        REFERENCES categories(category_id)
+);
 ```
 
-This command tells the database: “Every `category_id` in `products` must have a matching `category_id` in `categories`.” Now the database will enforce referential integrity.
+###  Step 6: Copy data from the old table
+```sql
+INSERT INTO products_new (product_id, product_name, category_id, price)
+SELECT product_id, product_name, category_id, price
+FROM products;
+```
+### Step 7: Remove the old table
+```sql
+DROP TABLE products;
+```
+
+### Step 8: Rename the new table
+```sql
+ALTER TABLE products_new RENAME TO products;
+```
+The foreign key was defined when `products_new` was created. The `RENAME` simply makes the rebuilt table the new `products` table. The resulting `products` table now carries the foreign-key constraint.
+
+---
 
 ### 🧪 What If We Break the Rules?
 
@@ -510,11 +538,20 @@ Without the foreign key, you could insert such a row, and later joins would sile
 
 ---
 
-## 🧹 Phase 4: Removing the Scaffolding
+## 🧹 Phase 4: Finalize the Refactoring
 
-In a professional environment, we would now **drop** the old `category` text column from the `products` table because it is redundant. However, SQLite has limited support for `DROP COLUMN`. For this lab, we will simply **ignore** the old column and use `category_id` for all future queries.
+The old category column is now legacy scaffolding.
 
-> 💡 **Artisan’s Note:** In production databases like PostgreSQL, you can run `ALTER TABLE products DROP COLUMN category;`. For SQLite, the safest way is to recreate the table, but we’ll skip that for brevity.
+Since we have rebuilt the products table with the foreign key defined,
+we can now remove the redundant category column entirely.
+
+The final evolved products table contains:
+- product_id
+- product_name
+- price
+- category_id
+
+The categories table now holds the unique category names.
 
 Now the data is normalized! The `products` table has `product_id`, `product_name`, `price`, and `category_id`. The `categories` table holds the unique category names.
 
@@ -577,7 +614,7 @@ JOIN categories c ON p.category_id = c.category_id;
 |---------|-----|
 | Forgetting `DISTINCT` when populating `categories` | Use `SELECT DISTINCT` to avoid duplicate category names. |
 | Running the `UPDATE` before adding the `category_id` column | Always `ALTER TABLE` first. |
-| Using the wrong column names in the subquery | Ensure `categories.category_name` matches the old `products.category`. |
+| Mapping the wrong category ID | Verify each category ID before updating products. |
 | Trying to drop the old column in SQLite | SQLite doesn’t support `DROP COLUMN` easily; just ignore the column. |
 
 ---
@@ -590,8 +627,17 @@ JOIN categories c ON p.category_id = c.category_id;
 **Challenge 2:** Write a query that shows the product name and category name for all products, but only for categories that start with the letter ‘E’.  
 *Save as:* `refactoring-filtered-join.sql`
 
-**Challenge 3:** Try to insert a product with `category_id = 999`. What happens? Why? (Note: we haven’t added a foreign key constraint, so it may succeed – that’s why constraints are important!)  
-*Save as:* (no file, just observe)
+**Challenge 3:** Try to insert a product with `category_id = 999`.
+
+```sql
+PRAGMA foreign_keys = ON;
+INSERT INTO products (product_name, price, category_id)
+VALUES ('Ghost Product', 99.99, 999);
+```
+
+**Expected Result:** `FOREIGN KEY constraint failed`
+
+**Why?** Because `category_id = 999` has no matching row in `categories`. The database enforces referential integrity and rejects the orphaned record.
 
 ---
 
@@ -599,14 +645,17 @@ JOIN categories c ON p.category_id = c.category_id;
 
 | Phase | Action | SQL |
 |-------|--------|-----|
-| 1 | Create categories table | `CREATE TABLE categories(...)` |
+| 1 | Create categories table | `CREATE TABLE categories (...)` |
 | 2 | Insert distinct categories | `INSERT INTO categories SELECT DISTINCT ...` |
-| 3 | Add foreign key column | `ALTER TABLE products ADD COLUMN category_id INTEGER` |
-| 4 | Map IDs | `UPDATE products SET category_id = (SELECT ...)` |
-| 5 | (Optional) Drop old column | Not supported in SQLite – ignore |
-| 6 | Join to see the result | `SELECT ... FROM products JOIN categories ON ...` |
+| 3 | Add category_id column | `ALTER TABLE products ADD COLUMN category_id INTEGER` |
+| 4 | Map IDs manually | `UPDATE products SET category_id = 1 WHERE category = 'Electronics';` |
+| 5 | Rebuild products with FK | `CREATE TABLE products_new ... FOREIGN KEY ...` |
+| 6 | Migrate data | `INSERT INTO products_new SELECT ...` |
+| 7 | Drop old products | `DROP TABLE products;` |
+| 8 | Rename new table | `ALTER TABLE products_new RENAME TO products;` |
+| 9 | Join to verify | `SELECT ... FROM products JOIN categories ...` |
 
-**Memory Aid:** *“Create, Insert, Alter, Update, Join.”*
+**Memory Aid:** *"Create, Insert, Add, Map, Rebuild, Migrate, Drop, Rename, Join."*
 
 **Save this reference in your Vault as:** `refactoring-refcard.md`
 
@@ -620,7 +669,7 @@ After reading this and trying the commands, can you:
 - [ ] Write a `CREATE TABLE` statement with appropriate data types?
 - [ ] Use `ALTER TABLE` to add a column?
 - [ ] Populate a table with distinct values from another table?
-- [ ] Write an `UPDATE` with a subquery to map foreign keys?
+- [ ] Write `UPDATE` statements to map existing data to newly created foreign-key values?
 - [ ] Write a `JOIN` to reunite normalized data?
 - [ ] Explain why normalization eliminates redundancy?
 

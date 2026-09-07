@@ -49,7 +49,7 @@ Now you will learn:
 
 - The difference between **Table Grain** (physical storage) and **Query Grain** (the result of a `GROUP BY`).
 - Why **Required Grain** and **Available Grain** are the key to analytical correctness.
-- What happens when tables with different grains are joined — and how to prevent **fan‑out** (row multiplication).
+- How to **evaluate business requests** against available database grain before writing code.
 - Why **SQL can run perfectly and still produce a wrong answer.**
 
 ---

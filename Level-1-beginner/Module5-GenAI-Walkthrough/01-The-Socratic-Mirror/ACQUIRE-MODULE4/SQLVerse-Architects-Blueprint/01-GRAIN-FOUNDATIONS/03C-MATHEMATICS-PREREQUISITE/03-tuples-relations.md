@@ -284,9 +284,286 @@ What does one pair from this space actually look like — once it enters a datab
 That is the question of §5.
 
 ---
+## 5. Relations and Tuples
+
+Section 4 introduced the space of possibility — every pair, every combination, every theoretical pairing that the mathematics permits.
+
+But §4 talked about pairs. Real relational databases store **structured rows** — and a row may contain two values, five values, or many more.
+
+Section 3 closed with a question:
+
+> *"The answer is a **tuple** — and in a relational database, a tuple has another name: a **row**. What a tuple is, precisely, is the subject of the sections that follow."*
+
+This is where the answer arrives.
+
+---
+
+### One object, made of several values
+
+Section 3 treated every element as a single value.
+
+```
+S₁ = {CUST-701, CUST-702, CUST-703, CUST-704, CUST-705}
+```
+
+Each element was one thing — one customer ID. Every set operation in our demonstrations so far used single-value elements.
+
+But look at a row from a real table.
+
+```
+customers
+────────────────────────────────────────────────────
+customer_id | name        | email            | phone    | city
+1           | Alice Smith | alice@email.com  | 555-0101 | New York
+```
+
+The row is not a single value. It is **five values that belong together**.
+
+```
+(1, Alice Smith, alice@email.com, 555-0101, New York)
+```
+
+This is not five unrelated values. It is **one object** — made of five values.
+
+The values are ordered. The first value is the customer's ID. The second is their name. The third is their email. If the order changed, the meaning of the row would change.
+
+The values are cohesive. They describe **one customer**. The ID does not belong to a different customer than the name. The email does not belong to a different customer than the phone.
+
+The values are treated as a unit when the row is represented, retrieved, or considered as a database record.
+
+This object — an ordered collection of values held together as a single unit — has a name.
+
+---
+
+### The tuple
+
+```
+┌─────────────────────────────────────────────┐
+│                                             │
+│                   TUPLE                     │
+│                                             │
+│         One structured object.              │
+│                                             │
+│         Made of several values.             │
+│         Ordered.                            │
+│         Cohesive.                           │
+│         Treated as a unit.                  │
+│                                             │
+└─────────────────────────────────────────────┘
+```
+
+**Tuple = One Structured Fact.**
+
+A **tuple** is an ordered collection of values drawn from a set of domains.
+
+- *"Ordered"* — position matters. `(1, Alice)` and `(Alice, 1)` are different tuples.
+- *"Collection of values"* — the tuple carries multiple values as a single unit.
+- *"Drawn from domains"* — each position has a defined set of possible values. We will name domains formally in §6.
+
+The tuple is not one value and it is not many unrelated values. It is a single structured object that happens to hold several values inside it.
+
+---
+
+### The tuple in two universes
+
+The row from E-Store and the row from FinVERSE are both tuples. They differ in length — because the tables have different columns — but they are the same kind of mathematical object.
+
+**E-Store — a customer row**
+
+```
+| customer_id | name        | email           | phone    | city     |
+|-------------|-------------|-----------------|----------|----------|
+| 1           | Alice Smith | alice@email.com | 555-0101 | New York |
+```
+
+A tuple of five values.
+
+```
+(1, Alice Smith, alice@email.com, 555-0101, New York)
+```
+
+**FinVERSE — a customer row**
+
+```
+| customer_id | first_name | last_name | email                  | phone    | kyc_status | risk_score | onboarding_date | status |
+|-------------|------------|-----------|------------------------|----------|------------|------------|-----------------|--------|
+| 1           | Arjun      | Sharma    | arjun.sharma@email.com | 555-1001 | Verified   | Low        | 2024-06-15      | Active |
+```
+
+A tuple of nine values.
+
+```
+(1, Arjun, Sharma, arjun.sharma@email.com, 555-1001, Verified, Low, 2024-06-15, Active)
+```
+
+Two tuples. Different lengths. Same mathematics.
+
+A tuple can hold any number of values. The length of the tuple depends on how many columns the table has — but the tuple is still one object.
+
+---
+
+### The investigation
+
+Look at the E-Store table again.
+
+```
+customers
+────────────────────────────────────────────────────
+customer_id | name        | email            | phone    | city
+1           | Alice Smith | alice@email.com  | 555-0101 | New York
+2           | Bob Johnson | bob@email.com    | NULL     | Chicago
+3           | Charlie Lee | charlie@email.com | 555-0103 | New York
+```
+
+Three rows. Three tuples.
+
+```
+(1, Alice Smith, alice@email.com, 555-0101, New York)
+(2, Bob Johnson, bob@email.com, NULL, Chicago)
+(3, Charlie Lee, charlie@email.com, 555-0103, New York)
+```
+
+Each row is one tuple. Each tuple is one structured fact — one customer.
+
+
+**A note on `NULL`.** In classical relational theory, every value in a tuple belongs to a defined domain — the domain of names, the domain of cities, the domain of phone numbers. `NULL` is not a member of any of those domains. It is SQL's marker for *"no value is present here"* — the value the customer did not provide.
+
+The classical mathematics and the SQL implementation differ on this point. In the classical relational model, each tuple position contains a value drawn from its corresponding domain. SQL introduces `NULL` as a special marker for missing or unknown information, which does not behave like an ordinary value from that domain. SQL permits a position to hold no value — and represents that absence with `NULL`.
+
+We include `NULL` where the data includes it — because the students have already been introduced to `NULL` values in the course foundation, and because this data has been taken directly from the **E-Store flagship universe** to present a **realistic snapshot** of what an actual database stores. A database is not a mathematical ideal. It is a reflection of real business facts, some of which are missing. We return to the broader distinction between relational mathematics and SQL semantics in §8.
+
+
+**What is the collection of these tuples?**
+
+In the relational model, a relation is a set of tuples. SQL, however, can operate with duplicate rows in many contexts. We will return to that distinction in §8.
+
+```
+{ (1, Alice Smith, alice@email.com, 555-0101, New York),
+  (2, Bob Johnson, bob@email.com, NULL, Chicago),
+  (3, Charlie Lee, charlie@email.com, 555-0103, New York) }
+```
+
+This collection has a name.
+
+But the name is not yet earned. We will meet it in §6.
+
+---
+
+### The SQL bridge
+
+The mathematical object is called a **tuple**. In a relational database, it is stored as a **row**.
+
+```
+(CUST-701, Arjun, Sharma, ...)
+              ↓
+            tuple
+              ↓
+             row
+```
+
+The two are not identical. A tuple is a mathematical object defined independently of any implementation. A row is how one specific kind of database — a relational database — represents that object.
+
+But the correspondence is exact enough that the two words can be used interchangeably when the context is clear:
+
+- **"The tuple"** — when the mathematical structure is the point
+- **"The row"** — when the database is the point
+
+Both name the same thing from different angles.
+
+**In SQLVerse, we will often use “tuple” when discussing the mathematical structure and “row” when discussing its relational-database representation.**
+
+---
+
+### The payoff
+
+Section 3 asked a question and did not answer it.
+
+> *"What is an element when the element is not a single value, but something a database actually stores?"*
+
+The answer arrives here.
+
+An element can be a **tuple** — an ordered collection of values held together as one object. A database stores tuples. Each row is a tuple. Each tuple is a structured fact.
+
+The reader has been using tuples since the first `SELECT`. Every row the reader has ever selected, filtered, or joined has been a tuple. The word is new. The concept is not.
+
+But the reader's understanding is now deeper than at §3.11. The reader knows:
+
+- What a tuple is — an ordered collection of values
+- What makes a tuple a tuple — cohesion, ordering, and structure
+- How tuples appear in SQL — as rows
+- How tuples relate to the Cartesian product — they are the pairs (and larger combinations) drawn from the space of possibility
+
+The next question: **when many tuples are collected into a set, what mathematical object results?**
+
+§6 answers.
+
+---
 
 ---
 
 *Part of our mission for 🎯 Quality Education for Anyone, Anywhere, Anytime — 💫 with Comfort, Convenience at no Cost.*
 
 **SQLVerse | Architecture | Mathematics Prerequisite | Part 3 — Tuples and Relations | Next: [Part 4 — Associations and Bags →](04-associations-bags.md)**
+
+
+---
+
+---
+
+---
+
+
+### The relation
+
+A collection of tuples — gathered into a set — is a **relation**.
+
+A relation is a set of tuples drawn from a Cartesian product of domains. Each tuple in the relation satisfies the same structure: same number of positions, same domains for each position.
+
+The E-Store `customers` table is a relation. Its tuples all have five positions. The first position is drawn from the domain of customer IDs, the second from the domain of names, and so on.
+
+But we do not yet need the formal definition. That belongs to §6, where the relation is given its name and its notation. For now, notice only this: **the mathematical object the reader has been looking at — a table of rows — is a relation.** The name will come.
+
+```
+┌─────────────────────────────────────────────┐
+│                                             │
+│                  RELATION                   │
+│                                             │
+│        A set of tuples.                     │
+│                                             │
+│        Each tuple has the same structure.   │
+│        Each tuple is drawn from the same    │
+│        domains.                             │
+│                                             │
+│        Formal definition in §6.             │
+│                                             │
+└─────────────────────────────────────────────┘
+```
+
+The relation is the mathematical object. We will develop it fully in §6.
+
+## 6. Relational Databases
+
+We have the tuples. We have the set.
+
+Now we can give the collection its name.
+
+RELATION
+
+A relation is a subset of a Cartesian product of domains.
+The elements of a relation are tuples.
+The relation is the set of those tuples.
+
+[The formal notation: R ⊆ D₁ × D₂ × ... × Dₙ]
+
+[The relation diagram]
+
+[Codd's insight]
+
+[The full translation table]
+
+[The threshold to §7]
+```
+
+The §6 opening delivers the naming as its **first beat** — the reader's reward for holding the question through §5.
+
+---

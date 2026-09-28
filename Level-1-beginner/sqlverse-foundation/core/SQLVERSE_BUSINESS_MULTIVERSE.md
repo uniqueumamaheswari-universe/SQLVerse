@@ -611,19 +611,39 @@ All mini‑universes will live alongside the flagship universes in the **SQLVers
 Level-1-beginner/sqlverse-foundation/resources/data-models/mini-universes/
 ```
 
-
 ---
-
-#### 🏗️ The Growth Model
+### 🏗️ The Growth Model
 
 The **SQLVerse Business Multiverse** is open to:
 
-- **Vertical scaling** — adding specialized domains (e.g., Insurance, Logistics, Manufacturing)
-- **Horizontal schema growth** — adding complex tables to existing universes (e.g., Fraud Detection, Credit Cards, International Transfers)
+- **Domain expansion** — adding specialized business domains (e.g., Insurance, Logistics, Manufacturing)
+- **Schema evolution** — adding complex tables to existing universes (e.g., Fraud Detection, Credit Cards, International Transfers)
 
-**The Multiverse is a living ecosystem — designed to evolve, expand, and endure.** 
+**The Multiverse is a living ecosystem — designed to evolve, expand, and endure.**
 
-Come and **experience** the **immersive journey.** 
+---
+
+#### Three Paths to Growth
+
+Domain expansion and schema evolution describe *what* changes in a universe. But a universe can arrive at that change in different ways.
+
+Across the SQLVerse Business Multiverse, three distinct growth paths recur — regardless of which universe you are standing in.
+
+| Growth Path | What Happens | Schema Consequence |
+|-------------|--------------|---------------------|
+| **Organic** | The business builds a new domain in-house. | Extends the existing core entity via foreign key. The identity pipeline is undisturbed. |
+| **Inorganic (Acquisition)** | The business acquires an existing Mini-Universe. | Two already-populated worlds must be reconciled. Identities are matched, keys remapped, histories preserved under a single canonical identity. |
+| **Partnership (Strategic Stake)** | The business takes a stake in another business without absorbing it. | The partner continues operating independently. The schema reflects only a data-sharing interface — not full ownership. |
+
+> **Organic growth extends an empty slot.**
+> **Inorganic growth reconciles two full worlds.**
+> **Partnership growth builds an interface, not a merge.**
+
+Each universe — E-Store, Hospital Planet, Real Estate Planet, FinVERSE — may take any of these three paths as it evolves through Level 2 and Level 3.
+
+**The mechanism is universal. What each universe actually builds through that mechanism is its own story — told when you get there.**
+
+Come and **experience** the **immersive journey.**
 
 Watch how it evolves—and **evolve with it.**
 

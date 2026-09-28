@@ -413,6 +413,22 @@ FinVERSE begins with a deliberately focused banking model. As the business expan
 **Takeaway:** Vertical domain expansion happens via foreign key relationships (`customers` → `portfolios`), leaving the core identity pipeline undisturbed.
 
 ---
+### 🏢 Architect's Note — Three Paths to Growth
+
+> FinVERSE's Future Architecture Preview above describes **organic growth** — new domains built in-house and extended onto the existing `customers` table via foreign key, with the core identity pipeline left undisturbed.
+>
+> Two other paths also exist.
+>
+> **Inorganic growth (acquisition):** FinVERSE may acquire an existing **Mini-Universe** — a business built independently, with its own customer records and product schemas, following none of FinVERSE's own conventions. Acquiring it means reconciling two already-populated worlds into one, rather than extending an empty slot.
+>
+> **Partnership growth (strategic stake):** FinVERSE may instead take a stake in a business without absorbing it entirely. The partner continues operating its own systems, and FinVERSE's data model gains only a data-sharing interface — not a full merge.
+>
+> * **Schema Invariant — Acquisition:** A Mini-Universe's customer data eventually traces back to the same foundational `customers` entity, through active identity-resolution. Its product-specific tables may remain distinct, partially absorbed, or fully integrated over time.
+> * **Schema Invariant — Partnership:** The partner's data may remain in its own system entirely; FinVERSE's schema reflects only the interface, not full ownership.
+
+**Takeaway:** FinVERSE grows three ways — building new domains in-house, acquiring independent Mini-Universes outright, and forming partnerships that share data without merging it. Each leaves a different footprint on the schema.
+
+---
 
 ### 📊 Schema Evolution Summary
 

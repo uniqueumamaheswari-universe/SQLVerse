@@ -43,7 +43,6 @@
 
 - `A × B` — the Cartesian product of `A` and `B`
 - `(a, b, c)` — a tuple — an ordered collection of values
-- `R ⊆ D₁ × D₂ × ... × Dₙ` — a relation as a subset of a Cartesian product of domains
 
 ---
 
@@ -53,9 +52,33 @@ Section 3 closed with a question.
 
 > *"The answer is a **tuple** — and in a relational database, a tuple has another name: a **row**. What a tuple is, precisely, is the subject of the sections that follow."*
 
-Before we define what one structured element is, we need to define the space those elements are drawn from. A tuple does not appear from nowhere — it is assembled from sets, and the assembly is itself a mathematical operation.
+Before we define what one structured element is, we need to define the space those elements are drawn from. But before the mathematics, consider something every sports fan already understands.
 
-That operation is the **Cartesian product**.
+### The Wimbledon Draw
+
+Wimbledon's Singles event begins with a field of 128 players. Seeded, unseeded — nobody knows who will lift the trophy.
+
+At this moment, almost anyone could win.
+
+The tournament plays out. Upsets happen — a top seed crashes out in the first week; a player nobody expected to advance keeps winning. By the quarterfinals, only eight players remain who could still become champion. By the semifinals, just four. Everyone else has already been excluded, even though each of them was once a possible winner.
+
+Then the final is played. One player wins.
+
+One hundred and twenty-eight players who could have been champion. One player who actually was.
+
+That single result — not the 128 who might have been — is what gets recorded. It enters the record books. If Wimbledon kept a database, the eventual champion would become a recorded fact.
+
+> **The database records business reality selected from a space of possibilities.**
+
+**This is the shape of everything in this section: a wide field of what could be true, narrowing down to what actually became true.**
+
+---
+
+Mathematics has a name for that wide field of what could be true. It is called the **Cartesian product** — the space of possibility. And it has a name for the narrower reality that gets recorded — but that name is not yet earned. We will meet it properly in §7.
+
+The Wimbledon story gives us the intuition. Mathematics gives that intuition a more precise structure. When two sets of possibilities are combined, the Cartesian product creates the complete space of possible pairings.
+
+For now, the one hundred and twenty-eight possible champions and the one actual champion are enough to carry the idea. What Wimbledon does with players, a business does with customers and products.
 
 ---
 
@@ -185,23 +208,23 @@ The Cartesian product is the first stage. It is the possibility space from which
 The Cartesian product is not the same as the actual relationships that exist in the business.
 
 ```
-C × L
+Customers × NewProducts
 ┌──────────────────────────────────────┐
 │                                      │
 │   all mathematically possible pairs  │
 │                                      │
 │       ┌──────────────────────┐       │
-│       │          R           │       │
-│       │   actual business    │       │
-│       │     associations     │       │
+│       │  Actual Associations │       │
+│       │  (a business-chosen  │       │
+│       │      subset)         │       │
 │       └──────────────────────┘       │
 │                                      │
 └──────────────────────────────────────┘
 ```
 
-> **`C × L` — the space of possibility: every pairing that could exist.**
+> **The Cartesian product — the space of possibility: every pairing that could exist.**
 >
-> **`R` — the space of reality: the pairings that have become business facts.**
+> **The actual associations — the space of reality: the pairings that have become business facts.**
 
 The Cartesian product describes the space of possibilities. An actual business association is a **selected subset** of that space.
 
@@ -238,8 +261,8 @@ The analogy helps the intuition. But it should not be taken literally. Mathemati
 - **Mathematics** tells us what could exist. 
 - **Business** tells us what does exist. 
 - **The data model** defines how that reality is represented. 
-- **The database** records it. 
-- **SQL** interrogates it.
+- **The database** records that representation.
+- **SQL** interrogates the database.
 
 The SQLVerse places these in a fixed order:
 
@@ -435,8 +458,6 @@ We include `NULL` where the data includes it — because the students have alrea
 
 **What is the collection of these tuples?**
 
-In the relational model, a relation is a set of tuples. SQL, however, can operate with duplicate rows in many contexts. We will return to that distinction in §8.
-
 ```
 { (1, Alice Smith, alice@email.com, 555-0101, New York),
   (2, Bob Johnson, bob@email.com, NULL, Chicago),
@@ -498,72 +519,200 @@ The next question: **when many tuples are collected into a set, what mathematica
 §6 answers.
 
 ---
+## 6. Relational Databases
+
+### The collection has a name
+
+Section 5 closed with a question. It said a collection of tuples had a name — and the name was deliberately withheld.
+
+This is where it arrives.
+
+Look at the tuples from §5 once more.
+
+```
+(1, Alice Smith, alice@email.com, 555-0101, New York)
+(2, Bob Johnson, bob@email.com, NULL, Chicago)
+(3, Charlie Lee, charlie@email.com, 555-0103, New York)
+```
+
+These three tuples are gathered into a set.
+
+What is the collection called?
+
+The collection has a name.
+
+**A relation.**
+
+---
+
+### The memory sentence
+
+```
+┌─────────────────────────────────────────────┐
+│                                             │
+│         Relation = A Set of Tuples          │
+│                                             │
+└─────────────────────────────────────────────┘
+```
+
+A **relation** is a set of tuples.
+
+---
+
+### The formal definition
+
+A relation is a **subset of a Cartesian product of domains**.
+
+Consider the tuples again:
+
+```
+(1, Alice Smith, alice@email.com, 555-0101, New York)
+(2, Bob Johnson, bob@email.com, NULL, Chicago)
+(3, Charlie Lee, charlie@email.com, 555-0103, New York)
+```
+
+Each position in these tuples is drawn from its own defined set of possible values — the set of valid customer IDs, the set of valid names, the set of valid emails, and so on. Each of these defining sets is called a **domain**.
+
+> **Each domain defines the set of permitted values for one position in the tuple.**
+>
+> *In SQL, a domain is often realized as a column's **data type** and its **constraints** — such as `INTEGER`, `VARCHAR`, `NOT NULL`, or `CHECK`. We will develop this connection in §7.*
+
+The first position of every tuple in the relation is drawn from the domain of IDs. The second position is drawn from the domain of names. And so on, one domain per position.
+
+A relation is a set of tuples, where every tuple has the same number of positions, and each position draws its values from the same domain across every tuple in the set.
+
+> **That shared structure is what makes the tuples members of the same relation structure, rather than an unrelated collection of values.**
+
+The general notation for this — a relation as a subset of a product of domains — will be given its exact symbols in §7, once a specific relation is built and named.
+
+---
+
+### You have already met these shapes
+
+The file has not taught cardinality — the relationship types — as a mathematical concept. But the reader has **seen** three of them, in the investigations that preceded this prerequisite.
+
+**Investigation I — The Silent Ambiguity.** A business team said *"every customer has exactly one credit card."* The claim was **1:1**. But the schema did not enforce it — and when a query joined customers to cards, a customer appeared three times. **The claim was 1:1; the guarantee was absent.** §7 will give the structure its precise mathematical treatment.
+
+**Investigation II — The Parent's Echo.** A customer had one credit limit and three loans. The credit limit was repeated across the loans — three times in the intermediate row set. That is a **1:N** relationship: one customer, many loans.
+
+**Investigation IV — The Bridge.** A customer appeared once. A loan appeared once. Between them sat a `LoanApplications` row — an association. The association was neither the customer nor the loan. It was the relationship — and it had its own grain. That is an **M:N** relationship: many customers, many loans, mediated through a bridge.
+
+**A relational database stores not just the data; it stores the relationship between the data.**
+
+§7 will give each of these its precise mathematical definition. For now, notice only this: the three shapes the reader has already met are **three fundamental relationship cardinality patterns.**
+
+---
+
+### Possibility and reality
+
+Recall from §4: the Cartesian product is the **space of possibility**. Every pairing that could theoretically exist.
+
+A relation is the recorded **space of reality**. A subset of that space — the subset the business has actually chosen.
+
+```
+Cartesian product          Customers × NewProducts       all possible pairs
+Relation                   a subset of that product      the pairs that exist
+```
+
+The relation is not the whole space. It is the part that became real.
+
+---
+
+### What this has to do with the Grain Triad
+
+The Grain Triad asked a question:
+
+> *"What does one row mean?"*
+
+That was a **business** question. A row represents one customer, one loan, one payment, one association. Grain answers *"what does this row mean?"*
+
+This prerequisite asked a different question:
+
+> *"What is one row — mathematically?"*
+
+That was a **mathematical** question. A row is a tuple. Its container is a relation. Together, they are the mathematical structure that a relational database is built from.
+
+**Grain asks what one row means. Tuple theory asks what one row is mathematically.**
+
+Both questions must be answered for a relational database to be understood. The Grain Triad answered the first. This prerequisite answers the second.
+
+The next section of this file introduces the person who first proposed that these mathematical structures could be the foundation of a business database.
+
+---
+
+### Codd
+
+The mathematics the reader has just discovered — sets, tuples, relations — was not invented for databases.
+
+In 1970, a mathematician at IBM named **Edgar F. Codd** proposed something radical. He proposed that the objects the reader has just met — a set of tuples, sharing a common structure, drawn from a product of domains — could serve as the foundation for how a computer stores and queries business facts.
+
+Before Codd, databases stored records in files and hierarchies. Queries navigated those structures physically — following pointers, tracing paths through linked records. Codd's relational model changed the abstraction. Instead of requiring users to navigate the physical paths between stored records, the user could describe the information wanted in terms of relations and operations over them. The database system could then determine how to execute that request.
+
+**This is the intellectual foundation beneath the declarative style of modern SQL.**
+
+---
+
+### The relation in the database
+
+The relation is not an abstraction. It is what the reader has been looking at since the first `SELECT`.
+
+Look again at the E-Store customers table from §5.
+
+Through the relational model, that **table can be understood as a relation** — a set of tuples, each with the same structure, drawn from the same domains.
+
+The database table is the practical SQL representation through which the reader encounters relational structures. The mathematical relation is the corresponding relational concept. They align closely — but SQL introduces behaviors that classical relational theory does not.
+
+Every row can be understood as a tuple in the relational model. Every table can be understood through the concept of a relation. The vocabulary is new. The mathematical ideas have been underneath the SQL all along.
+
+Not every relation encodes the same kind of fact. Some participate in one-to-one relationships, some in one-to-many relationships, and some in many-to-many relationships.
+
+The reader has met all three already. Investigation I's credit card was supposed to be 1:1 — and the failure to enforce that was the section's silent ambiguity. Investigation II's loans were 1:N. Investigation IV's customer–loan relationship was M:N, represented through a bridge table.
+
+§7 will give each of these its precise mathematical treatment.
+
+---
+
+### The full translation table
+
+Below is the complete translation table — the concepts the reader has met throughout this file, and their counterparts in SQL.
+
+| Mathematical concept | SQL / relational representation |
+|----------------------|--------------------------------|
+| Element | Value |
+| Tuple | Row |
+| Relation | Table or query result\* |
+| Cardinality | Number of tuples in a relation; SQL commonly reports this as row count\* |
+| Cartesian product | `CROSS JOIN` |
+| Membership | `WHERE column = value`, `IN` |
+| Subset | Containment between two query results |
+| Union (`∪`) | `UNION` |
+| Intersection (`∩`) | `INTERSECT` |
+| Difference (`−`) | `EXCEPT` |
+| Relative complement | `EXCEPT` with the universe as the first set |
+| Symmetric difference (`△`) | Constructed from `EXCEPT` and `UNION` |
+
+\* SQL tables are commonly understood through relational concepts. But SQL also has behavior — such as duplicate rows and `NULL` semantics — that differs from classical relational theory.
+
+**§3.9 gave you a partial map. This is the completed one.**
+
+---
+
+### The section closes
+
+The database is no longer a collection of mysterious tables. The reader can now see the mathematical objects beneath them — the relations, the tuples, the values drawn from domains.
+
+But SQL has a complication.
+
+**SQL permits duplicate rows, whereas a classical relation is a set of distinct tuples. SQL introduces `NULL` as a special marker for missing or unknown information. SQL operates, in many cases, with bag semantics rather than classical set semantics.**
+
+Those differences are not accidents — they are practical decisions made by the SQL standard to support real business needs. But they mean that the mathematics the reader has learned describes the **classical relational model**. SQL builds on that model but adds behaviors of its own.
+
+Part 4 introduces the difference. It begins by asking a question the reader has already begun to sense:
+
+**What is a bag — and why does SQL use one?**
 
 ---
 
 *Part of our mission for 🎯 Quality Education for Anyone, Anywhere, Anytime — 💫 with Comfort, Convenience at no Cost.*
 
 **SQLVerse | Architecture | Mathematics Prerequisite | Part 3 — Tuples and Relations | Next: [Part 4 — Associations and Bags →](04-associations-bags.md)**
-
-
----
-
----
-
----
-
-
-### The relation
-
-A collection of tuples — gathered into a set — is a **relation**.
-
-A relation is a set of tuples drawn from a Cartesian product of domains. Each tuple in the relation satisfies the same structure: same number of positions, same domains for each position.
-
-The E-Store `customers` table is a relation. Its tuples all have five positions. The first position is drawn from the domain of customer IDs, the second from the domain of names, and so on.
-
-But we do not yet need the formal definition. That belongs to §6, where the relation is given its name and its notation. For now, notice only this: **the mathematical object the reader has been looking at — a table of rows — is a relation.** The name will come.
-
-```
-┌─────────────────────────────────────────────┐
-│                                             │
-│                  RELATION                   │
-│                                             │
-│        A set of tuples.                     │
-│                                             │
-│        Each tuple has the same structure.   │
-│        Each tuple is drawn from the same    │
-│        domains.                             │
-│                                             │
-│        Formal definition in §6.             │
-│                                             │
-└─────────────────────────────────────────────┘
-```
-
-The relation is the mathematical object. We will develop it fully in §6.
-
-## 6. Relational Databases
-
-We have the tuples. We have the set.
-
-Now we can give the collection its name.
-
-RELATION
-
-A relation is a subset of a Cartesian product of domains.
-The elements of a relation are tuples.
-The relation is the set of those tuples.
-
-[The formal notation: R ⊆ D₁ × D₂ × ... × Dₙ]
-
-[The relation diagram]
-
-[Codd's insight]
-
-[The full translation table]
-
-[The threshold to §7]
-```
-
-The §6 opening delivers the naming as its **first beat** — the reader's reward for holding the question through §5.
-
----

@@ -4,16 +4,16 @@
 
 ---
 
-# 03C — Mathematics Prerequisite
+# Relational Mathematics
 
 ## Part 4 — Associations
 
 **Sections:** §7 (Association / Relationship) 
 
-**Document Type:** Mathematical Prerequisite — Part 4 of 5
+**Document Type:** Mathematical Foundation — Part 4 of 5  
 **Version:** 1.0  
 **Status:** FROZEN  
-**Location:** `SQLVerse-Architects-Blueprint/01-GRAIN-FOUNDATIONS/03C-MATHEMATICS-PREREQUISITE/`  
+**Location:** `SQLVerse-Architects-Blueprint/01-RELATIONAL-MATHEMATICS/`  
 **Governing Standard:** `SQLVERSE-ARCH-FW-001`
 
 ---
@@ -881,11 +881,11 @@ The row set has changed. The customer side of the result is no longer one-row-pe
 
 **The moment the tables are joined, the reader must ask again: what does ONE ROW represent now?**
 
-This is the question the Grain Triad trained the reader to ask. Every join — every query that combines tables — produces a result at a **specific grain**. If the reader does not know what that grain is, the numbers the query produces cannot be trusted.
+This question is not specific to Arjun's case. It applies to every join, every time — because joining two tables can change what a single row means, silently, even when every value in the result is correct.
 
-**Before I trust a number, I verify its grain.**
+**Before trusting a number produced by a join, know what one row of that result actually represents.**
 
-That was the Grain Triad's discipline. It returns here — unchanged.
+This is a discipline worth carrying forward. The Grain Foundations material that follows this prerequisite develops it fully — what a table's grain is, how joins can change it, and how to catch the moment a query's grain drifts from what was intended. Here, the question is only being asked for the first time. There, it becomes a complete investigative method.
 
 ---
 
@@ -978,9 +978,9 @@ Join `loans` to `loan_payments` on `loan_id`. For each of Arjun's three loans, t
 
 The row count grew. Not because the data was duplicated — because two 1:N relationships met at the same anchor. The customer's loans and their payments both multiplied at the meeting point.
 
-This is the same shape as Investigation III — *"The Multiplier"* — where two independent 1:N branches met at the same account and produced a multiplicative row set. The scale differs. The pattern is identical.
+This is worth naming precisely, because it is not a special case. Whenever two independent one-to-many relationships share the same anchor — one customer, two branches, each branching further — the resulting row count is not additive. It is multiplicative. Three loans, two payments each, is not five rows. It is six.
 
-This beat does not develop the problem. It plants the seed. The answer lives in the frozen 03A, 03B, and 03C files.
+This beat does not develop the problem further. It plants the seed. **The Grain Foundations material that follows this one gives the pattern a name and a full investigation of its own.**
 
 ---
 
@@ -1098,14 +1098,18 @@ Something in the data is wrong — but the database accepted it.
 
 **Case 2 — The synonym.** *Accepted* — the tester finds several rows under this status too. Not a typo. A real word. But is *Accepted* the same business state as *Approved*, or something different? The database does not know. It accepted both.
 
-**Case 3 — The invalid value.** The tester finds rows where `status = 'Banana'`.
+**Case 3 — The invalid value.** Typos and synonyms were accidents — something went wrong upstream, and a flawed value ended up in the table. The tester wants to know something more basic: does this column reject *anything at all*?
+
+To find out, the tester tries to insert a value that could not possibly be mistaken for a real status.
 
 ```sql
 INSERT INTO loans (loan_id, customer_id, status)
 VALUES (LOAN-504, CUST-701, 'Banana');
 ```
 
-The database accepts. The tester looks at the column's declaration:
+The database accepts. Nothing could be a typo of *Approved* and produce *Banana*. The string does not correspond to any business state. And yet the insert succeeded.
+
+The tester looks at the column's declaration:
 
 ```sql
 status TEXT

@@ -44,7 +44,7 @@ The Blueprint exists to teach students how to:
 |--------|-------------|
 | **Investigation Laboratory** | A sandbox where data model deficits are identified, diagnostic queries are executed, alternatives are weighed, and Architectural Decision Records (ADRs) are logged. |
 | **Forensic Workspace** | Students interrogate business pressure, diagnose structural model failures, evaluate trade-offs, and make defensible schema design decisions. |
-| **Grain-First Environment** | Every investigation begins with the grain question: *"What does ONE row represent?"* |
+| **Grain-First Environment** | Every investigation establishes what one row represents before evaluating whether the available data can support the required business fact at the required grain. This reasoning builds on the mathematical foundations of the relational model and the concepts developed in Grain Foundations. |
 | **Decision Registry** | Every approved evolution is logged in the central `ARCHITECTURAL_DECISION_LEDGER.md`. |
 | **Framework-Compliant** | All investigations follow the 11‑step pipeline defined in `SQLVERSE-ARCH-FW-001`. |
 
@@ -55,9 +55,23 @@ The Blueprint exists to teach students how to:
 | Aspect | Description |
 |--------|-------------|
 | **Canonical Schema Repository** | The Blueprint does not hold the canonical schemas. Canonical database states live exclusively in the **Level 1 Foundation** (`sqlverse-foundation`). |
-| **Syntax Drill Room** | The Blueprint is not for practicing SQL syntax. Students entering the Blueprint must already be proficient in `SELECT`, `FROM`, `WHERE`, `GROUP BY`, `HAVING`, `ORDER BY`, and basic `JOIN`s. |
+| **Syntax Drill Room** | The Blueprint is not for practicing SQL syntax. Students entering the Blueprint must already be proficient in `SELECT`, `FROM`, `WHERE`, `GROUP BY`, `HAVING`, `ORDER BY`, and basic `JOIN`s, and must have completed Relational Mathematics, which is read in full before Grain Foundations. |
 | **Production Environment** | Investigations are conducted in a controlled laboratory setting. Schema evolutions are proposed, not deployed. |
 | **Duplicate Repository** | The Blueprint does not duplicate the Foundation. The Foundation is the single source of truth for approved schema state. |
+
+---
+## 🗂️ What the Blueprint Contains
+
+| Folder | Role | Nature |
+|--------|------|--------|
+| `00-CHARTER/` | The laboratory contract | Governing document |
+| `01-RELATIONAL-MATHEMATICS/` | The mathematical vocabulary beneath the relational model | Reference |
+| `02-GRAIN-FOUNDATIONS/` | What one row means, and what happens when grains meet | Foundations |
+| `03-CASE-STUDIES/` | The seven investigations | Investigation |
+| `04-THE-SQLVERSE-BUSINESS-EVOLUTION/` | How business worlds change | Narrative |
+| `decisions/` | The Architectural Decision Ledger | Registry |
+
+Only the case studies are investigations. The other folders prepare for them, govern them, or record their outcomes.
 
 ---
 
@@ -70,15 +84,15 @@ flowchart LR
     end
 
     subgraph FOUNDATION["Level 1 Foundation (Canonical Database State: v1.X)"]
-        D["Approved Decision & Migration"]
+        D["Approved Schema State"]
     end
 
     subgraph ANALYTICS["Level 2 Analytics (Complex Analytical Querying)"]
-        E["Executable Engine"]
+        E["Analytical Consumption"]
     end
 
-    C -->|"Approved Decision & Migration"| D
-    D -->|"Executable Engine"| E
+    C -->|"Hands off approved decision"| D
+    D -->|"Provides canonical state for"| E
 
     style BLUEPRINT fill:#e1f5fe,stroke:#2196f3
     style FOUNDATION fill:#e8f5e8,stroke:#4caf50
@@ -87,9 +101,13 @@ flowchart LR
 
 | Layer | Role |
 |-------|------|
-| **Blueprint** | Investigation Laboratory — where gaps are diagnosed and solutions are proposed |
-| **Foundation** | Canonical State — where approved schema evolutions are stored |
-| **Levels 2 & 3** | Execution & Consumption — where evolved schemas are consumed for advanced analytics |
+| **Relational Mathematics** | Establishes the mathematical vocabulary beneath the relational model |
+| **Grain Foundations** | Develops the concepts needed to reason about row meaning, grain alignment, joins, fan-out, and temporal history |
+| **Blueprint** | Investigation Laboratory: applies those foundations to diagnose business and data-model gaps and propose solutions |
+| **Foundation** | Canonical State: where approved schema evolutions are stored |
+| **Levels 2 & 3** | Execution & Consumption: where evolved schemas are consumed for advanced analytics |
+
+> The mathematical foundation sits upstream of the Blueprint. The Blueprint points to it and does not teach it.
 
 ---
 
@@ -183,13 +201,13 @@ case-study-folder/
 
 ## 📋 Student Workflow
 
-1. **Study** the Blueprint Charter and Grain Foundations.
-2. **Investigate** each case study following the 11‑step pipeline.
-3. **Diagnose** the data model gap and write forensic proof queries.
-4. **Evaluate** solution options and document trade‑offs.
-5. **Make** an architectural decision and log it in the Decision Ledger.
-6. **Propose** a schema evolution (DDL) or approved business rule (View).
-7. **Hand off** the approved decision to the Foundation.
+**1. Orient** — Read the Blueprint Charter.
+**2. Establish** the mathematical foundation — Complete Relational Mathematics in full.
+**3. Build** grain reasoning — Complete Grain Foundations.
+**4. Investigate** — Work through the case studies using the 11-step pipeline.
+**5. Diagnose** — Identify the data-model gap and produce forensic proof queries.
+**6. Evaluate and decide** — Compare alternatives, document trade-offs, and  log the architectural decision in the Decision Ledger.
+**7. Hand off** — Submit the approved schema evolution (Contract A) or approved business rule (Contract B) to the Foundation.
 
 ---
 
@@ -204,3 +222,5 @@ The `SQLVerse-Architects-Blueprint` is the investigation laboratory. The `sqlver
 *Part of our mission for 🎯 Quality Education for Anyone, Anywhere, Anytime — 💫 with Comfort, Convenience at no Cost.*
 
 **SQLVerse | Architecture | Blueprint Charter | Level 1 | Module 4**
+
+

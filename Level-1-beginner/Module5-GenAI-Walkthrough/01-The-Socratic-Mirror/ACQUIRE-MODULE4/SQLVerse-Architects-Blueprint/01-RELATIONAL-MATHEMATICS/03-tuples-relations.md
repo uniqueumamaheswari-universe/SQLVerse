@@ -3,17 +3,16 @@
 **🎯 Quality Education for Anyone, Anywhere, Anytime — 💫 with Comfort, Convenience at no Cost**
 
 ---
-
-# 03C — Mathematics Prerequisite
+# Relational Mathematics
 
 ## Part 3 — Tuples and Relations
 
 **Sections:** §4 (Cartesian Product) · §5 (Relations and Tuples) · §6 (Relational Databases)
 
-**Document Type:** Mathematical Prerequisite — Part 3 of 4  
+**Document Type:** Mathematical Foundation — Part 3 of 5  
 **Version:** 1.0  
 **Status:** FROZEN  
-**Location:** `SQLVerse-Architects-Blueprint/01-GRAIN-FOUNDATIONS/03C-MATHEMATICS-PREREQUISITE/`  
+**Location:** `SQLVerse-Architects-Blueprint/01-RELATIONAL-MATHEMATICS/`  
 **Governing Standard:** `SQLVERSE-ARCH-FW-001`
 
 ---
@@ -335,7 +334,7 @@ But look at a row from a real table.
 
 ```
 customers
-────────────────────────────────────────────────────
+────────────────────────────────────────────────────────────────
 customer_id | name        | email            | phone    | city
 1           | Alice Smith | alice@email.com  | 555-0101 | New York
 ```
@@ -431,7 +430,7 @@ Look at the E-Store table again.
 
 ```
 customers
-────────────────────────────────────────────────────
+─────────────────────────────────────────────────────────────────
 customer_id | name        | email            | phone    | city
 1           | Alice Smith | alice@email.com  | 555-0101 | New York
 2           | Bob Johnson | bob@email.com    | NULL     | Chicago
@@ -589,17 +588,15 @@ The general notation for this — a relation as a subset of a product of domains
 
 ### You have already met these shapes
 
-The file has not taught cardinality — the relationship types — as a mathematical concept. But the reader has **seen** three of them, in the investigations that preceded this prerequisite.
+This file has not yet introduced relationship types as a formal mathematical concept. You met these patterns in ACQUIRE, Module 4 (*Relationships* - **SQLVerse-Architects-Blueprint/3-Relationships.md**). 
 
-**Investigation I — The Silent Ambiguity.** A business team said *"every customer has exactly one credit card."* The claim was **1:1**. But the schema did not enforce it — and when a query joined customers to cards, a customer appeared three times. **The claim was 1:1; the guarantee was absent.** §7 will give the structure its precise mathematical treatment.
+A relation records facts, and facts connect things. A customer may be connected to one loan, to many loans, or to a loan that other customers are also connected to. These are different **shapes** of connection: one-to-one, one-to-many, many-to-many.
 
-**Investigation II — The Parent's Echo.** A customer had one credit limit and three loans. The credit limit was repeated across the loans — three times in the intermediate row set. That is a **1:N** relationship: one customer, many loans.
+The shape is not a detail. It decides how many tuples a relation can hold for a single customer, and what happens when relations are combined.
 
-**Investigation IV — The Bridge.** A customer appeared once. A loan appeared once. Between them sat a `LoanApplications` row — an association. The association was neither the customer nor the loan. It was the relationship — and it had its own grain. That is an **M:N** relationship: many customers, many loans, mediated through a bridge.
+**A relational database stores not just the data; it stores the relationships between the data.**
 
-**A relational database stores not just the data; it stores the relationship between the data.**
-
-§7 will give each of these its precise mathematical definition. For now, notice only this: the three shapes the reader has already met are **three fundamental relationship cardinality patterns.**
+§7 follows one business process from start to finish and shows each of these shapes appear, one by one, with real customers and loans. For now, only note that the shapes exist.
 
 ---
 
@@ -618,25 +615,19 @@ The relation is not the whole space. It is the part that became real.
 
 ---
 
-### What this has to do with the Grain Triad
+### Two questions about a row
 
-The Grain Triad asked a question:
+Every row in a database raises two different questions.
 
-> *"What does one row mean?"*
+The first is a **business** question: *"What does this row mean?"* A row represents one customer, one loan, one payment, or one association. That is the question of **grain**, and the Grain Foundations material that follows this folder develops it fully.
 
-That was a **business** question. A row represents one customer, one loan, one payment, one association. Grain answers *"what does this row mean?"*
-
-This prerequisite asked a different question:
-
-> *"What is one row — mathematically?"*
-
-That was a **mathematical** question. A row is a tuple. Its container is a relation. Together, they are the mathematical structure that a relational database is built from.
+The second is a **mathematical** question: *"What is one row, mathematically?"* A row is a tuple. Its container is a relation. Together they form the structure a relational database is built from. That is the question this folder has answered.
 
 **Grain asks what one row means. Tuple theory asks what one row is mathematically.**
 
-Both questions must be answered for a relational database to be understood. The Grain Triad answered the first. This prerequisite answers the second.
+Both questions matter for understanding a relational database. This folder has answered the second. The first is where the Grain Foundations material begins.
 
-The next section of this file introduces the person who first proposed that these mathematical structures could be the foundation of a business database.
+The next section introduces the person who first proposed that these mathematical structures could be the foundation of a business database.
 
 ---
 
@@ -663,12 +654,6 @@ Through the relational model, that **table can be understood as a relation** —
 The database table is the practical SQL representation through which the reader encounters relational structures. The mathematical relation is the corresponding relational concept. They align closely — but SQL introduces behaviors that classical relational theory does not.
 
 Every row can be understood as a tuple in the relational model. Every table can be understood through the concept of a relation. The vocabulary is new. The mathematical ideas have been underneath the SQL all along.
-
-Not every relation encodes the same kind of fact. Some participate in one-to-one relationships, some in one-to-many relationships, and some in many-to-many relationships.
-
-The reader has met all three already. Investigation I's credit card was supposed to be 1:1 — and the failure to enforce that was the section's silent ambiguity. Investigation II's loans were 1:N. Investigation IV's customer–loan relationship was M:N, represented through a bridge table.
-
-§7 will give each of these its precise mathematical treatment.
 
 ---
 
@@ -707,12 +692,12 @@ But SQL has a complication.
 
 Those differences are not accidents — they are practical decisions made by the SQL standard to support real business needs. But they mean that the mathematics the reader has learned describes the **classical relational model**. SQL builds on that model but adds behaviors of its own.
 
-Part 4 introduces the difference. It begins by asking a question the reader has already begun to sense:
+**That complication will wait.** 
 
-**What is a bag — and why does SQL use one?**
+The next section asks a different question: how do two things become connected? It follows three customers through a loan process and shows what a relationship is, mathematically. The question of what SQL does with duplicates returns later in this folder, in §8.
 
 ---
 
 *Part of our mission for 🎯 Quality Education for Anyone, Anywhere, Anytime — 💫 with Comfort, Convenience at no Cost.*
 
-**SQLVerse | Architecture | Mathematics Prerequisite | Part 3 — Tuples and Relations | Next: [Part 4 — Associations and Bags →](04-associations-bags.md)**
+**SQLVerse | Architecture | Relational Mathematics | Part 3 — Tuples and Relations | Next: [Part 4 — Associations →](04-associations.md)**

@@ -222,5 +222,3 @@ The `SQLVerse-Architects-Blueprint` is the investigation laboratory. The `sqlver
 *Part of our mission for 🎯 Quality Education for Anyone, Anywhere, Anytime — 💫 with Comfort, Convenience at no Cost.*
 
 **SQLVerse | Architecture | Blueprint Charter | Level 1 | Module 4**
-
-

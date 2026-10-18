@@ -1,18 +1,20 @@
+
 # 🗄️🤖 SQL & GenAI Course
+
 **🎯 Quality Education for Anyone, Anywhere, Anytime — 💫 with Comfort, Convenience at no Cost**
 
 ---
 
-# 03C — Mathematics Prerequisite
+# Relational Mathematics
 
 ## Part 2 — Set Operations
 
 **Sections:** §3.1 – §3.11
 
-**Document Type:** Mathematical Prerequisite — Part 2 of 4  
+**Document Type:** Mathematical Foundation — Part 2 of 5  
 **Version:** 1.0  
 **Status:** FROZEN  
-**Location:** `SQLVerse-Architects-Blueprint/01-GRAIN-FOUNDATIONS/03C-MATHEMATICS-PREREQUISITE/`  
+**Location:** `SQLVerse-Architects-Blueprint/01-RELATIONAL-MATHEMATICS/`  
 **Governing Standard:** `SQLVERSE-ARCH-FW-001`
 
 ---
@@ -66,6 +68,8 @@ We begin with a concrete universe.
 ```
 Ω = All FinVERSE Customers
 ```
+**Who is a customer?** In FinVERSE, a customer is represented by a customer record created at **onboarding.** A customer may hold savings accounts, loans, credit cards, or any combination of these, and may close any or all of these products over time. Closing a product does not, by itself, remove the customer from the customer universe. For this demonstration, a customer remains in Ω for as long as their customer record exists. Whether a record is retained once every product has ended is a business rule (we will define the rule later).
+
 Three sets are drawn from that universe — each defined by a different business rule.
 
 - **S₁ = Customers with Active Accounts**
@@ -89,7 +93,7 @@ S₂ = {CUST-703, CUST-704, CUST-705, CUST-706}
 S₃ = {CUST-702, CUST-703, CUST-705, CUST-707}
 ```
 
-The reader has met these customers before. `CUST-701` through `CUST-705` appeared in the Investigation IV dataset. `CUST-706` and `CUST-707` extend the universe slightly, so the sets overlap in ways that will make every operation meaningful.
+**These customer IDs form a small illustrative dataset.** The three sets overlap in different ways, so each set operation that follows has something meaningful to show. **The IDs `CUST-701` through `CUST-707` are small enough to verify by hand.**
 
 For now, every element in these sets is a single value — an ID. The sets are collections of such elements.
 
@@ -596,6 +600,27 @@ An account is not simply **open** or **closed**. Between those two states sit se
 The customer remains a customer. The account remains an account. But the **state** has changed.
 
 This is why the relative complement is meaningful. The complement does not remove customers from the universe — it identifies those whose accounts are not currently active.
+
+---
+### The important edge case: closed relationships
+
+Having classified account statuses, consider whether a customer's identity depends on the products they currently hold. These three cases expose why customer identity and product status must be treated separately.
+
+Consider three customers:
+
+| Customer | Savings | Loan   | Credit card | Still a customer?                                              |
+| -------- | ------- | ------ | ----------- | -------------------------------------------------------------- |
+| Case 1       | Active  | Completed | Surrendered | Yes                                                            |
+| Case 2        | None    | Completed | Surrendered | Depends on the retention rule                                  |
+| Case 3        | Dormant | None   | None        | Yes, if the customer record and relationship remain recognized |
+
+**Case 1:** Closing two services does not end the overall customer relationship while the savings account remains active.
+
+**Case 2:** If all services have ended, does FinVERSE continue to recognize that person as an active customer? Mathematics cannot decide this. **The business must define the rule.** It may decide to move the customer's details to an archive table, preserving the historical record for appropriate future use—for example, when FinVERSE introduces a new product such as prepaid credit cards.
+
+**Case 3:** The customer might have moved abroad for a year and may request the account to be made active on return. An account's status and a customer's existence should not be conflated.
+
+Customer identity and product status are different facts. The complement below depends on both.
 
 ---
 
@@ -1583,4 +1608,4 @@ The answer is a **tuple** — and in a relational database, a tuple has another 
 
 *Part of our mission for 🎯 Quality Education for Anyone, Anywhere, Anytime — 💫 with Comfort, Convenience at no Cost.*
 
-**SQLVerse | Architecture | Mathematics Prerequisite | Part 2 — Set Operations | Next: [Part 3 — Tuples and Relations →](03-tuples-relations.md)**
+**SQLVerse | Architecture | Relational Mathematics | Part 2 — Set Operations | Next: [Part 3 — Tuples and Relations →](03-tuples-relations.md)**

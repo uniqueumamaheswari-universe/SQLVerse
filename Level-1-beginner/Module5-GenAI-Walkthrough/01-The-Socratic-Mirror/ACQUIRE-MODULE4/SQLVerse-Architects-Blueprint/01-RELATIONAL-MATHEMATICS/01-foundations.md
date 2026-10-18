@@ -4,16 +4,16 @@
 
 ---
 
-# 03C — Mathematics Prerequisite
+# Relational Mathematics
 
 ## Part 1 — Foundations
 
 **Sections:** §1 (Sets, Elements, Membership, Universe) · §2 (Subsets)
 
-**Document Type:** Mathematical Prerequisite — Part 1 of 4  
+**Document Type:** Mathematical Foundation — Part 1 of 5  
 **Version:** 1.0  
 **Status:** FROZEN  
-**Location:** `SQLVerse-Architects-Blueprint/01-GRAIN-FOUNDATIONS/03C-MATHEMATICS-PREREQUISITE/`  
+**Location:** `SQLVerse-Architects-Blueprint/01-RELATIONAL-MATHEMATICS/`  
 **Governing Standard:** `SQLVERSE-ARCH-FW-001`
 
 ---
@@ -24,7 +24,7 @@
 
 ---
 
-*This is Part 1 of the Mathematics Prerequisite. It is the reader's entry into the mathematical vocabulary that the file family assumes. The four parts are read in order — this file establishes the vocabulary; the parts that follow develop it.*
+*This is Part 1 of the Relational mathematics. It is the reader's entry into the mathematical vocabulary that the file family assumes. The five parts are read in order — this file establishes the vocabulary; the parts that follow develop it.*
 
 ---
 
@@ -215,7 +215,7 @@ SELECT account_id FROM accounts WHERE balance > 50000;
 
 If this query returns fewer rows than the full `accounts` table, it produces a proper subset. If it returns every row — because every account happens to have balance > 50000 — the result is **equal to the parent set** and therefore is a subset of it, but not a proper subset.
 
-The distinction between proper and improper subsets is not observable in the SQL syntax. It is a property of the result. The reader identifies it by comparing the result set's cardinality against the parent set's cardinality.
+The distinction between proper and improper subsets is not observable in the SQL syntax. It is a property of the result. The reader identifies it by comparing the result set's cardinality against the parent set's cardinality. Here, cardinality means the number of elements in a set, written |S|, defined formally in §3.2. The term will take on other meanings later in this folder.
 
 ---
 
@@ -304,7 +304,7 @@ We will develop this pattern more fully in §3 (Set Operations).
 
 ### Foreign Key Constraints as Subset Rules
 
-In relational systems, declarative integrity constraints enforce set-theoretic subset rules across domains.
+In relational systems, declarative integrity constraints enforce set-theoretic subset rules across tables.
 
 A **Foreign Key constraint** asserts that the set of **distinct** values in a referencing child column must form a subset of the primary key values in the referenced parent column:
 
@@ -338,8 +338,10 @@ CREATE TABLE loan_applications (
 
 Every insert into `loan_applications` is checked against the parent tables. If either FK value is not present in its parent, the insert is rejected. The mathematics of subsets becomes the executable law of the schema.
 
----
+> We will return to foreign keys in §7 (Association).
+
+ ---
 
 *Part of our mission for 🎯 Quality Education for Anyone, Anywhere, Anytime — 💫 with Comfort, Convenience at no Cost.*
 
-**SQLVerse | Architecture | Mathematics Prerequisite | Part 1 — Foundations | Next: [Part 2 — Set Operations →](02-set-operations.md)**
+**SQLVerse | Architecture | Relational Mathematics | Part 1 — Foundations | Next: [Part 2 — Set Operations →](02-set-operations.md)**

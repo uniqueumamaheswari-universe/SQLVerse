@@ -58,13 +58,13 @@ That statement is not about the customer alone, and not about the loan alone. It
 
 ```
 CUST-701   Meera Nair      — new FinVERSE customer, applying for her first loan
-                             LOAN-501 (Personal Loan, ₹500,000)
+                             LOAN-501 (Personal Loan, 500,000)
 
 CUST-702   Arjun Sharma    — existing FinVERSE customer, already holding three loans
-                             Applying for LOAN-502 (Personal Loan, ₹300,000)
+                             Applying for LOAN-502 (Personal Loan, 300,000)
 
 CUST-703   Divya Rao       — existing FinVERSE customer, holding a car loan
-                             Applying for LOAN-503 (Home Loan, ₹8,000,000)
+                             Applying for LOAN-503 (Home Loan, 8,000,000)
 ```
 **Three customers. Three distinct profiles.**
 
@@ -254,8 +254,8 @@ Return to the opening table. Arjun already held three active loans before this f
 
 ```
 CUST-702 (Arjun)  ──┬──  LOAN-401
-                     ├──  LOAN-402
-                     └──  LOAN-403
+                    ├──  LOAN-402
+                    └──  LOAN-403
 ```
 
 One customer. Three loans. The customer side of the pairing repeats; the loan side does not — each of these loans belongs to Arjun and to no one else.
@@ -293,7 +293,7 @@ Divya Rao's home loan application was headed for approval. Then the property's v
 
 Divya was given 20 days to provide either an additional guarantor or another property as collateral. She could not find a guarantor. She offered a property — but it was in her spouse's name, and the bank initially refused collateral it did not have a legal claim to.
 
-Then the Executive Vice-President proposed something else entirely.
+Then the Executive Vice-President proposed a way forward.
 
 > **Make the spouse a joint loan applicant.**
 
@@ -342,7 +342,7 @@ The application *initially involved one customer and one loan*. After the revisi
 Put the two together.
 
 ```
-One customer  ── many loans
+One customer   ── many loans
 Many customers ── one loan
         ↓
 Many customers ── many loans
@@ -384,11 +384,11 @@ This is what a bridge table records. Not merely two foreign keys side by side �
 
 ### Cardinality and grain are not the same thing
 
-A caution, now that both concepts are on the table.
+Cardinality is not the only way to describe a table of associations. There is a second idea worth naming here, because the two are easy to confuse.
 
-**Cardinality** describes the shape of an association — how many entities on one side can participate with entities on the other.
+**Cardinality** describes the shape of an association: how many entities on one side can participate with entities on the other.
 
-**Grain** describes what one row represents — the level of detail a single record holds.
+**Grain** describes what one row represents: the level of detail a single record holds. The question behind it is simple: *what does one row of this table mean?*
 
 ```text
 Cardinality:
@@ -397,9 +397,12 @@ many customers ↔ many loans
 Grain:
 one row = one customer's participation in one loan
 ```
-These are related, but they are not the same. The `loan_applicants` table above has an M:N **cardinality** — many customers, many loans — but its **grain** is one row per customer–loan participation. Two customers on one loan produce two rows — not because the association is duplicated, but because each participation is its own fact.
+
+These are related, but they are not the same. The `loan_applicants` table above has an M:N **cardinality**: many customers, many loans. Its **grain** is one row per customer–loan participation. Two customers on one loan produce two rows, not because the association is duplicated, but because each participation is its own fact.
 
 **Cardinality tells us how entities may connect. Grain tells us what one row means.**
+
+Grain is developed fully in the Grain Foundations material that follows this folder. Here it is introduced only to separate it from cardinality.
 
 ---
 
@@ -414,6 +417,7 @@ The business did not merely select from the space of possibility this time. It r
 **The business decision created a new association — and the new association revealed a new mathematical structure.**
 
 ---
+
 ## The foreign key — from mathematics to executable reality
 
 We have described the association mathematically. We have shown that `R ⊆ C × L` — that the actual Customer–Loan associations form a subset of every pairing that could possibly exist.
@@ -947,7 +951,7 @@ Joined result grain:
     one row = one primary–joint applicant relationship
 ```
 
-The mini-principle returns: *"Cardinality tells us how entities may connect. Grain tells us what one row means."*
+The mini-principle: *"Cardinality tells us how entities may connect. Grain tells us what one row means."*
 
 ---
 
@@ -1279,11 +1283,11 @@ The `loans` table carries the **requested** amount. The `approved_loan_terms` ta
 
 ```
 LOAN-501
-    requested amount (loans)                ₹4,500,000
-    approved amount (approved_loan_terms)   ₹3,000,000
+    requested amount (loans)                4,500,000
+    approved amount (approved_loan_terms)   3,000,000
 ```
 
-The customer asked for ₹4,500,000. The bank approved ₹3,000,000. The customer accepted the revised terms.
+The customer asked for 4,500,000. The bank approved 3,000,000. The customer accepted the revised terms.
 
 **Neither value is wrong.** Both are correct — because they record **different business facts**.
 
@@ -1399,5 +1403,5 @@ But Case 5 showed something the earlier cases could not. Even with every column'
 
 *Part of our mission for 🎯 Quality Education for Anyone, Anywhere, Anytime — 💫 with Comfort, Convenience at no Cost.*
 
-**SQLVerse | Architecture | Mathematics Prerequisite | Part 4 — Associations | Next: [Part 5 — Bags →](05-bags.md)**
+**SQLVerse | Architecture | Relational Mathematics | Part 4 — Associations | Next: [Part 5 — Bags →](05-bags.md)**
 

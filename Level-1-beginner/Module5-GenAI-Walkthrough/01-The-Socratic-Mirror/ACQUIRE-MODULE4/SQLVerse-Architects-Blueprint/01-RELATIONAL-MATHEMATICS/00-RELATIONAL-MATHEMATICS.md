@@ -77,6 +77,8 @@ Each file continues the numbering, notation, and conventions established in the 
 
 If you have read the folder before and want to revisit a specific topic, use the master map below.
 
+> **Reading identifiers.** Labels such as `CUST-701` and `LOAN-501` are narrative identifiers, not the actual stored keys. See the note at the top of [File 1](01-foundations.md) for what they are and how to read the SQL that uses them.
+
 ---
 
 ## 🗺️ Master Map
@@ -101,6 +103,7 @@ If you have read the folder before and want to revisit a specific topic, use the
 | **§6** | Relational Databases | `03-tuples-relations.md` |
 | **§7** | Association / Relationship | `04-associations.md` |
 | **§8** | Bags / Multisets | `05-bags.md` |
+| **§9** | The Vocabulary, Complete | `05-bags.md` |
 
 
 ---

@@ -28,6 +28,10 @@
 
 ---
 
+> **Note on identifiers.** In this folder, customers, loans and other entities are referred to by readable labels such as `CUST-701` and `LOAN-501`. These labels are narrative identifiers, chosen so each example can be followed by eye. The FinVERSE Schema Guide stores such keys as integers, so SQL written against the labels (for example, `WHERE loan_id = 'LOAN-501'`) is illustrative and shows the logic of the query, not code to run against `finverse.db` as written.
+
+---
+
 ## 1. Sets, Elements, Membership, and Universe
 
 Before we define a relation formally, we need the mathematical objects from which a relation is constructed.

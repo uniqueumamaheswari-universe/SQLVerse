@@ -25,9 +25,7 @@
 
 ---
 
-*This is Part 2 of the Mathematics Prerequisite. It continues from [`01-foundations.md`](01-foundations.md) — Part 1.*
-
-*Part 1 established the vocabulary of sets, elements, membership, and subsets. Part 2 develops the vocabulary of set operations: how sets combine, intersect, exclude, and complement one another — and how those operations map to SQL, to identities, and to business investigations.*
+*Continues from [Part 1, Foundations](01-foundations.md). Sets, membership and subsets are now defined. This part develops how sets combine, intersect, exclude and complement one another, and how those operations map to SQL.*
 
 *The numbering and conventions established in Part 1 continue throughout.*
 
@@ -68,7 +66,7 @@ We begin with a concrete universe.
 ```
 Ω = All FinVERSE Customers
 ```
-**Who is a customer?** In FinVERSE, a customer is represented by a customer record created at **onboarding.** A customer may hold savings accounts, loans, credit cards, or any combination of these, and may close any or all of these products over time. Closing a product does not, by itself, remove the customer from the customer universe. For this demonstration, a customer remains in Ω for as long as their customer record exists. Whether a record is retained once every product has ended is a business rule (we will define the rule later).
+**Who is a customer?** In FinVERSE, a customer is represented by a customer record created at **onboarding.** A customer may hold savings accounts, loans, credit cards, or any combination of these, and may close any or all of these products over time. Closing a product does not, by itself, remove the customer from the customer universe. For this demonstration, a customer remains in Ω for as long as their customer record exists. Whether a record is retained once every product has ended is a business rule, discussed in §3.5.
 
 Three sets are drawn from that universe — each defined by a different business rule.
 
@@ -197,7 +195,7 @@ UNION ALL      — all values preserved (bag semantics)
 
 Mathematically, a set cannot contain duplicates. `A ∪ A = A` — unioning a set with itself changes nothing and demonstrates **idempotence**.
 
-But SQL's `UNION ALL` can preserve repeated occurrences. This is because SQL operates on **bags** — multiset structures that permit duplicates. We will return to bags and their consequences in §8.
+But SQL's `UNION ALL` can preserve repeated occurrences. This is because SQL operates on **bags** — multiset structures that permit duplicates. We will return to bags and their consequences in §8, Bags (Part 5, `05-bags.md`).
 
 For the remainder of §3, we work with set semantics — `UNION` without `ALL`.
 
@@ -304,7 +302,7 @@ The `DISTINCT` keyword is needed here because the join itself may produce duplic
 
 > **Primary-key uniqueness in the base `customers` table does not guarantee uniqueness of `customer_id` after a join.**
 
-We will return to this relationship between `INTERSECT` and `INNER JOIN` in §7, where the joins-to-set-operations mapping is developed in full.
+We will return to this relationship between `INTERSECT` and `INNER JOIN` in §7, Association (Part 4, `04-associations.md`).
 
 ---
 ### Intersection across other universes
@@ -376,7 +374,7 @@ Three SQL set operations have just passed through this section — `UNION`, `INT
 
 The mathematics of sets is uniform. The SQL operations are not.
 
-We will return to this in §8.
+We will return to this in §8, Bags (Part 5, `05-bags.md`).
 
 ---
 
@@ -1118,7 +1116,7 @@ A ∩ A = A
 
 Unioning a set with itself returns the set. Intersecting a set with itself returns the set. Sets contain no duplicates — so the repeated occurrence is not preserved.
 
-This is where **set semantics** begins to differ from **bag semantics**. Under bag semantics, `A ∪ A` may not equal `A` — because bags permit duplicates. We will return to this in §8.
+This is where **set semantics** begins to differ from **bag semantics**. Under bag semantics, `A ∪ A` may not equal `A` — because bags permit duplicates. We will return to this in §8, Bags (Part 5, `05-bags.md`).
 
 ---
 
@@ -1149,8 +1147,7 @@ The two laws express the same idea from opposite directions: **negation distribu
 
 ---
 
-
-Every reader has met De Morgan's Laws already — without knowing it.
+Readers have met De Morgan's Laws already, without knowing it.
 
 De Morgan's Laws also provide the mathematical foundation for familiar Boolean rewrites in SQL predicates.
 
@@ -1173,7 +1170,7 @@ De Morgan's Laws also provide the mathematical foundation for familiar Boolean r
 └─────────────────────────────────────────────┘
 ```
 
-*The equivalence above holds when the values involved are not NULL. SQL's handling of NULL introduces a three-valued logic in which the classical form of De Morgan's Laws must be qualified. We do not develop that here; §8 introduces the broader SQL/set-theory distinction. For the remainder of this section, we treat all values as non-NULL.*
+*The equivalence above holds when the values involved are not NULL. SQL's handling of NULL introduces a three-valued logic in which the classical form of De Morgan's Laws must be qualified. We do not develop that here; §8.6, NULL (Part 5) introduces the broader SQL/set-theory distinction. For the remainder of this section, we treat all values as non-NULL.*
 
 ---
 
@@ -1246,7 +1243,7 @@ The translation is a **map**, not an identity.
 
 The mathematics describes the **ideal** form. SQL often operates with **bag semantics**, permitting duplicates where the mathematics does not.
 
-We will return to this distinction in §8.
+We will return to this distinction in §8, Bags (Part 5, `05-bags.md`).
 
 ---
 
@@ -1424,7 +1421,7 @@ Three customers hold exactly one FinVERSE product.
 
 The full multi-branch SQL for *"Exactly One Product"* is not shown here. The purpose of this section is to make the **mathematical composition** visible before translating it into SQL.
 
-*(The complete multi-branch SQL query for "Exactly One Product" is explored as a guided exercise in the Module 4 Lab.)*
+*(The complete multi-branch SQL query for "Exactly One Product" is explored as a guided exercise later in the course.)*
 
 ---
 
@@ -1606,6 +1603,11 @@ The answer is a **tuple** — and in a relational database, a tuple has another 
 
 ---
 
+**Next:** [Part 3, Tuples and Relations](03-tuples-relations.md)
+*Every element so far was a single value. Part 3 asks what an element is when it has structure.*
+
+---
+
 *Part of our mission for 🎯 Quality Education for Anyone, Anywhere, Anytime — 💫 with Comfort, Convenience at no Cost.*
 
-**SQLVerse | Architecture | Relational Mathematics | Part 2 — Set Operations | Next: [Part 3 — Tuples and Relations →](03-tuples-relations.md)**
+**SQLVerse | Architecture | Relational Mathematics | Part 2 — Set Operations | Next: Part 3 — Tuples and Relations**

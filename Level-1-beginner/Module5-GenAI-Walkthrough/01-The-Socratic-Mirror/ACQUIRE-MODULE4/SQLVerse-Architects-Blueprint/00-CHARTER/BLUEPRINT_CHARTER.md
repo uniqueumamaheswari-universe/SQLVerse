@@ -73,6 +73,33 @@ The Blueprint exists to teach students how to:
 
 Only the case studies are investigations. The other folders prepare for them, govern them, or record their outcomes.
 
+These folders share one repository tree. Sharing a tree does not make the Blueprint the owner of Relational Mathematics, which remains a standalone reference that other areas consume.
+
+---
+## 🧭 Blueprint Navigation 
+
+All documents across `SQLVerse-Architects-Blueprint` strictly adhere to the navigation and linking convention established in this Charter.
+
+### The Three Link Types
+
+| Type | Use Case | Standard Form |
+|---|---|---|
+| **Continuation** | Next file continues the same linear argument | One sentence context, followed by the link. |
+| **Threshold** | Reader crosses into a new structural area/folder | Three-part bridge (What you can now do, What comes next, Why it matters here), followed by the link. |
+| **Reference** | Mid-text pointer to specific concepts | Section number, section title, and relative file link. |
+
+### Core Navigation Rules
+
+1. **Openings & Handoffs:** Every file except the first of the Blueprint opens with a continuation line (inside an area) or a threshold introduction (first file of a new area). Every file closes with a continuation handoff or, at the end of an area, a threshold bridge.
+2. **Relative Paths & Title Integrity:** All hyperlinks must use relative file paths. Link text must always use the target's explicit title, never generic text such as "here".
+3. **Section-Level References:** Cross-file references must identify the section number, section title, and linked file. A bare section number is never sufficient.
+4. **Threshold Bridge Structure:** Every threshold bridge must contain three parts: **What you can now do** (2–4 bullets), **What comes next** (one short paragraph), and **Why it matters here** (one sentence). It must end with one bold **Proceed to:** link.
+5. **Forward Reference Integrity:** Forward references may promise only content that exists.  If the target is not yet drafted, write "later in this folder" or "later in the Blueprint", whichever matches the scope, without creating a link.
+6. **Backward Reference Integrity:** Backward references may point only to content the reader has already encountered.
+7. **Strict One-Way Dependency:** Dependency runs one way: Relational Mathematics, then Grain Foundations, then Case Studies. Earlier areas may mention later areas as forward pointers, but must never cite them as previously established material.
+8. **Anchor Safety:** Section anchors use plain-text headings. Emojis are omitted from anchor targets to prevent link breakage across renders.
+9. **Information Secrecy:** A handoff must establish the question or direction carried forward without revealing the conclusion or resolution of the target file.
+
 ---
 
 ## 🔗 Relationship to the SQLVerse Architecture
@@ -87,11 +114,11 @@ flowchart LR
         D["Approved Schema State"]
     end
 
-    subgraph ANALYTICS["Level 2 Analytics (Complex Analytical Querying)"]
+    subgraph ANALYTICS["Levels 2 & 3 (Complex Analytical Querying)"]
         E["Analytical Consumption"]
     end
 
-    C -->|"Hands off approved decision"| D
+    C -->|"Hands off approved decision & migration"| D
     D -->|"Provides canonical state for"| E
 
     style BLUEPRINT fill:#e1f5fe,stroke:#2196f3
@@ -201,13 +228,13 @@ case-study-folder/
 
 ## 📋 Student Workflow
 
-**1. Orient** — Read the Blueprint Charter.
-**2. Establish** the mathematical foundation — Complete Relational Mathematics in full.
-**3. Build** grain reasoning — Complete Grain Foundations.
-**4. Investigate** — Work through the case studies using the 11-step pipeline.
-**5. Diagnose** — Identify the data-model gap and produce forensic proof queries.
-**6. Evaluate and decide** — Compare alternatives, document trade-offs, and  log the architectural decision in the Decision Ledger.
-**7. Hand off** — Submit the approved schema evolution (Contract A) or approved business rule (Contract B) to the Foundation.
+1. **Orient** — Read the Blueprint Charter.
+2. **Establish** the mathematical foundation — Complete Relational Mathematics in full.
+3. **Build** grain reasoning — Complete Grain Foundations.
+4. **Investigate** — Work through the case studies using the 11-step pipeline.
+5. **Diagnose** — Identify the data-model gap and produce forensic proof queries.
+6. **Evaluate and decide** — Compare alternatives, document trade-offs, and log the architectural decision in the Decision Ledger.
+7. **Hand off** — Submit the approved schema evolution (Contract A) or approved business rule (Contract B) to the Foundation.
 
 ---
 

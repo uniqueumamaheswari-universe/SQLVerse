@@ -23,9 +23,7 @@
 
 ---
 
-*This is Part 3 of the Mathematics Prerequisite. It continues from [`02-set-operations.md`](02-set-operations.md) — Part 2.*
-
-*Part 2 ended with a question: what is an element when the element is not a single value, but something a database actually stores? Part 3 answers that question. §4 defines the space from which structured elements are drawn — the Cartesian product. §5 defines the structure of one element — the tuple. §6 defines the collection of such elements — the relation. By the end of Part 3, the mathematical objects that a relational database is built from will be fully named.*
+*Continues from [Part 2, Set Operations](02-set-operations.md). Sets and their operations are defined, and the question of what an element is when it has structure is open. This part builds the answer: the Cartesian product (§4), the tuple (§5) and the relation (§6).*
 
 *The numbering and conventions established in Parts 1 and 2 continue throughout.*
 
@@ -73,7 +71,7 @@ That single result — not the 128 who might have been — is what gets recorded
 
 ---
 
-Mathematics has a name for that wide field of what could be true. It is called the **Cartesian product** — the space of possibility. And it has a name for the narrower reality that gets recorded — but that name is not yet earned. We will meet it properly in §7.
+Mathematics has a name for that wide field of what could be true. It is called the **Cartesian product** — the space of possibility. And it has a name for the narrower reality that gets recorded — but that name is not yet earned. We will meet it properly in §7, Association (Part 4, `04-associations.md`)".
 
 The Wimbledon story gives us the intuition. Mathematics gives that intuition a more precise structure. When two sets of possibilities are combined, the Cartesian product creates the complete space of possible pairings.
 
@@ -452,7 +450,7 @@ Each row is one tuple. Each tuple is one structured fact — one customer.
 
 The classical mathematics and the SQL implementation differ on this point. In the classical relational model, each tuple position contains a value drawn from its corresponding domain. SQL introduces `NULL` as a special marker for missing or unknown information, which does not behave like an ordinary value from that domain. SQL permits a position to hold no value — and represents that absence with `NULL`.
 
-We include `NULL` where the data includes it — because the students have already been introduced to `NULL` values in the course foundation, and because this data has been taken directly from the **E-Store flagship universe** to present a **realistic snapshot** of what an actual database stores. A database is not a mathematical ideal. It is a reflection of real business facts, some of which are missing. We return to the broader distinction between relational mathematics and SQL semantics in §8.
+We include `NULL` where the data includes it — because you have already been introduced to `NULL` values in the course foundation, and because this data has been taken directly from the **E-Store flagship universe** to present a **realistic snapshot** of what an actual database stores. A database is not a mathematical ideal. It is a reflection of real business facts, some of which are missing. We return to the broader distinction between relational mathematics and SQL semantics in §8, Bags (Part 5, `05-bags.md`).
 
 
 **What is the collection of these tuples?**
@@ -574,7 +572,7 @@ Each position in these tuples is drawn from its own defined set of possible valu
 
 > **Each domain defines the set of permitted values for one position in the tuple.**
 >
-> *In SQL, a domain is often realized as a column's **data type** and its **constraints** — such as `INTEGER`, `VARCHAR`, `NOT NULL`, or `CHECK`. We will develop this connection in §7.*
+> *In SQL, a domain is often realized as a column's **data type** and its **constraints** — such as `INTEGER`, `VARCHAR`, `NOT NULL`, or `CHECK`. We will develop this connection in §7, Association (Part 4, `04-associations.md`).*
 
 The first position of every tuple in the relation is drawn from the domain of IDs. The second position is drawn from the domain of names. And so on, one domain per position.
 
@@ -588,7 +586,7 @@ The general notation for this — a relation as a subset of a product of domains
 
 ### You have already met these shapes
 
-This file has not yet introduced relationship types as a formal mathematical concept. You met these patterns in ACQUIRE, Module 4 (*Relationships* - **SQLVerse-Architects-Blueprint/3-Relationships.md**). 
+This file has not yet introduced relationship types as a formal mathematical concept. You met these patterns in ACQUIRE, Module 4 [**Relationships.**](../../../../../Module4-JoiningTables/1-sqlCommands/SQLVerse-Architects-Blueprint/3-Relationships.md)
 
 A relation records facts, and facts connect things. A customer may be connected to one loan, to many loans, or to a loan that other customers are also connected to. These are different **shapes** of connection: one-to-one, one-to-many, many-to-many.
 
@@ -619,7 +617,7 @@ The relation is not the whole space. It is the part that became real.
 
 Every row in a database raises two different questions.
 
-The first is a **business** question: *"What does this row mean?"* A row represents one customer, one loan, one payment, or one association. That is the question of **grain**, and the Grain Foundations material that follows this folder develops it fully.
+The first is a **business** question: *"What does this row mean?"* A row represents one customer, one loan, one payment, or one association. That is the question of **grain**, and the Grain Foundations material (`02-GRAIN-FOUNDATIONS/`) that follows this folder develops it fully.
 
 The second is a **mathematical** question: *"What is one row, mathematically?"* A row is a tuple. Its container is a relation. Together they form the structure a relational database is built from. That is the question this folder has answered.
 
@@ -694,10 +692,16 @@ Those differences are not accidents — they are practical decisions made by the
 
 **That complication will wait.** 
 
-The next section asks a different question: how do two things become connected? It follows three customers through a loan process and shows what a relationship is, mathematically. The question of what SQL does with duplicates returns later in this folder, in §8.
+The next section asks a different question: how do two things become connected? It follows three customers through a loan process and shows what a relationship is, mathematically. The question of what SQL does with duplicates returns later in this folder, in §8, Bags (Part 5, `05-bags.md`).
+
+---
+
+**Next:** [Part 4, Associations](04-associations.md)
+
+*A relation is a set of tuples. Part 4 follows three loan applications to show how two entities become connected.*
 
 ---
 
 *Part of our mission for 🎯 Quality Education for Anyone, Anywhere, Anytime — 💫 with Comfort, Convenience at no Cost.*
 
-**SQLVerse | Architecture | Relational Mathematics | Part 3 — Tuples and Relations | Next: [Part 4 — Associations →](04-associations.md)**
+**SQLVerse | Architecture | Relational Mathematics | Part 3 — Tuples and Relations | Next: Part 4 — Associations**

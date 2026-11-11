@@ -24,9 +24,7 @@
 
 ---
 
-*This is Part 4 of the Mathematics Prerequisite. It continues from [`03-tuples-relations.md`](03-tuples-relations.md) — Part 3.*
-
-*Part 3 established the mathematical objects of the relational model: the Cartesian product, the tuple, and the relation. Part 4 delivers the section the whole prerequisite has been building toward — the association relation, in which the connection between two entities becomes a first-class mathematical object.*
+*Continues from [Part 3, Tuples and Relations](03-tuples-relations.md). Relations, tuples and domains are now defined. This part follows three loan applications to show how two entities become connected, and how that connection is enforced, queried and given a domain.*
 
 *The numbering and conventions established in Parts 1 through 3 continue throughout.*
 
@@ -152,7 +150,7 @@ Before going further, a word of caution. This file has used the word **relation*
 
 These words are close enough to cause real confusion, so it is worth being precise once, here, rather than leaving it to context:
 
-- A **relation** (§5–§6) is a set of tuples — the mathematical structure behind a table.
+- A **relation** (§5 and §6 (Part 3, `03-tuples-relations.md`)) is a set of tuples — the mathematical structure behind a table.
 - A **relationship** or **association** (this section) is a connection between two entities — the kind of thing Meera, Arjun, and Divya each attempted to form with a loan.
 
 As it happens, a business association turns out to be mathematically expressible using a relation. That is not a coincidence — it is the subject of the rest of this section. But the two words are not synonyms, and the file will use each one deliberately from here on.
@@ -181,7 +179,7 @@ L = {LOAN-501, LOAN-502, LOAN-503, ...}
 C × L
 ```
 
-Every customer paired with every loan — including pairings that would never happen in practice, like Meera paired with Divya's home loan. `C × L` does not know or care what's realistic. It is the full space of possibility, exactly as §4 defined it.
+Every customer paired with every loan — including pairings that would never happen in practice, like Meera paired with Divya's home loan. `C × L` does not know or care what's realistic. It is the full space of possibility, exactly as §4, Cartesian Product (Part 3) defined it.
 
 **Which Customer–Loan pairings became actual approved business associations?**
 
@@ -208,12 +206,22 @@ The actual Customer–Loan associations are a subset of every pairing that could
 
 **Three arcs. Three outcomes. One unresolved.**
 
-**The reader leaves the opening with a question:**  _"What happens to Divya?"_
+**What happens to Divya is still open.**
 
 **The climax later answers it.**
 
 ---
-## Cardinality
+### Cardinality
+
+The word **cardinality** has more than one meaning in this folder and in database practice. Before the shapes of association are described, here are the three senses side by side.
+
+| Meaning | What it counts | Where you meet it |
+|---|---|---|
+| **Set cardinality** | The number of elements in a set, written `\|S\|` | Part 1 (§2) and throughout |
+| **Column cardinality** | The number of distinct values in a column | Indexing, query planning, data profiling |
+| **Relationship cardinality** | How many entities on one side of an association can pair with entities on the other (1:1, 1:N, M:N) | This section |
+
+Column cardinality is set cardinality applied to the distinct values of one column. Relationship cardinality is a different idea: not a count of elements, but the shape of an association. **This section uses the word in the third sense, unless it says otherwise.**
 
 The natural next question is not about mathematics. It is about shape.
 
@@ -564,7 +572,7 @@ The foreign key is not passive. It **acts**. It is the schema's enforcement of t
 
 ### The mathematical form
 
-The foreign key's job can be stated in the same form §2 introduced.
+The foreign key's job can be stated in the same form §2, Subsets (Part 1, `01-foundations.md`) introduced.
 
 ```
 Values(DISTINCT customer_id in loan_applicants)
@@ -889,13 +897,13 @@ This question is not specific to Arjun's case. It applies to every join, every t
 
 **Before trusting a number produced by a join, know what one row of that result actually represents.**
 
-This is a discipline worth carrying forward. The Grain Foundations material that follows this prerequisite develops it fully — what a table's grain is, how joins can change it, and how to catch the moment a query's grain drifts from what was intended. Here, the question is only being asked for the first time. There, it becomes a complete investigative method.
+This is a discipline worth carrying forward. The Grain Foundations material that follows this folder (`02-GRAIN-FOUNDATIONS/`) develops it fully — what a table's grain is, how joins can change it, and how to catch the moment a query's grain drifts from what was intended. Here, the question is only being asked for the first time. There, it becomes a complete investigative method.
 
 ---
 
 ### Self-join — the table does not need to be different
 
-A `JOIN` does not require two different tables. You have already seen this in ACQUIRE.
+A `JOIN` does not require two different tables. You have already seen this in ACQUIRE (`Module4-JoiningTables/1-sqlCommands/5-SelfJoin.md`).
 
 In Module 4 — *The Connector* — you wrote self-joins against three different schemas:
 
@@ -1108,7 +1116,7 @@ To find out, the tester tries to insert a value that could not possibly be mista
 
 ```sql
 INSERT INTO loans (loan_id, customer_id, status)
-VALUES (LOAN-504, CUST-701, 'Banana');
+VALUES ('LOAN-504', 'CUST-701', 'Banana');
 ```
 
 The database accepts. Nothing could be a typo of *Approved* and produce *Banana*. The string does not correspond to any business state. And yet the insert succeeded.
@@ -1397,11 +1405,18 @@ But Case 5 showed something the earlier cases could not. Even with every column'
 
 **A database does not automatically know what a value means. Someone has to give it that meaning.** And sometimes that meaning is not merely given. It is enforced — by the schema, by the application, by the two working together.
 
-**The database can reject a value and still fail to represent the business correctly** — because sometimes the problem is not *"this value should not exist."* It is *"this value exists, but the model does not yet understand what business fact it belongs to."*
+**Sometimes the problem is not *"this value should not exist."*** It is *"this value exists, but the model does not yet understand what business fact it belongs to."*
+
+*Where FinVERSE's product lines came from is a business story, told later in the Blueprint (`04-THE-SQLVERSE-BUSINESS-EVOLUTION/`).*
+
+---
+
+**Next:** [Part 5, Bags](05-bags.md)
+*Classical relations are sets, but SQL results can repeat. Part 5 asks what SQL is actually returning.*
 
 ---
 
 *Part of our mission for 🎯 Quality Education for Anyone, Anywhere, Anytime — 💫 with Comfort, Convenience at no Cost.*
 
-**SQLVerse | Architecture | Relational Mathematics | Part 4 — Associations | Next: [Part 5 — Bags →](05-bags.md)**
+**SQLVerse | Architecture | Relational Mathematics | Part 4 — Associations | Next: Part 5 — Bags**
 

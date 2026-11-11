@@ -23,9 +23,7 @@
 
 ---
 
-*This is Part 5 of the Relational Mathematics. It continues from [`04-associations.md`](04-associations.md) — Part 4.*
-
-*Part 4 ended with the structure of an association — how a customer and a loan can be linked, how that link is enforced, and how a query walks across it. Part 5 begins with a question: what happens when the same value appears more than once — and when is that repetition a fact, and when is it an illusion?*
+Continues from [Part 4, Associations](04-associations.md). Keys, joins and domains are now defined. This part asks what SQL is actually returning when the same value appears more than once.*
 
 *The numbering and conventions established in Parts 1 through 4 continue throughout.*
 
@@ -39,6 +37,8 @@
 - `C`, `L`, `R` — the customer set, the loan set, and the association relation
 - `A × B` — the Cartesian product of `A` and `B`
 - `(a, b, c)` — a tuple — an ordered collection of values
+- `∩` and `−` are used here in their bag senses
+- `A` may be a bag
 
 ### Notation introduced in Part 5
 
@@ -111,7 +111,7 @@ And the answer changes the total — from **465,000** to **105,000** — without
 
 ---
 
-The analyst must decide: **what is this collection of amounts, mathematically?**
+The question the analyst has not yet asked: **what is this collection of amounts, mathematically?**
 
 *The rest of §8 answers.*
 
@@ -148,7 +148,7 @@ That assumption is about to break.
 
 ---
 
-### The bag
+#### The bag
 Look again at Meera's ten amounts.
 
 ```
@@ -236,7 +236,7 @@ The **size** of a bag is the sum of its multiplicities over its distinct values:
 size(B) = Σ m(x)   for all x in supp(B)
 ```
 
-Here `size(B)` — is the set of distinct values whose multiplicity is greater than zero. Summing over `supp(B)` counts each distinct value according to its multiplicity.
+Here `supp(B)`, the support of `B`, is the set of distinct values whose multiplicity is greater than zero. Summing over `supp(B)` counts each distinct value according to its multiplicity.
 
 For Meera's bag:
 
@@ -288,9 +288,9 @@ This relationship matters because most of what you learned about sets carries ov
 You have not left the world of sets. You have **widened** it.
 
 ---
-#### Three concepts, not to be confused
+#### Multiplicity is not cardinality
 
-You have met all three before. **Set cardinality** was named in §2 — the number of distinct elements in a set. **Column cardinality** and **relationship cardinality** were named in §7, alongside set cardinality, in its own three-meanings table.
+You have met all three before. **Set cardinality** was named in §2, Subsets (Part 1, `01-foundations.md`) — the number of distinct elements in a set. **Column cardinality** and **relationship cardinality** were named in §7, Association (Part 4, `04-associations.md`), alongside set cardinality, in its own three-meanings table.
 
 **Multiplicity is not a fourth meaning of cardinality.** It counts occurrences of one value — `m(45,000) = 9` — not distinct elements. It belongs to a bag; the three cardinalities belong to sets, columns, and relationships.
 
@@ -340,7 +340,7 @@ The error only arises when someone asks one question and answers the other. **Th
 - **A set** is the special case in which multiplicities never exceed one.
 - **The business question** determines whether distinct-value semantics or occurrence-preserving semantics is required.
 
-**The vocabulary is now complete.** The bag has a name, a structure, and a place in the collection family.
+**The bag has a name, a structure, and a place in the collection family.**
 
 What remains is what the bag **does** — how it behaves when combined, compared, and queried. That is §8.2's subject: the same ten amounts, read two ways.
 
@@ -679,6 +679,8 @@ But not every set identity fails. Check the operations one by one:
 | `(A ∩ B) ∩ C = A ∩ (B ∩ C)`  | Holds         | Holds for intersection                              |
 | `A − B = B − A`              | Not generally | Not generally                                       | 
 
+In the bags column, read `∪` as `⊎`.
+
 The distinction matters. Some laws carry over unchanged; others must be reconsidered. Bag difference, in particular, is directional: reversing the operands can change the result.
 
 Most of what you learned about sets carries over. The identity that fails for additive union is the one that depended on forgetting repetition.
@@ -688,7 +690,7 @@ Most of what you learned about sets carries over. The identity that fails for ad
 
 Two results have already appeared in this folder without being named as bags.
 
-In §7, Arjun joined to his loans and appeared **three times**. The text said: *that is not an error.* In §8.3, the analyst's two extracts were bags, and their combination had ten occurrences. This section asks two things about those collections. Where do they come from? And what can they prove?
+In §7, Association (Part 4, `04-associations.md`), Arjun joined to his loans and appeared **three times**. The text said: *that is not an error.* In §8.3, the analyst's two extracts were bags, and their combination had ten occurrences. This section asks two things about those collections. Where do they come from? And what can they prove?
 
 ---
 
@@ -718,7 +720,7 @@ A keyless table is one source of duplicates. It is not the source of all bag beh
 
 #### Why SQL keeps them
 
-§6 said SQL's departures from classical theory are deliberate. Here are the reasons.
+§6, Relational Databases (Part 3, `03-tuples-relations.md`) said SQL's departures from classical theory are deliberate. Here are the reasons.
 
 | Reason | What it means |
 |---|---|
@@ -807,7 +809,7 @@ payment_date    amount
 2025-10-05      45,000
 ```
 
-Something changes immediately.  Eight of the ten pair values are now unique — each appears only once. Most of the payments can now be told apart.
+Something changes immediately.  Eight of the ten rows are now unique — each appears only once. Most of the payments can now be told apart.
 
 Two cannot. The pair `(2025-08-20, 45,000)` appears twice:
 
@@ -890,7 +892,7 @@ Every row is now different from every other. No tuple appears twice. Every multi
 payment_id   ← PRIMARY KEY
 ```
 
-`payment_id` is the primary key of `loan_payments`. The database engine physically refuses to store two rows with the same value in it. This is the exact role the composite key played for `loan_applicants` in §7: it turned "a table of rows" into a formal guarantee that the stored table forms a set.
+`payment_id` is the primary key of `loan_payments`. The database engine physically refuses to store two rows with the same value in it. This is the exact role the composite key played for `loan_applicants` in §7, Association (Part 4, `04-associations.md`): it turned "a table of rows" into a formal guarantee that the stored table forms a set.
 
 The date could not provide that guarantee because two payments shared one. A primary key provides it because the schema forbids repetition.
 
@@ -924,7 +926,7 @@ The rows in this table are the tuples of §5. The table is the relation of §6. 
 
 ---
 
-#### What the dates reveal—and what they still cannot show
+#### What the dates show, and what they do not
 
 §8.3’s report said no instalments were unpaid. That was consistent with the data, and the dates add detail the report could not show.
 
@@ -936,7 +938,7 @@ Yet it remains a reading. The table records what was paid and when. It does not 
 
 The earlier amount-only report was never wrong. Counting instalments, it saw ten months and ten payments. It could not see timing.  That is what a bag of amounts cannot hold.
 
-Two columns of the payment record have now been unmasked. One final kind of value is still unaccounted for. Every number and attribute examined so far assumed that a value was always present. 
+Two columns of the payment record have now been used. One final kind of value is still unaccounted for. Every number and attribute examined so far assumed that a value was always present. 
 
 **§8.6 asks what happens when it is not.**
 
@@ -1065,7 +1067,8 @@ A manager asks: *"How much is still owed to Hospital Planet by insurers?"*
 | `NULL` means "pending" | `NULL` means only that the amount received is not yet known. It could also mean "not determined" or "not recorded." | 7004, 7005 |
 | Pending means insurance | The payer is an NGO. | 7004 |
 | Pending means insurance | There is no payer at all. | 7005 |
-| Amount owed equals the charge | The commitment is not paid. Nobody is yet responsible for the charge. | 7004, 7005 |
+| Amount owed equals the charge | The NGO has committed, but the money has not been received. | 7004 |
+| Amount owed equals the charge | No responsible party has been identified. | 7005 |
 
 The analyst used `NULL` as a secret code for a known business state. It meant only: *I do not know yet.* Reading row 7004's `Committed` as "the NGO will pay" would be the opposite error, treating the charge as settled. Both mistakes have one root: **the analyst assigned a meaning the record does not carry.**
 
@@ -1138,7 +1141,7 @@ The staff-waiver example is recorded as `('Hospital Sponsorship', 'Waived', 0)`,
 
 A sponsor's commitment belongs to the programme, not to the patient's row. A `NULL` on that row records only that the amount received is not known. The programme record shows how far the invoice has progressed.
 
-That is the sharper form of this section's lesson. `NULL` records what is not known. These were never unknowns, so they stop being blanks.  A blank can do the first and cannot do the second.
+That is the sharper form of this section's lesson. `NULL` records what is not known. A process model records how far a funding process has progressed. A blank can do the first and cannot do the second.
 
 ---
 
@@ -1191,7 +1194,20 @@ None of these was invented for the course. Each was already in the rows of every
 
 **You have been using sets since the first `SELECT`. The word is new. The concept is not.**
 
-The material that follows asks a different question of the same rows: what one row means. That is the subject of [`01-grain-basics.md`](../02-GRAIN-FOUNDATIONS/01-grain-basics.md).
+---
+
+## Bridge to Grain Foundations
+
+**What you can now do.**
+- Read a table as a relation and a row as a tuple.
+- Tell a set from a bag, and a repeated value from a repeated event.
+- Read an association as a subset of a Cartesian product.
+
+**What comes next.** The same rows can be asked a different question: what does one row mean? Grain Foundations develops that question, and what happens to a result when tables with different row meanings are joined.
+
+**Why it matters here.** The mathematics tells you what a row is. Grain tells you what it means, and both are needed to trust a number.
+
+**Proceed to:** [Grain Foundations: Grain Basics](../02-GRAIN-FOUNDATIONS/01-grain-basics.md)
 
 ---
 

@@ -24,11 +24,11 @@
 
 ---
 
-*This is Part 1 of the Relational mathematics. It is the reader's entry into the mathematical vocabulary that the file family assumes. The five parts are read in order — this file establishes the vocabulary; the parts that follow develop it.*
+*This folder is the mathematical vocabulary beneath the relational model. It has no prerequisites beyond the SQL you have already written, and it is read in order. This file begins with sets.*
 
 ---
 
-> **Note on identifiers.** In this folder, customers, loans and other entities are referred to by readable labels such as `CUST-701` and `LOAN-501`. These labels are narrative identifiers, chosen so each example can be followed by eye. The FinVERSE Schema Guide stores such keys as integers, so SQL written against the labels (for example, `WHERE loan_id = 'LOAN-501'`) is illustrative and shows the logic of the query, not code to run against `finverse.db` as written.
+> **Note on identifiers.** In this folder, customers, loans and other entities are referred to by readable labels such as `CUST-701` and `LOAN-501`. These labels are narrative identifiers, chosen so each example can be followed by eye. The FinVERSE Schema(`finverse.db`) stores such keys as integers, so SQL written against the labels (for example, `WHERE loan_id = 'LOAN-501'`) is illustrative and shows the logic of the query, not code to run against `finverse.db` as written.
 
 ---
 
@@ -146,7 +146,7 @@ A **universe**  `Ω` is the collection of all elements currently under considera
 
 When we say *"the universe is all accounts in FinVERSE,"* every account is an element of `Ω`, and every subset we discuss contains only accounts. When we say *"the universe is all patients in Hospital Planet,"* the universe shifts — but the mathematics does not.
 
-The universe defines the boundary within which the set operations of §3 will be applied.
+The universe defines the boundary within which the set operations of §3 (Part 2, Set Operations) will be applied.
 
 ---
 
@@ -219,7 +219,7 @@ SELECT account_id FROM accounts WHERE balance > 50000;
 
 If this query returns fewer rows than the full `accounts` table, it produces a proper subset. If it returns every row — because every account happens to have balance > 50000 — the result is **equal to the parent set** and therefore is a subset of it, but not a proper subset.
 
-The distinction between proper and improper subsets is not observable in the SQL syntax. It is a property of the result. The reader identifies it by comparing the result set's cardinality against the parent set's cardinality. Here, cardinality means the number of elements in a set, written |S|, defined formally in §3.2. The term will take on other meanings later in this folder.
+The distinction between proper and improper subsets is not observable in the SQL syntax. It is a property of the result. The reader identifies it by comparing the result set's cardinality against the parent set's cardinality. Here, cardinality means the number of elements in a set, written |S|, defined formally in §3.2, Union (`02-set-operations.md`). The term will take on other meanings later in this folder.
 
 ---
 
@@ -319,10 +319,10 @@ Values(DISTINCT Child.FK) ⊆ Values(Parent.PK)
 For example:
 
 ```
-{DISTINCT customer_id in LoanApplications} ⊆ {customer_id in Customers}
+{DISTINCT customer_id in loan_applicants} ⊆ {customer_id in Customers}
 ```
 
-The child column may contain duplicates — the same `customer_id` may appear many times in `LoanApplications`, once per association. But the **distinct** values in that column must all appear as primary keys in `Customers`.
+The child column may contain duplicates — the same `customer_id` may appear many times in `loan_applicants`, once per association. But the **distinct** values in that column must all appear as primary keys in `Customers`.
 
 If a user attempts to insert an application referencing `CUST-999` when `CUST-999 ∉ Customers`, the foreign key constraint fails. The subset relation `A ⊆ B` has been violated.
 
@@ -331,7 +331,7 @@ If a user attempts to insert an application referencing `CUST-999` when `CUST-99
 Foreign Key constraints are declared at schema creation:
 
 ```sql
-CREATE TABLE loan_applications (
+CREATE TABLE loan_applicants (
     customer_id INTEGER NOT NULL,
     loan_id     INTEGER NOT NULL,
     ...
@@ -340,12 +340,17 @@ CREATE TABLE loan_applications (
 );
 ```
 
-Every insert into `loan_applications` is checked against the parent tables. If either FK value is not present in its parent, the insert is rejected. The mathematics of subsets becomes the executable law of the schema.
+Every insert into `loan_applicants` is checked against the parent tables. If either FK value is not present in its parent, the insert is rejected. The mathematics of subsets becomes the executable law of the schema.
 
-> We will return to foreign keys in §7 (Association).
+> We will return to foreign keys in §7, Association (Part 4, `04-associations.md`).
+
+---
+
+**Next:** [Part 2, Set Operations](02-set-operations.md)
+*Sets can be contained in sets. Part 2 asks what happens when two sets are combined, compared, and subtracted.*
 
  ---
 
 *Part of our mission for 🎯 Quality Education for Anyone, Anywhere, Anytime — 💫 with Comfort, Convenience at no Cost.*
 
-**SQLVerse | Architecture | Relational Mathematics | Part 1 — Foundations | Next: [Part 2 — Set Operations →](02-set-operations.md)**
+**SQLVerse | Architecture | Relational Mathematics | Part 1 — Foundations | Next: Part 2 — Set Operations**

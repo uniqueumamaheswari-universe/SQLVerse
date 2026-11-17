@@ -1,5 +1,4 @@
 
-
 # 🗄️🤖 SQL & GenAI Course
 **🎯 Quality Education for Anyone, Anywhere, Anytime — 💫 with Comfort, Convenience at no Cost**
 
@@ -9,15 +8,17 @@
 
 ## Structured Grain Diagnosis in Practice
 
-**Document Type:** Grain Foundations — Part 2B of 3  
+**Document Type:** Grain Foundations — Part 2B
 **Version:** 1.0  
 **Status:** FROZEN  
-**Location:** `SQLVerse-Architects-Blueprint/01-GRAIN-FOUNDATIONS/`  
+**Location:** `SQLVerse-Architects-Blueprint/02-GRAIN-FOUNDATIONS/`  
 **Governing Standard:** `SQLVERSE-ARCH-FW-001`
 
 ---
 
 ## 🔗 From 02A
+
+*Continues from [Part 2A, Grain in Practice](02A-grain-in-practice-concepts.md).*
 
 In **02A — Grain in Practice Concepts**, you learned:
 
@@ -935,21 +936,10 @@ If your business question requires data from both:
 4. Then join.
 5. Verify with a count query.
 ```
-
 ---
 
-## 🔁 Bridge to File 3
-
-You have now applied the Required vs Available Grain framework to six real business questions across three levels of complexity.
-
-In **File 3 — Advanced Grain + Joins**, you will:
-
-- Explore fan‑out in 1:1, 1:N, and M:N relationships.
-- Apply these principles to the Banking domain from ACQUIRE File 3.
-- Learn the Artisan's Guardrail for safe joins across grains.
-- Examine disaggregation limits, temporal grain, and history preservation.
-
-**Next: `03-advanced-grain-evolution-with-joins.md`**
+**Next:** [Part 3A, Grain and Joins: Foundations](03A-grain-joins-foundations.md)
+*You can now diagnose grain for six business questions inside one domain. Part 3A asks what happens when grains meet in a join across a larger domain, and where the diagnosis can fail.*
 
 ---
 

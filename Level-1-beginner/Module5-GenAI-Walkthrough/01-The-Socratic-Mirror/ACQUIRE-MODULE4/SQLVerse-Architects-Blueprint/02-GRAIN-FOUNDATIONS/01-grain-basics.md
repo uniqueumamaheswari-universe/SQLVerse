@@ -8,13 +8,17 @@
 
 ## Table Grain, Primary Keys, and Business Meaning
 
-**Document Type:** Grain Foundations — Part 1 of 3  
+**Document Type:** Grain Foundations — Part 1
 **Version:** 1.0  
 **Status:** FROZEN  
-**Location:** `SQLVerse-Architects-Blueprint/01-GRAIN-FOUNDATIONS/`  
+**Location:** `SQLVerse-Architects-Blueprint/02-GRAIN-FOUNDATIONS/`  
 **Governing Standard:** `SQLVERSE-ARCH-FW-001`  
 
 ---
+*Builds on [Relational Mathematics](../01-RELATIONAL-MATHEMATICS/00-RELATIONAL-MATHEMATICS.md), which defines a row as a tuple and a table as a relation. This folder asks a different question of the same rows: what does one row mean?*
+
+---
+
 ## 🔗 From the Architect's Blueprint: The Shift to Grain
 
 In the **ACQUIRE Architect’s Blueprint**, you learned the foundational rule of database normalization:
@@ -209,6 +213,8 @@ Or more precisely:
 
 > **One row represents one unique product SKU ordered as part of a specific customer purchase transaction.**
 
+ > **A primary key guarantees that the stored rows form a set, as shown in Relational Mathematics §8.5, Seeing the Payments ([Part 5, Bags](../01-RELATIONAL-MATHEMATICS/05-bags.md)).**
+
 The grain is not the columns. The grain is **what the columns represent in the real world**.
 
 ---
@@ -374,7 +380,7 @@ If you don't know the grain, you don't know what your `SUM`, `AVG`, or `COUNT` a
 
 If you join tables with different grains without understanding them, you risk **fan‑out** — row multiplication that distorts your results.
 
-This will be explored in detail in **`02-grain-in-practice.md`**.
+This will be explored in detail later in this folder.
 
 ### 3. Schema Design
 
@@ -438,12 +444,8 @@ After reading this document, test yourself on the following tables:
 | `bills` | One row = one bill issued to a patient |
 
 ---
-
-## 🔁 Bridge to File 2
-
-You now understand what grain is, how to identify it, and why it matters.
-
-**Next: `02-grain-in-practice.md`** — where you will learn how grain behaves in real queries, how query grain differs from table grain, and how fan‑out/join multiplication can silently break your results.
+**Next:** [Part 2A, Grain in Practice](02A-grain-in-practice-concepts.md)
+*You can now state what one row of a table means. Part 2A asks what happens to that meaning when a query groups, filters or joins the rows.*
 
 ---
 

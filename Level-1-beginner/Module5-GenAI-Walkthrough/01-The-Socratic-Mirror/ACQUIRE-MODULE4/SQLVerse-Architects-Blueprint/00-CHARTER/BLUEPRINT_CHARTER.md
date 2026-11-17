@@ -85,20 +85,23 @@ All documents across `SQLVerse-Architects-Blueprint` strictly adhere to the navi
 | Type | Use Case | Standard Form |
 |---|---|---|
 | **Continuation** | Next file continues the same linear argument | One sentence context, followed by the link. |
-| **Threshold** | Reader crosses into a new structural area/folder | Three-part bridge (What you can now do, What comes next, Why it matters here), followed by the link. |
+| **Threshold** | Reader crosses into a new structural area/folder | Opening: one-line introduction to the new area. Closing: three-part bridge (What you can now do, What comes next, Why it matters here), followed by the link. |
 | **Reference** | Mid-text pointer to specific concepts | Section number, section title, and relative file link. |
 
 ### Core Navigation Rules
 
-1. **Openings & Handoffs:** Every file except the first of the Blueprint opens with a continuation line (inside an area) or a threshold introduction (first file of a new area). Every file closes with a continuation handoff or, at the end of an area, a threshold bridge.
-2. **Relative Paths & Title Integrity:** All hyperlinks must use relative file paths. Link text must always use the target's explicit title, never generic text such as "here".
-3. **Section-Level References:** Cross-file references must identify the section number, section title, and linked file. A bare section number is never sufficient.
-4. **Threshold Bridge Structure:** Every threshold bridge must contain three parts: **What you can now do** (2–4 bullets), **What comes next** (one short paragraph), and **Why it matters here** (one sentence). It must end with one bold **Proceed to:** link.
-5. **Forward Reference Integrity:** Forward references may promise only content that exists.  If the target is not yet drafted, write "later in this folder" or "later in the Blueprint", whichever matches the scope, without creating a link.
-6. **Backward Reference Integrity:** Backward references may point only to content the reader has already encountered.
-7. **Strict One-Way Dependency:** Dependency runs one way: Relational Mathematics, then Grain Foundations, then Case Studies. Earlier areas may mention later areas as forward pointers, but must never cite them as previously established material.
-8. **Anchor Safety:** Section anchors use plain-text headings. Emojis are omitted from anchor targets to prevent link breakage across renders.
-9. **Information Secrecy:** A handoff must establish the question or direction carried forward without revealing the conclusion or resolution of the target file.
+1. **Opening Rule:** Every file except the first file of the Blueprint opens with a continuation line (inside an area) or a threshold introduction (first file of a new area).
+2. **Closing Rule:** Every file closes with a continuation handoff or, at the end of an area, a threshold bridge.
+3. **Relative Paths & Title Integrity:** All hyperlinks must use relative file paths. Link text must always use the target's explicit title, never generic text such as "here".
+4. **Section-Level References:** Cross-file references must identify the section number, section title, and linked file. A bare section number is never sufficient.
+5. **Threshold Bridge Structure:** Every threshold bridge must contain three parts: **What you can now do** (2–4 bullets), **What comes next** (one short paragraph), and **Why it matters here** (one sentence). It must end with one bold **Proceed to:** link.
+6. **Forward Reference Integrity:** Forward references may promise only content that exists. If the target is not yet drafted, write "later in this folder" or "later in the Blueprint", whichever matches the scope, without creating a link.
+7. **Backward Reference Integrity:** Backward references may point only to content the reader has already encountered.
+8. **Strict One-Way Dependency:** Dependency runs one way: Relational Mathematics, then Grain Foundations, then Case Studies. Earlier areas may mention later areas as forward pointers, but must never cite them as previously established material.
+9. **Anchor Safety:** Section anchors use plain-text headings. Emojis are omitted from anchor targets to prevent link breakage across renders.
+10. **Information Secrecy:** A handoff must establish the question or direction carried forward without revealing the conclusion or resolution of the target file.
+11. **Cross-folder links:** Cross-folder links point to the folder's index file. If a folder has no index, they point to the first file in its reading order. Links that cite a specific section point to that file. 
+12. **Hand-Off Section:** A continuation handoff may be preceded by a short "Hand-Off" section that recaps what the file established and names the skills the next file practises. It must not state the next file's results.
 
 ---
 
@@ -114,7 +117,7 @@ flowchart LR
         D["Approved Schema State"]
     end
 
-    subgraph ANALYTICS["Levels 2 & 3 (Complex Analytical Querying)"]
+    subgraph ANALYTICS["Levels 2 & 3 (Analytical Consumption of Evolved Schemas)"]
         E["Analytical Consumption"]
     end
 
@@ -132,7 +135,7 @@ flowchart LR
 | **Grain Foundations** | Develops the concepts needed to reason about row meaning, grain alignment, joins, fan-out, and temporal history |
 | **Blueprint** | Investigation Laboratory: applies those foundations to diagnose business and data-model gaps and propose solutions |
 | **Foundation** | Canonical State: where approved schema evolutions are stored |
-| **Levels 2 & 3** | Execution & Consumption: where evolved schemas are consumed for advanced analytics |
+| **Levels 2 & 3** | Analytical Consumption: where evolved schemas are consumed for advanced analytics |
 
 > The mathematical foundation sits upstream of the Blueprint. The Blueprint points to it and does not teach it.
 
@@ -166,7 +169,7 @@ Every investigation inside the Blueprint begins with the same foundational quest
 
 > **"What does ONE row represent in this table?"**
 
-This is the **Grain Invariant**. All analysis, diagnosis, and evolution decisions flow from this question.
+This is the **Grain-First question**. Its formal expression is developed as **Invariant I — The Grain Invariant** in Part 3C-3, Invariants and Guardrail. All analysis, diagnosis, and evolution decisions flow from this question.
 
 ```text
 GRAIN QUESTION
@@ -235,6 +238,8 @@ case-study-folder/
 5. **Diagnose** — Identify the data-model gap and produce forensic proof queries.
 6. **Evaluate and decide** — Compare alternatives, document trade-offs, and log the architectural decision in the Decision Ledger.
 7. **Hand off** — Submit the approved schema evolution (Contract A) or approved business rule (Contract B) to the Foundation.
+
+**Business Evolution:** After completing the case studies, read `04-THE-SQLVERSE-BUSINESS-EVOLUTION/`. It is a business narrative, not a step in the investigation workflow.
 
 ---
 

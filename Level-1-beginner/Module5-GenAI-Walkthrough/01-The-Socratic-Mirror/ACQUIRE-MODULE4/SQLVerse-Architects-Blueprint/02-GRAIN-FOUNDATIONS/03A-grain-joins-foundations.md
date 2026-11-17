@@ -8,13 +8,17 @@
 
 ## What Happens When Different Grains Meet
 
-**Document Type:** Grain Foundations — Part 3A of 3  
+**Document Type:** Grain Foundations — Part 3A.
 **Version:** 1.0  
 **Status:** FROZEN  
 **Domain:** FinVERSE / ACQUIRE Banking Core  
 **Level:** Production Skills & Mathematical Execution Principles  
-**Location:** `SQLVerse-Architects-Blueprint/01-GRAIN-FOUNDATIONS/`  
+**Location:** `SQLVerse-Architects-Blueprint/02-GRAIN-FOUNDATIONS/`  
 **Governing Standard:** `SQLVERSE-ARCH-FW-001`
+
+---
+
+*Continues from [Part 2B, Restaurant Chain Analysis](02B-restaurant-chain-pattern-analysis.md). You can now diagnose required grain against available grain for single-domain questions. This part asks what happens to a result when tables of different grains meet in a join.*
 
 ---
 
@@ -22,9 +26,9 @@
 
 In **ACQUIRE File 4 (Normalization in Practice)** , you built a Banking domain with customers, accounts, debit cards, loans, and transactions. You learned how to normalize entities and establish relationships.
 
-In **Grain 1**, you asked: *"What does ONE ROW represent?"*
+In **Part 1**, you asked: *"What does ONE ROW represent?"*
 
-In **Grain 2**, you asked: *"What grain do I HAVE, and what grain do I NEED?"*
+In **Part 2A**, you asked: *"What grain do I HAVE, and what grain do I NEED?"*
 
 **Now we ask the question that changes everything:**
 
@@ -34,11 +38,11 @@ In **Grain 2**, you asked: *"What grain do I HAVE, and what grain do I NEED?"*
 
 ## 📌 Purpose
 
-This is the third and final document of the Grain Triad.
+This part opens the study of grain and joins.
 
 **This document bridges data modeling, SQL execution, and analytical correctness.**
 
-You will learn:
+Across this part and the next you will learn :
 
 - Why **1:1 relationships** are safe — and when they are not.
 - How **1:N relationships** can distort measures when joined.
@@ -51,7 +55,7 @@ You will learn:
 
 In real-world data environments, business metrics rarely live inside a single table. You are required to join tables representing entirely different business concepts, operating at different levels of detail, created at different points in time.
 
-**The central goal of File 03 is to answer one fundamental question:**
+**The central goal of this part is to answer one fundamental question:**
 
 > **What happens to the row set—and the business meaning of its numbers—when different table grains meet across a `JOIN`?**
 
@@ -196,6 +200,8 @@ To understand the Banking domain, you need to know the **entities**, their **rel
 | **`loan_applications`** | One row = one customer–loan association | `customer_id`, `loan_id`, `application_date`, `loan_role` | Junction table linking customers and loans (M:N) |
 | **`loan_transactions`** | One row = one loan payment | `transaction_id`, `loan_id`, `transaction_date`, `amount` | Installment payments against loans |
 | **`card_transactions`** | One row = one credit card transaction | `transaction_id`, `card_id`, `transaction_date`, `amount`, `transaction_type` | Purchases, cash advances, refunds, etc. |
+
+**Note:** This domain is the ACQUIRE banking dataset. Table names differ slightly from the FinVERSE schema used in Relational Mathematics.
 
 ---
 
@@ -847,23 +853,7 @@ Joining a table at the **Customer Grain** (`customers`) to a table at the **Loan
 
 ---
 
-**Bridge to Investigation III:**
-
-What happens when **two independent 1:N branches** meet the same anchor table?
-
-```text
-Accounts
-   │
-   ├── CreditCards (1:N)
-   └── Transactions (1:N)
-```
-
-The replication becomes **multiplicative**.
-
-**Proceed to Investigation III — Parallel 1:N Relationships & Multiplicative Fan-Out.**
-
----
-### 🔁 Bridge to 03B — Fan-Out
+### 📌 Hand-Off to 03B
 
 You have now completed the foundational investigations:
 
@@ -892,11 +882,8 @@ Accounts
 
 The replication becomes **multiplicative**.
 
-**Proceed to 📁 03B — Grain + Joins: Fan-Out.**
-
-- Investigation III — Parallel 1:N Relationships & Multiplicative Fan-Out
-- Investigation IV — M:N Relationships & Association Bridge Grains
-- Investigation V — Temporal Grain & History Preservation
+**Next:** [Part 3B, Grain and Joins: Fan-Out](03B-1-grain-joins-fanout.md)
+*One branch can echo. Part 3B asks what happens when two branches multiply at the same anchor, and when an association has a grain of its own.*
 
 ---
 
